@@ -20,12 +20,16 @@
     "node": ">=20.10.0"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^5.2.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^22.10.5",
+    "eslint": "^9.34.0",
     "husky": "^9.1.7",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3"
