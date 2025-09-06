@@ -1,0 +1,29 @@
+{
+  "name": "huey",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "description": "A Headless components for all your colorful needs.",
+  "author": "Eihab Khan <yo@eihab.me>",
+  "keywords": [
+    "svelte",
+    "vue",
+    "headless",
+    "unstyled",
+    "color-picker"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  },
+  "pnpm": {}
+}
