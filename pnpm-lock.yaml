@@ -27,6 +27,15 @@ importers:
         specifier: ^5.7.3
         version: 5.9.2
 
+  packages/core:
+    devDependencies:
+      typescript:
+        specifier: ~5.8.3
+        version: 5.8.3
+      vite:
+        specifier: ^7.1.2
+        version: 7.1.4(@types/node@22.18.1)(jiti@2.5.1)(yaml@2.8.1)
+
   packages/svelte:
     devDependencies:
       '@chromatic-com/storybook':
