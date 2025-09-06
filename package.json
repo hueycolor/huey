@@ -19,11 +19,14 @@
   "engines": {
     "node": ">=20.10.0"
   },
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^22.10.5",
+    "husky": "^9.1.7",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3"
   },
