@@ -35,24 +35,26 @@ export function isRgb(str: string): boolean {
   if (values.some(v => v < 0 || v > 255))
     return false
 
-  return isAlpha(a)
+  if (a !== undefined) {
+    return isAlpha(a)
+  }
+
+  return true
 }
 
 export function isAlpha(a: string | number) {
   let alpha: number
 
-  if (a !== undefined) {
-    if (typeof a === 'string') {
-      alpha = Number.parseFloat(a)
-    }
-
-    alpha = a as number
-
-    if (alpha < 0 || alpha > 1)
-      return false
+  if (typeof a === 'string') {
+    alpha = Number.parseFloat(a)
   }
 
-  return true
+  alpha = a as number
+
+  if (alpha >= 0 || alpha <= 1)
+    return true
+
+  return false
 }
 
 // export function isHsl(str: string): boolean {
