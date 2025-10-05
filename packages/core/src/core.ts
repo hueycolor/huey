@@ -66,7 +66,7 @@ export function isLch(str: string): boolean {
 
   const [, l, c, h, a] = match
 
-  if (!isPercentage(l) || !isPercentage(c) || !isHue(h))
+  if (!isPercentage(l) || !isChroma(c) || !isHue(h))
     return false
 
   if (a !== undefined) {
@@ -77,7 +77,7 @@ export function isLch(str: string): boolean {
 }
 
 export function isOklch(str: string): boolean {
-  if (!str.startsWith('ok'))
+  if (!str.startsWith('oklch'))
     return false
 
   return isLch(str)
@@ -87,6 +87,12 @@ export function isPercentage(v: number | string) {
   const _v = typeof v === 'string' ? Number.parseFloat(v) : v
 
   return (_v >= 0 && _v <= 1) || (_v >= 0 && _v <= 100)
+}
+
+export function isChroma(c: number | string) {
+  const _c = typeof c === 'string' ? Number.parseFloat(c) : c
+
+  return _c >= 0
 }
 
 export function isHue(h: number | string) {
@@ -113,10 +119,10 @@ export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch
     return 'rgb'
   if (isHsl(trim))
     return 'hsl'
-  if (isLch(trim))
-    return 'lch'
   if (isOklch(trim))
     return 'oklch'
+  if (isLch(trim))
+    return 'lch'
 
   return 'unknown'
 }
