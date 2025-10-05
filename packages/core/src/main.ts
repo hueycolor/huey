@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
-import { isHex, isRgb } from './core.ts'
+import { isHex, isHsl, isRgb } from './core.ts'
 import { setupCounter } from './counter.ts'
 import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-console.log(isRgb('rgb(255, 255, 255 0.1)'))
+console.log(isHsl('hsl(20 30% 100% 1)'))
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

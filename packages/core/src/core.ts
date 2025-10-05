@@ -1,12 +1,14 @@
+/* eslint-disable regexp/no-misleading-capturing-group */
+/* eslint-disable regexp/no-useless-quantifier */
+/* eslint-disable regexp/no-super-linear-backtracking */
 import type { HueyColor } from './types'
 import { deserialize } from '@texel/color'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
-// eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
 const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,?\s*(\d+)\s*,?\s*(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
-// // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
-// const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*(?:,\s*)?([\d.]+)%\s*(?:,\s*)?([\d.]+)%\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
+// // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-super-linear-backtracking, regexp/no-useless-quantifier
+const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*,?\s*([\d.]+)%\s*,?\s*([\d.]+)%\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
 // const OKLCH_REGEX = /^oklch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 // const LCH_REGEX = /^lch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 
@@ -42,28 +44,45 @@ export function isRgb(str: string): boolean {
   return true
 }
 
+export function isHsl(str: string): boolean {
+  const match = HSL_REGEX.exec(str)
+
+  if (!match)
+    return false
+
+  const [, _h, _s, _l, a] = match
+
+  const [h, s, l] = [Number.parseInt(_h), Number.parseInt(_s), Number.parseInt(_l)]
+
+  if ((h < 0 || h > 360) || (s < 0 || s > 100) || (l < 0 || l > 100))
+    return false
+
+  if (a !== undefined) {
+    return isAlpha(a)
+  }
+
+  return true
+}
+
+// export function isLch(str: string): boolean {
+//   return false
+// }
+
 export function isAlpha(a: string | number) {
   let alpha: number
 
   if (typeof a === 'string') {
     alpha = Number.parseFloat(a)
   }
-
-  alpha = a as number
+  else {
+    alpha = a as number
+  }
 
   if (alpha >= 0 && alpha <= 1)
     return true
 
   return false
 }
-
-// export function isHsl(str: string): boolean {
-//   return false
-// }
-
-// export function isLch(str: string): boolean {
-//   return false
-// }
 
 export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch' | 'unknown' {
   const trimmed = input.trim()
@@ -72,6 +91,8 @@ export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch
     return 'hex'
   if (isRgb(trimmed))
     return 'rgb'
+  if (isHsl(trimmed))
+    return 'hsl'
 
   return 'unknown'
 }
