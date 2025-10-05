@@ -5,7 +5,7 @@ import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
 const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,?\s*(\d+)\s*,?\s*(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
-const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*,?\s*([\d.]+)%\s*,?\s*([\d.]+)%\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
+const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*,?\s*([\d.]+)%?\s*,?\s*([\d.]+)%?\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
 const LCH_REGEX = /^(?:lch|oklch)\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 
 export function isColor(value: unknown): value is HueyColor {
@@ -86,7 +86,7 @@ export function isOklch(str: string): boolean {
 export function isPercentage(v: number | string) {
   const _v = typeof v === 'string' ? Number.parseFloat(v) : v
 
-  return !(_v < 0 || _v > 100)
+  return (_v >= 0 && _v <= 1) || (_v >= 0 && _v <= 100)
 }
 
 export function isHue(h: number | string) {
@@ -94,10 +94,6 @@ export function isHue(h: number | string) {
 
   return !(_h < 0 || _h > 360)
 }
-
-// export function isLch(str: string): boolean {
-//   return false
-// }
 
 export function isAlpha(a: string | number) {
   const _a = typeof a === 'string' ? Number.parseFloat(a) : a
@@ -117,6 +113,10 @@ export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch
     return 'rgb'
   if (isHsl(trim))
     return 'hsl'
+  if (isLch(trim))
+    return 'lch'
+  if (isOklch(trim))
+    return 'oklch'
 
   return 'unknown'
 }

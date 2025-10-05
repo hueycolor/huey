@@ -6,7 +6,7 @@ import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-console.log(isOklch('oklch(10% 20 360)'))
+console.log(isLch('lch(10 20 360)'))
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
