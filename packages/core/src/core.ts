@@ -1,6 +1,5 @@
 /* eslint-disable regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group */
-import type { HueyColor } from './types'
-import { deserialize } from '@texel/color'
+import type { ColorFormat, HueyColor, HueyColorSymbol } from './types'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
@@ -110,7 +109,7 @@ export function isAlpha(a: string | number) {
   return false
 }
 
-export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch' | 'unknown' {
+export function getFormat(input: string): ColorFormat | 'unknown' {
   const trim = input.trim()
 
   if (isHex(trim))
@@ -132,25 +131,16 @@ export function hueyColor(color: string | HueyColor): HueyColor {
     return color
   }
 
-  // Parse the color, determine if its a hex, rgb, hsl, oklch
-
   const format = getFormat(color)
 
   if (format === 'unknown') {
     throw new Error(`invalid color provided: ${color}`)
   }
-  // Determing if its a valid color (valid hex, rgb, hsl, oklch)
 
-  // If valid use color, otherwise initialize a white color with a fixed hue (blue maybe)
-
-  // return a hueyColor instance
-
-  const parsed = deserialize(color)
-
-  return {
+  const hueyColor: HueyColorSymbol = {
     [HUEY_COLOR]: true,
-    oklch: { l: 1, c: 3, h: 3 },
-    lastKnownHue: 3,
-    meta: { originalFormat: parsed.id },
+    getFormat: () => format,
   }
+
+  return hueyColor as HueyColor
 }

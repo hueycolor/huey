@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
-import { isHex, isHsl, isLch, isOklch, isRgb } from './core.ts'
+import { hueyColor, isHex, isHsl, isLch, isOklch, isRgb } from './core.ts'
 import { setupCounter } from './counter.ts'
 import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-console.log(isLch('lch(10 20 360)'))
+const color = hueyColor('rgba(244, 100, 20)')
+
+console.log(color.getFormat())
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
