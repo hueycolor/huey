@@ -1,7 +1,11 @@
+import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
+import { isHex } from './core.ts'
 import { setupCounter } from './counter.ts'
 import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
+
+console.log(isHex('#ff0100f0'))
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
