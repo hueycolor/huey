@@ -51,7 +51,7 @@ export function isAlpha(a: string | number) {
 
   alpha = a as number
 
-  if (alpha >= 0 || alpha <= 1)
+  if (alpha >= 0 && alpha <= 1)
     return true
 
   return false

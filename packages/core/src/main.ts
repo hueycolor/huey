@@ -6,7 +6,7 @@ import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-console.log(isRgb('rgb(255, 255, 255)'))
+console.log(isRgb('rgb(255, 255, 255 0.1)'))
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
