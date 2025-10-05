@@ -34,7 +34,7 @@ export interface HueyColor {
   getBrightness: () => number
   isLight: () => boolean
   isDark: () => boolean
-  setAlpha: (alpha: number) => HueyColor
+  setAlpha: (a: number) => HueyColor
   toHSL: () => HSLA
   toHSLString: () => string
   toHex: () => string
@@ -44,12 +44,12 @@ export interface HueyColor {
   toRgb: () => RGBA
   toRgbString: () => string
   toString: () => string
-  lighten: (amount: number) => HueyColor
-  brighten: (amount: number) => HueyColor
-  darken: (amount: number) => HueyColor
-  saturate: (amount: number) => HueyColor
-  desaturate: (amount: number) => HueyColor
-  contrastRatio: (color: HueyColor) => number
+  lighten: (v: number) => HueyColor
+  brighten: (v: number) => HueyColor
+  darken: (v: number) => HueyColor
+  saturate: (v: number) => HueyColor
+  desaturate: (v: number) => HueyColor
+  contrastRatio: (c: HueyColor) => number
   randomize: () => HueyColor
   clone: () => HueyColor
 }
