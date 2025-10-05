@@ -3,7 +3,8 @@ import { deserialize } from '@texel/color'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
-const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)$/
+// eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
+const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,?\s*(\d+)\s*,?\s*(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
 // // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
 // const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*(?:,\s*)?([\d.]+)%\s*(?:,\s*)?([\d.]+)%\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 // const OKLCH_REGEX = /^oklch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
