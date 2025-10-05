@@ -1,18 +1,15 @@
-/* eslint-disable regexp/no-misleading-capturing-group */
-/* eslint-disable regexp/no-useless-quantifier */
-/* eslint-disable regexp/no-super-linear-backtracking */
+/* eslint-disable regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group */
 import type { HueyColor } from './types'
 import { deserialize } from '@texel/color'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
 const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,?\s*(\d+)\s*,?\s*(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
-// // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-super-linear-backtracking, regexp/no-useless-quantifier
 const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*,?\s*([\d.]+)%\s*,?\s*([\d.]+)%\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
 // const OKLCH_REGEX = /^oklch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
-// const LCH_REGEX = /^lch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
+const LCH_REGEX = /^lch\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 
-export function isHueyColor(value: unknown): value is HueyColor {
+export function isColor(value: unknown): value is HueyColor {
   return (
     typeof value === 'object'
     && value !== null
@@ -50,11 +47,9 @@ export function isHsl(str: string): boolean {
   if (!match)
     return false
 
-  const [, _h, _s, _l, a] = match
+  const [, h, s, l, a] = match
 
-  const [h, s, l] = [Number.parseInt(_h), Number.parseInt(_s), Number.parseInt(_l)]
-
-  if ((h < 0 || h > 360) || (s < 0 || s > 100) || (l < 0 || l > 100))
+  if (!isHue(h) || !isPercentage(s) || !isPercentage(l))
     return false
 
   if (a !== undefined) {
@@ -64,50 +59,73 @@ export function isHsl(str: string): boolean {
   return true
 }
 
+export function isLch(str: string): boolean {
+  const match = LCH_REGEX.exec(str)
+
+  if (!match)
+    return false
+
+  const [, l, c, h, a] = match
+
+  if (!isPercentage(l) || !isPercentage(c) || !isHue(h))
+    return false
+
+  if (a !== undefined) {
+    return isAlpha(a)
+  }
+
+  return true
+}
+
+export function isPercentage(v: number | string) {
+  const _v = typeof v === 'string' ? Number.parseFloat(v) : v
+
+  return !(_v < 0 || _v > 100)
+}
+
+export function isHue(h: number | string) {
+  const _h = typeof h === 'string' ? Number.parseFloat(h) : h
+
+  return !(_h < 0 || _h > 360)
+}
+
 // export function isLch(str: string): boolean {
 //   return false
 // }
 
 export function isAlpha(a: string | number) {
-  let alpha: number
+  const _a = typeof a === 'string' ? Number.parseFloat(a) : a
 
-  if (typeof a === 'string') {
-    alpha = Number.parseFloat(a)
-  }
-  else {
-    alpha = a as number
-  }
-
-  if (alpha >= 0 && alpha <= 1)
+  if (_a >= 0 && _a <= 1)
     return true
 
   return false
 }
 
 export function getFormat(input: string): 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch' | 'unknown' {
-  const trimmed = input.trim()
+  const trim = input.trim()
 
-  if (isHex(trimmed))
+  if (isHex(trim))
     return 'hex'
-  if (isRgb(trimmed))
+  if (isRgb(trim))
     return 'rgb'
-  if (isHsl(trimmed))
+  if (isHsl(trim))
     return 'hsl'
 
   return 'unknown'
 }
 
-export function hueyColor(inputColor: string | HueyColor): HueyColor {
-  if (isHueyColor(inputColor)) {
-    return inputColor
+export function hueyColor(color: string | HueyColor): HueyColor {
+  if (isColor(color)) {
+    return color
   }
 
   // Parse the color, determine if its a hex, rgb, hsl, oklch
 
-  const format = getFormat(inputColor)
+  const format = getFormat(color)
 
   if (format === 'unknown') {
-    throw new Error(`invalid color provided: ${inputColor}`)
+    throw new Error(`invalid color provided: ${color}`)
   }
   // Determing if its a valid color (valid hex, rgb, hsl, oklch)
 
@@ -115,7 +133,7 @@ export function hueyColor(inputColor: string | HueyColor): HueyColor {
 
   // return a hueyColor instance
 
-  const parsed = deserialize(inputColor)
+  const parsed = deserialize(color)
 
   return {
     [HUEY_COLOR]: true,
