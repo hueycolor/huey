@@ -26,6 +26,10 @@ export interface LCH {
 export interface OKLCH extends LCH {}
 
 export interface HueyColor {
+  _l: OKLCH['l']
+  _c: OKLCH['c']
+  _h: OKLCH['h']
+  _a: OKLCH['a']
   getFormat: () => ColorFormat
   getOriginalInput: () => string
   isValid: () => boolean

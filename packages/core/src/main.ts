@@ -1,14 +1,16 @@
 /* eslint-disable no-console */
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
+import tinycolor from 'tinycolor2'
 import { hueyColor, isHex, isHsl, isLch, isOklch, isRgb } from './core.ts'
 import { setupCounter } from './counter.ts'
 import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-const color = hueyColor('rgba(244, 100, 20)')
+const color = hueyColor('oklch(59.69% 0.156 49.77 / 0.4)')
+// const color = tinycolor('#fff000')
 
-console.log(color.getFormat())
+console.log(color)
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

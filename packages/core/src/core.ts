@@ -1,5 +1,6 @@
 /* eslint-disable regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group */
 import type { ColorFormat, HueyColor, HueyColorSymbol } from './types'
+import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
@@ -126,20 +127,49 @@ export function getFormat(input: string): ColorFormat | 'unknown' {
   return 'unknown'
 }
 
-export function hueyColor(color: string | HueyColor): HueyColor {
-  if (isColor(color)) {
-    return color
+export function hueyColor(colorInput: string | HueyColor): HueyColor {
+  if (isColor(colorInput)) {
+    return colorInput
   }
 
-  const format = getFormat(color)
+  const _format = getFormat(colorInput)
 
-  if (format === 'unknown') {
-    throw new Error(`invalid color provided: ${color}`)
+  if (_format === 'unknown') {
+    throw new Error(`invalid color provided: ${colorInput}`)
   }
+
+  const { coords } = deserialize(colorInput)
+  const [, , , a] = coords
+  const _a = a ?? 1
+  const colorValues: number[] = _format === 'oklch' ? coords : convert(coords, sRGB, OKLCH)
+  const [_l, _c, _h] = colorValues
 
   const hueyColor: HueyColorSymbol = {
     [HUEY_COLOR]: true,
-    getFormat: () => format,
+    _l,
+    _c,
+    _h,
+    _a,
+    getFormat: () => _format,
+    getOriginalInput: () => {
+      return colorInput
+    },
+    getAlpha: () => hueyColor._a,
+    setAlpha: (v) => {
+      hueyColor._a = v
+
+      return hueyColor
+    },
+    desaturate: (v) => {
+      hueyColor._c -= v
+
+      return hueyColor
+    },
+    saturate: (v) => {
+      hueyColor._c += v
+
+      return hueyColor
+    },
   }
 
   return hueyColor as HueyColor
