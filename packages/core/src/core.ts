@@ -1,14 +1,13 @@
-/* eslint-disable regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group */
 import type { ColorFormat, HueyColor, HueyColorSymbol } from './types'
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
 
 const HEX_REGEX = /^#?(?:[A-F0-9]{8}|[A-F0-9]{6}|[A-F0-9]{3})$/i
-const RGB_REGEX = /^rgba?\(\s*(\d+)\s*,?\s*(\d+)\s*,?\s*(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
-const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*,?\s*([\d.]+)%?\s*,?\s*([\d.]+)%?\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
+const RGB_REGEX = /^rgba?\(\s*(\d+)\s*(?:,\s*)?(\d+)\s*(?:,\s*)?(\d+)\s*(?:,?\s*([\d.]+)\s*)?\)$/
+const HSL_REGEX = /^hsla?\(\s*([\d.]+)(?:deg|rad|grad|turn)?\s*(?:,\s*)?([\d.]+)%?\s*(?:,\s*)?([\d.]+)%?\s*(?:[,/]\s*)?([\d.]+)?\s*\)$/
 const LCH_REGEX = /^(?:lch|oklch)\(\s*([\d.]+%?)\s+([\d.]+)\s+([\d.]+)(deg|rad|grad|turn)?\s*(?:[,/]\s*([\d.]+)\s*)?\)$/
 
-export function isColor(value: unknown): value is HueyColor {
+export function isHuey(value: unknown): value is HueyColor {
   return (
     typeof value === 'object'
     && value !== null
@@ -128,7 +127,7 @@ export function getFormat(input: string): ColorFormat | 'unknown' {
 }
 
 export function hueyColor(colorInput: string | HueyColor): HueyColor {
-  if (isColor(colorInput)) {
+  if (isHuey(colorInput)) {
     return colorInput
   }
 
