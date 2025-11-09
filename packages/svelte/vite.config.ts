@@ -12,6 +12,13 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [svelte()],
+  resolve: {
+    alias: {
+      '@core': path.resolve(dirname, '../core'),
+      '@svelte': path.resolve(dirname, './src'),
+      '@vue': path.resolve(dirname, '../vue'),
+    },
+  },
   test: {
     projects: [{
       extends: true,
