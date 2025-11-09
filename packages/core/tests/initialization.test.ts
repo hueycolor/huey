@@ -67,49 +67,37 @@ const TEST_COLORS = {
  */
 
 describe('color init - rbg', () => {
-  it('should init from spaced', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.spaced)
+  it.each([
+    ['spaced', TEST_COLORS.rgb.valid.spaced],
+    ['comma', TEST_COLORS.rgb.valid.comma],
+    ['spaced uppercase', TEST_COLORS.rgb.valid.spacedUpperCase],
+    ['comma uppercase', TEST_COLORS.rgb.valid.commaUpperCase],
+    ['rgba', TEST_COLORS.rgb.valid.rgba],
+    ['excess space', TEST_COLORS.rgb.valid.excessWhitespace],
+  ])('should init from %s', (_, testColor) => {
+    const color = hueyColor(testColor)
     expect(isHuey(color)).toBe(true)
   })
-  it('should init from comma', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.comma)
-    expect(isHuey(color)).toBe(true)
-  })
-  it('should init from spaced w/ alpha', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.alphaSpaced)
+
+  it.each([
+    ['spaced w/ alpha', TEST_COLORS.rgb.valid.alphaSpaced],
+    ['comma w/ alpha', TEST_COLORS.rgb.valid.alphaComma],
+  ])('should init from %s', (_, testColor) => {
+    const color = hueyColor(testColor)
     expect(isHuey(color)).toBe(true)
     expect(color._a).toBeLessThan(1)
   })
-  it('should init from comma w/ alpha', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.alphaComma)
-    expect(isHuey(color)).toBe(true)
-    expect(color._a).toBeLessThan(1)
-  })
-  it('should init from spaced uppercase', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.spaced)
-    expect(isHuey(color)).toBe(true)
-  })
-  it('should init from comma uppercase', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.comma)
-    expect(isHuey(color)).toBe(true)
-  })
-  it('should init from rgba', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.rgba)
-    expect(isHuey(color)).toBe(true)
-  })
+
   it('should init with zero alpha', () => {
     const color = hueyColor(TEST_COLORS.rgb.valid.alphaZero)
     expect(isHuey(color)).toBe(true)
     expect(color._a).toBe(0)
   })
+
   it('should init with full alpha', () => {
     const color = hueyColor(TEST_COLORS.rgb.valid.alphaOne)
     expect(isHuey(color)).toBe(true)
     expect(color._a).toBe(1)
-  })
-  it('should init from excess space', () => {
-    const color = hueyColor(TEST_COLORS.rgb.valid.excessWhitespace)
-    expect(isHuey(color)).toBe(true)
   })
   it.each([
     ['out of range', TEST_COLORS.rgb.invalid.outOfRange],

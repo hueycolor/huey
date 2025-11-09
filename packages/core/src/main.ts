@@ -7,7 +7,7 @@ import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-const color = hueyColor('oklch(59.69% 0.156 49.77 / 0.4)')
+const color = hueyColor('RGB(210 120 120)')
 // const color = tinycolor('#fff000')
 
 console.log(color)
