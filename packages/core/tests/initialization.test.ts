@@ -41,5 +41,13 @@ describe('color init', () => {
       expect(color._h).toBeTypeOf('number')
       expect(color.getOriginalInput()).toBe(TEST_COLORS.rgb.withAlphaSpaced)
     })
+    it('should init from comma separated with alpha', () => {
+      const color = hueyColor(TEST_COLORS.rgb.withAlphaSpaced)
+      expect(color._a).toBeLessThan(1)
+      expect(color._l).toBeTypeOf('number')
+      expect(color._c).toBeTypeOf('number')
+      expect(color._h).toBeTypeOf('number')
+      expect(color.getOriginalInput()).toBe(TEST_COLORS.rgb.withAlphaSpaced)
+    })
   })
 })
