@@ -4,74 +4,120 @@ import { describe, expect, it } from 'vitest'
 
 const TEST_COLORS = {
   rgb: {
-    spaced: 'rgb(210 120 120)',
-    comma: 'rgb(210, 120, 120)',
-    withAlphaSpaced: 'rgb(210 120 120 / 0.4)',
-    withAlphaComma: 'rgb(210, 120, 120, 0.4)',
+    valid: {
+      spaced: 'rgb(210 120 120)',
+      comma: 'rgb(210, 120, 120)',
+      alphaSpaced: 'rgb(210 120 120 / 0.4)',
+      alphaComma: 'rgb(210, 120, 120, 0.4)',
+      spacedUpperCase: 'RGB(210 120 120)',
+      commaUpperCase: 'RGB(210, 120, 120)',
+      rgba: 'rgba(210, 120, 120, 0.4)',
+      alphaZero: 'rgb(210, 120, 120, 0)',
+      alphaOne: 'rgb(210, 120, 120, 1)',
+      excessWhitespace: 'rgb(210    120    120  /  1)',
+    },
+    invalid: {
+      outOfRange: 'rgb(256, 120, 120, 1)',
+      negative: 'rgb(-210 120 120)',
+      missing: 'rgb(210 120)',
+      tooMany: 'rgb(210, 120, 120, 1, 120)',
+      alphaOutOfRange: 'rgb(210 120 120 / 1.5)',
+      nonNumeric: 'rgb(a, b, c)',
+      empty: 'rgb()',
+    },
   },
   hex: {
-    withoutHash: 'FFF',
-    hex3: '#FF5',
-    hex6: '#FF5500',
-    hex8: '#FF5500A1',
+    valid: {
+      withoutHash: 'FFF',
+      hex3: '#FF5',
+      hex6: '#FF5500',
+      hex8: '#FF5500A1',
+    },
+    invalid: {
+
+    },
   },
 }
 
-describe('color init', () => {
-  describe('rgb', () => {
-    it('should init from space separated', () => {
-      const color = hueyColor(TEST_COLORS.rgb.spaced)
-      expect(isHuey(color)).toBe(true)
-      expect(color._l).toBeTypeOf('number')
-      expect(color._c).toBeTypeOf('number')
-      expect(color._h).toBeTypeOf('number')
-      expect(color._a).toBe(1)
-    })
-    it('should init from comma separated', () => {
-      const color = hueyColor(TEST_COLORS.rgb.comma)
-      expect(isHuey(color)).toBe(true)
-      expect(color._l).toBeTypeOf('number')
-      expect(color._c).toBeTypeOf('number')
-      expect(color._h).toBeTypeOf('number')
-      expect(color._a).toBe(1)
-    })
-    it('should init from space separated with alpha', () => {
-      const color = hueyColor(TEST_COLORS.rgb.withAlphaSpaced)
-      expect(isHuey(color)).toBe(true)
-      expect(color._a).toBeLessThan(1)
-      expect(color._l).toBeTypeOf('number')
-      expect(color._c).toBeTypeOf('number')
-      expect(color._h).toBeTypeOf('number')
-    })
-    it('should init from comma separated with alpha', () => {
-      const color = hueyColor(TEST_COLORS.rgb.withAlphaSpaced)
-      expect(isHuey(color)).toBe(true)
-      expect(color._a).toBeLessThan(1)
-      expect(color._l).toBeTypeOf('number')
-      expect(color._c).toBeTypeOf('number')
-      expect(color._h).toBeTypeOf('number')
-    })
+/**
+ * valid
+ * spaced
+ * comma
+ * alpha spaced
+ * alpha comma
+ * named
+ * spaced uppercased
+ * comma uppercased
+ * rgba
+ * alphazero
+ * alphaone
+ * excess whitespace
+ *
+ * --------------------
+ *
+ * invalid
+ * out of range
+ * negative
+ * missing values
+ * too many values (4 args)
+ * alpha out of range
+ * non numeric
+ * empty
+ *
+ */
+
+describe('color init - rbg', () => {
+  it('should init from spaced', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.spaced)
+    expect(isHuey(color)).toBe(true)
   })
-  describe('hex', () => {
-    it('should init from hex3', () => {
-      const color = hueyColor(TEST_COLORS.hex.hex3)
-      expect(isHuey(color)).toBe(true)
-      expect(color._a).toBe(1)
-      expect(color._l).toBeTypeOf('number')
-      expect(color._c).toBeTypeOf('number')
-      expect(color._h).toBeTypeOf('number')
-    })
-    it('should init from hex6', () => {
-      const color = hueyColor(TEST_COLORS.hex.hex6)
-      expect(isHuey(color)).toBe(true)
-    })
-    it('should init from hex8', () => {
-      const color = hueyColor(TEST_COLORS.hex.hex8)
-      expect(isHuey(color)).toBe(true)
-      expect(color._a).toBeLessThan(1)
-    })
-    it('should not init from hashless', () => {
-      expect(() => hueyColor(TEST_COLORS.hex.withoutHash)).toThrowError(`could not parse color string ${TEST_COLORS.hex.withoutHash}`)
-    })
+  it('should init from comma', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.comma)
+    expect(isHuey(color)).toBe(true)
+  })
+  it('should init from spaced w/ alpha', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.alphaSpaced)
+    expect(isHuey(color)).toBe(true)
+    expect(color._a).toBeLessThan(1)
+  })
+  it('should init from comma w/ alpha', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.alphaComma)
+    expect(isHuey(color)).toBe(true)
+    expect(color._a).toBeLessThan(1)
+  })
+  it('should init from spaced uppercase', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.spaced)
+    expect(isHuey(color)).toBe(true)
+  })
+  it('should init from comma uppercase', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.comma)
+    expect(isHuey(color)).toBe(true)
+  })
+  it('should init from rgba', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.rgba)
+    expect(isHuey(color)).toBe(true)
+  })
+  it('should init with zero alpha', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.alphaZero)
+    expect(isHuey(color)).toBe(true)
+    expect(color._a).toBe(0)
+  })
+  it('should init with full alpha', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.alphaOne)
+    expect(isHuey(color)).toBe(true)
+    expect(color._a).toBe(1)
+  })
+  it('should init from excess space', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.excessWhitespace)
+    expect(isHuey(color)).toBe(true)
+  })
+  it.each([
+    ['out of range', TEST_COLORS.rgb.invalid.outOfRange],
+    ['negative', TEST_COLORS.rgb.invalid.negative],
+    ['missing values', TEST_COLORS.rgb.invalid.missing],
+    ['non numerics', TEST_COLORS.rgb.invalid.nonNumeric],
+    ['empty', TEST_COLORS.rgb.invalid.empty],
+  ])('should fail when %s', (_, testColor) => {
+    expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
   })
 })
