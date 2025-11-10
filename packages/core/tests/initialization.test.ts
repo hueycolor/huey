@@ -28,13 +28,17 @@ const TEST_COLORS = {
   },
   hex: {
     valid: {
-      withoutHash: 'FFF',
       hex3: '#FF5',
       hex6: '#FF5500',
       hex8: '#FF5500A1',
     },
     invalid: {
-
+      hexChars: '#GG5500',
+      hex4: '#FF00',
+      hex5: '#FF00F',
+      hex7: '#FF00FF0',
+      withoutHash: 'FFF',
+      hashOnly: '#',
     },
   },
 }
@@ -105,6 +109,28 @@ describe('color init - rbg', () => {
     ['missing values', TEST_COLORS.rgb.invalid.missing],
     ['non numerics', TEST_COLORS.rgb.invalid.nonNumeric],
     ['empty', TEST_COLORS.rgb.invalid.empty],
+  ])('should fail when %s', (_, testColor) => {
+    expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
+  })
+})
+
+describe('color init - hex', () => {
+  it.each([
+    ['hex3', TEST_COLORS.hex.valid.hex3],
+    ['hex6', TEST_COLORS.hex.valid.hex6],
+    ['hex8', TEST_COLORS.hex.valid.hex8],
+  ])('should init from %s', (_, testColor) => {
+    const color = hueyColor(testColor)
+    expect(isHuey(color)).toBe(true)
+  })
+
+  it.each([
+    ['hex chars', TEST_COLORS.hex.invalid.hexChars],
+    ['hex4', TEST_COLORS.hex.invalid.hex4],
+    ['hex5', TEST_COLORS.hex.invalid.hex5],
+    ['hex7', TEST_COLORS.hex.invalid.hex7],
+    ['without hash', TEST_COLORS.hex.invalid.withoutHash],
+    ['hash only', TEST_COLORS.hex.invalid.hashOnly],
   ])('should fail when %s', (_, testColor) => {
     expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
   })

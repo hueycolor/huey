@@ -15,6 +15,7 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
   }
 
   const { coords } = deserialize(colorInput)
+
   const [, , , a] = coords
   const _a = a ?? 1
   const colorValues: number[] = _format === 'oklch' ? coords : convert(coords, sRGB, OKLCH)

@@ -1,5 +1,4 @@
-import type { ColorFormat, HueyColor, HueyColorSymbol } from '../types'
-import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
+import type { ColorFormat, HueyColor } from '../types'
 import { HUEY_COLOR } from '../types'
 import { HEX_REGEX, HSL_REGEX, LCH_REGEX, RGB_REGEX } from '../utils/pattern.utils'
 
