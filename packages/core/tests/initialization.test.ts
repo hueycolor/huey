@@ -43,33 +43,6 @@ const TEST_COLORS = {
   },
 }
 
-/**
- * valid
- * spaced
- * comma
- * alpha spaced
- * alpha comma
- * named
- * spaced uppercased
- * comma uppercased
- * rgba
- * alphazero
- * alphaone
- * excess whitespace
- *
- * --------------------
- *
- * invalid
- * out of range
- * negative
- * missing values
- * too many values (4 args)
- * alpha out of range
- * non numeric
- * empty
- *
- */
-
 describe('color init - rbg', () => {
   it.each([
     ['spaced', TEST_COLORS.rgb.valid.spaced],
