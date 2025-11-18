@@ -46,57 +46,57 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
   const colorValues: number[] = _format === 'oklch' ? coords.slice(0, 3) : convert(coords.slice(0, 3), sRGB, OKLCH)
   const [_l, _c, _h] = colorValues // oklch
 
-  const hueyColor: HueyColorSymbol = {
+  const hC: HueyColorSymbol = {
     [HUEY_COLOR]: true,
-    _l,
-    _c,
-    _h,
+    _l: Number(_l.toFixed(2)),
+    _c: Number(_c.toFixed(2)),
+    _h: Number(_h.toFixed(2)),
     _a,
     getFormat: () => _format,
     getOriginalInput: () => {
       return colorInput
     },
-    getAlpha: () => hueyColor._a,
+    getAlpha: () => hC._a,
     setAlpha: (v) => {
-      hueyColor._a = v
+      hC._a = v
 
-      return hueyColor
+      return hC
     },
     desaturate: (v) => {
-      hueyColor._c = Math.max(0, hueyColor._c - v)
+      hC._c = Math.max(0, hC._c - v)
 
-      return hueyColor
+      return hC
     },
     saturate: (v) => {
-      hueyColor._c = Math.max(0, hueyColor._c + v)
+      hC._c = Math.max(0, hC._c + v)
 
-      return hueyColor
+      return hC
     },
     brighten: (v) => {
-      hueyColor._l = Math.min(1, hueyColor._l + v)
+      hC._l = Math.min(1, hC._l + v)
 
-      return hueyColor
+      return hC
     },
     lighten: (v) => {
-      hueyColor._l = Math.min(1, hueyColor._l + v)
+      hC._l = Math.min(1, hC._l + v)
 
-      return hueyColor
+      return hC
     },
     darken: (v) => {
-      hueyColor._l = Math.max(0, hueyColor._l - v)
+      hC._l = Math.max(0, hC._l - v)
 
-      return hueyColor
+      return hC
     },
-    contrastRatio: (secondColor) => {
-      const l1 = hueyColor.getLuminance()
-      const l2 = secondColor.getLuminance()
+    contrastRatio: (c) => {
+      const l1 = hC.getLuminance()
+      const l2 = c.getLuminance()
       const lighter = Math.max(l1, l2)
       const darker = Math.min(l1, l2)
 
       return (lighter + 0.05) / (darker + 0.05)
     },
     getLuminance: () => {
-      const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
       // https://www.w3.org/WAI/GL/wiki/Relative_luminance
       const linearize = (val: number) => {
@@ -106,23 +106,23 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
     },
     getBrightness: () => {
-      return hueyColor._l
+      return hC._l
     },
     isLight: () => {
-      return hueyColor._l > 0.5
+      return hC._l > 0.5
     },
     isDark: () => {
-      return hueyColor._l <= 0.5
+      return hC._l <= 0.5
     },
     toHsl: () => {
-      const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
       const { h, s, l } = rgbToHsl(r, g, b)
 
-      return { h: Number(h), s: Number(s.toFixed(2)), l: Number(l.toFixed(2)), a: hueyColor._a }
+      return { h: Number(h), s: Number(s.toFixed(2)), l: Number(l.toFixed(2)), a: hC._a }
     },
     toHslString: () => {
-      const { h, s, l } = hueyColor.toHsl()
-      const a = hueyColor._a
+      const { h, s, l } = hC.toHsl()
+      const a = hC._a
 
       if (a < 1) {
         return `hsla(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%, ${a})`
@@ -131,45 +131,45 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return `hsl(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%)`
     },
     toHex: () => {
-      return hueyColor.toHexString().replace('#', '')
+      return hC.toHexString().replace('#', '')
     },
     toHexString: () => {
-      const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const rgb = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
-      return RGBToHex([...rgb, hueyColor._a])
+      return RGBToHex([...rgb, hC._a])
     },
     toRgb: () => {
-      const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
       return {
         r: floatToByte(r),
         g: floatToByte(g),
         b: floatToByte(b),
-        a: hueyColor._a,
+        a: hC._a,
       }
     },
     toRgbString: () => {
-      const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const rgb = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
-      return serialize([...rgb, hueyColor._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
+      return serialize([...rgb, hC._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
     },
     toString: () => {
       if (_format === 'hex')
-        return hueyColor.toHexString()
+        return hC.toHexString()
       if (_format === 'hsl')
-        return hueyColor.toHslString()
+        return hC.toHslString()
       if (_format === 'oklch')
-        return hueyColor.toOklchString()
+        return hC.toOklchString()
       if (_format === 'rgb')
-        return hueyColor.toRgbString()
+        return hC.toRgbString()
 
       return ''
     },
     toOklchString: () => {
-      const l = (hueyColor._l * 100).toFixed(2)
-      const c = hueyColor._c.toFixed(2)
-      const h = hueyColor._h.toFixed(2)
-      const a = hueyColor._a
+      const l = (hC._l * 100).toFixed(2)
+      const c = hC._c.toFixed(2)
+      const h = hC._h.toFixed(2)
+      const a = hC._a
 
       if (a < 1) {
         return `oklch(${l}% ${c} ${h} / ${a})`
@@ -177,11 +177,11 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return `oklch(${l}% ${c} ${h})`
     },
     toDisplayP3: () => {
-      const [_r, _g, _b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, DisplayP3)
+      const [_r, _g, _b] = convert([hC._l, hC._c, hC._h], OKLCH, DisplayP3)
       const r = _r.toFixed(2)
       const g = _g.toFixed(2)
       const b = _b.toFixed(2)
-      const a = hueyColor._a
+      const a = hC._a
 
       if (a < 1) {
         return `color(display-p3 ${r} ${g} ${b} / ${a})`
@@ -189,11 +189,11 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return `color(display-p3 ${r} ${g} ${b})`
     },
     toRec2020: () => {
-      const [_r, _g, _b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, Rec2020)
+      const [_r, _g, _b] = convert([hC._l, hC._c, hC._h], OKLCH, Rec2020)
       const r = _r.toFixed(2)
       const g = _g.toFixed(2)
       const b = _b.toFixed(2)
-      const a = hueyColor._a
+      const a = hC._a
 
       if (a < 1) {
         return `color(rec2020 ${r} ${g} ${b} / ${a})`
@@ -201,18 +201,16 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return `color(rec2020 ${r} ${g} ${b})`
     },
     randomize: () => {
-      hueyColor._l = Math.random()
-      hueyColor._c = Math.random() * 0.4
-      hueyColor._h = Math.random() * 360
+      hC._l = Math.random()
+      hC._c = Math.random() * 0.4
+      hC._h = Math.random() * 360
 
-      return hueyColor
+      return hC
     },
     clone: () => {
-      return {
-        ...hueyColor,
-      }
+      return hueyColor(hC.toOklchString())
     },
   }
 
-  return hueyColor as HueyColor
+  return hC as HueyColor
 }
