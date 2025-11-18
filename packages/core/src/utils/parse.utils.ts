@@ -1,8 +1,8 @@
-import { HSL_REGEX, LCH_REGEX } from './pattern.utils'
+import { HSL_REGEX, OKLCH_REGEX } from './pattern.utils'
 
 export interface ParsedColor {
   coords: number[]
-  space: 'rgb' | 'oklch' | 'lch'
+  space: 'rgb' | 'oklch'
 }
 
 /**
@@ -49,16 +49,15 @@ export function parseHSL(str: string): ParsedColor | null {
 }
 
 /**
- * Parse LCH/OKLCH string
+ * Parse OKLCH string
  */
-export function parseLCH(str: string): ParsedColor | null {
-  const match = LCH_REGEX.exec(str.trim())
+export function parseOKLCH(str: string): ParsedColor | null {
+  const match = OKLCH_REGEX.exec(str.trim())
 
   if (!match)
     return null
 
   const [, _l, cStr, _h, _a] = match
-  const isOklch = str.trim().toLowerCase().startsWith('oklch')
 
   // Check for missing values
   if (!_l || !cStr || !_h)
@@ -79,37 +78,18 @@ export function parseLCH(str: string): ParsedColor | null {
     l = l / 100
   }
 
-  // For OKLCH: L is 0-1, C is 0-0.4, H is 0-360
-  // For LCH (CIE LCH): L is 0-100, C is 0-150ish, H is 0-360
-  // Since @texel/color only supports OKLCH, we'll treat traditional LCH as OKLCH
-  // and normalize accordingly
-  if (!isOklch && l > 1) {
-    // Assume it's CIE LCH with L in 0-100 range, normalize to 0-1 for OKLCH
-    l = l / 100
-  }
-
-  // Validate ranges
-  if (isOklch) {
-    // OKLCH ranges
-    if (l < 0 || l > 1)
-      return null
-    if (c < 0)
-      return null
-  }
-  else {
-    // LCH ranges (after normalization)
-    if (l < 0 || l > 1)
-      return null
-    if (c < 0)
-      return null
-  }
+  // OKLCH ranges: L is 0-1, C is 0-0.4, H is 0-360
+  if (l < 0 || l > 1)
+    return null
+  if (c < 0)
+    return null
 
   if (a < 0 || a > 1)
     return null
 
   return {
     coords: [l, c, h, a],
-    space: isOklch ? 'oklch' : 'lch',
+    space: 'oklch',
   }
 }
 

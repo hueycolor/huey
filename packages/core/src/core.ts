@@ -1,7 +1,7 @@
 import type { HueyColor, HueyColorSymbol } from './types'
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
-import { getFormat, isHuey, parseHSL, parseLCH } from './utils'
+import { getFormat, isHuey, parseHSL, parseOKLCH } from './utils'
 
 export function hueyColor(colorInput: string | HueyColor): HueyColor {
   if (isHuey(colorInput)) {
@@ -27,8 +27,8 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     coords = parsed.coords
     _a = coords[3] ?? 1
   }
-  else if (_format === 'lch' || _format === 'oklch') {
-    const parsed = parseLCH(colorInput)
+  else if (_format === 'oklch') {
+    const parsed = parseOKLCH(colorInput)
 
     if (!parsed) {
       throw new Error(`invalid color provided: ${colorInput}`)
@@ -43,7 +43,7 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     _a = coords[3] ?? 1
   }
 
-  const colorValues: number[] = _format === 'oklch' || _format === 'lch' ? coords.slice(0, 3) : convert(coords.slice(0, 3), sRGB, OKLCH)
+  const colorValues: number[] = _format === 'oklch' ? coords.slice(0, 3) : convert(coords.slice(0, 3), sRGB, OKLCH)
   const [_l, _c, _h] = colorValues // oklch
 
   const hueyColor: HueyColorSymbol = {

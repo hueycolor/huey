@@ -41,25 +41,6 @@ const TEST_COLORS = {
       hashOnly: '#',
     },
   },
-  lch: {
-    valid: {
-      spaced: 'lch(50% 50 180)',
-      comma: 'lch(50%, 50, 180)',
-      alphaSpaced: 'lch(50% 50 180 / 0.5)',
-      alphaComma: 'lch(50%, 50, 180, 0.5)',
-      upperCase: 'LCH(50% 50 180)',
-      excessWhitespace: 'lch(50%   50   180  /  1)',
-    },
-    invalid: {
-      outOfRange: 'lch(150%, 50, 180)',
-      negative: 'lch(-50% 50 180)',
-      missing: 'lch(50% 50)',
-      tooMany: 'lch(50%, 50, 180, 0.5, 10)',
-      alphaOutOfRange: 'lch(50% 50 180 / 2)',
-      nonNumeric: 'lch(a, b, c)',
-      empty: 'lch()',
-    },
-  },
   oklch: {
     valid: {
       spaced: 'oklch(0.5 0.15 180)',
@@ -162,37 +143,6 @@ describe('color init - hex', () => {
     ['hex7', TEST_COLORS.hex.invalid.hex7],
     ['without hash', TEST_COLORS.hex.invalid.withoutHash],
     ['hash only', TEST_COLORS.hex.invalid.hashOnly],
-  ])('should fail when %s', (_, testColor) => {
-    expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
-  })
-})
-
-describe('color init - lch', () => {
-  it.each([
-    ['spaced', TEST_COLORS.lch.valid.spaced],
-    ['comma', TEST_COLORS.lch.valid.comma],
-    ['uppercase', TEST_COLORS.lch.valid.upperCase],
-    ['excess space', TEST_COLORS.lch.valid.excessWhitespace],
-  ])('should init from %s', (_, testColor) => {
-    const color = hueyColor(testColor)
-    expect(isHuey(color)).toBe(true)
-  })
-
-  it.each([
-    ['spaced w/ alpha', TEST_COLORS.lch.valid.alphaSpaced],
-    ['comma w/ alpha', TEST_COLORS.lch.valid.alphaComma],
-  ])('should init from %s', (_, testColor) => {
-    const color = hueyColor(testColor)
-    expect(isHuey(color)).toBe(true)
-    expect(color._a).toBeLessThan(1)
-  })
-
-  it.each([
-    ['out of range', TEST_COLORS.lch.invalid.outOfRange],
-    ['negative', TEST_COLORS.lch.invalid.negative],
-    ['missing values', TEST_COLORS.lch.invalid.missing],
-    ['non numerics', TEST_COLORS.lch.invalid.nonNumeric],
-    ['empty', TEST_COLORS.lch.invalid.empty],
   ])('should fail when %s', (_, testColor) => {
     expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
   })

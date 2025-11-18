@@ -1,6 +1,6 @@
 export const HUEY_COLOR = Symbol('huey-color')
 
-export type ColorFormat = 'hex' | 'rgb' | 'lch' | 'hsl' | 'oklch'
+export type ColorFormat = 'hex' | 'rgb' | 'hsl' | 'oklch'
 
 export interface HSLA {
   h: number
@@ -16,14 +16,12 @@ export interface RGBA {
   a: number
 }
 
-export interface LCH {
+export interface OKLCH {
   l: number
   c: number
   h: number
   a: number
 }
-
-export interface OKLCH extends LCH {}
 
 export interface HueyColor {
   _l: OKLCH['l']

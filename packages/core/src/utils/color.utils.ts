@@ -1,6 +1,6 @@
 import type { ColorFormat, HueyColor } from '../types'
 import { HUEY_COLOR } from '../types'
-import { HEX_REGEX, HSL_REGEX, LCH_REGEX, RGB_REGEX } from '../utils/pattern.utils'
+import { HEX_REGEX, HSL_REGEX, OKLCH_REGEX, RGB_REGEX } from '../utils/pattern.utils'
 
 export function isHuey(value: unknown): value is HueyColor {
   return (
@@ -52,8 +52,8 @@ export function isHsl(str: string): boolean {
   return true
 }
 
-export function isLch(str: string): boolean {
-  const match = LCH_REGEX.exec(str)
+export function isOklch(str: string): boolean {
+  const match = OKLCH_REGEX.exec(str)
 
   if (!match)
     return false
@@ -68,13 +68,6 @@ export function isLch(str: string): boolean {
   }
 
   return true
-}
-
-export function isOklch(str: string): boolean {
-  if (!str.startsWith('oklch'))
-    return false
-
-  return isLch(str)
 }
 
 export function isPercentage(v: number | string) {
@@ -115,8 +108,6 @@ export function getFormat(input: string): ColorFormat | 'unknown' {
     return 'hsl'
   if (isOklch(trim))
     return 'oklch'
-  if (isLch(trim))
-    return 'lch'
 
   return 'unknown'
 }
