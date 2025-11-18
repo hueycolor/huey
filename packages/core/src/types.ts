@@ -42,6 +42,7 @@ export interface HueyColor {
   toHexString: () => string
   toRgb: () => RGBA
   toRgbString: () => string
+  toRec2020: () => string
   toOklchString: () => string
   toDisplayP3: () => string
   toString: () => string
