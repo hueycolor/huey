@@ -96,11 +96,11 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     getBrightness: () => { // TODO:
       return 0
     },
-    isLight: () => { // TODO:
-      return false
+    isLight: () => {
+      return hueyColor._l > 0.5
     },
-    isDark: () => { // TODO:
-      return false
+    isDark: () => {
+      return hueyColor._l <= 0.5
     },
     toHsl: () => {
       const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
