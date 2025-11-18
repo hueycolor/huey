@@ -62,36 +62,35 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
 
       return hueyColor
     },
-    // TODO: add logic for these
     desaturate: (v) => {
-      hueyColor._c -= v
+      hueyColor._c = Math.max(0, hueyColor._c - v)
 
       return hueyColor
     },
     saturate: (v) => {
-      hueyColor._c += v
+      hueyColor._c = Math.max(0, hueyColor._c + v)
 
       return hueyColor
     },
-    brighten: (_) => {
+    brighten: (_) => { // TODO:
       return hueyColor
     },
-    contrastRatio: (_) => {
+    contrastRatio: (_) => { // TODO:
       return 0
     },
-    isValid: () => {
+    isValid: () => { // TODO:
       return true
     },
-    getLuminance: () => {
+    getLuminance: () => { // TODO:
       return 0
     },
-    getBrightness: () => {
+    getBrightness: () => { // TODO:
       return 0
     },
-    isLight: () => {
+    isLight: () => { // TODO:
       return false
     },
-    isDark: () => {
+    isDark: () => { // TODO:
       return false
     },
     toHsl: () => {
@@ -128,13 +127,13 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
 
       return serialize([...rgb, hueyColor._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
     },
-    lighten: (_) => {
+    lighten: (_) => { // TODO:
       return hueyColor
     },
-    darken: (_) => {
+    darken: (_) => { // TODO:
       return hueyColor
     },
-    randomize: () => {
+    randomize: () => { // TODO:
       return hueyColor
     },
     clone: () => {
