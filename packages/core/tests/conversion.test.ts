@@ -1,4 +1,5 @@
 import { hueyColor } from '@core/core.ts'
+import { HEX_REGEX, HSL_REGEX, OKLCH_REGEX, RGB_REGEX } from '@core/utils/pattern.utils.ts'
 import { describe, expect, it } from 'vitest'
 
 const BASE_COLOR = '#d27878' // rgb(210, 120, 120)
@@ -30,14 +31,14 @@ describe('color conversion - toRgbString', () => {
     const color = hueyColor(BASE_COLOR)
     const rgbString = color.toRgbString()
 
-    expect(rgbString).toMatch(/^rgb\(\d+,\s*\d+,\s*\d+\)$/)
+    expect(rgbString).toMatch(RGB_REGEX)
   })
 
   it('should convert to rgba string with alpha', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const rgbString = color.toRgbString()
 
-    expect(rgbString).toMatch(/^rgba\(\d+,\s*\d+,\s*\d+,\s*[\d.]+\)$/)
+    expect(rgbString).toMatch(RGB_REGEX)
     expect(rgbString).toContain('0.5')
   })
 })
@@ -47,15 +48,15 @@ describe('color conversion - toHex', () => {
     const color = hueyColor(BASE_COLOR)
     const hex = color.toHex()
 
-    expect(hex).toMatch(/^[0-9a-f]{8}$/i)
     expect(hex).not.toContain('#')
+    expect(`#${hex}`).toMatch(HEX_REGEX)
   })
 
   it('should convert to hex with alpha', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const hex = color.toHex()
 
-    expect(hex).toMatch(/^[0-9a-f]{8}$/i)
+    expect(`#${hex}`).toMatch(HEX_REGEX)
   })
 })
 
@@ -64,7 +65,7 @@ describe('color conversion - toHexString', () => {
     const color = hueyColor(BASE_COLOR)
     const hexString = color.toHexString()
 
-    expect(hexString).toMatch(/^#[0-9a-f]{8}$/i)
+    expect(hexString).toMatch(HEX_REGEX)
     expect(hexString.startsWith('#')).toBe(true)
   })
 
@@ -72,7 +73,7 @@ describe('color conversion - toHexString', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const hexString = color.toHexString()
 
-    expect(hexString).toMatch(/^#[0-9a-f]{8}$/i)
+    expect(hexString).toMatch(HEX_REGEX)
   })
 })
 
@@ -107,14 +108,14 @@ describe('color conversion - toHslString', () => {
     const color = hueyColor(BASE_COLOR)
     const hslString = color.toHslString()
 
-    expect(hslString).toMatch(/^hsl\(\d+,\s*\d+%,\s*\d+%\)$/)
+    expect(hslString).toMatch(HSL_REGEX)
   })
 
   it('should convert to hsla string with alpha', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const hslString = color.toHslString()
 
-    expect(hslString).toMatch(/^hsla\(\d+,\s*\d+%,\s*\d+%,\s*[\d.]+\)$/)
+    expect(hslString).toMatch(HSL_REGEX)
     expect(hslString).toContain('0.5')
   })
 })
@@ -124,14 +125,14 @@ describe('color conversion - toOklchString', () => {
     const color = hueyColor(BASE_COLOR)
     const oklchString = color.toOklchString()
 
-    expect(oklchString).toMatch(/^oklch\([\d.]+%\s+[\d.]+\s+[\d.]+\)$/)
+    expect(oklchString).toMatch(OKLCH_REGEX)
   })
 
   it('should convert to oklch string with alpha', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const oklchString = color.toOklchString()
 
-    expect(oklchString).toMatch(/^oklch\([\d.]+%\s+[\d.]+\s+[\d.]+\s+\/\s+[\d.]+\)$/)
+    expect(oklchString).toMatch(OKLCH_REGEX)
     expect(oklchString).toContain('0.5')
   })
 })
@@ -175,28 +176,28 @@ describe('color conversion - toString', () => {
     const color = hueyColor('#FF5500')
     const string = color.toString()
 
-    expect(string).toMatch(/^#[0-9a-f]{8}$/i)
+    expect(string).toMatch(HEX_REGEX)
   })
 
   it('should convert to original format for rgb', () => {
     const color = hueyColor('rgb(210, 120, 120)')
     const string = color.toString()
 
-    expect(string).toMatch(/^rgb\(/)
+    expect(string).toMatch(RGB_REGEX)
   })
 
   it('should convert to original format for hsl', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const string = color.toString()
 
-    expect(string).toMatch(/^hsl\(/)
+    expect(string).toMatch(HSL_REGEX)
   })
 
   it('should convert to original format for oklch', () => {
     const color = hueyColor('oklch(0.5 0.15 180)')
     const string = color.toString()
 
-    expect(string).toMatch(/^oklch\(/)
+    expect(string).toMatch(OKLCH_REGEX)
   })
 })
 
