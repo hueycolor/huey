@@ -41,8 +41,6 @@ export interface HueyColor {
   toHSLString: () => string
   toHex: () => string
   toHexString: () => string
-  toHex8: () => string
-  toHex8String: () => string
   toRgb: () => RGBA
   toRgbString: () => string
   toString: () => string

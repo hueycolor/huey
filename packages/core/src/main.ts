@@ -10,7 +10,7 @@ import viteLogo from '/vite.svg'
 const color = hueyColor('hsla(50, 80%, 40%, 1.00)')
 // const color = tinycolor('#fff000')
 
-console.log(color.toRgbString())
+console.log(color.toHex())
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
