@@ -72,20 +72,23 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
 
       return hueyColor
     },
-    brighten: (_) => { // TODO:
+    brighten: (v) => {
+      hueyColor._l = Math.min(1, hueyColor._l + v)
+
       return hueyColor
     },
-    lighten: (_) => { // TODO:
+    lighten: (v) => {
+      hueyColor._l = Math.min(1, hueyColor._l + v)
+
       return hueyColor
     },
-    darken: (_) => { // TODO:
+    darken: (v) => {
+      hueyColor._l = Math.max(0, hueyColor._l - v)
+
       return hueyColor
     },
     contrastRatio: (_) => { // TODO:
       return 0
-    },
-    isValid: () => { // TODO:
-      return true
     },
     getLuminance: () => { // TODO:
       return 0

@@ -30,7 +30,6 @@ export interface HueyColor {
   _a: OKLCH['a']
   getFormat: () => ColorFormat
   getOriginalInput: () => string
-  isValid: () => boolean
   getAlpha: () => number
   getLuminance: () => number
   getBrightness: () => number
