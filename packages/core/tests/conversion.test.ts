@@ -152,6 +152,39 @@ describe('color conversion - toDisplayP3', () => {
     expect(p3String).toMatch(/^color\(display-p3\s+[\d.]+\s+[\d.]+\s+[\d.]+\s+\/\s+[\d.]+\)$/)
     expect(p3String).toContain('0.5')
   })
+
+  it('should preserve alpha value 0', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0)')
+    const p3String = color.toDisplayP3()
+
+    expect(p3String).toContain('/ 0')
+  })
+
+  it('should preserve alpha value 0.33', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.33)')
+    const p3String = color.toDisplayP3()
+
+    expect(p3String).toContain('0.33')
+  })
+
+  it('should preserve alpha value 0.67', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.67)')
+    const p3String = color.toDisplayP3()
+
+    expect(p3String).toContain('0.67')
+  })
+
+  it('should use 2 decimal places for color values', () => {
+    const color = hueyColor(BASE_COLOR)
+    const p3String = color.toDisplayP3()
+    const values = p3String.match(/[\d.]+/g)
+
+    expect(values).toBeTruthy()
+    values?.forEach(val => {
+      const decimalPlaces = val.split('.')[1]?.length || 0
+      expect(decimalPlaces).toBeLessThanOrEqual(2)
+    })
+  })
 })
 
 describe('color conversion - toRec2020', () => {
@@ -168,6 +201,39 @@ describe('color conversion - toRec2020', () => {
 
     expect(rec2020String).toMatch(/^color\(rec2020\s+[\d.]+\s+[\d.]+\s+[\d.]+\s+\/\s+[\d.]+\)$/)
     expect(rec2020String).toContain('0.5')
+  })
+
+  it('should preserve alpha value 0', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0)')
+    const rec2020String = color.toRec2020()
+
+    expect(rec2020String).toContain('/ 0')
+  })
+
+  it('should preserve alpha value 0.33', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.33)')
+    const rec2020String = color.toRec2020()
+
+    expect(rec2020String).toContain('0.33')
+  })
+
+  it('should preserve alpha value 0.67', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.67)')
+    const rec2020String = color.toRec2020()
+
+    expect(rec2020String).toContain('0.67')
+  })
+
+  it('should use 2 decimal places for color values', () => {
+    const color = hueyColor(BASE_COLOR)
+    const rec2020String = color.toRec2020()
+    const values = rec2020String.match(/[\d.]+/g)
+
+    expect(values).toBeTruthy()
+    values?.forEach(val => {
+      const decimalPlaces = val.split('.')[1]?.length || 0
+      expect(decimalPlaces).toBeLessThanOrEqual(2)
+    })
   })
 })
 
@@ -245,5 +311,36 @@ describe('color conversion - round trip conversions', () => {
     expect(Math.abs(original._l - roundTrip._l)).toBeLessThan(0.01)
     expect(Math.abs(original._c - roundTrip._c)).toBeLessThan(0.01)
     expect(Math.abs(original._h - roundTrip._h)).toBeLessThan(1)
+  })
+})
+
+describe('color conversion - precision and rounding', () => {
+  it('should round oklch lightness to 2 decimal places', () => {
+    const color = hueyColor('oklch(0.123456 0.15 180)')
+    expect(color._l).toBe(0.12)
+  })
+
+  it('should round oklch chroma to 2 decimal places', () => {
+    const color = hueyColor('oklch(0.5 0.123456 180)')
+    expect(color._c).toBe(0.12)
+  })
+
+  it('should round oklch hue to 2 decimal places', () => {
+    const color = hueyColor('oklch(0.5 0.15 180.123456)')
+    expect(color._h).toBe(180.12)
+  })
+
+  it('should round hsl saturation to 2 decimal places', () => {
+    const color = hueyColor('hsl(180, 50%, 50%)')
+    const hsl = color.toHsl()
+    const decimalPlaces = hsl.s.toString().split('.')[1]?.length || 0
+    expect(decimalPlaces).toBeLessThanOrEqual(2)
+  })
+
+  it('should round hsl lightness to 2 decimal places', () => {
+    const color = hueyColor('hsl(180, 50%, 50%)')
+    const hsl = color.toHsl()
+    const decimalPlaces = hsl.l.toString().split('.')[1]?.length || 0
+    expect(decimalPlaces).toBeLessThanOrEqual(2)
   })
 })

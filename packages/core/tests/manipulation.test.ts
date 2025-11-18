@@ -71,6 +71,16 @@ describe('color manipulation - saturate', () => {
 
     expect(color._c).toBe(0)
   })
+
+  it('should allow very large saturation increases', () => {
+    const color = hueyColor('hsl(180, 50%, 50%)')
+    const initialC = color._c
+
+    color.saturate(10)
+
+    expect(color._c).toBeGreaterThan(initialC)
+    expect(color._c).toBeGreaterThanOrEqual(0)
+  })
 })
 
 describe('color manipulation - desaturate', () => {
@@ -128,6 +138,13 @@ describe('color manipulation - lighten', () => {
 
     expect(color._l).toBe(1)
   })
+
+  it('should cap at exactly 1.0 when at boundary', () => {
+    const color = hueyColor('oklch(1.0 0.15 180)')
+    color.lighten(0.1)
+
+    expect(color._l).toBe(1)
+  })
 })
 
 describe('color manipulation - brighten', () => {
@@ -153,6 +170,13 @@ describe('color manipulation - brighten', () => {
 
     expect(color._l).toBe(1)
   })
+
+  it('should cap at exactly 1.0 when at boundary', () => {
+    const color = hueyColor('oklch(1.0 0.15 180)')
+    color.brighten(0.1)
+
+    expect(color._l).toBe(1)
+  })
 })
 
 describe('color manipulation - darken', () => {
@@ -175,6 +199,13 @@ describe('color manipulation - darken', () => {
   it('should not go below 0', () => {
     const color = hueyColor('hsl(180, 50%, 20%)')
     color.darken(0.5)
+
+    expect(color._l).toBe(0)
+  })
+
+  it('should cap at exactly 0.0 when at boundary', () => {
+    const color = hueyColor('oklch(0.0 0.15 180)')
+    color.darken(0.1)
 
     expect(color._l).toBe(0)
   })
@@ -349,6 +380,23 @@ describe('color manipulation - randomize', () => {
     expect(color._c).toBeGreaterThanOrEqual(0)
     expect(color._h).toBeGreaterThanOrEqual(0)
     expect(color._h).toBeLessThanOrEqual(360)
+  })
+
+  it('should preserve alpha value', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.5)')
+    const originalAlpha = color._a
+
+    color.randomize()
+
+    expect(color._a).toBe(originalAlpha)
+  })
+
+  it('should not modify alpha when randomizing', () => {
+    const color = hueyColor('rgba(210, 120, 120, 0.33)')
+
+    color.randomize()
+
+    expect(color._a).toBe(0.33)
   })
 })
 

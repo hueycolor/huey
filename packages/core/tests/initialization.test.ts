@@ -210,3 +210,68 @@ describe('color init - hsl', () => {
     expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
   })
 })
+
+describe('color init - getFormat', () => {
+  it('should return hex format for hex colors', () => {
+    const color = hueyColor(TEST_COLORS.hex.valid.hex6)
+    expect(color.getFormat()).toBe('hex')
+  })
+
+  it('should return rgb format for rgb colors', () => {
+    const color = hueyColor(TEST_COLORS.rgb.valid.spaced)
+    expect(color.getFormat()).toBe('rgb')
+  })
+
+  it('should return hsl format for hsl colors', () => {
+    const color = hueyColor(TEST_COLORS.hsl.valid.spaced)
+    expect(color.getFormat()).toBe('hsl')
+  })
+
+  it('should return oklch format for oklch colors', () => {
+    const color = hueyColor(TEST_COLORS.oklch.valid.spaced)
+    expect(color.getFormat()).toBe('oklch')
+  })
+})
+
+describe('color init - getOriginalInput', () => {
+  it('should return original hex input', () => {
+    const input = TEST_COLORS.hex.valid.hex6
+    const color = hueyColor(input)
+    expect(color.getOriginalInput()).toBe(input)
+  })
+
+  it('should return original rgb input', () => {
+    const input = TEST_COLORS.rgb.valid.comma
+    const color = hueyColor(input)
+    expect(color.getOriginalInput()).toBe(input)
+  })
+
+  it('should return original hsl input', () => {
+    const input = TEST_COLORS.hsl.valid.comma
+    const color = hueyColor(input)
+    expect(color.getOriginalInput()).toBe(input)
+  })
+
+  it('should return original oklch input', () => {
+    const input = TEST_COLORS.oklch.valid.spaced
+    const color = hueyColor(input)
+    expect(color.getOriginalInput()).toBe(input)
+  })
+})
+
+describe('color init - HueyColor input', () => {
+  it('should return same instance when passed a HueyColor', () => {
+    const color = hueyColor(TEST_COLORS.hex.valid.hex6)
+    const sameColor = hueyColor(color)
+    expect(sameColor).toBe(color)
+  })
+
+  it('should preserve all properties when passed a HueyColor', () => {
+    const original = hueyColor(TEST_COLORS.rgb.valid.alphaComma)
+    const passed = hueyColor(original)
+    expect(passed._l).toBe(original._l)
+    expect(passed._c).toBe(original._c)
+    expect(passed._h).toBe(original._h)
+    expect(passed._a).toBe(original._a)
+  })
+})
