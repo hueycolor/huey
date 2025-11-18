@@ -1,5 +1,5 @@
 import type { HueyColor, HueyColorSymbol } from './types'
-import { convert, deserialize, OKLCH, RGBToHex, serialize, sRGB } from '@texel/color'
+import { convert, deserialize, DisplayP3, OKLCH, RGBToHex, serialize, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
 import { getFormat, isHuey, parseHSL, parseOKLCH, rgbToHsl } from './utils'
 
@@ -126,6 +126,24 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
 
       return serialize([...rgb, hueyColor._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
+    },
+    toString: () => {
+      if (_format === 'hex')
+        return hueyColor.toHexString()
+      if (_format === 'hsl')
+        return hueyColor.toHslString()
+      if (_format === 'oklch')
+        return hueyColor.toOklchString()
+      if (_format === 'rgb')
+        return hueyColor.toRgbString()
+
+      return ''
+    },
+    toOklchString: () => {
+      return serialize([hueyColor._l, hueyColor._c, hueyColor._h, hueyColor._a], OKLCH, OKLCH)
+    },
+    toDisplayP3: () => {
+      return serialize([hueyColor._l, hueyColor._c, hueyColor._h, hueyColor._a], OKLCH, DisplayP3)
     },
     lighten: (_) => { // TODO:
       return hueyColor

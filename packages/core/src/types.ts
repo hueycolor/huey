@@ -43,6 +43,8 @@ export interface HueyColor {
   toHexString: () => string
   toRgb: () => RGBA
   toRgbString: () => string
+  toOklchString: () => string
+  toDisplayP3: () => string
   toString: () => string
   lighten: (v: number) => HueyColor
   brighten: (v: number) => HueyColor
