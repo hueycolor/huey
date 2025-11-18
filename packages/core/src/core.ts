@@ -87,14 +87,26 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
 
       return hueyColor
     },
-    contrastRatio: (_) => { // TODO:
-      return 0
+    contrastRatio: (secondColor) => {
+      const l1 = hueyColor.getLuminance()
+      const l2 = secondColor.getLuminance()
+      const lighter = Math.max(l1, l2)
+      const darker = Math.min(l1, l2)
+
+      return (lighter + 0.05) / (darker + 0.05)
     },
-    getLuminance: () => { // TODO:
-      return 0
+    getLuminance: () => {
+      const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+
+      // Relative luminance formula (WCAG): https://www.w3.org/WAI/GL/wiki/Relative_luminance
+      const linearize = (val: number) => {
+        return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4
+      }
+
+      return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b)
     },
-    getBrightness: () => { // TODO:
-      return 0
+    getBrightness: () => {
+      return hueyColor._l
     },
     isLight: () => {
       return hueyColor._l > 0.5
