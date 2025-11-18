@@ -7,10 +7,10 @@ import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-const color = hueyColor('hsla(50, 80%, 40%, 1.00)')
+const color = hueyColor('rgba(210, 50, 100, 0.1)')
 // const color = tinycolor('#fff000')
 
-console.log(color.toHex())
+console.log(color.toHSLString())
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

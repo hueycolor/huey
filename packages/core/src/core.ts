@@ -1,7 +1,7 @@
 import type { HueyColor, HueyColorSymbol } from './types'
 import { convert, deserialize, OKLCH, RGBToHex, serialize, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
-import { getFormat, isHuey, parseHSL, parseOKLCH } from './utils'
+import { getFormat, isHuey, parseHSL, parseOKLCH, rgbToHsl } from './utils'
 
 export function hueyColor(colorInput: string | HueyColor): HueyColor {
   if (isHuey(colorInput)) {
@@ -94,32 +94,34 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     isDark: () => {
       return false
     },
-    toHSL: () => {
-      return { h: 0, s: 0, l: 0, a: 0 }
+    toHsl: () => {
+      const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+      const hsl = rgbToHsl(r, g, b)
+
+      return { ...hsl, a: hueyColor._a }
     },
-    toHSLString: () => {
-      return ''
+    toHslString: () => {
+      const { h, s, l } = hueyColor.toHsl()
+      const a = hueyColor._a
+
+      if (a < 1) {
+        return `hsla(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%, ${a})`
+      }
+
+      return `hsl(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%)`
     },
     toHex: () => {
-      const hex = hueyColor.toHexString().replace('#', '')
-
-      return hex
+      return hueyColor.toHexString().replace('#', '')
     },
     toHexString: () => {
       const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
-      const hex = RGBToHex([...rgb, hueyColor._a])
 
-      return hex
+      return RGBToHex([...rgb, hueyColor._a])
     },
     toRgb: () => {
       const [r, g, b] = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
 
-      return {
-        r,
-        g,
-        b,
-        a: hueyColor._a,
-      }
+      return { r, g, b, a: hueyColor._a }
     },
     toRgbString: () => {
       const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)

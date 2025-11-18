@@ -130,3 +130,42 @@ function hslToRgb(h: number, s: number, l: number): [number, number, number] {
 
   return [r, g, b]
 }
+
+/**
+ * Convert RGB to HSL
+ * Input: r, g, b in 0-1 range
+ * Output: { h, s, l } where h is 0-360, s and l are 0-100
+ */
+export function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  const delta = max - min
+
+  let h = 0
+  let s = 0
+  const l = (max + min) / 2
+
+  if (delta !== 0) {
+    // Calculate saturation
+    s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min)
+
+    // Calculate hue
+    switch (max) {
+      case r:
+        h = ((g - b) / delta + (g < b ? 6 : 0)) / 6
+        break
+      case g:
+        h = ((b - r) / delta + 2) / 6
+        break
+      case b:
+        h = ((r - g) / delta + 4) / 6
+        break
+    }
+  }
+
+  return {
+    h: h * 360, // Convert to degrees
+    s: s * 100, // Convert to percentage
+    l: l * 100, // Convert to percentage
+  }
+}

@@ -37,8 +37,8 @@ export interface HueyColor {
   isLight: () => boolean
   isDark: () => boolean
   setAlpha: (a: number) => HueyColor
-  toHSL: () => HSLA
-  toHSLString: () => string
+  toHsl: () => HSLA
+  toHslString: () => string
   toHex: () => string
   toHexString: () => string
   toRgb: () => RGBA
