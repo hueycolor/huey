@@ -75,6 +75,12 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     brighten: (_) => { // TODO:
       return hueyColor
     },
+    lighten: (_) => { // TODO:
+      return hueyColor
+    },
+    darken: (_) => { // TODO:
+      return hueyColor
+    },
     contrastRatio: (_) => { // TODO:
       return 0
     },
@@ -145,13 +151,11 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     toDisplayP3: () => {
       return serialize([hueyColor._l, hueyColor._c, hueyColor._h, hueyColor._a], OKLCH, DisplayP3)
     },
-    lighten: (_) => { // TODO:
-      return hueyColor
-    },
-    darken: (_) => { // TODO:
-      return hueyColor
-    },
-    randomize: () => { // TODO:
+    randomize: () => {
+      hueyColor._l = Math.random()
+      hueyColor._c = Math.random() * 0.4
+      hueyColor._h = Math.random() * 360
+
       return hueyColor
     },
     clone: () => {
