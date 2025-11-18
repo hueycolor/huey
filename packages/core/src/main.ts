@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
+import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 // import tinycolor from 'tinycolor2'
 import { hueyColor } from './core.ts'
 import { setupCounter } from './counter.ts'
@@ -7,7 +7,7 @@ import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
 
-const color = hueyColor('RGB(210 120 120)')
+const color = hueyColor('hsl(50 80% 40%)')
 // const color = tinycolor('#fff000')
 
 console.log(color)

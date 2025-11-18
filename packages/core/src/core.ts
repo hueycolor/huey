@@ -1,7 +1,7 @@
 import type { HueyColor, HueyColorSymbol } from './types'
 import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
-import { getFormat, isHuey } from './utils/color.utils'
+import { getFormat, isHuey, parseHSL, parseLCH } from './utils'
 
 export function hueyColor(colorInput: string | HueyColor): HueyColor {
   if (isHuey(colorInput)) {
@@ -14,12 +14,37 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     throw new Error(`invalid color provided: ${colorInput}`)
   }
 
-  const { coords } = deserialize(colorInput)
+  let coords: number[]
+  let _a: number
 
-  const [, , , a] = coords
-  const _a = a ?? 1
-  const colorValues: number[] = _format === 'oklch' ? coords : convert(coords, sRGB, OKLCH)
-  const [_l, _c, _h] = colorValues
+  if (_format === 'hsl') {
+    const parsed = parseHSL(colorInput)
+
+    if (!parsed) {
+      throw new Error(`invalid color provided: ${colorInput}`)
+    }
+
+    coords = parsed.coords
+    _a = coords[3] ?? 1
+  }
+  else if (_format === 'lch' || _format === 'oklch') {
+    const parsed = parseLCH(colorInput)
+
+    if (!parsed) {
+      throw new Error(`invalid color provided: ${colorInput}`)
+    }
+
+    coords = parsed.coords
+    _a = coords[3] ?? 1
+  }
+  else {
+    const deserialized = deserialize(colorInput)
+    coords = deserialized.coords
+    _a = coords[3] ?? 1
+  }
+
+  const colorValues: number[] = _format === 'oklch' || _format === 'lch' ? coords.slice(0, 3) : convert(coords.slice(0, 3), sRGB, OKLCH)
+  const [_l, _c, _h] = colorValues // oklch
 
   const hueyColor: HueyColorSymbol = {
     [HUEY_COLOR]: true,
