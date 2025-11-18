@@ -123,7 +123,9 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       }
     },
     toRgbString: () => {
-      return ''
+      const rgb = convert([hueyColor._l, hueyColor._c, hueyColor._h], OKLCH, sRGB)
+
+      return serialize([...rgb, hueyColor._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
     },
     lighten: (_) => {
       return hueyColor
