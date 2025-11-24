@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
+// import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 // import tinycolor from 'tinycolor2'
 import { hueyColor } from './core.ts'
 import { setupCounter } from './counter.ts'
