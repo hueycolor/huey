@@ -1,5 +1,5 @@
-import { hueyColor } from '@core/core.ts'
-import { HEX_REGEX, HSL_REGEX, OKLCH_REGEX, RGB_REGEX } from '@core/utils/pattern.utils.ts'
+import { hueyColor } from '@core/core'
+import { HEX_REGEX, HSL_REGEX, OKLCH_REGEX, RGB_REGEX } from '@core/utils/pattern.utils'
 import { describe, expect, it } from 'vitest'
 
 const BASE_COLOR = '#d27878' // rgb(210, 120, 120)
@@ -180,7 +180,7 @@ describe('color conversion - toDisplayP3', () => {
     const values = p3String.match(/[\d.]+/g)
 
     expect(values).toBeTruthy()
-    values?.forEach(val => {
+    values?.forEach((val) => {
       const decimalPlaces = val.split('.')[1]?.length || 0
       expect(decimalPlaces).toBeLessThanOrEqual(2)
     })
@@ -230,7 +230,7 @@ describe('color conversion - toRec2020', () => {
     const values = rec2020String.match(/[\d.]+/g)
 
     expect(values).toBeTruthy()
-    values?.forEach(val => {
+    values?.forEach((val) => {
       const decimalPlaces = val.split('.')[1]?.length || 0
       expect(decimalPlaces).toBeLessThanOrEqual(2)
     })

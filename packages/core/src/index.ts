@@ -1,3 +1,3 @@
-export { hueyColor } from './core.ts'
+export { hueyColor } from './core'
 export type { HueyColor } from './types.ts'
-export * from './utils/index.ts'
+export * from './utils/index'

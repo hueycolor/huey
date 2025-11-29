@@ -118,11 +118,11 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
       const { h, s, l } = rgbToHsl(r, g, b)
 
-      return { h: Number(h), s: Number(s.toFixed(2)), l: Number(l.toFixed(2)), a: hC._a }
+      return { h: Number(h), s: Number(s.toFixed(2)), l: Number(l.toFixed(2)), a: Number(hC._a.toFixed(1)) }
     },
     toHslString: () => {
       const { h, s, l } = hC.toHsl()
-      const a = hC._a
+      const a = Number(hC._a.toFixed(1))
 
       if (a < 1) {
         return `hsla(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%, ${a})`
@@ -145,13 +145,13 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
         r: floatToByte(r),
         g: floatToByte(g),
         b: floatToByte(b),
-        a: hC._a,
+        a: Number(hC._a.toFixed(1)),
       }
     },
     toRgbString: () => {
       const rgb = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
-      return serialize([...rgb, hC._a], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
+      return serialize([...rgb, Number(hC._a.toFixed(1))], sRGB) // returns 'rgb' if a = 1, 'rgba' if a < 1
     },
     toString: () => {
       if (_format === 'hex')

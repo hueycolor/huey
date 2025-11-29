@@ -1,4 +1,4 @@
-import { hueyColor } from '@core/core.ts'
+import { hueyColor } from '@core/core'
 import { isHuey } from '@core/utils'
 import { describe, expect, it } from 'vitest'
 

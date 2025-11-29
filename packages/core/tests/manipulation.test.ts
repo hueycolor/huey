@@ -1,4 +1,4 @@
-import { hueyColor } from '@core/core.ts'
+import { hueyColor } from '@core/core'
 import { describe, expect, it } from 'vitest'
 
 const BASE_COLOR = 'rgb(128, 128, 128)' // Mid-gray

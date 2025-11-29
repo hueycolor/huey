@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 // import { convert, deserialize, OKLCH, sRGB } from '@texel/color'
 // import tinycolor from 'tinycolor2'
-import { hueyColor } from './core.ts'
-import { setupCounter } from './counter.ts'
+import { hueyColor } from './core'
+import { setupCounter } from './counter'
 import typescriptLogo from './typescript.svg'
 import './style.css'
 import viteLogo from '/vite.svg'
