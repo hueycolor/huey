@@ -32,7 +32,7 @@ export interface ColorSwatchProps {
     data-huey-preview
     :class="$props.class"
     :style="{ background: bg }"
-    :aria-label="color.toOklchString()"
+    :aria-label="color.toRgbString()"
     role="presentation"
     aria-live="polite"
   />
