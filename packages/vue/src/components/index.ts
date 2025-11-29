@@ -1,0 +1,7 @@
+export { default as AlphaSlider } from './alpha-slider.vue'
+export { default as ColorInput } from './color-input.vue'
+export { default as ColorPreview } from './color-preview.vue'
+export { default as ColorSwatch } from './color-swatch.vue'
+export { default as EyeDropper } from './eye-dropper.vue'
+export { default as HueSlider } from './hue-slider.vue'
+export { default as SaturationArea } from './saturation-area.vue'
