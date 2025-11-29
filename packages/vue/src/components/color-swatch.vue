@@ -4,7 +4,7 @@
 
 <template>
   <div class="">
-    Color Preview
+    Color Swatch
   </div>
 </template>
 

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { hueyColor } from '@huey/core'
+import { ColorPreview } from './components'
 import HelloWorld from './components/HelloWorld.vue'
 
 // Test huey core
-const color = hueyColor('#ff3e00')
+const color = hueyColor('#ff3e00fe')
 console.log('Testing @huey/core:', color)
 </script>
 
@@ -16,6 +17,7 @@ console.log('Testing @huey/core:', color)
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo">
     </a>
   </div>
+  <ColorPreview :color="color" />
   <HelloWorld msg="Vite + Vue" />
 </template>
 
