@@ -29,7 +29,7 @@ export interface ColorSwatchProps {
 
 <template>
   <div
-    class="huey-color-preview"
+    data-huey-preview
     :class="$props.class"
     :style="{ background: bg }"
     :aria-label="color.toOklchString()"
@@ -39,7 +39,7 @@ export interface ColorSwatchProps {
 </template>
 
 <style>
-.huey-color-preview {
+[data-huey-preview] {
   --preview-tile-size: 20px;
   --transparency-tile-size: calc(var(--preview-tile-size) - 50%);
 
