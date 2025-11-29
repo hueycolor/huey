@@ -15,7 +15,7 @@ const bg = computed(() => {
       #ffffff 90deg,
       rgba(0, 0, 0, 0.3) 90deg,
       rgba(0, 0, 0, 0.3) 180deg
-    ) 25% 25% / var(--transparency-tile-size) var(--transparency-tile-size)
+    ) 25% 25% / var(--opacity-tile) var(--opacity-tile)
   `
 })
 </script>
@@ -40,12 +40,12 @@ export interface ColorSwatchProps {
 
 <style>
 [data-huey-preview] {
-  --preview-tile-size: 20px;
-  --transparency-tile-size: calc(var(--preview-tile-size) - 50%);
+  --preview-tile: 20px;
+  --opacity-tile: calc(var(--preview-tile) - 50%);
 
   display: inline-block;
-  width: var(--preview-tile-size);
-  height: var(--preview-tile-size);
-  border-radius: calc(var(--preview-tile-size) - 80%);
+  width: var(--preview-tile);
+  height: var(--preview-tile);
+  border-radius: calc(var(--preview-tile) - 80%);
 }
 </style>
