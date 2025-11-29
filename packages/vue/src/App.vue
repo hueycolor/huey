@@ -4,7 +4,7 @@ import { ColorPreview } from './components'
 import HelloWorld from './components/HelloWorld.vue'
 
 // Test huey core
-const color = hueyColor('#ff3e00fe')
+const color = hueyColor('#ff3e00c0')
 console.log('Testing @huey/core:', color)
 </script>
 

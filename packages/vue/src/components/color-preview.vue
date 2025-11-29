@@ -6,10 +6,10 @@ import { computed } from 'vue'
 const { color } = defineProps<ColorSwatchProps>()
 
 const bg = computed(() => {
-  const { r, g, b, a } = color.toRgb()
+  const rgba = color.toRgbString()
 
   return `
-    linear-gradient(rgba(${r}, ${g}, ${b}, ${a}), rgba(${r}, ${g}, ${b}, ${a})),
+    linear-gradient(${rgba}, ${rgba}),
     repeating-conic-gradient(
       #ffffff 0deg,
       #ffffff 90deg,
