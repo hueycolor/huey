@@ -3,9 +3,10 @@
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
   import viteLogo from '/vite.svg'
+  import ColorPreview from './components/color-preview.svelte'
 
   // Test huey core
-  const color = hueyColor('#ff3e00')
+  const color = hueyColor('#ff3e00da')
   console.log('Testing @huey/core:', color)
 </script>
 
@@ -18,6 +19,7 @@
       <img src={svelteLogo} class='logo svelte' alt='Svelte Logo' />
     </a>
   </div>
+  <ColorPreview color="{color}" />
   <h1>Vite + Svelte</h1>
 
   <div class='card'>
