@@ -30,7 +30,7 @@
 	aria-label={color.toRgbString()}
 	role="presentation"
 	aria-live="polite"
-/>
+></div>
 
 <style>
 	[data-huey-preview] {
