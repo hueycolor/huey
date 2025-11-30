@@ -4,7 +4,7 @@
 
 <template>
   <div class="">
-    Color Input
+    Channel Input
   </div>
 </template>
 
