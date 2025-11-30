@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { hueyColor } from '@huey/core'
-import { ColorPreview } from './components'
+import { ChannelInput, ColorPreview } from './components'
 import HelloWorld from './components/HelloWorld.vue'
 
 // Test huey core
 const color = hueyColor('#ff3e00c0')
 console.log('Testing @huey/core:', color)
+
+function handleChange(v?: number) {
+  console.log(v)
+}
 </script>
 
 <template>
@@ -18,6 +22,7 @@ console.log('Testing @huey/core:', color)
     </a>
   </div>
   <ColorPreview :color="color" />
+  <ChannelInput channel="h" @update:model-value="handleChange" />
   <HelloWorld msg="Vite + Vue" />
 </template>
 

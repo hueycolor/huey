@@ -1,3 +1,3 @@
 export { hueyColor } from './core'
-export type { HueyColor } from './types.ts'
+export type { ColorFormat, HSLA, HUEY_COLOR, HueyColor, HueyColorSymbol, HueyError, HueyOptions, OKLCH, RGBA } from './types'
 export * from './utils/index'
