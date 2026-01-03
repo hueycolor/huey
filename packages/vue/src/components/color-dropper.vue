@@ -16,7 +16,7 @@ if (window.EyeDropper) {
   dropper.value = new EyeDropper()
 }
 
-function sipColor() {
+function sip() {
   if (!dropper.value) {
     return
   }
@@ -37,11 +37,7 @@ interface ColorDropperEmits {
 </script>
 
 <template>
-  <button v-if="dropper" v-bind="{ ...props }" @click="sipColor">
+  <button v-if="dropper" v-bind="{ ...props }" @click="sip">
     <slot />
   </button>
 </template>
-
-<style>
-
-</style>
