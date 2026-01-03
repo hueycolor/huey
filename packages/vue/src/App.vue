@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { hueyColor } from '@huey/core'
-import { ChannelInput, ColorPreview } from './components'
+import { ref } from 'vue'
+import { ChannelInput, ColorDropper, ColorPreview } from './components'
 import HelloWorld from './components/HelloWorld.vue'
 
 // Test huey core
-const color = hueyColor('#ff3e00c0')
+const color = ref(hueyColor('#ff3e00c0'))
 console.log('Testing @huey/core:', color)
 
 function handleChange(v?: number) {
@@ -14,6 +15,9 @@ function handleChange(v?: number) {
 
 <template>
   <div>
+    <ColorDropper v-model="color">
+      Eye drop
+    </ColorDropper>
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo">
     </a>
