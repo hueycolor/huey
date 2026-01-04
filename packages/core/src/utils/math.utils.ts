@@ -4,7 +4,7 @@ export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
 
-export function getColorBounds(key: ColorChannel): { min: number, max: number } {
+export function getChannelBounds(key: ColorChannel): { min: number, max: number } {
   const min = 0
   let max = 0
 
