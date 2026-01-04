@@ -46,6 +46,13 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
   const colorValues: number[] = _format === 'oklch' ? coords.slice(0, 3) : convert(coords.slice(0, 3), sRGB, OKLCH)
   const [_l, _c, _h] = colorValues // oklch
 
+  const cloneWith = (l: number, c: number, h: number, a: number): HueyColor => {
+    const newColor = hueyColor(`oklch(${l * 100}% ${c} ${h} / ${a})`)
+    newColor.getFormat = () => _format
+    newColor.getOriginalInput = () => colorInput
+    return newColor
+  }
+
   const hC: HueyColorSymbol = {
     [HUEY_COLOR]: true,
     _l: Number(_l.toFixed(2)),
@@ -53,40 +60,16 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     _h: Number(_h.toFixed(2)),
     _a,
     getFormat: () => _format,
-    getOriginalInput: () => {
-      return colorInput
-    },
+    getOriginalInput: () => colorInput,
     getAlpha: () => hC._a,
-    setAlpha: (v) => {
-      hC._a = v
-
-      return hC
-    },
-    desaturate: (v) => {
-      hC._c = Math.max(0, hC._c - v)
-
-      return hC
-    },
-    saturate: (v) => {
-      hC._c = Math.max(0, hC._c + v)
-
-      return hC
-    },
-    brighten: (v) => {
-      hC._l = Math.min(1, hC._l + v)
-
-      return hC
-    },
-    lighten: (v) => {
-      hC._l = Math.min(1, hC._l + v)
-
-      return hC
-    },
-    darken: (v) => {
-      hC._l = Math.max(0, hC._l - v)
-
-      return hC
-    },
+    setAlpha: v => cloneWith(hC._l, hC._c, hC._h, v),
+    desaturate: v => cloneWith(hC._l, Math.max(0, hC._c - v), hC._h, hC._a),
+    saturate: v => cloneWith(hC._l, Math.max(0, hC._c + v), hC._h, hC._a),
+    brighten: v => cloneWith(Math.min(1, hC._l + v), hC._c, hC._h, hC._a),
+    lighten: v => cloneWith(Math.min(1, hC._l + v), hC._c, hC._h, hC._a),
+    darken: v => cloneWith(Math.max(0, hC._l - v), hC._c, hC._h, hC._a),
+    randomize: () => cloneWith(Math.random(), Math.random() * 0.4, Math.random() * 360, hC._a),
+    clone: () => cloneWith(hC._l, hC._c, hC._h, hC._a),
     contrastRatio: (c) => {
       const l1 = hC.getLuminance()
       const l2 = c.getLuminance()
@@ -199,16 +182,6 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
         return `color(rec2020 ${r} ${g} ${b} / ${a})`
       }
       return `color(rec2020 ${r} ${g} ${b})`
-    },
-    randomize: () => {
-      hC._l = Math.random()
-      hC._c = Math.random() * 0.4
-      hC._h = Math.random() * 360
-
-      return hC
-    },
-    clone: () => {
-      return hueyColor(hC.toOklchString())
     },
   }
 
