@@ -38,3 +38,9 @@ export function normalize(number: number, currentScaleMin: number, currentScaleM
     (newScaleMax - newScaleMin) * standardNormalization + newScaleMin
   )
 }
+
+export function roundToStep(value: number, step: number) {
+  const decimals = step < 1 ? Math.ceil(-Math.log10(step)) : 0
+
+  return Math.round(value * 10 ** decimals) / 10 ** decimals
+}
