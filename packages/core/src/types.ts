@@ -71,3 +71,17 @@ export interface HueyError {
   format: string
   message: string
 }
+
+export interface Coordinates {
+  x: number
+  y: number
+}
+
+export type ArrowDirection = 'up' | 'down' | 'left' | 'right'
+
+export type RgbChannel = 'r' | 'g' | 'b'
+export type HslChannel = 'h' | 's' | 'l'
+export type LchChannel = 'h' | 's' | 'v'
+export type AlphaChannel = 'a'
+
+export type ColorChannel = RgbChannel | HslChannel | LchChannel | AlphaChannel

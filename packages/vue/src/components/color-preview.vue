@@ -29,7 +29,7 @@ export interface ColorSwatchProps {
 
 <template>
   <div
-    data-huey-preview
+    huey-preview
     :class="$props.class"
     :style="{ background: bg }"
     :aria-label="color.toRgbString()"
@@ -39,7 +39,7 @@ export interface ColorSwatchProps {
 </template>
 
 <style>
-[data-huey-preview] {
+[huey-preview] {
   --preview-tile: 20px;
   --opacity-tile: calc(var(--preview-tile) - 50%);
 
