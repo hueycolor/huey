@@ -9,10 +9,7 @@ const alpha = ref(color.value.getAlpha())
 
 watch(alpha, (newVal) => {
   color.value = color.value.setAlpha(newVal)
-})
-
-watch(color, () => {
-  console.log('color obj changed')
+  console.log(newVal)
 })
 </script>
 

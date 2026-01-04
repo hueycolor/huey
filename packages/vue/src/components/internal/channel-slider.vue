@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection } from '@huey/core'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection, roundToStep } from '@huey/core'
 import { computed, onUnmounted, useTemplateRef } from 'vue'
 import { ColorThumb } from '..'
 
@@ -39,10 +39,8 @@ function handleChange(e: MouseEvent | TouchEvent) {
 
   const raw = normalize(left / width, 0, 1, min, max)
   const stepped = Math.round(raw / step) * step
-  const decimals = step < 1 ? Math.ceil(-Math.log10(step)) : 0
-  const fixed = Math.round(stepped * 10 ** decimals) / 10 ** decimals
 
-  value.value = clamp(fixed, min, max)
+  value.value = clamp(roundToStep(stepped, step), min, max)
 }
 
 function preventUserSelect() {
@@ -76,13 +74,12 @@ function handleKeyDown(e: KeyboardEvent) {
   switch (direction) {
     case 'left':
     case 'down': {
-      value.value = clamp(oldVal - step, min, max)
+      value.value = clamp(roundToStep(oldVal - step, step), min, max)
       break
     }
-
     case 'right':
     case 'up': {
-      value.value = clamp(oldVal + step, min, max)
+      value.value = clamp(roundToStep(oldVal + step, step), min, max)
       break
     }
   }
