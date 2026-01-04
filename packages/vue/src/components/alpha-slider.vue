@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ColorThumb } from '.'
-import ColorSlider from './internal/color-slider.vue'
+import ChannelSlider from './internal/channel-slider.vue'
 </script>
 
 <script lang="ts"></script>
 
 <template>
-  <ColorSlider huey-slider />
+  <ChannelSlider huey-slider :max="1000" />
 </template>
 
 <style>
