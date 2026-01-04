@@ -1,27 +1,30 @@
 <script setup lang="ts">
 import { hueyColor } from '@huey/core'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview } from './components'
-import HelloWorld from './components/HelloWorld.vue'
 
 // Test huey core
-const color = ref(hueyColor('#ff3e00c0'))
-console.log('Testing @huey/core:', color)
+const color = ref(hueyColor('rgb(51, 92, 255)'))
+const alpha = ref(color.value.getAlpha())
 
-function handleChange(v?: number) {
-  console.log(v)
-}
+watch(alpha, (newVal) => {
+  color.value = color.value.setAlpha(newVal)
+})
+
+watch(color, () => {
+  console.log('color obj changed')
+})
 </script>
 
 <template>
   <div>
-    <AlphaSlider />
+    <AlphaSlider v-model="alpha" :color="color" />
     <ColorDropper v-model="color">
       Eye drop
     </ColorDropper>
   </div>
   <ColorPreview :color="color" />
-  <ChannelInput channel="h" @update:model-value="handleChange" />
+  <ChannelInput channel="h" />
 </template>
 
 <style scoped>

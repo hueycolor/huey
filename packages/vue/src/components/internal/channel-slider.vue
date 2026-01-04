@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize } from '@huey/core'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection } from '@huey/core'
 import { computed, onUnmounted, useTemplateRef } from 'vue'
 import { ColorThumb } from '..'
 
 const props = withDefaults(defineProps<ColorSliderProps>(), {
   max: 100,
   min: 0,
+  step: 1,
 })
 
 const value = defineModel({ default: 0 })
@@ -34,13 +35,14 @@ function handleChange(e: MouseEvent | TouchEvent) {
 
   const width = slider.clientWidth
 
-  const { max, min } = props
+  const { max, min, step } = props
 
-  value.value = clamp(
-    Math.round(normalize(left / width, 0, 1, min, max)),
-    min,
-    max,
-  )
+  const raw = normalize(left / width, 0, 1, min, max)
+  const stepped = Math.round(raw / step) * step
+  const decimals = step < 1 ? Math.ceil(-Math.log10(step)) : 0
+  const fixed = Math.round(stepped * 10 ** decimals) / 10 ** decimals
+
+  value.value = clamp(fixed, min, max)
 }
 
 function preventUserSelect() {
@@ -59,7 +61,32 @@ function handleMouseDown(e: MouseEvent) {
   window.addEventListener('mouseup', handleMouseUp)
 }
 
-function handleKeyDown() {}
+function handleKeyDown(e: KeyboardEvent) {
+  const direction = resolveArrowDirection(e)
+
+  if (!direction) {
+    return
+  }
+
+  e.preventDefault()
+
+  const oldVal = value.value
+  const { min, max, step } = props
+
+  switch (direction) {
+    case 'left':
+    case 'down': {
+      value.value = clamp(oldVal - step, min, max)
+      break
+    }
+
+    case 'right':
+    case 'up': {
+      value.value = clamp(oldVal + step, min, max)
+      break
+    }
+  }
+}
 
 function unbindEventListeners() {
   window.removeEventListener('mousemove', handleChange)
@@ -76,6 +103,7 @@ function handleMouseUp() {
 export interface ColorSliderProps {
   min?: number
   max?: number
+  step?: number
 }
 </script>
 
@@ -84,6 +112,11 @@ export interface ColorSliderProps {
     ref="slider-track"
     v-bind="{ ...props }"
     huey-slider-track
+    role="slider"
+    :aria-valuemin="$props.min"
+    :aria-valuemax="$props.max"
+    tabindex="0"
+    :aria-valuenow="modelValue"
     @mousedown="handleMouseDown"
     @touchmove.passive="handleChange"
     @touchstart.passive="handleChange"

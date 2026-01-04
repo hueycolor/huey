@@ -50,6 +50,7 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     const newColor = hueyColor(`oklch(${l * 100}% ${c} ${h} / ${a})`)
     newColor.getFormat = () => _format
     newColor.getOriginalInput = () => colorInput
+
     return newColor
   }
 
