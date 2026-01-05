@@ -70,18 +70,17 @@ function handleKeyDown(e: KeyboardEvent) {
 
   const oldVal = value.value
   const { min, max, step } = props
+  const largeStep = e.shiftKey ? step * 10 : step
 
-  switch (direction) {
-    case 'left':
-    case 'down': {
-      value.value = clamp(roundToStep(oldVal - step, step), min, max)
+  switch (e.key) {
+    case 'ArrowLeft':
+    case 'ArrowDown':
+      value.value = clamp(roundToStep(oldVal - largeStep, largeStep), min, max)
       break
-    }
-    case 'right':
-    case 'up': {
-      value.value = clamp(roundToStep(oldVal + step, step), min, max)
+    case 'ArrowRight':
+    case 'ArrowUp':
+      value.value = clamp(roundToStep(oldVal + largeStep, largeStep), min, max)
       break
-    }
   }
 }
 
