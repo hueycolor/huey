@@ -98,7 +98,7 @@ export function parseOKLCH(str: string): ParsedColor | null {
  * Input: h, s, l in 0-1 range
  * Output: [r, g, b] in 0-1 range
  */
-function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+export function hslToRgb(h: number, s: number, l: number): [number, number, number] {
   let r: number, g: number, b: number
 
   if (s === 0) {

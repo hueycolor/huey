@@ -1,7 +1,7 @@
 import type { HueyColor, HueyColorSymbol } from './types'
 import { convert, deserialize, DisplayP3, floatToByte, OKLCH, Rec2020, RGBToHex, serialize, sRGB } from '@texel/color'
 import { HUEY_COLOR } from './types'
-import { getFormat, isHuey, parseHSL, parseOKLCH, rgbToHsl } from './utils'
+import { getFormat, hslToRgb, isHuey, parseHSL, parseOKLCH, rgbToHsl } from './utils'
 
 export function hueyColor(colorInput: string | HueyColor): HueyColor {
   if (isHuey(colorInput)) {
@@ -56,15 +56,21 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
 
   const hC: HueyColorSymbol = {
     [HUEY_COLOR]: true,
-    _l: Number(_l.toFixed(2)),
-    _c: Number(_c.toFixed(2)),
-    _h: Number(_h.toFixed(2)),
+    _l: Number(_l.toFixed(4)),
+    _c: Number(_c.toFixed(4)),
+    _h: Number(_h.toFixed(4)),
     _a,
     getFormat: () => _format,
     getOriginalInput: () => colorInput,
     getAlpha: () => hC._a,
     setAlpha: a => cloneWith(hC._l, hC._c, hC._h, a),
-    setHue: h => cloneWith(hC._l, hC._c, Math.max(0, Math.min(h, 359)), hC._a),
+    setHue: (h) => {
+      const hsl = hC.toHsl()
+      const rgb = hslToRgb(h / 360, hsl.s / 100, hsl.l / 100)
+
+      const [newL, newC, newH] = convert(rgb, sRGB, OKLCH)
+      return cloneWith(newL, newC, newH, hC._a)
+    },
     desaturate: v => cloneWith(hC._l, Math.max(0, hC._c - v), hC._h, hC._a),
     saturate: v => cloneWith(hC._l, Math.max(0, hC._c + v), hC._h, hC._a),
     brighten: v => cloneWith(Math.min(1, hC._l + v), hC._c, hC._h, hC._a),

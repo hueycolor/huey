@@ -5,7 +5,7 @@ import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview } from './compone
 import HueSlider from './components/hue-slider.vue'
 
 // Test huey core
-const color = ref(hueyColor('rgb(51, 92, 255)'))
+const color = ref(hueyColor('#ff0000'))
 const alpha = ref(color.value.getAlpha())
 const hue = ref(color.value.toHsl().h)
 
