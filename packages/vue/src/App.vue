@@ -11,7 +11,6 @@ const hue = ref(color.value.toHsl().h)
 
 watch(alpha, (newVal) => {
   color.value = color.value.setAlpha(newVal)
-  console.log(newVal)
 })
 
 watch(hue, (newVal) => {
