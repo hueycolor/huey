@@ -14,7 +14,7 @@ const alphaSliderBg = computed(() => {
 })
 
 const thumbBg = computed(() => {
-  return `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`
+  return `color-mix(in srgb, white, hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%) ${alpha.value * 100}%)`
 })
 </script>
 
@@ -30,9 +30,14 @@ export interface AlphaSliderProps {}
     :min="0"
     :step="0.01"
     :style="{
-
-      'background': alphaSliderBg,
+      '--huey-slider-bg': alphaSliderBg,
       '--huey-thumb-color': thumbBg,
     }"
   />
 </template>
+
+<style>
+  [huey-slider] {
+    background: var(--huey-slider-bg)
+  }
+</style>
