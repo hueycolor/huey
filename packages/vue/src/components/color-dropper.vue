@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { HueyColor } from '@huey/core'
 import type { ButtonHTMLAttributes } from 'vue'
 import { hueyColor } from '@huey/core'
 import { ref } from 'vue'
+import { useHueyContext } from '../composables/use-huey-context'
 
 const props = defineProps<ColorDropperProps>()
 const emit = defineEmits<ColorDropperEmits>()
 
-const colorValue = defineModel<HueyColor>()
+const { hue, saturation, lightness } = useHueyContext()
+
 const dropper = ref()
 
 // @ts-expect-error TS unaware of EyeDropper: https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper#browser_compatibility
@@ -23,7 +24,11 @@ function sip() {
 
   dropper.value.open().then((result: any) => {
     const newColor = hueyColor(result.sRGBHex)
-    colorValue.value = newColor
+    const { h, s, l } = newColor.toHsl()
+
+    hue.value = h
+    saturation.value = s
+    lightness.value = l
   }).catch((e: Error) => { emit('error', e) })
 }
 </script>
