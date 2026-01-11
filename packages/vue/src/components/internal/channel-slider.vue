@@ -61,13 +61,13 @@ function handleKeyDown(e: KeyboardEvent) {
   const { min, max, step } = props
   const largeStep = e.shiftKey ? step * 10 : step
 
-  switch (e.key) {
-    case 'ArrowLeft':
-    case 'ArrowDown':
+  switch (direction) {
+    case 'left':
+    case 'down':
       offset.value = clamp(roundToStep(oldVal - largeStep, largeStep), min, max)
       break
-    case 'ArrowRight':
-    case 'ArrowUp':
+    case 'right':
+    case 'up':
       offset.value = clamp(roundToStep(oldVal + largeStep, largeStep), min, max)
       break
   }
@@ -100,14 +100,12 @@ export interface ColorSliderProps {
     role="slider"
     :aria-valuemin="$props.min"
     :aria-valuemax="$props.max"
-    tabindex="0"
     :aria-valuenow="modelValue"
     @mousedown="handleMouseDown"
     @touchmove.passive="handleChange"
     @touchstart.passive="handleChange"
-    @keydown="handleKeyDown"
   >
-    <ColorThumb :style="{ left: thumbInsetPercent }" />
+    <ColorThumb tabindex="0" :style="{ left: thumbInsetPercent }" @keydown="handleKeyDown" />
   </div>
 </template>
 

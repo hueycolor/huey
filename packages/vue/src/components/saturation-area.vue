@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ColorFormat, HueyColor } from '@huey/core'
-import { clamp, getAbsolutePosition, getPageXYFromEvent } from '@huey/core'
-import { computed, onUnmounted, ref, useTemplateRef, watch } from 'vue'
+import type { ColorFormat } from '@huey/core'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, resolveArrowDirection, roundToStep } from '@huey/core'
+import { computed, onUnmounted, useTemplateRef } from 'vue'
 import { ColorThumb } from '.'
 import { useHueyContext } from '../composables/use-huey-context'
 import { allowUserSelect, preventUserSelect } from '../utils'
@@ -47,13 +47,8 @@ function handleChange(e: MouseEvent | TouchEvent) {
   const s = (left / areaWidth) * 100
   const l = clamp(1 - (top / areaHeight), 0, 1) * 100
 
-  // Use tiny offsets from extremes to preserve hue in the color model
-  // (at s=0 or l=0/100, hue info is lost during RGB conversion)
-  const effectiveSaturation = Math.max(s, 0.1)
-  const effectiveLightness = Math.max(0.1, Math.min(99.9, l))
-
-  saturation.value = effectiveSaturation
-  lightness.value = effectiveLightness
+  saturation.value = s
+  lightness.value = l
 }
 
 const offsetLeft = computed(() => `${saturation.value}%`)
@@ -68,6 +63,30 @@ function handleMouseDown() {
   window.addEventListener('mousemove', handleChange)
   window.addEventListener('mouseup', handleChange)
   window.addEventListener('mouseup', handleMouseUp)
+}
+
+function handleKeyDown(e: KeyboardEvent) {
+  const direction = resolveArrowDirection(e)
+
+  const step = e.shiftKey ? 10 : 1
+
+  if (!direction)
+    return
+
+  switch (direction) {
+    case 'left':
+      saturation.value = clamp(saturation.value - step, 0, 100)
+      break
+    case 'down':
+      lightness.value = clamp(lightness.value - step, 0, 100)
+      break
+    case 'right':
+      saturation.value = clamp(saturation.value + step, 0, 100)
+      break
+    case 'up':
+      lightness.value = clamp(lightness.value + step, 0, 100)
+      break
+  }
 }
 
 function unbindEventListeners() {
@@ -114,6 +133,7 @@ export interface SaturationAreaProps {
       aria-valuemin="0"
       aria-valuemax="1"
       aria-valuenow="?"
+      @keydown="handleKeyDown"
     />
   </div>
 </template>
