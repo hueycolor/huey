@@ -1,3 +1,4 @@
+import type { HSLA, RGBA } from '@core/types'
 import { HSL_REGEX, OKLCH_REGEX } from './pattern.utils'
 
 export interface ParsedColor {
@@ -21,7 +22,7 @@ export function parseHSL(str: string): ParsedColor | null {
     return null
 
   // Parse values
-  let h = Number.parseFloat(_h)
+  const h = Number.parseFloat(_h)
   let s = Number.parseFloat(_s)
   let l = Number.parseFloat(_l)
   const a = _a ? Number.parseFloat(_a) : 1
@@ -35,15 +36,14 @@ export function parseHSL(str: string): ParsedColor | null {
     return null
 
   // Normalize values to 0-1 range
-  h = h / 360 // hue: 0-360 to 0-1
   s = s / 100 // saturation: 0-100% to 0-1
   l = l / 100 // lightness: 0-100% to 0-1
 
-  // Convert HSL to RGB (0-1 range)
-  const rgb = hslToRgb(h, s, l)
+  // Convert HSL to RGB (normalized to 0-1 for color space conversion)
+  const { r, g, b } = hslToRgb(h, s, l)
 
   return {
-    coords: [...rgb, a],
+    coords: [r / 255, g / 255, b / 255, a],
     space: 'rgb',
   }
 }
@@ -93,12 +93,8 @@ export function parseOKLCH(str: string): ParsedColor | null {
   }
 }
 
-/**
- * Convert HSL to RGB
- * Input: h, s, l in 0-1 range
- * Output: [r, g, b] in 0-1 range
- */
-export function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+export function hslToRgb(h: number, s: number, l: number, a?: number): RGBA {
+  h = h / 360
   let r: number, g: number, b: number
 
   if (s === 0) {
@@ -106,7 +102,7 @@ export function hslToRgb(h: number, s: number, l: number): [number, number, numb
     r = g = b = l
   }
   else {
-    const hue2rgb = (p: number, q: number, t: number): number => {
+    const hueToRgb = (p: number, q: number, t: number): number => {
       if (t < 0)
         t += 1
       if (t > 1)
@@ -123,20 +119,20 @@ export function hslToRgb(h: number, s: number, l: number): [number, number, numb
     const q = l < 0.5 ? l * (1 + s) : l + s - l * s
     const p = 2 * l - q
 
-    r = hue2rgb(p, q, h + 1 / 3)
-    g = hue2rgb(p, q, h)
-    b = hue2rgb(p, q, h - 1 / 3)
+    r = hueToRgb(p, q, h + 1 / 3)
+    g = hueToRgb(p, q, h)
+    b = hueToRgb(p, q, h - 1 / 3)
   }
 
-  return [r, g, b]
+  return {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255),
+    a: Math.min(1, a ?? 1),
+  }
 }
 
-/**
- * Convert RGB to HSL
- * Input: r, g, b in 0-1 range
- * Output: { h, s, l } where h is 0-360, s and l are 0-100
- */
-export function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+export function rgbToHsl(r: number, g: number, b: number, a?: number): HSLA {
   const max = Math.max(r, g, b)
   const min = Math.min(r, g, b)
   const delta = max - min
@@ -146,10 +142,8 @@ export function rgbToHsl(r: number, g: number, b: number): { h: number; s: numbe
   const l = (max + min) / 2
 
   if (delta !== 0) {
-    // Calculate saturation
     s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min)
 
-    // Calculate hue
     switch (max) {
       case r:
         h = ((g - b) / delta + (g < b ? 6 : 0)) / 6
@@ -164,8 +158,9 @@ export function rgbToHsl(r: number, g: number, b: number): { h: number; s: numbe
   }
 
   return {
-    h: h * 360, // Convert to degrees
-    s: s * 100, // Convert to percentage
-    l: l * 100, // Convert to percentage
+    h: h * 360,
+    s: s * 100,
+    l: l * 100,
+    a: a ?? 1,
   }
 }
