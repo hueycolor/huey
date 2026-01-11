@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
+import type { AriaAttributes, ButtonHTMLAttributes, HTMLAttributes } from 'vue'
 
-defineProps<ColorThumbProps>()
+const props = defineProps<ColorThumbProps>()
 </script>
 
 <script lang="ts">
-export interface ColorThumbProps {
+export interface ColorThumbProps extends /* @vue-ignore */ HTMLAttributes {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <template>
-  <div huey-slider-thumb :class="$props.class" />
+  <div huey-slider-thumb v-bind="{ ...props }" />
 </template>
 
 <style>

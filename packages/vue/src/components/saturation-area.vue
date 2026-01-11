@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ColorFormat } from '@huey/core'
+import type { HTMLAttributes } from 'vue'
 import { ColorThumb } from '@components'
 import { useHueyContext } from '@composables/use-huey-context'
 import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@huey/core'
@@ -158,7 +159,7 @@ onUnmounted(() => {
 </script>
 
 <script lang="ts">
-export interface SaturationAreaProps {
+export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
   colorFormat?: Exclude<ColorFormat, 'oklch'>
 }
 </script>
@@ -166,7 +167,7 @@ export interface SaturationAreaProps {
 <template>
   <div
     ref="area"
-    role="application"
+    role="group"
     huey-area
     :style="{
       'background': areaBg,
@@ -182,9 +183,10 @@ export interface SaturationAreaProps {
         left: offsetLeft,
       }"
       tabindex="0"
-      aria-valuemin="0"
-      aria-valuemax="1"
-      aria-valuenow="?"
+      :aria-valuemin="0"
+      :aria-valuemax="100"
+      :aria-valuenow="`${saturation}/${lightness}`"
+      :aria-valuetext="`Saturation ${Math.round(saturation)}%, Lightness ${Math.round(lightness)}%`"
       @keydown="handleKeyDown"
     />
   </div>
