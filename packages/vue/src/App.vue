@@ -3,9 +3,10 @@ import { hueyColor } from '@huey/core'
 import { ref, watch } from 'vue'
 import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview, SaturationArea } from './components'
 import HueSlider from './components/hue-slider.vue'
+import HueyRoot from './components/huey-root.vue'
 
 // Test huey core
-const color = ref(hueyColor('#ff0000'))
+const color = ref(hueyColor('#00ff00'))
 const alpha = ref(color.value.getAlpha())
 const hue = ref(color.value.toHsl().h)
 
@@ -20,12 +21,14 @@ watch(hue, (newVal) => {
 
 <template>
   <div>
-    <SaturationArea :hue="hue" color-format="hsl" />
-    <HueSlider v-model="hue" :color="color" />
-    <AlphaSlider v-model="alpha" :color="color" />
-    <ColorDropper v-model="color">
-      Eye drop
-    </ColorDropper>
+    <HueyRoot v-model="color">
+      <SaturationArea v-model="color" color-format="hsl" />
+      <HueSlider v-model="hue" :color="color" />
+      <AlphaSlider v-model="alpha" :color="color" />
+      <ColorDropper v-model="color">
+        Eye drop
+      </ColorDropper>
+    </HueyRoot>
   </div>
   <ColorPreview :color="color" />
   <ChannelInput channel="h" />

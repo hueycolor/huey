@@ -47,7 +47,8 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
   const [_l, _c, _h] = colorValues // oklch
 
   const cloneWith = (l: number, c: number, h: number, a: number): HueyColor => {
-    const newColor = hueyColor(`oklch(${l * 100}% ${c} ${h} / ${a})`)
+    const clampedL = Math.max(0, Math.min(1, l))
+    const newColor = hueyColor(`oklch(${clampedL * 100}% ${c} ${h} / ${a})`)
     newColor.getFormat = () => _format
     newColor.getOriginalInput = () => colorInput
 
@@ -67,6 +68,28 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     setHue: (h) => {
       const hsl = hC.toHsl()
       const { r, g, b } = hslToRgb(h / 360, hsl.s / 100, hsl.l / 100)
+
+      const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
+      return cloneWith(newL, newC, newH, hC._a)
+    },
+    setSaturation: (s) => {
+      const hsl = hC.toHsl()
+      const { r, g, b } = hslToRgb(hsl.h / 360, s / 100, hsl.l / 100)
+
+      const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
+      return cloneWith(newL, newC, newH, hC._a)
+    },
+    setLightness: (l) => {
+      const hsl = hC.toHsl()
+      const { r, g, b } = hslToRgb(hsl.h / 360, hsl.s / 100, l / 100)
+
+      const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
+      return cloneWith(newL, newC, newH, hC._a)
+    },
+    setHsl: (h, s, l) => {
+      const clampedS = Math.max(0, Math.min(100, s))
+      const clampedL = Math.max(0, Math.min(100, l))
+      const { r, g, b } = hslToRgb(h / 360, clampedS / 100, clampedL / 100)
 
       const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
       return cloneWith(newL, newC, newH, hC._a)

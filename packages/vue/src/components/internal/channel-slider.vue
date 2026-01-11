@@ -2,6 +2,7 @@
 import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection, roundToStep } from '@huey/core'
 import { computed, onUnmounted, useTemplateRef } from 'vue'
 import { ColorThumb } from '..'
+import { allowUserSelect, preventUserSelect } from '../../utils'
 
 const props = withDefaults(defineProps<ColorSliderProps>(), {
   max: 100,
@@ -9,13 +10,13 @@ const props = withDefaults(defineProps<ColorSliderProps>(), {
   step: 1,
 })
 
-const value = defineModel({ default: 0 })
+const offset = defineModel({ default: 0 })
 const trackRef = useTemplateRef('slider-track')
 
 const thumbInsetPercent = computed(() => {
   const { min, max } = props
 
-  return `${normalize(value.value, min, max, 0, 100)}%`
+  return `${normalize(offset.value, min, max, 0, 100)}%`
 })
 
 onUnmounted(() => {
@@ -39,15 +40,7 @@ function handleChange(e: MouseEvent | TouchEvent) {
   const raw = normalize(left / width, 0, 1, min, max)
   const stepped = Math.round(raw / step) * step
 
-  value.value = clamp(roundToStep(stepped, step), min, max)
-}
-
-function preventUserSelect() {
-  document.body.style.userSelect = 'none'
-}
-
-function allowUserSelect() {
-  document.body.style.userSelect = 'unset'
+  offset.value = clamp(roundToStep(stepped, step), min, max)
 }
 
 function handleMouseDown(e: MouseEvent) {
@@ -59,25 +52,23 @@ function handleMouseDown(e: MouseEvent) {
 }
 
 function handleKeyDown(e: KeyboardEvent) {
-  e.preventDefault()
-
   const direction = resolveArrowDirection(e)
 
   if (!direction)
     return
 
-  const oldVal = value.value
+  const oldVal = offset.value
   const { min, max, step } = props
   const largeStep = e.shiftKey ? step * 10 : step
 
   switch (e.key) {
     case 'ArrowLeft':
     case 'ArrowDown':
-      value.value = clamp(roundToStep(oldVal - largeStep, largeStep), min, max)
+      offset.value = clamp(roundToStep(oldVal - largeStep, largeStep), min, max)
       break
     case 'ArrowRight':
     case 'ArrowUp':
-      value.value = clamp(roundToStep(oldVal + largeStep, largeStep), min, max)
+      offset.value = clamp(roundToStep(oldVal + largeStep, largeStep), min, max)
       break
   }
 }

@@ -26,12 +26,6 @@ const thumbBg = computed(() => {
 
   return `rgb(${r}, ${g}, ${b})`
 })
-
-/**
- * TODO:
- * Set up alpha bg
- * Set up model
- */
 </script>
 
 <script lang="ts">
