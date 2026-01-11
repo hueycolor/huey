@@ -130,4 +130,8 @@ export interface ColorSliderProps {
   height: var(--huey-slider-track-height);
   border-radius: calc(1px * infinity);
 }
+
+[huey-slider-track] [huey-slider-thumb] {
+  height: var(--huey-slider-track-height);
+}
 </style>

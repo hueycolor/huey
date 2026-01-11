@@ -19,7 +19,7 @@ export interface ColorThumbProps {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
-    height: var(--huey-slider-track-height);
+    height: 16px;
     aspect-ratio: 1 / 1;
     background-color: var(--huey-thumb-color, white);
     border-radius: calc(infinity * 1px);

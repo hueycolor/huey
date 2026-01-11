@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { hueyColor } from '@huey/core'
 import { ref, watch } from 'vue'
-import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview } from './components'
+import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview, SaturationArea } from './components'
 import HueSlider from './components/hue-slider.vue'
 
 // Test huey core
@@ -20,6 +20,7 @@ watch(hue, (newVal) => {
 
 <template>
   <div>
+    <SaturationArea :hue="hue" color-format="hsl" />
     <HueSlider v-model="hue" :color="color" />
     <AlphaSlider v-model="alpha" :color="color" />
     <ColorDropper v-model="color">
