@@ -10,13 +10,12 @@ const props = withDefaults(defineProps<ColorSliderProps>(), {
 })
 
 const value = defineModel({ default: 0 })
-const sliderTrackRef = useTemplateRef('slider-track')
+const trackRef = useTemplateRef('slider-track')
 
 const thumbInsetPercent = computed(() => {
   const { min, max } = props
-  const percent = normalize(value.value, min, max, 0, 100)
 
-  return `${percent}%`
+  return `${normalize(value.value, min, max, 0, 100)}%`
 })
 
 onUnmounted(() => {
@@ -24,7 +23,7 @@ onUnmounted(() => {
 })
 
 function handleChange(e: MouseEvent | TouchEvent) {
-  const slider = sliderTrackRef.value
+  const slider = trackRef.value
 
   if (!slider)
     return
@@ -60,13 +59,12 @@ function handleMouseDown(e: MouseEvent) {
 }
 
 function handleKeyDown(e: KeyboardEvent) {
+  e.preventDefault()
+
   const direction = resolveArrowDirection(e)
 
-  if (!direction) {
+  if (!direction)
     return
-  }
-
-  e.preventDefault()
 
   const oldVal = value.value
   const { min, max, step } = props
