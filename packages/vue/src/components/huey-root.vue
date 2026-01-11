@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HueyColor } from '@huey/core'
 import { HUEY_CONTEXT } from '@composables/use-huey-context'
-import { hueyColor } from '@huey/core'
+import { clamp, hueyColor } from '@huey/core'
 import { provide, ref, watch } from 'vue'
 
 const colorValue = defineModel<HueyColor>({ required: true })
@@ -39,7 +39,8 @@ watch(
 watch([hue, saturation, lightness, alpha], ([h, s, l, a]) => {
   isInternalUpdate = true
 
-  const color = hueyColor(`hsla(${Math.max(h, 360)}, ${Math.max(s, 100)}%, ${Math.max(l, 100)}%, ${Math.max(a, 1)})`)
+  const color = hueyColor(`hsla(${clamp(h, 0, 360)}, ${clamp(s, 0, 100)}%, ${clamp(l, 0, 100)}%, ${clamp(a, 0, 1)})`)
+
   colorValue.value = color
 })
 

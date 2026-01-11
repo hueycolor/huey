@@ -7,15 +7,9 @@ import HueyRoot from './components/huey-root.vue'
 
 // Test huey core
 const color = ref(hueyColor('#00ff00'))
-const alpha = ref(color.value.getAlpha())
-const hue = ref(color.value.toHsl().h)
 
-watch(alpha, (newVal) => {
-  color.value = color.value.setAlpha(newVal)
-})
-
-watch(hue, (newVal) => {
-  color.value = color.value.setHue(newVal)
+watch(color, (newColor) => {
+  console.log(newColor.toHexString())
 })
 </script>
 
