@@ -22,16 +22,16 @@ watch(hue, (newVal) => {
 <template>
   <div>
     <HueyRoot v-model="color">
-      <SaturationArea v-model="color" color-format="hsl" />
-      <HueSlider v-model="hue" :color="color" />
-      <AlphaSlider v-model="alpha" :color="color" />
-      <ColorDropper v-model="color">
+      <!-- <SaturationArea v-model="color" color-format="hsl" /> -->
+      <!-- <HueSlider v-model="hue" :color="color" /> -->
+      <!-- <AlphaSlider v-model="alpha" :color="color" /> -->
+      <!-- <ColorDropper v-model="color">
         Eye drop
-      </ColorDropper>
+      </ColorDropper> -->
+      <ColorPreview :color="color" />
+      <!-- <ChannelInput channel="h" /> -->
     </HueyRoot>
   </div>
-  <ColorPreview :color="color" />
-  <ChannelInput channel="h" />
 </template>
 
 <style scoped>

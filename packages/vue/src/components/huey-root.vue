@@ -6,6 +6,10 @@ import { HUEY_CONTEXT } from '../composables/use-huey-context'
 
 const colorValue = defineModel<HueyColor>({ required: true })
 
+if (!colorValue.value) {
+  throw new Error('<HueyRoot> is missing required v-model of type HueyColor')
+}
+
 const hue = ref(0)
 const saturation = ref(0)
 const lightness = ref(0)

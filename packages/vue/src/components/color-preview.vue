@@ -2,14 +2,17 @@
 import type { HueyColor } from '@huey/core'
 import type { HTMLAttributes } from 'vue'
 import { computed } from 'vue'
+import { useHueyContext } from '../composables/use-huey-context'
 
 const { color } = defineProps<ColorSwatchProps>()
 
+const { hue, saturation, lightness } = useHueyContext()
+
 const bg = computed(() => {
-  const rgba = color.toRgbString()
+  const hslString = `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`
 
   return `
-    linear-gradient(${rgba}, ${rgba}),
+    linear-gradient(${hslString}, ${hslString}),
     repeating-conic-gradient(
       #ffffff 0deg,
       #ffffff 90deg,
