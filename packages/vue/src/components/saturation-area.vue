@@ -5,7 +5,7 @@ import { ColorThumb } from '@components'
 import { useHueyContext } from '@composables/use-huey-context'
 import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@huey/core'
 import { allowUserSelect, preventUserSelect } from '@utils'
-import { computed, onUnmounted, ref, useTemplateRef } from 'vue'
+import { computed, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 
 const props = withDefaults(defineProps<SaturationAreaProps>(), {
   colorFormat: 'hsl',
@@ -17,6 +17,15 @@ const areaRef = useTemplateRef('area')
 
 // Track HSV saturation separately for edge cases (black/white where HSL loses saturation info)
 const hsvSaturation = ref(hslToHsv(hue.value, saturation.value, lightness.value).s)
+const isDragging = ref(false)
+
+// Sync hsvSaturation when color changes externally (e.g., color dropper)
+watch([hue, saturation, lightness], () => {
+  if (isDragging.value)
+    return
+
+  hsvSaturation.value = hslToHsv(hue.value, saturation.value, lightness.value).s
+})
 
 const areaBg = computed(() => {
   const hslString = `hsl(${hue.value}, 100%, 50%)`
@@ -79,15 +88,28 @@ const offsetTop = computed(() => {
     return `${100 - lightness.value}%`
   }
   const hsv = hslToHsv(hue.value, saturation.value, lightness.value)
+
   return `${100 - hsv.v}%`
 })
 
 function handleMouseDown() {
+  isDragging.value = true
   preventUserSelect()
 
   window.addEventListener('mousemove', handleChange)
   window.addEventListener('mouseup', handleChange)
   window.addEventListener('mouseup', handleMouseUp)
+}
+
+function handleTouchStart(e: TouchEvent) {
+  isDragging.value = true
+  handleChange(e)
+  window.addEventListener('touchend', handleTouchEnd)
+}
+
+function handleTouchEnd() {
+  isDragging.value = false
+  window.removeEventListener('touchend', handleTouchEnd)
 }
 
 function handleKeyDown(e: KeyboardEvent) {
@@ -96,6 +118,8 @@ function handleKeyDown(e: KeyboardEvent) {
 
   if (!direction)
     return
+
+  isDragging.value = true
 
   if (props.colorFormat === 'hsl') {
     switch (direction) {
@@ -112,6 +136,7 @@ function handleKeyDown(e: KeyboardEvent) {
         lightness.value = clamp(lightness.value + step, 0, 100)
         break
     }
+    isDragging.value = false
     return
   }
 
@@ -140,15 +165,18 @@ function handleKeyDown(e: KeyboardEvent) {
 
   saturation.value = hsl.s
   lightness.value = hsl.l
+  isDragging.value = false
 }
 
 function unbindEventListeners() {
   window.removeEventListener('mousemove', handleChange)
   window.removeEventListener('mouseup', handleChange)
   window.removeEventListener('mouseup', handleMouseUp)
+  window.removeEventListener('touchend', handleTouchEnd)
 }
 
 function handleMouseUp() {
+  isDragging.value = false
   allowUserSelect()
   unbindEventListeners()
 }
@@ -175,7 +203,7 @@ export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
     }"
     @mousedown="handleMouseDown"
     @touchmove.passive="handleChange"
-    @touchstart.passive="handleChange"
+    @touchstart.passive="handleTouchStart"
   >
     <ColorThumb
       :style="{

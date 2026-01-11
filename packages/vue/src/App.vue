@@ -16,7 +16,7 @@ watch(color, (newColor) => {
 <template>
   <div>
     <HueyRoot v-model="color">
-      <SaturationArea color-format="hsl" />
+      <SaturationArea color-format="hex" />
       <HueSlider />
       <AlphaSlider />
       <ColorDropper>
