@@ -22,7 +22,7 @@ watch(hue, (newVal) => {
 <template>
   <div>
     <HueyRoot v-model="color">
-      <!-- <SaturationArea v-model="color" color-format="hsl" /> -->
+      <SaturationArea color-format="hsl" />
       <HueSlider />
       <AlphaSlider />
       <ColorDropper>
