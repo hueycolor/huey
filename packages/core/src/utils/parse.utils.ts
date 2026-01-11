@@ -170,3 +170,45 @@ export function rgbToHsl(r: number, g: number, b: number): Omit<HSLA, 'a'> {
     l: l * 100, // Convert to percentage
   }
 }
+
+/**
+ * Convert HSL to HSV
+ * Input: h in 0-360, s and l in 0-100
+ * Output: { h, s, v } where h is 0-360, s and v are 0-100
+ */
+export function hslToHsv(h: number, s: number, l: number): { h: number, s: number, v: number } {
+  // Normalize to 0-1 range
+  const sNorm = s / 100
+  const lNorm = l / 100
+
+  // Calculate value
+  const v = lNorm + sNorm * Math.min(lNorm, 1 - lNorm)
+
+  // Calculate saturation
+  const sv = v === 0 ? 0 : 2 * (1 - lNorm / v)
+
+  return {
+    h, // Hue stays the same
+    s: sv * 100, // Convert to percentage
+    v: v * 100, // Convert to percentage
+  }
+}
+
+/**
+ * Convert HSV to HSL
+ * Input: h in 0-360, s and v in 0-100
+ * Output: { h, s, l } where h is 0-360, s and l are 0-100
+ */
+export function hsvToHsl(h: number, s: number, v: number): { h: number, s: number, l: number } {
+  const sNorm = s / 100
+  const vNorm = v / 100
+
+  const l = vNorm * (1 - sNorm / 2)
+  const sl = l === 0 || l === 1 ? 0 : (vNorm - l) / Math.min(l, 1 - l)
+
+  return {
+    h,
+    s: sl * 100,
+    l: l * 100,
+  }
+}
