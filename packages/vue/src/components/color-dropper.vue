@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ButtonHTMLAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { hueyColor } from '@huey/core'
+import { clamp, hueyColor } from '@huey/core'
 import { ref } from 'vue'
 
 const props = defineProps<ColorDropperProps>()
@@ -26,9 +26,9 @@ function sip() {
     const newColor = hueyColor(result.sRGBHex)
     const { h, s, l } = newColor.toHsl()
 
-    hue.value = h
-    saturation.value = s
-    lightness.value = l
+    hue.value = clamp(h, 0, 360)
+    saturation.value = clamp(s, 0, 100)
+    lightness.value = clamp(l, 0, 100)
   }).catch((e: Error) => { emit('error', e) })
 }
 </script>
