@@ -6,10 +6,10 @@ import { useHueyContext } from '../composables/use-huey-context'
 
 const { color } = defineProps<ColorSwatchProps>()
 
-const { hue, saturation, lightness } = useHueyContext()
+const { hue, saturation, lightness, alpha } = useHueyContext()
 
 const bg = computed(() => {
-  const hslString = `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`
+  const hslString = `hsla(${hue.value}, ${saturation.value}%, ${lightness.value}%, ${alpha.value})`
 
   return `
     linear-gradient(${hslString}, ${hslString}),

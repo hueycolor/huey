@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import type { HueyColor } from '@huey/core'
 import { computed } from 'vue'
+import { useHueyContext } from '../composables/use-huey-context'
 import ChannelSlider from './internal/channel-slider.vue'
 
-const props = defineProps<AlphaSliderProps>()
+defineProps<AlphaSliderProps>()
 
-const colorValue = defineModel<number>()
+const { hue, saturation, lightness, alpha } = useHueyContext()
 
 const alphaSliderBg = computed(() => {
-  const { r, g, b } = props.color.toRgb()
-
   return `
-    linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0), rgba(${r}, ${g}, ${b}, 1)),
+    linear-gradient(to right, hsla(${hue.value}, ${saturation.value}%, ${lightness.value}%, 0), hsla(${hue.value}, ${saturation.value}%, ${lightness.value}%, 1)),
       repeating-conic-gradient(
         #ffffff 0deg,
         #ffffff 90deg,
@@ -22,21 +21,17 @@ const alphaSliderBg = computed(() => {
 })
 
 const thumbBg = computed(() => {
-  const { r, g, b } = props.color.toRgb()
-
-  return `rgb(${r}, ${g}, ${b})`
+  return `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`
 })
 </script>
 
 <script lang="ts">
-export interface AlphaSliderProps {
-  color: HueyColor
-}
+export interface AlphaSliderProps {}
 </script>
 
 <template>
   <ChannelSlider
-    v-model="colorValue"
+    v-model="alpha"
     huey-slider
     :max="1"
     :min="0"
