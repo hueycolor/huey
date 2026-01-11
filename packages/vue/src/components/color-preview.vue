@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { HueyColor } from '@huey/core'
 import type { HTMLAttributes } from 'vue'
+import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
-import { useHueyContext } from '../composables/use-huey-context'
 
 const { color } = defineProps<ColorSwatchProps>()
 

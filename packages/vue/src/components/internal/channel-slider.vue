@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { ColorThumb } from '@components'
 import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection, roundToStep } from '@huey/core'
+import { allowUserSelect, preventUserSelect } from '@utils'
 import { computed, onUnmounted, useTemplateRef } from 'vue'
-import { ColorThumb } from '..'
-import { allowUserSelect, preventUserSelect } from '../../utils'
 
 const props = withDefaults(defineProps<ColorSliderProps>(), {
   max: 100,

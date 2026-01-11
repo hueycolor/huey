@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ColorFormat } from '@huey/core'
-import { clamp, getAbsolutePosition, getPageXYFromEvent, resolveArrowDirection, roundToStep } from '@huey/core'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, resolveArrowDirection } from '@huey/core'
 import { computed, onUnmounted, useTemplateRef } from 'vue'
 import { ColorThumb } from '.'
 import { useHueyContext } from '../composables/use-huey-context'

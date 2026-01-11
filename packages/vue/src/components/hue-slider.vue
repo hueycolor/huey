@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import ChannelSlider from '@components/internal/channel-slider.vue'
+import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
-import { useHueyContext } from '../composables/use-huey-context'
-import ChannelSlider from './internal/channel-slider.vue'
 
 const { hue } = useHueyContext()
 

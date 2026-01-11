@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { HueyColor } from '@huey/core'
+import ChannelSlider from '@components/internal/channel-slider.vue'
+import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
-import { useHueyContext } from '../composables/use-huey-context'
-import ChannelSlider from './internal/channel-slider.vue'
 
 defineProps<AlphaSliderProps>()
 

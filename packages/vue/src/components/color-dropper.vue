@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ButtonHTMLAttributes } from 'vue'
+import { useHueyContext } from '@composables/use-huey-context'
 import { hueyColor } from '@huey/core'
 import { ref } from 'vue'
-import { useHueyContext } from '../composables/use-huey-context'
 
 const props = defineProps<ColorDropperProps>()
 const emit = defineEmits<ColorDropperEmits>()
