@@ -66,9 +66,9 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     setAlpha: a => cloneWith(hC._l, hC._c, hC._h, a),
     setHue: (h) => {
       const hsl = hC.toHsl()
-      const rgb = hslToRgb(h / 360, hsl.s / 100, hsl.l / 100)
+      const { r, g, b } = hslToRgb(h / 360, hsl.s / 100, hsl.l / 100)
 
-      const [newL, newC, newH] = convert(rgb, sRGB, OKLCH)
+      const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
       return cloneWith(newL, newC, newH, hC._a)
     },
     desaturate: v => cloneWith(hC._l, Math.max(0, hC._c - v), hC._h, hC._a),

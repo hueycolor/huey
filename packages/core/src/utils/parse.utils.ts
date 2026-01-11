@@ -1,3 +1,4 @@
+import type { HSLA, RGBA } from '@core/types'
 import { HSL_REGEX, OKLCH_REGEX } from './pattern.utils'
 
 export interface ParsedColor {
@@ -40,10 +41,10 @@ export function parseHSL(str: string): ParsedColor | null {
   l = l / 100 // lightness: 0-100% to 0-1
 
   // Convert HSL to RGB (0-1 range)
-  const rgb = hslToRgb(h, s, l)
+  const { r, g, b } = hslToRgb(h, s, l)
 
   return {
-    coords: [...rgb, a],
+    coords: [r, g, b, a],
     space: 'rgb',
   }
 }
@@ -98,7 +99,7 @@ export function parseOKLCH(str: string): ParsedColor | null {
  * Input: h, s, l in 0-1 range
  * Output: [r, g, b] in 0-1 range
  */
-export function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+export function hslToRgb(h: number, s: number, l: number): Omit<RGBA, 'a'> {
   let r: number, g: number, b: number
 
   if (s === 0) {
@@ -128,7 +129,7 @@ export function hslToRgb(h: number, s: number, l: number): [number, number, numb
     b = hue2rgb(p, q, h - 1 / 3)
   }
 
-  return [r, g, b]
+  return { r, g, b }
 }
 
 /**
@@ -136,7 +137,7 @@ export function hslToRgb(h: number, s: number, l: number): [number, number, numb
  * Input: r, g, b in 0-1 range
  * Output: { h, s, l } where h is 0-360, s and l are 0-100
  */
-export function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+export function rgbToHsl(r: number, g: number, b: number): Omit<HSLA, 'a'> {
   const max = Math.max(r, g, b)
   const min = Math.min(r, g, b)
   const delta = max - min
