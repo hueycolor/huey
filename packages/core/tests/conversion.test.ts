@@ -315,19 +315,19 @@ describe('color conversion - round trip conversions', () => {
 })
 
 describe('color conversion - precision and rounding', () => {
-  it('should round oklch lightness to 2 decimal places', () => {
+  it('should round oklch lightness to 4 decimal places', () => {
     const color = hueyColor('oklch(0.123456 0.15 180)')
-    expect(color._l).toBe(0.12)
+    expect(color._l).toBe(0.1235)
   })
 
-  it('should round oklch chroma to 2 decimal places', () => {
+  it('should round oklch chroma to 4 decimal places', () => {
     const color = hueyColor('oklch(0.5 0.123456 180)')
-    expect(color._c).toBe(0.12)
+    expect(color._c).toBe(0.1235)
   })
 
-  it('should round oklch hue to 2 decimal places', () => {
+  it('should round oklch hue to 4 decimal places', () => {
     const color = hueyColor('oklch(0.5 0.15 180.123456)')
-    expect(color._h).toBe(180.12)
+    expect(color._h).toBe(180.1235)
   })
 
   it('should round hsl saturation to 2 decimal places', () => {

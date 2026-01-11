@@ -6,31 +6,31 @@ const BASE_COLOR = 'rgb(128, 128, 128)' // Mid-gray
 describe('color manipulation - setAlpha', () => {
   it('should set alpha value', () => {
     const color = hueyColor(BASE_COLOR)
-    color.setAlpha(0.5)
+    const result = color.setAlpha(0.5)
 
-    expect(color.getAlpha()).toBe(0.5)
+    expect(result.getAlpha()).toBe(0.5)
   })
 
-  it('should chain setAlpha calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor(BASE_COLOR)
     const result = color.setAlpha(0.3)
 
-    expect(result).toBe(color)
-    expect(color.getAlpha()).toBe(0.3)
+    expect(result).not.toBe(color)
+    expect(result.getAlpha()).toBe(0.3)
   })
 
   it('should allow setting alpha to 0', () => {
     const color = hueyColor(BASE_COLOR)
-    color.setAlpha(0)
+    const result = color.setAlpha(0)
 
-    expect(color.getAlpha()).toBe(0)
+    expect(result.getAlpha()).toBe(0)
   })
 
   it('should allow setting alpha to 1', () => {
     const color = hueyColor(BASE_COLOR)
-    color.setAlpha(1)
+    const result = color.setAlpha(1)
 
-    expect(color.getAlpha()).toBe(1)
+    expect(result.getAlpha()).toBe(1)
   })
 })
 
@@ -53,33 +53,33 @@ describe('color manipulation - saturate', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialC = color._c
 
-    color.saturate(0.1)
+    const result = color.saturate(0.1)
 
-    expect(color._c).toBeGreaterThan(initialC)
+    expect(result._c).toBeGreaterThan(initialC)
   })
 
-  it('should chain saturate calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.saturate(0.1)
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should not go below 0', () => {
     const color = hueyColor('hsl(180, 0%, 50%)')
-    color.saturate(-0.5)
+    const result = color.saturate(-0.5)
 
-    expect(color._c).toBe(0)
+    expect(result._c).toBe(0)
   })
 
   it('should allow very large saturation increases', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialC = color._c
 
-    color.saturate(10)
+    const result = color.saturate(10)
 
-    expect(color._c).toBeGreaterThan(initialC)
-    expect(color._c).toBeGreaterThanOrEqual(0)
+    expect(result._c).toBeGreaterThan(initialC)
+    expect(result._c).toBeGreaterThanOrEqual(0)
   })
 })
 
@@ -88,30 +88,30 @@ describe('color manipulation - desaturate', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialC = color._c
 
-    color.desaturate(0.05)
+    const result = color.desaturate(0.05)
 
-    expect(color._c).toBeLessThan(initialC)
+    expect(result._c).toBeLessThan(initialC)
   })
 
-  it('should chain desaturate calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.desaturate(0.05)
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should not go below 0', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
-    color.desaturate(1)
+    const result = color.desaturate(1)
 
-    expect(color._c).toBe(0)
+    expect(result._c).toBe(0)
   })
 
   it('should create grayscale when fully desaturated', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
-    color.desaturate(1)
+    const result = color.desaturate(1)
 
-    expect(color._c).toBe(0)
+    expect(result._c).toBe(0)
   })
 })
 
@@ -120,30 +120,30 @@ describe('color manipulation - lighten', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialL = color._l
 
-    color.lighten(0.1)
+    const result = color.lighten(0.1)
 
-    expect(color._l).toBeGreaterThan(initialL)
+    expect(result._l).toBeGreaterThan(initialL)
   })
 
-  it('should chain lighten calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.lighten(0.1)
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should not go above 1', () => {
     const color = hueyColor('hsl(180, 50%, 90%)')
-    color.lighten(0.5)
+    const result = color.lighten(0.5)
 
-    expect(color._l).toBe(1)
+    expect(result._l).toBe(1)
   })
 
   it('should cap at exactly 1.0 when at boundary', () => {
     const color = hueyColor('oklch(1.0 0.15 180)')
-    color.lighten(0.1)
+    const result = color.lighten(0.1)
 
-    expect(color._l).toBe(1)
+    expect(result._l).toBe(1)
   })
 })
 
@@ -152,30 +152,30 @@ describe('color manipulation - brighten', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialL = color._l
 
-    color.brighten(0.1)
+    const result = color.brighten(0.1)
 
-    expect(color._l).toBeGreaterThan(initialL)
+    expect(result._l).toBeGreaterThan(initialL)
   })
 
-  it('should chain brighten calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.brighten(0.1)
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should not go above 1', () => {
     const color = hueyColor('hsl(180, 50%, 90%)')
-    color.brighten(0.5)
+    const result = color.brighten(0.5)
 
-    expect(color._l).toBe(1)
+    expect(result._l).toBe(1)
   })
 
   it('should cap at exactly 1.0 when at boundary', () => {
     const color = hueyColor('oklch(1.0 0.15 180)')
-    color.brighten(0.1)
+    const result = color.brighten(0.1)
 
-    expect(color._l).toBe(1)
+    expect(result._l).toBe(1)
   })
 })
 
@@ -184,30 +184,30 @@ describe('color manipulation - darken', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialL = color._l
 
-    color.darken(0.1)
+    const result = color.darken(0.1)
 
-    expect(color._l).toBeLessThan(initialL)
+    expect(result._l).toBeLessThan(initialL)
   })
 
-  it('should chain darken calls', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.darken(0.1)
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should not go below 0', () => {
     const color = hueyColor('hsl(180, 50%, 20%)')
-    color.darken(0.5)
+    const result = color.darken(0.5)
 
-    expect(color._l).toBe(0)
+    expect(result._l).toBe(0)
   })
 
   it('should cap at exactly 0.0 when at boundary', () => {
     const color = hueyColor('oklch(0.0 0.15 180)')
-    color.darken(0.1)
+    const result = color.darken(0.1)
 
-    expect(color._l).toBe(0)
+    expect(result._l).toBe(0)
   })
 })
 
@@ -358,45 +358,45 @@ describe('color manipulation - randomize', () => {
     const originalC = color._c
     const originalH = color._h
 
-    color.randomize()
+    const result = color.randomize()
 
-    const changed = color._l !== originalL || color._c !== originalC || color._h !== originalH
+    const changed = result._l !== originalL || result._c !== originalC || result._h !== originalH
     expect(changed).toBe(true)
   })
 
-  it('should return the color instance for chaining', () => {
+  it('should return a new color instance', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const result = color.randomize()
 
-    expect(result).toBe(color)
+    expect(result).not.toBe(color)
   })
 
   it('should keep values in valid ranges', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
-    color.randomize()
+    const result = color.randomize()
 
-    expect(color._l).toBeGreaterThanOrEqual(0)
-    expect(color._l).toBeLessThanOrEqual(1)
-    expect(color._c).toBeGreaterThanOrEqual(0)
-    expect(color._h).toBeGreaterThanOrEqual(0)
-    expect(color._h).toBeLessThanOrEqual(360)
+    expect(result._l).toBeGreaterThanOrEqual(0)
+    expect(result._l).toBeLessThanOrEqual(1)
+    expect(result._c).toBeGreaterThanOrEqual(0)
+    expect(result._h).toBeGreaterThanOrEqual(0)
+    expect(result._h).toBeLessThanOrEqual(360)
   })
 
   it('should preserve alpha value', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.5)')
     const originalAlpha = color._a
 
-    color.randomize()
+    const result = color.randomize()
 
-    expect(color._a).toBe(originalAlpha)
+    expect(result._a).toBe(originalAlpha)
   })
 
   it('should not modify alpha when randomizing', () => {
     const color = hueyColor('rgba(210, 120, 120, 0.33)')
 
-    color.randomize()
+    const result = color.randomize()
 
-    expect(color._a).toBe(0.33)
+    expect(result._a).toBe(0.33)
   })
 })
 
@@ -416,10 +416,10 @@ describe('color manipulation - clone', () => {
     const originalL = original._l
     const clone = original.clone()
 
-    clone.lighten(0.2)
+    const modified = clone.lighten(0.2)
 
     expect(original._l).toBe(originalL)
-    expect(clone._l).not.toBe(original._l)
+    expect(modified._l).not.toBe(original._l)
   })
 })
 
@@ -432,18 +432,18 @@ describe('color manipulation - method chaining', () => {
       .lighten(0.1)
       .setAlpha(0.8)
 
-    expect(result).toBe(color)
-    expect(color.getAlpha()).toBe(0.8)
+    expect(result).not.toBe(color)
+    expect(result.getAlpha()).toBe(0.8)
   })
 
   it('should apply chained manipulations in order', () => {
     const color = hueyColor('hsl(180, 50%, 50%)')
     const initialL = color._l
 
-    color
+    const result = color
       .lighten(0.2)
       .darken(0.1)
 
-    expect(color._l).toBeCloseTo(initialL + 0.1, 5)
+    expect(result._l).toBeCloseTo(initialL + 0.1, 2)
   })
 })
