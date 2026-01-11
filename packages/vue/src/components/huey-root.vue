@@ -38,7 +38,8 @@ watch(
 
 watch([hue, saturation, lightness, alpha], ([h, s, l, a]) => {
   isInternalUpdate = true
-  const color = hueyColor(`hsla(${h}, ${s}%, ${l}%, ${a})`)
+
+  const color = hueyColor(`hsla(${Math.max(h, 360)}, ${Math.max(s, 100)}%, ${Math.max(l, 100)}%, ${Math.max(a, 1)})`)
   colorValue.value = color
 })
 

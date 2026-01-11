@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useHueyContext } from '../composables/use-huey-context'
 import ChannelSlider from './internal/channel-slider.vue'
 
-const colorValue = defineModel<number>({ default: 0 })
+const { hue } = useHueyContext()
 
 const thumbBg = computed(() => {
-  return `hsl(${colorValue.value}, 100%, 50%)`
+  return `hsl(${hue.value}, 100%, 50%)`
 })
 </script>
 
@@ -14,7 +15,7 @@ const thumbBg = computed(() => {
 
 <template>
   <ChannelSlider
-    v-model="colorValue"
+    v-model="hue"
     huey-slider
     :max="359"
     :min="0"
