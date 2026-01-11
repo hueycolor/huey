@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import type { ColorFormat } from '@huey/core'
-import { clamp, getAbsolutePosition, getPageXYFromEvent, resolveArrowDirection } from '@huey/core'
-import { computed, onUnmounted, useTemplateRef } from 'vue'
-import { ColorThumb } from '.'
-import { useHueyContext } from '../composables/use-huey-context'
-import { allowUserSelect, preventUserSelect } from '../utils'
+import { ColorThumb } from '@components'
+import { useHueyContext } from '@composables/use-huey-context'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@huey/core'
+import { allowUserSelect, preventUserSelect } from '@utils'
+import { computed, onUnmounted, ref, useTemplateRef } from 'vue'
 
 const props = withDefaults(defineProps<SaturationAreaProps>(), {
-  colorFormat: 'rgb',
+  colorFormat: 'hsl',
 })
 
 const { hue, saturation, lightness } = useHueyContext()
 
 const areaRef = useTemplateRef('area')
+
+// Track HSV saturation separately for edge cases (black/white where HSL loses saturation info)
+const hsvSaturation = ref(hslToHsv(hue.value, saturation.value, lightness.value).s)
 
 const areaBg = computed(() => {
   const hslString = `hsl(${hue.value}, 100%, 50%)`
@@ -44,17 +47,38 @@ function handleChange(e: MouseEvent | TouchEvent) {
   const left = clamp(pageX - xOffset, 0, areaWidth)
   const top = clamp(pageY - yOffset, 0, areaHeight)
 
-  const s = (left / areaWidth) * 100
-  const l = clamp(1 - (top / areaHeight), 0, 1) * 100
+  if (props.colorFormat === 'hsl') {
+    saturation.value = (left / areaWidth) * 100
+    lightness.value = clamp(1 - (top / areaHeight), 0, 1) * 100
 
-  saturation.value = s
-  lightness.value = l
+    return
+  }
+
+  const sv = (left / areaWidth) * 100
+  const v = clamp(1 - (top / areaHeight), 0, 1) * 100
+
+  hsvSaturation.value = sv
+
+  const hsl = hsvToHsl(hue.value, sv, v)
+
+  saturation.value = hsl.s
+  lightness.value = hsl.l
 }
 
-const offsetLeft = computed(() => `${saturation.value}%`)
+const offsetLeft = computed(() => {
+  if (props.colorFormat === 'hsl') {
+    return `${saturation.value}%`
+  }
+
+  return `${hsvSaturation.value}%`
+})
 
 const offsetTop = computed(() => {
-  return `${100 - lightness.value}%`
+  if (props.colorFormat === 'hsl') {
+    return `${100 - lightness.value}%`
+  }
+  const hsv = hslToHsv(hue.value, saturation.value, lightness.value)
+  return `${100 - hsv.v}%`
 })
 
 function handleMouseDown() {
@@ -67,26 +91,54 @@ function handleMouseDown() {
 
 function handleKeyDown(e: KeyboardEvent) {
   const direction = resolveArrowDirection(e)
-
   const step = e.shiftKey ? 10 : 1
 
   if (!direction)
     return
 
+  if (props.colorFormat === 'hsl') {
+    switch (direction) {
+      case 'left':
+        saturation.value = clamp(saturation.value - step, 0, 100)
+        break
+      case 'down':
+        lightness.value = clamp(lightness.value - step, 0, 100)
+        break
+      case 'right':
+        saturation.value = clamp(saturation.value + step, 0, 100)
+        break
+      case 'up':
+        lightness.value = clamp(lightness.value + step, 0, 100)
+        break
+    }
+    return
+  }
+
+  const hsv = hslToHsv(hue.value, saturation.value, lightness.value)
+
+  hsv.s = hsvSaturation.value
+
   switch (direction) {
     case 'left':
-      saturation.value = clamp(saturation.value - step, 0, 100)
+      hsv.s = clamp(hsv.s - step, 0, 100)
       break
     case 'down':
-      lightness.value = clamp(lightness.value - step, 0, 100)
+      hsv.v = clamp(hsv.v - step, 0, 100)
       break
     case 'right':
-      saturation.value = clamp(saturation.value + step, 0, 100)
+      hsv.s = clamp(hsv.s + step, 0, 100)
       break
     case 'up':
-      lightness.value = clamp(lightness.value + step, 0, 100)
+      hsv.v = clamp(hsv.v + step, 0, 100)
       break
   }
+
+  hsvSaturation.value = hsv.s
+
+  const hsl = hsvToHsl(hue.value, hsv.s, hsv.v)
+
+  saturation.value = hsl.s
+  lightness.value = hsl.l
 }
 
 function unbindEventListeners() {
