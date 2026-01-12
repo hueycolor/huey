@@ -13,7 +13,7 @@ const tilesOpacity = computed(() => {
   return `${Math.abs((alpha.value * 100) - 100) / 100}`
 })
 const bg = computed(() => {
-  return `hsl(${hue.value}, 100%, 50%)`
+  return `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`
 })
 </script>
 
