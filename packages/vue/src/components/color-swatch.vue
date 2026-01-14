@@ -52,7 +52,7 @@ export interface ColorSwatchProps {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 8px;
 }
 [huey-swatch-color] {
   cursor: pointer;
