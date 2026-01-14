@@ -2,7 +2,7 @@
 import type { HueyColor } from '@huey/core'
 import { HUEY_CONTEXT } from '@composables/use-huey-context'
 import { clamp, hueyColor } from '@huey/core'
-import { provide, ref, watch } from 'vue'
+import { provide, ref, toValue, watch } from 'vue'
 
 const colorValue = defineModel<HueyColor>({ required: true })
 
@@ -44,7 +44,17 @@ watch([hue, saturation, lightness, alpha], ([h, s, l, a]) => {
   colorValue.value = color
 })
 
-provide(HUEY_CONTEXT, { hue, saturation, lightness, alpha })
+function setColor(color: string | HueyColor) {
+  const parsed = hueyColor(color)
+  const hsl = parsed.toHsl()
+
+  hue.value = hsl.h
+  saturation.value = hsl.s
+  lightness.value = hsl.l
+  alpha.value = hsl.a
+}
+
+provide(HUEY_CONTEXT, { hue, saturation, lightness, alpha, colorValue, setColor })
 </script>
 
 <script lang="ts"></script>
