@@ -145,12 +145,24 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return `hsl(${h.toFixed(0)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%)`
     },
     toHex: () => {
-      return hC.toHexString().replace('#', '')
+      let hexStr = hC.toHexString().replace('#', '')
+
+      if (_a === 1) {
+        hexStr = hexStr.slice(0, 6)
+      }
+
+      return hexStr
     },
     toHexString: () => {
       const rgb = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
 
-      return RGBToHex([...rgb, hC._a])
+      let hexStr = RGBToHex([...rgb, hC._a])
+
+      if (_a === 1) {
+        hexStr = hexStr.slice(0, 7)
+      }
+
+      return hexStr
     },
     toRgb: () => {
       const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
