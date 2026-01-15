@@ -13,7 +13,7 @@ export function getChannelBounds(key: ColorChannel): { min: number, max: number 
   }
 
   if (key === 'h') {
-    max = 359
+    max = 360
   }
 
   if (['s', 'l', 'a'].includes(key)) {

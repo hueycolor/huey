@@ -25,7 +25,7 @@ watch(color, (newColor) => {
       </ColorDropper>
       <ColorPreview />
       <ColorSwatch :swatch="['hsl(200, 10%, 50%)', '#00ff00', '#0000ff']" />
-      <!-- <ChannelInput channel="h" /> -->
+      <ChannelInput channel="h" />
     </HueyRoot>
   </div>
 </template>
