@@ -85,7 +85,6 @@ export type ArrowDirection = 'up' | 'down' | 'left' | 'right'
 
 export type RgbChannel = 'r' | 'g' | 'b'
 export type HslChannel = 'h' | 's' | 'l'
-export type LchChannel = 'h' | 's' | 'v'
 export type AlphaChannel = 'a'
 
-export type ColorChannel = RgbChannel | HslChannel | LchChannel | AlphaChannel
+export type ColorChannel = RgbChannel | HslChannel | AlphaChannel
