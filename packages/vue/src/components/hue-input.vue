@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ChannelInput from '@components/internal/channel-input.vue'
+</script>
 
 <template>
-  <input type="text" placeholder="Hue Channel">
+  <ChannelInput />
 </template>

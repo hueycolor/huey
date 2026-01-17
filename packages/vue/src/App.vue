@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ColorSwatch from '@components/color-swatch.vue'
+import HueInput from '@components/hue-input.vue'
 import { hueyColor } from '@huey/core'
 import { ref, watch } from 'vue'
 import { AlphaSlider, ChannelInput, ColorDropper, ColorPreview, SaturationArea } from './components'
@@ -25,7 +26,8 @@ watch(color, (newColor) => {
       </ColorDropper>
       <ColorPreview />
       <ColorSwatch :swatch="['hsl(200, 10%, 50%)', '#00ff00', '#0000ff']" />
-      <ChannelInput format="hsl" channel="h" />
+      <!-- <ChannelInput format="hsl" channel="h" /> -->
+      <HueInput />
     </HueyRoot>
   </div>
 </template>
