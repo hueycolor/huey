@@ -17,7 +17,7 @@ const thumbBg = computed(() => {
   <ChannelSlider
     v-model="hue"
     huey-slider
-    :max="359"
+    :max="360"
     :min="0"
     :step="1"
     :style="{

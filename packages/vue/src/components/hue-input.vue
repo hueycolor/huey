@@ -2,13 +2,21 @@
 import ChannelInput from '@components/internal/channel-input.vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds } from '@huey/core'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const { min, max } = getChannelBounds('h')
 
 const { hue, lightness, saturation, setColor } = useHueyContext()
 
 const hueRef = ref(hue.value.toFixed(0))
+
+watch(hue, (newHue) => {
+  const rounded = newHue.toFixed(0)
+
+  if (hueRef.value !== rounded) {
+    hueRef.value = rounded
+  }
+})
 
 function updateValue(e: KeyboardEvent) {
   const input = e.target as HTMLInputElement
@@ -28,6 +36,7 @@ function updateValue(e: KeyboardEvent) {
 function stepValue(e: KeyboardEvent, direction: number) {
   const input = e.target as HTMLInputElement
   const current = Number(input.value)
+
   const base = Number.isNaN(current) ? Number(hueRef.value) : current
   const value = Math.min(max, Math.max(min, base + direction))
 
