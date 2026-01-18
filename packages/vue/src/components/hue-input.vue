@@ -6,7 +6,7 @@ import { ref, watch } from 'vue'
 
 const { min, max } = getChannelBounds('h')
 
-const { hue, lightness, saturation, setColor } = useHueyContext()
+const { hue } = useHueyContext()
 
 const hueRef = ref(hue.value.toFixed(0))
 
@@ -30,7 +30,7 @@ function updateValue(e: KeyboardEvent) {
 
   input.value = String(value)
   hueRef.value = input.value
-  setColor(`hsl(${value}, ${saturation.value}%, ${lightness.value}%)`)
+  hue.value = value
 }
 
 function stepValue(e: KeyboardEvent, direction: number) {
@@ -42,7 +42,7 @@ function stepValue(e: KeyboardEvent, direction: number) {
 
   input.value = String(value)
   hueRef.value = input.value
-  setColor(`hsl(${value}, ${saturation.value}%, ${lightness.value}%)`)
+  hue.value = value
 }
 </script>
 
