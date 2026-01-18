@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { InputHTMLAttributes } from 'vue'
 import ChannelInput from '@components/internal/channel-input.vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds } from '@huey/core'
@@ -46,9 +47,16 @@ function stepValue(e: KeyboardEvent, direction: number) {
 }
 </script>
 
+<script lang="ts">
+export interface HueInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
+</script>
+
 <template>
   <ChannelInput
     :value="hueRef"
+    :aria-valuemax="max"
+    :aria-valuemin="min"
+    :aria-valuenow="hueRef"
     @keydown.prevent.enter="updateValue"
     @keydown.prevent.up="stepValue($event, $event.shiftKey ? 10 : 1)"
     @keydown.prevent.down="stepValue($event, $event.shiftKey ? -10 : -1)"
