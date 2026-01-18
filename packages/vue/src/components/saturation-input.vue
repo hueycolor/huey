@@ -6,6 +6,8 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds } from '@huey/core'
 import { ref, watch } from 'vue'
 
+defineProps<SaturationInputProps>()
+
 const { min, max } = getChannelBounds('s')
 
 const { saturation } = useHueyContext()

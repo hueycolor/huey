@@ -6,26 +6,26 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds } from '@huey/core'
 import { ref, watch } from 'vue'
 
-defineProps<HueInputProps>()
+defineProps<AlphaInputProps>()
 
-const { min, max } = getChannelBounds('h')
+const { min, max } = getChannelBounds('a')
 
-const { hue } = useHueyContext()
+const { alpha } = useHueyContext()
 
-const hueRef = ref(hue.value.toFixed(0))
+const alphaRef = ref((alpha.value * 100).toFixed(0))
 
-watch(hue, (newHue) => {
-  const rounded = newHue.toFixed(0)
+watch(alpha, (newAlpha) => {
+  const rounded = (newAlpha * 100).toFixed(0)
 
-  if (hueRef.value !== rounded) {
-    hueRef.value = rounded
+  if (alphaRef.value !== rounded) {
+    alphaRef.value = rounded
   }
 })
 
 function updateValue(input: HTMLInputElement, value: number) {
   input.value = String(value)
-  hueRef.value = input.value
-  hue.value = value
+  alphaRef.value = input.value
+  alpha.value = value / 100
 }
 
 function handleEnter(e: KeyboardEvent) {
@@ -33,7 +33,7 @@ function handleEnter(e: KeyboardEvent) {
   const value = Number(input.value)
 
   if (Number.isNaN(value) || value < min || value > max) {
-    input.value = hueRef.value
+    input.value = alphaRef.value
 
     return
   }
@@ -48,7 +48,7 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
   let step = e.shiftKey ? 10 : 1
   step *= direction === 'down' ? -1 : 1
 
-  const base = Number.isNaN(current) ? Number(hueRef.value) : current
+  const base = Number.isNaN(current) ? Number(alphaRef.value) : current
   const value = Math.min(max, Math.max(min, base + step))
 
   updateValue(input, value)
@@ -56,15 +56,15 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
 </script>
 
 <script lang="ts">
-export interface HueInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
+export interface AlphaInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
 </script>
 
 <template>
   <ChannelInput
-    :value="hueRef"
+    :value="alphaRef"
     :aria-valuemax="max"
     :aria-valuemin="min"
-    :aria-valuenow="hueRef"
+    :aria-valuenow="alphaRef"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

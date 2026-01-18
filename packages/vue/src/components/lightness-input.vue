@@ -6,6 +6,8 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds } from '@huey/core'
 import { ref, watch } from 'vue'
 
+defineProps<LightnessInputProps>()
+
 const { min, max } = getChannelBounds('l')
 
 const { lightness } = useHueyContext()

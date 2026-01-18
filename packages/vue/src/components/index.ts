@@ -1,3 +1,4 @@
+export { default as AlphaInput } from './alpha-input.vue'
 export { default as AlphaSlider } from './alpha-slider.vue'
 export { default as ColorDropper } from './color-dropper.vue'
 export { default as ColorPreview } from './color-preview.vue'
