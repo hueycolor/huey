@@ -2,7 +2,7 @@
 import ColorSwatch from '@components/color-swatch.vue'
 import { hueyColor } from '@huey/core'
 import { ref, watch } from 'vue'
-import { AlphaInput, AlphaSlider, ColorDropper, ColorPreview, HueInput, HueSlider, HueyRoot, LightnessInput, RedInput, SaturationArea, SaturationInput } from './components'
+import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorPreview, GreenInput, HueInput, HueSlider, HueyRoot, LightnessInput, RedInput, SaturationArea, SaturationInput } from './components'
 
 // Test huey core
 const color = ref(hueyColor('#acff00'))
@@ -27,7 +27,11 @@ watch(color, (newColor) => {
       <SaturationInput />
       <LightnessInput />
       <AlphaInput />
-      <RedInput />
+      <div class="">
+        <RedInput />
+        <GreenInput />
+        <BlueInput />
+      </div>
     </HueyRoot>
   </div>
 </template>
