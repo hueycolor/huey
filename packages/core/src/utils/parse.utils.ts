@@ -22,9 +22,9 @@ export function parseHSL(str: string): ParsedColor | null {
     return null
 
   // Parse values
-  let h = Number.parseFloat(_h)
-  let s = Number.parseFloat(_s)
-  let l = Number.parseFloat(_l)
+  const h = Number.parseFloat(_h)
+  const s = Number.parseFloat(_s)
+  const l = Number.parseFloat(_l)
   const a = _a ? Number.parseFloat(_a) : 1
 
   // Validate ranges
@@ -35,16 +35,10 @@ export function parseHSL(str: string): ParsedColor | null {
   if (a < 0 || a > 1)
     return null
 
-  // Normalize values to 0-1 range
-  h = h / 360 // hue: 0-360 to 0-1
-  s = s / 100 // saturation: 0-100% to 0-1
-  l = l / 100 // lightness: 0-100% to 0-1
-
-  // Convert HSL to RGB (0-1 range)
   const { r, g, b } = hslToRgb(h, s, l)
 
   return {
-    coords: [r, g, b, a],
+    coords: [r / 255, g / 255, b / 255, a],
     space: 'rgb',
   }
 }
@@ -99,7 +93,11 @@ export function parseOKLCH(str: string): ParsedColor | null {
  * Input: h, s, l in 0-1 range
  * Output: [r, g, b] in 0-1 range
  */
-export function hslToRgb(h: number, s: number, l: number): Omit<RGBA, 'a'> {
+export function hslToRgb(_h: number, _s: number, _l: number, asVector = false): Omit<RGBA, 'a'> {
+  const h = _h / 360
+  const s = _s / 100
+  const l = _l / 100
+
   let r: number, g: number, b: number
 
   if (s === 0) {
@@ -107,7 +105,7 @@ export function hslToRgb(h: number, s: number, l: number): Omit<RGBA, 'a'> {
     r = g = b = l
   }
   else {
-    const hue2rgb = (p: number, q: number, t: number): number => {
+    const hueToRgb = (p: number, q: number, t: number): number => {
       if (t < 0)
         t += 1
       if (t > 1)
@@ -124,12 +122,20 @@ export function hslToRgb(h: number, s: number, l: number): Omit<RGBA, 'a'> {
     const q = l < 0.5 ? l * (1 + s) : l + s - l * s
     const p = 2 * l - q
 
-    r = hue2rgb(p, q, h + 1 / 3)
-    g = hue2rgb(p, q, h)
-    b = hue2rgb(p, q, h - 1 / 3)
+    r = hueToRgb(p, q, h + 1 / 3)
+    g = hueToRgb(p, q, h)
+    b = hueToRgb(p, q, h - 1 / 3)
   }
 
-  return { r, g, b }
+  if (asVector) {
+    return { r, g, b }
+  }
+
+  return {
+    r: r * 255,
+    g: g * 255,
+    b: b * 255,
+  }
 }
 
 /**

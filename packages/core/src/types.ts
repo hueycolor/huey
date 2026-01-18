@@ -39,7 +39,6 @@ export interface HueyColor {
   setHue: (h: number) => HueyColor
   setSaturation: (s: number) => HueyColor
   setLightness: (l: number) => HueyColor
-  setHsl: (h: number, s: number, l: number) => HueyColor
   toHsl: () => HSLA
   toHslString: () => string
   toHex: () => string

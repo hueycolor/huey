@@ -67,29 +67,21 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     setAlpha: a => cloneWith(hC._l, hC._c, hC._h, a),
     setHue: (h) => {
       const hsl = hC.toHsl()
-      const { r, g, b } = hslToRgb(h / 360, hsl.s / 100, hsl.l / 100)
+      const { r, g, b } = hslToRgb(h, hsl.s, hsl.l, true)
 
       const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
       return cloneWith(newL, newC, newH, hC._a)
     },
     setSaturation: (s) => {
       const hsl = hC.toHsl()
-      const { r, g, b } = hslToRgb(hsl.h / 360, s / 100, hsl.l / 100)
+      const { r, g, b } = hslToRgb(hsl.h, s, hsl.l, true)
 
       const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
       return cloneWith(newL, newC, newH, hC._a)
     },
     setLightness: (l) => {
       const hsl = hC.toHsl()
-      const { r, g, b } = hslToRgb(hsl.h / 360, hsl.s / 100, l / 100)
-
-      const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
-      return cloneWith(newL, newC, newH, hC._a)
-    },
-    setHsl: (h, s, l) => {
-      const clampedS = Math.max(0, Math.min(100, s))
-      const clampedL = Math.max(0, Math.min(100, l))
-      const { r, g, b } = hslToRgb(h / 360, clampedS / 100, clampedL / 100)
+      const { r, g, b } = hslToRgb(hsl.h, hsl.s, l, true)
 
       const [newL, newC, newH] = convert([r, g, b], sRGB, OKLCH)
       return cloneWith(newL, newC, newH, hC._a)

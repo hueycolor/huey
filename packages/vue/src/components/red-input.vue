@@ -16,8 +16,8 @@ const { r } = colorValue.value.toRgb()
 const redRef = ref(r.toFixed(0))
 
 watch([hue, saturation, lightness], ([newHue, newSaturation, newLightness]) => {
-  const { r } = hslToRgb(newHue / 360, newSaturation / 100, newLightness / 100)
-  const rounded = (r * 255).toFixed(0)
+  const { r } = hslToRgb(newHue, newSaturation, newLightness)
+  const rounded = r.toFixed(0)
 
   if (redRef.value !== rounded) {
     redRef.value = rounded
