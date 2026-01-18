@@ -2,5 +2,5 @@ export { getFormat, isAlpha, isChroma, isHex, isHsl, isHue, isHuey, isOklch, isP
 export * from './dom.utils'
 export * from './keyboard.utils'
 export * from './math.utils'
-export { hslToHsv, hsvToHsl, hslToRgb, parseHSL, parseOKLCH, rgbToHsl } from './parse.utils'
+export { hslToHsv, hslToRgb, hsvToHsl, parseHSL, parseOKLCH, rgbToHsl } from './parse.utils'
 export { HEX_REGEX, HSL_REGEX, OKLCH_REGEX, RGB_REGEX } from './pattern.utils'
