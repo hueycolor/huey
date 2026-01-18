@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ArrowDirection } from '@huey/core'
 import type { InputHTMLAttributes } from 'vue'
 import ChannelInput from '@components/internal/channel-input.vue'
 import { useHueyContext } from '@composables/use-huey-context'
@@ -19,7 +20,13 @@ watch(hue, (newHue) => {
   }
 })
 
-function updateValue(e: KeyboardEvent) {
+function updateValue(input: HTMLInputElement, value: number) {
+  input.value = String(value)
+  hueRef.value = input.value
+  hue.value = value
+}
+
+function handleEnter(e: KeyboardEvent) {
   const input = e.target as HTMLInputElement
   const value = Number(input.value)
 
@@ -29,21 +36,20 @@ function updateValue(e: KeyboardEvent) {
     return
   }
 
-  input.value = String(value)
-  hueRef.value = input.value
-  hue.value = value
+  updateValue(input, value)
 }
 
-function stepValue(e: KeyboardEvent, direction: number) {
+function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' | 'right'>) {
   const input = e.target as HTMLInputElement
   const current = Number(input.value)
 
-  const base = Number.isNaN(current) ? Number(hueRef.value) : current
-  const value = Math.min(max, Math.max(min, base + direction))
+  let step = e.shiftKey ? 10 : 1
+  step *= direction === 'down' ? -1 : 1
 
-  input.value = String(value)
-  hueRef.value = input.value
-  hue.value = value
+  const base = Number.isNaN(current) ? Number(hueRef.value) : current
+  const value = Math.min(max, Math.max(min, base + step))
+
+  updateValue(input, value)
 }
 </script>
 
@@ -57,8 +63,8 @@ export interface HueInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
     :aria-valuemax="max"
     :aria-valuemin="min"
     :aria-valuenow="hueRef"
-    @keydown.prevent.enter="updateValue"
-    @keydown.prevent.up="stepValue($event, $event.shiftKey ? 10 : 1)"
-    @keydown.prevent.down="stepValue($event, $event.shiftKey ? -10 : -1)"
+    @keydown.prevent.enter="handleEnter"
+    @keydown.prevent.up="bumpValue($event, 'up')"
+    @keydown.prevent.down="bumpValue($event, 'down')"
   />
 </template>
