@@ -48,10 +48,10 @@ function setColor(color: string | HueyColor) {
   const parsed = hueyColor(color)
   const hsl = parsed.toHsl()
 
-  hue.value = hsl.h
-  saturation.value = hsl.s
-  lightness.value = hsl.l
-  alpha.value = hsl.a
+  hue.value = clamp(hsl.h, 0, 360)
+  saturation.value = clamp(hsl.s, 0, 100)
+  lightness.value = clamp(hsl.l, 0, 100)
+  alpha.value = clamp(hsl.a, 0, 1)
 }
 
 provide(HUEY_CONTEXT, { hue, saturation, lightness, alpha, colorValue, setColor })

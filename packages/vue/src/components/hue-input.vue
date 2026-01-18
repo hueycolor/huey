@@ -1,7 +1,47 @@
 <script setup lang="ts">
 import ChannelInput from '@components/internal/channel-input.vue'
+import { useHueyContext } from '@composables/use-huey-context'
+import { getChannelBounds } from '@huey/core'
+import { ref } from 'vue'
+
+const { min, max } = getChannelBounds('h')
+
+const { hue, lightness, saturation, setColor } = useHueyContext()
+
+const hueRef = ref(hue.value.toFixed(0))
+
+function updateValue(e: KeyboardEvent) {
+  const input = e.target as HTMLInputElement
+  const value = Number(input.value)
+
+  if (Number.isNaN(value) || value < min || value > max) {
+    input.value = hueRef.value
+
+    return
+  }
+
+  input.value = String(value)
+  hueRef.value = input.value
+  setColor(`hsl(${value}, ${saturation.value}%, ${lightness.value}%)`)
+}
+
+function stepValue(e: KeyboardEvent, direction: number) {
+  const input = e.target as HTMLInputElement
+  const current = Number(input.value)
+  const base = Number.isNaN(current) ? Number(hueRef.value) : current
+  const value = Math.min(max, Math.max(min, base + direction))
+
+  input.value = String(value)
+  hueRef.value = input.value
+  setColor(`hsl(${value}, ${saturation.value}%, ${lightness.value}%)`)
+}
 </script>
 
 <template>
-  <ChannelInput />
+  <ChannelInput
+    :value="hueRef"
+    @keydown.prevent.enter="updateValue"
+    @keydown.prevent.up="stepValue($event, $event.shiftKey ? 10 : 1)"
+    @keydown.prevent.down="stepValue($event, $event.shiftKey ? -10 : -1)"
+  />
 </template>

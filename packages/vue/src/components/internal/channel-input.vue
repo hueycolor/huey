@@ -13,5 +13,13 @@ export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes
 </template>
 
 <style>
-  [huey-input] {}
+  [huey-input] {
+    -moz-appearance: textfield;
+  }
+
+  [huey-input]::-webkit-outer-spin-button,
+  [huey-input]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 </style>
