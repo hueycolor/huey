@@ -52,6 +52,7 @@ export interface ColorPreviewProps {
 [huey-preview]::before {
   content: "";
   display: block;
+  margin-left: auto;
   width: 50%;
   height: 100%;
   opacity: v-bind(tilesOpacity);
