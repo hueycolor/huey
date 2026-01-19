@@ -28,7 +28,7 @@ function updateValue(input: HTMLInputElement, value: number) {
   saturation.value = value
 }
 
-function handleEnter(e: KeyboardEvent) {
+function handleEnter(e: KeyboardEvent | FocusEvent) {
   const input = e.target as HTMLInputElement
   const value = Number(input.value)
 
@@ -68,5 +68,6 @@ export interface SaturationInputProps extends /* @vue-ignore */ InputHTMLAttribu
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"
+    @blur="handleEnter"
   />
 </template>

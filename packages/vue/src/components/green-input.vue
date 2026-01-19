@@ -29,11 +29,13 @@ function updateValue(input: HTMLInputElement, value: number) {
   greenRef.value = input.value
 
   const { r, b } = colorValue.value.toRgb()
-  const { h } = rgbToHsl(r, value, b)
+  const { h, s, l } = rgbToHsl(r / 255, value / 255, b / 255)
   hue.value = h
+  saturation.value = s
+  lightness.value = l
 }
 
-function handleEnter(e: KeyboardEvent) {
+function handleEnter(e: KeyboardEvent | FocusEvent) {
   const input = e.target as HTMLInputElement
   const value = Number(input.value)
 
@@ -73,5 +75,6 @@ export interface RedInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"
+    @blur="handleEnter"
   />
 </template>
