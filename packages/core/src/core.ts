@@ -38,7 +38,8 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
     _a = coords[3] ?? 1
   }
   else {
-    const deserialized = deserialize(colorInput)
+    const normalizedInput = _format === 'hex' && !colorInput.startsWith('#') ? `#${colorInput}` : colorInput
+    const deserialized = deserialize(normalizedInput)
     coords = deserialized.coords
     _a = coords[3] ?? 1
   }
