@@ -15,16 +15,15 @@ const { hue, saturation, lightness } = useHueyContext()
 
 const areaRef = useTemplateRef('area')
 
-// Track HSV saturation separately for edge cases (black/white where HSL loses saturation info)
-const hsvSaturation = ref(hslToHsv(hue.value, saturation.value, lightness.value).s)
+const hslSaturation = ref(hslToHsv(hue.value, saturation.value, lightness.value).s)
 const isDragging = ref(false)
 
-// Sync hsvSaturation when color changes externally (e.g., color dropper)
+// Sync hslSaturation when color changes externally (e.g., color dropper)
 watch([hue, saturation, lightness], () => {
   if (isDragging.value)
     return
 
-  hsvSaturation.value = hslToHsv(hue.value, saturation.value, lightness.value).s
+  hslSaturation.value = hslToHsv(hue.value, saturation.value, lightness.value).s
 })
 
 const areaBg = computed(() => {
@@ -67,7 +66,7 @@ function handleChange(e: MouseEvent | TouchEvent) {
   const sv = (left / areaWidth) * 100
   const v = clamp(1 - (top / areaHeight), 0, 1) * 100
 
-  hsvSaturation.value = sv
+  hslSaturation.value = sv
 
   const hsl = hsvToHsl(hue.value, sv, v)
 
@@ -80,7 +79,7 @@ const offsetLeft = computed(() => {
     return `${saturation.value}%`
   }
 
-  return `${hsvSaturation.value}%`
+  return `${hslSaturation.value}%`
 })
 
 const offsetTop = computed(() => {
@@ -142,7 +141,7 @@ function handleKeyDown(e: KeyboardEvent) {
 
   const hsv = hslToHsv(hue.value, saturation.value, lightness.value)
 
-  hsv.s = hsvSaturation.value
+  hsv.s = hslSaturation.value
 
   switch (direction) {
     case 'left':
@@ -159,7 +158,7 @@ function handleKeyDown(e: KeyboardEvent) {
       break
   }
 
-  hsvSaturation.value = hsv.s
+  hslSaturation.value = hsv.s
 
   const hsl = hsvToHsl(hue.value, hsv.s, hsv.v)
 
