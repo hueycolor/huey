@@ -2,7 +2,7 @@
 import type { ArrowDirection } from '@huey/core'
 import type { InputHTMLAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { hueyColor, isHex, normalize } from '@huey/core'
+import { hueyColor, isHex } from '@huey/core'
 import { ref, watch } from 'vue'
 
 defineProps<ChannelInputProps>()
@@ -86,17 +86,15 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
   }
 
   // Determine which pairs are affected by the selection
-  // For a 6-char hex: pair 0 = chars 0-1, pair 1 = chars 2-3, pair 2 = chars 4-5
   let startPairIndex: number
   let endPairIndex: number
 
   if (start === end) {
-    // No selection (cursor only) - bump the pair at cursor position
+    // No selection > bump the pair at cursor position
     startPairIndex = Math.min(Math.floor(start / 2), 2)
     endPairIndex = startPairIndex
   }
   else {
-    // Selection exists - find all pairs touched
     startPairIndex = Math.floor(start / 2)
     endPairIndex = Math.floor((end - 1) / 2)
   }
@@ -114,7 +112,6 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
 
   updateValue(input, newHexVal)
 
-  // Expand selection to cover the full affected pairs
   const newSelectionStart = startPairIndex * 2
   const newSelectionEnd = (endPairIndex + 1) * 2
   input.setSelectionRange(newSelectionStart, newSelectionEnd)
