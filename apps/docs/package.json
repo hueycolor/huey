@@ -1,16 +1,12 @@
 {
   "name": "docs",
-  "type": "module",
-  "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "dev": "nuxt dev --extends docus",
+    "build": "nuxt build --extends docus"
   },
   "dependencies": {
-    "@nuxt/content": "^3.11.0",
-    "better-sqlite3": "^12.6.2",
-    "nuxt": "^4.3.0"
+    "better-sqlite3": "^12.5.0",
+    "docus": "latest",
+    "nuxt": "^4.2.2"
   }
 }
