@@ -42,7 +42,11 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "esbuild",
+      "better-sqlite3"
+    ],
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher"
     ]
   }
 }
