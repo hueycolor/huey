@@ -81,6 +81,7 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
     })
 
     updateValue(input, newHexVal)
+    input.setSelectionRange(0, input.value.length)
 
     return
   }
