@@ -31,7 +31,7 @@ export interface ColorPreviewProps {
     :class="$props.class"
     :style="{ background: bg }"
     :aria-label="`hsl(${hue}, ${saturation}%, ${lightness}%, ${alpha})`"
-    role="presentation"
+    role="img"
     aria-live="polite"
   />
 </template>

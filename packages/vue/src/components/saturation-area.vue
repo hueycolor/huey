@@ -210,9 +210,11 @@ export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
         left: offsetLeft,
       }"
       tabindex="0"
+      role="slider"
+      aria-label="Color thumb"
+      :aria-valuenow="Math.round(saturation)"
       :aria-valuemin="0"
       :aria-valuemax="100"
-      :aria-valuenow="`${saturation}/${lightness}`"
       :aria-valuetext="`Saturation ${Math.round(saturation)}%, Lightness ${Math.round(lightness)}%`"
       @keydown="handleKeyDown"
     />

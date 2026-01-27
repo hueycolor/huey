@@ -62,9 +62,6 @@ export interface SaturationInputProps extends /* @vue-ignore */ InputHTMLAttribu
 <template>
   <ChannelInput
     :value="saturationRef"
-    :aria-valuemax="max"
-    :aria-valuemin="min"
-    :aria-valuenow="saturationRef"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

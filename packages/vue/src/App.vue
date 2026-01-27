@@ -11,7 +11,7 @@ const color = ref(hueyColor('#acff00'))
 <template>
   <div>
     <HueyRoot v-model="color">
-      <SaturationArea color-format="hex" />
+      <SaturationArea />
       <HueSlider />
       <SaturationSlider />
       <LightnessSlider />
@@ -21,16 +21,40 @@ const color = ref(hueyColor('#acff00'))
       </ColorDropper>
       <ColorPreview />
       <ColorSwatch :swatch="['hsl(200, 10%, 50%)', '#00ff00', '#0000ff']" />
-      <HueInput id="hi" />
-      <SaturationInput />
-      <LightnessInput />
-      <AlphaInput />
+      <label for="hue">
+        <span>Hue:</span>
+        <HueInput id="hue" />
+      </label>
+      <label for="saturation">
+        <span>Saturation:</span>
+        <SaturationInput id="saturation" />
+      </label>
+      <label for="lightness">
+        <span>Lightness:</span>
+        <LightnessInput />
+      </label>
+      <label for="alpha">
+        <span>Alpha:</span>
+        <AlphaInput />
+      </label>
       <div class="">
-        <RedInput />
-        <GreenInput />
-        <BlueInput />
+        <label for="red">
+          <span>Red:</span>
+          <RedInput />
+        </label>
+        <label for="green">
+          <span>Green:</span>
+          <GreenInput />
+        </label>
+        <label for="blue">
+          <span>Blue:</span>
+          <BlueInput />
+        </label>
       </div>
-      <HexInput />
+      <label for="hex">
+        <span>Hex:</span>
+        <HexInput />
+      </label>
     </HueyRoot>
   </div>
 </template>
@@ -47,5 +71,9 @@ const color = ref(hueyColor('#acff00'))
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+input {
+  font-size: 16px;
 }
 </style>

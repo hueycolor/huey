@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { ColorSliderProps } from '@components/internal/channel-slider.vue'
 import ChannelSlider from '@components/internal/channel-slider.vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
+
+defineProps<SaturationSliderProps>()
 
 const { hue, saturation } = useHueyContext()
 
@@ -15,11 +18,14 @@ const trackBg = computed(() => {
 </script>
 
 <script lang="ts">
+export interface SaturationSliderProps extends /* @vue-ignore */ ColorSliderProps {}
 </script>
 
 <template>
   <ChannelSlider
+    v-bind="{ ...$props }"
     v-model="saturation"
+    :aria-label="$props['aria-label'] ?? 'Saturation slider'"
     huey-slider
     :max="100"
     :min="0"

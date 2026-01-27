@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AriaAttributes, ButtonHTMLAttributes, HTMLAttributes } from 'vue'
+import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<ColorThumbProps>()
 </script>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { AriaAttributes } from 'vue'
 import { ColorThumb } from '@components'
 import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection, roundToStep } from '@huey/core'
 import { allowUserSelect, preventUserSelect } from '@utils'
@@ -85,7 +86,7 @@ function handleMouseUp() {
 </script>
 
 <script lang="ts">
-export interface ColorSliderProps {
+export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
   min?: number
   max?: number
   step?: number

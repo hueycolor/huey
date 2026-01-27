@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ColorSliderProps } from '@components/internal/channel-slider.vue'
 import ChannelSlider from '@components/internal/channel-slider.vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
@@ -19,12 +20,14 @@ const thumbBg = computed(() => {
 </script>
 
 <script lang="ts">
-export interface AlphaSliderProps {}
+export interface AlphaSliderProps extends /* @vue-ignore */ ColorSliderProps {}
 </script>
 
 <template>
   <ChannelSlider
+    v-bind="{ ...$props }"
     v-model="alpha"
+    :aria-label="$props['aria-label'] ?? 'Alpha slider'"
     huey-slider
     :max="1"
     :min="0"

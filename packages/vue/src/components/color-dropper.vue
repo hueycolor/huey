@@ -42,7 +42,7 @@ interface ColorDropperEmits {
 </script>
 
 <template>
-  <button v-if="dropper" v-bind="{ ...props }" @click="sip">
+  <button v-if="dropper" v-bind="{ ...props }" :aria-label="$props['aria-label'] ?? 'Eye dropper button'" @click="sip">
     <slot />
   </button>
 </template>

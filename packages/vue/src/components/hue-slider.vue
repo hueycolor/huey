@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { ColorSliderProps } from '@components/internal/channel-slider.vue'
 import ChannelSlider from '@components/internal/channel-slider.vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { computed } from 'vue'
+
+defineProps<HueSliderProps>()
 
 const { hue } = useHueyContext()
 
@@ -11,11 +14,14 @@ const thumbBg = computed(() => {
 </script>
 
 <script lang="ts">
+export interface HueSliderProps extends /* @vue-ignore */ ColorSliderProps {}
 </script>
 
 <template>
   <ChannelSlider
+    v-bind="{ ...$props }"
     v-model="hue"
+    :aria-label="$props['aria-label'] ?? 'Hue slider'"
     huey-slider
     :max="360"
     :min="0"

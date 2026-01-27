@@ -69,9 +69,6 @@ export interface RedInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
 <template>
   <ChannelInput
     :value="blueRef"
-    :aria-valuemax="max"
-    :aria-valuemin="min"
-    :aria-valuenow="blueRef"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

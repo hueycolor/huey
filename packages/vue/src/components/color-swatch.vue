@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { AriaAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
 import { hueyColor } from '@huey/core'
 import { computed } from 'vue'
@@ -25,13 +26,13 @@ function isSelected(color: string) {
 </script>
 
 <script lang="ts">
-export interface ColorSwatchProps {
+export interface ColorSwatchProps extends /* @vue-ignore */ AriaAttributes {
   swatch: Array<string>
 }
 </script>
 
 <template>
-  <div v-if="swatch" role="listbox" huey-swatch>
+  <div v-if="swatch" role="listbox" :aria-label="$props['aria-label'] ?? 'Color swatch'" huey-swatch>
     <div
       v-for="color in swatch"
       :key="color"
@@ -56,8 +57,8 @@ export interface ColorSwatchProps {
 }
 [huey-swatch-color] {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   background-color: var(--swatch-color);
   border-radius: 4px;
 }
