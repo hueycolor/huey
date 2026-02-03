@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ButtonHTMLAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { clamp, hueyColor } from '@huey/core'
+import { clamp, hueyColor } from '@hueycolor/core'
 import { ref } from 'vue'
 
 const props = defineProps<ColorDropperProps>()

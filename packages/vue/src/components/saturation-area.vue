@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ColorFormat } from '@huey/core'
+import type { ColorFormat } from '@hueycolor/core'
 import type { HTMLAttributes } from 'vue'
 import { ColorThumb } from '@components'
 import { useHueyContext } from '@composables/use-huey-context'
-import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@huey/core'
+import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@hueycolor/core'
 import { allowUserSelect, preventUserSelect } from '@utils'
 import { computed, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 

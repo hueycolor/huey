@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { hueyColor } from '@huey/core'
+  import { hueyColor } from '@hueycolor/core'
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
   import viteLogo from '/vite.svg'
@@ -7,7 +7,7 @@
 
   // Test huey core
   const color = hueyColor('#ff3e00da')
-  console.log('Testing @huey/core:', color)
+  console.log('Testing @hueycolor/core:', color)
 </script>
 
 <main>

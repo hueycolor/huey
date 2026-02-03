@@ -1,10 +1,30 @@
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({ tsconfigPath: './tsconfig.app.json' }),
+  ],
+  build: {
+    lib: {
+      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+      name: 'HueyVue',
+      formats: ['es', 'cjs'],
+      fileName: format => `index.${format === 'es' ? 'js' : 'cjs'}`,
+    },
+    rollupOptions: {
+      external: ['vue', '@hueycolor/core'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),

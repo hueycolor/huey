@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { ArrowDirection } from '@huey/core'
+import type { ArrowDirection } from '@hueycolor/core'
 import type { InputHTMLAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { hueyColor, isHex } from '@huey/core'
+import { hueyColor, isHex } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
 defineProps<ChannelInputProps>()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AriaAttributes } from 'vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { hueyColor } from '@huey/core'
+import { hueyColor } from '@hueycolor/core'
 import { computed } from 'vue'
 
 defineProps<ColorSwatchProps>()

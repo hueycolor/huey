@@ -1,8 +1,8 @@
 {
-  "name": "huey",
+  "name": "hueycolor",
   "type": "module",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "packageManager": "pnpm@10.20.0",
   "description": "A Headless components for all your colorful needs.",
   "author": "Eihab Khan <yo@eihab.me>",

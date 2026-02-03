@@ -13,7 +13,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@huey/core": "workspace:*"
+    "@hueycolor/core": "workspace:*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",

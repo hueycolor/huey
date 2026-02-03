@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { HueyColor } from '@huey/core'
+import type { HueyColor } from '@hueycolor/core'
 import { HUEY_CONTEXT } from '@composables/use-huey-context'
-import { clamp, hueyColor } from '@huey/core'
-import { provide, ref, toValue, watch } from 'vue'
+import { clamp, hueyColor } from '@hueycolor/core'
+import { provide, ref, watch } from 'vue'
 
 const colorValue = defineModel<HueyColor>({ required: true })
 

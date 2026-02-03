@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ColorSwatch from '@components/color-swatch.vue'
-import { hueyColor } from '@huey/core'
+import { hueyColor } from '@hueycolor/core'
 import { ref } from 'vue'
 import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorPreview, GreenInput, HexInput, HueInput, HueSlider, HueyRoot, LightnessInput, LightnessSlider, RedInput, SaturationArea, SaturationInput, SaturationSlider } from './components'
 

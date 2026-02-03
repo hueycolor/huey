@@ -1,4 +1,4 @@
-import type { HueyColor } from '@huey/core'
+import type { HueyColor } from '@hueycolor/core'
 import type { InjectionKey, Ref } from 'vue'
 import { inject } from 'vue'
 

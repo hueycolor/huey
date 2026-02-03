@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HueyColor } from '@huey/core'
+	import type { HueyColor } from '@hueycolor/core'
 
 	interface Props {
 		class?: string

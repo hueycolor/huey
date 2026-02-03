@@ -1,16 +1,32 @@
 {
-  "name": "vue",
+  "name": "@hueycolor/vue",
   "type": "module",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "private": false,
+  "description": "Composable color picker components for Vue",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
   "dependencies": {
-    "@huey/core": "workspace:*",
-    "vue": "^3.5.24"
+    "@hueycolor/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
@@ -18,6 +34,8 @@
     "@vue/tsconfig": "^0.8.1",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.24",
     "vue-tsc": "^3.1.4"
   }
 }

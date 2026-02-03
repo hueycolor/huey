@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ArrowDirection } from '@huey/core'
+import type { ArrowDirection } from '@hueycolor/core'
 import type { InputHTMLAttributes } from 'vue'
 import ChannelInput from '@components/internal/channel-input.vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { getChannelBounds } from '@huey/core'
+import { getChannelBounds } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
 defineProps<HueInputProps>()
