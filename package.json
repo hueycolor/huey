@@ -2,7 +2,7 @@
   "name": "hueycolor",
   "type": "module",
   "version": "0.0.1-beta.2",
-  "private": false,
+  "private": true,
   "packageManager": "pnpm@10.20.0",
   "description": "A Headless components for all your colorful needs.",
   "author": "Eihab Khan <yo@eihab.me>",
