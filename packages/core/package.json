@@ -1,8 +1,19 @@
 {
   "name": "@hueycolor/core",
   "type": "module",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "private": false,
+  "description": "Core utility lib for color manipulation for huey's components",
+  "keywords": [
+    "color",
+    "colour",
+    "color-manipulation",
+    "hsl",
+    "rgb",
+    "hex",
+    "tinycolor",
+    "huey"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
