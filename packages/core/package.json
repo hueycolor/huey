@@ -1,7 +1,7 @@
 {
   "name": "@hueycolor/core",
   "type": "module",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "private": false,
   "description": "Core utility lib for color manipulation for huey's components",
   "author": "Eihab Khan <yo@eihab.me>",
