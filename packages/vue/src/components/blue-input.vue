@@ -29,7 +29,7 @@ function updateValue(input: HTMLInputElement, value: number) {
   blueRef.value = input.value
 
   const { r, g } = colorValue.value.toRgb()
-  const { h, s, l } = rgbToHsl(r / 255, g / 255, value / 255)
+  const { h, s, l } = rgbToHsl(r, g, value)
   hue.value = h
   saturation.value = s
   lightness.value = l

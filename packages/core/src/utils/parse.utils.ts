@@ -140,12 +140,16 @@ export function hslToRgb(_h: number, _s: number, _l: number, asVector = false): 
 
 /**
  * Convert RGB to HSL
- * Input: r, g, b in 0-1 range
+ * Input: r, g, b in 0-255 range
  * Output: { h, s, l } where h is 0-360, s and l are 0-100
  */
 export function rgbToHsl(r: number, g: number, b: number): Omit<HSLA, 'a'> {
-  const max = Math.max(r, g, b)
-  const min = Math.min(r, g, b)
+  const rNorm = r / 255
+  const gNorm = g / 255
+  const bNorm = b / 255
+
+  const max = Math.max(rNorm, gNorm, bNorm)
+  const min = Math.min(rNorm, gNorm, bNorm)
   const delta = max - min
 
   let h = 0
@@ -158,14 +162,14 @@ export function rgbToHsl(r: number, g: number, b: number): Omit<HSLA, 'a'> {
 
     // Calculate hue
     switch (max) {
-      case r:
-        h = ((g - b) / delta + (g < b ? 6 : 0)) / 6
+      case rNorm:
+        h = ((gNorm - bNorm) / delta + (gNorm < bNorm ? 6 : 0)) / 6
         break
-      case g:
-        h = ((b - r) / delta + 2) / 6
+      case gNorm:
+        h = ((bNorm - rNorm) / delta + 2) / 6
         break
-      case b:
-        h = ((r - g) / delta + 4) / 6
+      case bNorm:
+        h = ((rNorm - gNorm) / delta + 4) / 6
         break
     }
   }

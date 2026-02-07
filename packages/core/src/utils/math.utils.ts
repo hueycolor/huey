@@ -30,6 +30,7 @@ export function truncColorValue(value: string): number {
   return Math.trunc(Number(value.replace(/[%°]/g, '').trim()))
 }
 
+/** http://joshwcomeau.com/ taught me this one */
 export function normalize(number: number, currentScaleMin: number, currentScaleMax: number, newScaleMin = 0, newScaleMax = 1) {
   const standardNormalization
     = (number - currentScaleMin) / (currentScaleMax - currentScaleMin)

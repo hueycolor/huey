@@ -122,7 +122,7 @@ export function hueyColor(colorInput: string | HueyColor): HueyColor {
       return hC._l <= 0.5
     },
     toHsl: () => {
-      const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB)
+      const [r, g, b] = convert([hC._l, hC._c, hC._h], OKLCH, sRGB).map(v => v * 255)
       const { h, s, l } = rgbToHsl(r, g, b)
 
       return { h: Number(h), s: Number(s.toFixed(2)), l: Number(l.toFixed(2)), a: Number(hC._a.toFixed(1)) }
