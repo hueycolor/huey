@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
   ],
+  ui: {
+    colorMode: false,
+  },
   css: ['~/assets/global.css'],
   app: {
     head: {
@@ -11,7 +14,7 @@ export default defineNuxtConfig({
           rel: 'preload',
           as: 'font',
           type: 'font/woff',
-          href: '/fonts/Cubano.woff',
+          href: '/fonts/Cubano.woff2',
           crossorigin: 'anonymous',
         },
       ],

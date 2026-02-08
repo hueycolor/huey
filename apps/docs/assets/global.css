@@ -21,9 +21,16 @@
 
   --ui-bg: var(--color-beige-100);
   --ui-border: var(--color-beige-200);
-  --ui-bg-elevated: var(--color-beige-200);
+  --ui-bg-elevated: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
+  --ui-border-accented: var(--color-beige-300);
+  /* --ui-bg-accented: var(--color-beige-200); */
+  --ui-text: var(--color-beige-950);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cubano'
+}
+
+header {
+  position: static
 }
