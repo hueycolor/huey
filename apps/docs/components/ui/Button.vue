@@ -14,7 +14,7 @@ export interface HueyButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes 
 
 <template>
   <button :huey-button="$props.variant">
-    Label
+    <slot />
   </button>
 </template>
 
