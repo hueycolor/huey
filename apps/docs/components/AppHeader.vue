@@ -1,11 +1,22 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
 const site = useSiteConfig()
+
+const links = computed(() => appConfig.github && appConfig.github.url
+  ? [
+      {
+        'icon': 'i-simple-icons-github',
+        'to': appConfig.github.url,
+        'target': '_blank',
+        'aria-label': 'GitHub',
+      },
+    ]
+  : [])
 </script>
 
 <template>
   <UHeader
-    :ui="{ center: 'flex-1' }"
+    :ui="{ center: 'flex-1', left: 'left' }"
     to="/"
     :title="appConfig.header?.title || site.name"
   >
@@ -18,6 +29,14 @@ const site = useSiteConfig()
     <template #right>
       <AppHeaderCTA />
       <UContentSearchButton class="lg:hidden" />
+      <template v-if="links?.length">
+        <UButton
+          v-for="(link, index) of links"
+          :key="index"
+          class="button"
+          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
+        />
+      </template>
     </template>
 
     <template #toggle="{ open, toggle }">
@@ -33,3 +52,24 @@ const site = useSiteConfig()
     </template>
   </UHeader>
 </template>
+
+<style>
+.left {
+  a:focus-visible {
+    border-radius: var(--radius-8);
+    outline: 2px solid var(--color-beige-950);
+    outline-offset: var(--spacing-2);
+  }
+}
+
+.button {
+  &:hover {
+    background-color: var(--color-beige-200);
+  }
+  &:focus-visible {
+    background-color: var(--color-beige-200);
+    outline: 2px solid var(--color-beige-950);
+    outline-offset: var(--spacing-2);
+  }
+}
+</style>

@@ -5,7 +5,7 @@
   <span huey-wordmark>Huey</span>
 </template>
 
-<style scoped>
+<style>
 [huey-wordmark] {
   font: var(--title-h4);
   height: auto;

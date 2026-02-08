@@ -19,10 +19,8 @@
   }
 
   &:focus-visible {
-    outline-color: var(--color-beige-950);
-    outline-offset: 2px;
-    outline-style: solid;
-    outline-width: 2px;
+    outline: 2px solid var(--color-beige-950);
+    outline-offset: var(--spacing-2);
   }
 }
 
