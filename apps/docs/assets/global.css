@@ -25,6 +25,8 @@
   --ui-border-accented: var(--color-beige-300);
   /* --ui-bg-accented: var(--color-beige-200); */
   --ui-text: var(--color-beige-950);
+
+  --search-box-placeholder-color: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,4 +35,38 @@ h1, h2, h3, h4, h5, h6 {
 
 header {
   position: static
+}
+
+
+/* Search box */
+[data-dismissable-layer] {
+
+  a[data-highlighted] {
+    background-color: var(--color-beige-200);
+  }
+  
+  a[data-highlighted] span[data-slot="itemLeadingIcon"] {
+    color: var(--color-beige-950);
+  }
+  
+  span[data-slot="itemLeadingIcon"] {
+    color: color-mix(in srgb, var(--color-beige-900) 32%, transparent);
+  }
+  
+  span[data-slot="itemLabelSuffix"] {
+    color: var(--search-box-placeholder-color);
+  }
+  
+  input[data-slot="input"]::placeholder {
+    color: var(--search-box-placeholder-color);
+  }
+  button:hover,
+  button:focus-visible {
+    background-color: var(--color-beige-200);
+  }
+
+  button:focus-visible {
+    outline: 2px solid var(--color-beige-950);
+    outline-offset: var(--spacing-2);
+  }
 }
