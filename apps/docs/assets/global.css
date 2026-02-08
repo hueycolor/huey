@@ -19,6 +19,8 @@
 :root {
   --ui-header-height: 80px;
 
+  --ui-primary: oklch(0.66 0.21 46.41);
+
   --ui-bg: var(--color-beige-100);
   --ui-border: var(--color-beige-200);
   --ui-bg-elevated: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
