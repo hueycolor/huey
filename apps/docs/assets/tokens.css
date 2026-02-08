@@ -1,0 +1,190 @@
+:root {
+  /* ============================================
+     Colors
+     ============================================ */
+  
+  /* Beige Scale */
+  --color-beige-50: #fcf7f0;
+  --color-beige-100: #faeedc;
+  --color-beige-200: #f2dec1;
+  --color-beige-300: #e2c79d;
+  --color-beige-400: #c6a26a;
+  --color-beige-500: #a3824f;
+  --color-beige-600: #7f6b4c;
+  --color-beige-700: #5f5647;
+  --color-beige-800: #44423e;
+  --color-beige-900: #393939;
+  --color-beige-950: #202020;
+
+  /* Stone Scale */
+  --color-stone-50: #f8f8f8;
+  --color-stone-100: #f1f0ef;
+  --color-stone-200: #e4e1e0;
+  --color-stone-300: #d2cccb;
+  --color-stone-400: #b5adaa;
+  --color-stone-500: #9a8f8c;
+  --color-stone-600: #807370;
+  --color-stone-700: #665c59;
+  --color-stone-800: #514947;
+  --color-stone-900: #433c3a;
+  --color-stone-950: #252221;
+
+  /* Zinc Scale */
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+
+  /* Neutral Scale */
+  --color-neutral-50: #f8f8f8;
+  --color-neutral-100: #f0f0f0;
+  --color-neutral-200: #e4e4e4;
+  --color-neutral-300: #d1d1d1;
+  --color-neutral-400: #b4b4b4;
+  --color-neutral-500: #9a9a9a;
+  --color-neutral-600: #818181;
+  --color-neutral-700: #6a6a6a;
+  --color-neutral-800: #5a5a5a;
+  --color-neutral-900: #4a4a4a;
+  --color-neutral-950: #262626;
+
+  /* ============================================
+     Spacing
+     ============================================ */
+  --spacing-0: 0px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* ============================================
+     Border Radius
+     ============================================ */
+  --radius-0: 0px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-28: 28px;
+  --radius-32: 32px;
+  --radius-48: 48px;
+  --radius-full: 9999px;
+
+  /* ============================================
+     Breakpoints
+     ============================================ */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+    /* ============================================
+     Typography - Font Shorthand Variables
+     ============================================ */
+  
+  /* Titles */
+  --title-h1: 400 56px 'Cubano', sans-serif;
+  --title-h1-spacing: -0.01em;
+  
+  --title-h2: 400 48px 'Cubano', sans-serif;
+  --title-h2-spacing: -0.01em;
+  
+  --title-h3: 400 40px 'Cubano', sans-serif;
+  --title-h3-spacing: -0.01em;
+  
+  --title-h4: 400 32px 'Cubano', sans-serif;
+  --title-h4-spacing: -0.005em;
+  
+  --title-h5: 400 24px 'Cubano', sans-serif;
+  --title-h5-spacing: 0;
+  
+  --title-h6: 400 20px 'Cubano', sans-serif;
+  --title-h6-spacing: 0;
+
+  /* Labels */
+  --label-2xl: 700 32px 'DM Sans', sans-serif;
+  --label-2xl-spacing: 0;
+  
+  --label-xl: 600 22px 'DM Sans', sans-serif;
+  --label-xl-spacing: -0.015em;
+  
+  --label-lg: 600 18px 'DM Sans', sans-serif;
+  --label-lg-spacing: -0.015em;
+  
+  --label-md: 600 16px 'DM Sans', sans-serif;
+  --label-md-spacing: -0.011em;
+  
+  --label-sm: 600 14px 'DM Sans', sans-serif;
+  --label-sm-spacing: -0.006em;
+  
+  --label-xs: 600 12px 'DM Sans', sans-serif;
+  --label-xs-spacing: 0;
+
+  /* Paragraphs */
+  --paragraph-xl: 400 24px 'DM Sans', sans-serif;
+  --paragraph-xl-spacing: -0.015em;
+  
+  --paragraph-lg: 400 18px 'DM Sans', sans-serif;
+  --paragraph-lg-spacing: -0.015em;
+  
+  --paragraph-md: 400 16px 'DM Sans', sans-serif;
+  --paragraph-md-spacing: -0.011em;
+  
+  --paragraph-sm: 400 14px 'DM Sans', sans-serif;
+  --paragraph-sm-spacing: -0.006em;
+  
+  --paragraph-xs: 400 12px 'DM Sans', sans-serif;
+  --paragraph-xs-spacing: 0;
+
+  /* Subheadings */
+  --subheading-md: 500 16px 'DM Sans', sans-serif;
+  --subheading-md-spacing: 0.02em;
+  
+  --subheading-sm: 500 14px 'DM Sans', sans-serif;
+  --subheading-sm-spacing: 0.015em;
+  
+  --subheading-xs: 500 12px 'DM Sans', sans-serif;
+  --subheading-xs-spacing: 0.01em;
+  
+  --subheading-xxs: 500 11px 'DM Sans', sans-serif;
+  --subheading-xxs-spacing: 0.005em;
+
+  /* Documentation/Code */
+  --docs-lg: 400 18px 'DM Mono', monospace;
+  --docs-lg-spacing: -0.015em;
+  
+  --docs-md: 400 16px 'DM Mono', monospace;
+  --docs-md-spacing: -0.011em;
+  
+  --docs-sm: 400 14px 'DM Mono', monospace;
+  --docs-sm-spacing: -0.006em;
+}
+
+/* ============================================
+   Media Query Helpers
+   ============================================ */
+
+/* Usage: @media (--screen-sm) { ... } */
+@custom-media --screen-sm (min-width: 640px);
+@custom-media --screen-md (min-width: 768px);
+@custom-media --screen-lg (min-width: 1024px);
+@custom-media --screen-xl (min-width: 1280px);
+@custom-media --screen-2xl (min-width: 1536px);

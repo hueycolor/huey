@@ -1,0 +1,29 @@
+@import './tokens.css';
+
+@font-face {
+  font-family: 'Cubano';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/Cubano.woff2') format('woff2');
+}
+
+@theme static {
+  --font-sans: 'Cubano', sans-serif;
+
+  --breakpoint-3xl: 1920px;
+}
+
+
+
+:root {
+  --ui-header-height: 80px;
+
+  --ui-bg: var(--color-beige-100);
+  --ui-border: var(--color-beige-200);
+  --ui-bg-elevated: var(--color-beige-200);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cubano'
+}

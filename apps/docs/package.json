@@ -2,7 +2,8 @@
   "name": "docs",
   "scripts": {
     "dev": "nuxt dev --extends docus",
-    "build": "nuxt build --extends docus"
+    "build": "nuxt build --extends docus",
+    "preview": "nuxt preview --extends docus"
   },
   "dependencies": {
     "better-sqlite3": "^12.5.0",
