@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+        {
           rel: 'preload',
           as: 'font',
           type: 'font/woff',
