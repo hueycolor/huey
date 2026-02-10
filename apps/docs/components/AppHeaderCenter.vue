@@ -11,11 +11,11 @@
 
 <style>
 .header-search-bar {
-  background-color: color-mix(in srgb, var(--color-beige-200) 50%, transparent);
-  border: 1px solid var(--color-beige-200);
+  background-color: color-mix(in srgb, var(--color-linen-200) 50%, transparent);
+  border: 1px solid var(--color-linen-200);
 
   &:hover {
-    background-color: color-mix(in srgb, var(--color-beige-200) 100%, transparent);;
+    background-color: color-mix(in srgb, var(--color-linen-200) 100%, transparent);;
   }
 
   &:focus-visible {

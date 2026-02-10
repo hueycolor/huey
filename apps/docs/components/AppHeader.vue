@@ -64,10 +64,10 @@ const links = computed(() => appConfig.github && appConfig.github.url
 
 .button {
   &:hover {
-    background-color: var(--color-beige-200);
+    background-color: var(--color-linen-200);
   }
   &:focus-visible {
-    background-color: var(--color-beige-200);
+    background-color: var(--color-linen-200);
     outline: 2px solid var(--color-beige-950);
     outline-offset: var(--spacing-2);
   }

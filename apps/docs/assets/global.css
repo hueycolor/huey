@@ -45,7 +45,7 @@ header {
 [data-dismissable-layer] {
 
   a[data-highlighted] {
-    background-color: var(--color-beige-200);
+    background-color: var(--color-linen-200);
   }
   
   a[data-highlighted] span[data-slot="itemLeadingIcon"] {
@@ -67,7 +67,7 @@ header {
 
 button:hover,
 button:focus-visible {
-  background-color: var(--color-beige-200);
+  background-color: var(--color-linen-200);
 }
 
 button:focus-visible {
