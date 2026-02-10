@@ -55,6 +55,19 @@
   --color-neutral-900: #4a4a4a;
   --color-neutral-950: #262626;
 
+  /* Linen Scale */
+  --color-linen-50: #fcf7f2;
+  --color-linen-100: #F7ECDE;
+  --color-linen-200: #f1dfc6;
+  --color-linen-300: #e8c89f;
+  --color-linen-400: #d9a560;
+  --color-linen-500: #c4842f;
+  --color-linen-600: #9f6b27;
+  --color-linen-700: #7f551f;
+  --color-linen-800: #654419;
+  --color-linen-900: #533814;
+  --color-linen-950: #2f1f0b;
+
   /* ============================================
      Spacing
      ============================================ */
