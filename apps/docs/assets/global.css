@@ -74,3 +74,8 @@ button:focus-visible {
   outline: 2px solid var(--color-beige-950);
   outline-offset: var(--spacing-2);
 }
+
+[huey-wordmark] {
+  font: var(--title-h4);
+  height: auto;
+}

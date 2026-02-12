@@ -1,17 +1,8 @@
 <script setup lang="ts">
-const appConfig = useAppConfig()
-const site = useSiteConfig()
+import SocialLinks from '~/components/ui/SocialLinks.vue'
 
-const links = computed(() => appConfig.github && appConfig.github.url
-  ? [
-      {
-        'icon': 'i-simple-icons-github',
-        'to': appConfig.github.url,
-        'target': '_blank',
-        'aria-label': 'GitHub',
-      },
-    ]
-  : [])
+const site = useSiteConfig()
+const appConfig = useAppConfig()
 </script>
 
 <template>
@@ -29,14 +20,7 @@ const links = computed(() => appConfig.github && appConfig.github.url
     <template #right>
       <AppHeaderCTA />
       <UContentSearchButton class="lg:hidden" />
-      <template v-if="links?.length">
-        <UButton
-          v-for="(link, index) of links"
-          :key="index"
-          class="button"
-          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
-        />
-      </template>
+      <SocialLinks />
     </template>
 
     <template #toggle="{ open, toggle }">
