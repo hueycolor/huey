@@ -4,17 +4,17 @@
      ============================================ */
   
   /* Beige Scale */
-  --color-beige-50: #fcf7f0;
-  --color-beige-100: #faeedc;
-  --color-beige-200: #f2dec1;
-  --color-beige-300: #e2c79d;
-  --color-beige-400: #c6a26a;
-  --color-beige-500: #a3824f;
-  --color-beige-600: #7f6b4c;
-  --color-beige-700: #5f5647;
-  --color-beige-800: #44423e;
-  --color-beige-900: #393939;
-  --color-beige-950: #202020;
+  --color-beige-50: #FFFCF7;
+  --color-beige-100: #FFF6EA;
+  --color-beige-200: #FFEDDB;
+  --color-beige-300: #FFE3C8;
+  --color-beige-400: #FFD7B0;
+  --color-beige-500: #F5C794;
+  --color-beige-600: #E0AD73;
+  --color-beige-700: #C48F56;
+  --color-beige-800: #9F7040;
+  --color-beige-900: #75522D;
+  --color-beige-950: #4A341D;
 
   /* Stone Scale */
   --color-stone-50: #f8f8f8;

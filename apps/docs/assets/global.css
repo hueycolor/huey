@@ -27,7 +27,7 @@
   --ui-bg-elevated: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
   --ui-border-accented: var(--color-beige-300);
   /* --ui-bg-accented: var(--color-beige-200); */
-  --ui-text: var(--color-beige-950);
+  --ui-text: var(--color-stone-950);
 
   --search-box-placeholder-color: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
 }
