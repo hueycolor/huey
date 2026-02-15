@@ -8,6 +8,7 @@
   "dependencies": {
     "better-sqlite3": "^12.5.0",
     "docus": "latest",
-    "nuxt": "^4.2.2"
+    "nuxt": "^4.2.2",
+    "reka-ui": "^2.8.0"
   }
 }
