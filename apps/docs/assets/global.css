@@ -47,6 +47,10 @@
   --search-box-placeholder-color: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
 }
 
+body {
+  font: var(--paragraph-md);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cubano'
 }

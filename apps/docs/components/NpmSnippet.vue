@@ -1,37 +1,30 @@
 <script setup lang="ts">
 import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
+import { NpmSnippets } from '~/huey.config'
 </script>
 
 <template>
-  <TabsRoot default-value="vue" class="snippet-tabs">
-    <TabsList class="tab-triggers">
+  <TabsRoot class="snippet-tabs" :default-value="NpmSnippets[0]?.name">
+    <TabsList class="tabs-list">
       <TabsIndicator class="indicator">
         <div class="bg-grass8 w-full h-full" />
       </TabsIndicator>
       <TabsTrigger
+        v-for="snippet in NpmSnippets"
+        :key="snippet.name"
         class="trigger"
-        value="vue"
+        :value="snippet.name"
       >
-        Vue
-      </TabsTrigger>
-      <TabsTrigger
-        class="trigger"
-        value="svelte"
-      >
-        Svelte
+        {{ snippet.name }}
       </TabsTrigger>
     </TabsList>
     <TabsContent
+      v-for="snippet in NpmSnippets"
+      :key="snippet.name"
       class="tab-content"
-      value="vue"
+      :value="snippet.name"
     >
-      Tab 1
-    </TabsContent>
-    <TabsContent
-      class="tab-content"
-      value="svelte"
-    >
-      Tab 2
+      {{ snippet.package }}
     </TabsContent>
   </TabsRoot>
 </template>
@@ -41,7 +34,7 @@ import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'rek
   --npm-snippet-background: var(--color-linen-100);
 }
 
-.tab-triggers {
+.tabs-list {
   display: flex;
   position: relative;
 
@@ -61,6 +54,7 @@ import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'rek
   }
 
   .trigger {
+    text-transform: capitalize;
     cursor: pointer;
     z-index: 1;
     padding: var(--spacing-8) var(--spacing-16);
