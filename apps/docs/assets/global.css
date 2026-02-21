@@ -47,34 +47,8 @@
   --search-box-placeholder-color: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
 }
 
-h1 {
-  font: var(--title-h1);
-  letter-spacing: var(--title-h1-spacing);
-}
-
-h2 {
-  font: var(--title-h2);
-  letter-spacing: var(--title-h2-spacing);
-}
-
-h3 {
-  font: var(--title-h3);
-  letter-spacing: var(--title-h3-spacing);
-}
-
-h4 {
-  font: var(--title-h4);
-  letter-spacing: var(--title-h4-spacing);
-}
-
-h5 {
-  font: var(--title-h5);
-  letter-spacing: var(--title-h5-spacing);
-}
-
-h6 {
-  font: var(--title-h6);
-  letter-spacing: var(--title-h6-spacing);
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cubano'
 }
 
 header {

@@ -29,3 +29,36 @@ import Huey from '~/components/ui/Huey.vue'
     }
   }
 </style>
+
+<style>
+/* This applies only to the homepage */
+h1 {
+  font: var(--title-h1);
+  letter-spacing: var(--title-h1-spacing);
+}
+
+h2 {
+  font: var(--title-h2);
+  letter-spacing: var(--title-h2-spacing);
+}
+
+h3 {
+  font: var(--title-h3);
+  letter-spacing: var(--title-h3-spacing);
+}
+
+h4 {
+  font: var(--title-h4);
+  letter-spacing: var(--title-h4-spacing);
+}
+
+h5 {
+  font: var(--title-h5);
+  letter-spacing: var(--title-h5-spacing);
+}
+
+h6 {
+  font: var(--title-h6);
+  letter-spacing: var(--title-h6-spacing);
+}
+</style>
