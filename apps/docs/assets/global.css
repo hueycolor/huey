@@ -11,6 +11,11 @@
 @theme static {
   --font-sans: 'Cubano', sans-serif;
 
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
   --breakpoint-3xl: 1920px;
 }
 
@@ -18,6 +23,14 @@
 
 :root {
   --ui-header-height: 80px;
+
+  /* Breakpoints (for reference - cannot be used in @media queries) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
 
   /* --ui-primary: oklch(0.66 0.21 46.41); */
   --ui-primary: var(--color-beige-950);
@@ -32,9 +45,34 @@
   --search-box-placeholder-color: color-mix(in srgb, var(--color-beige-900) 50%, transparent);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cubano';
-  letter-spacing: 0px;
+h1 {
+  font: var(--title-h1);
+  letter-spacing: var(--title-h1-spacing);
+}
+
+h2 {
+  font: var(--title-h2);
+  letter-spacing: var(--title-h2-spacing);
+}
+
+h3 {
+  font: var(--title-h3);
+  letter-spacing: var(--title-h3-spacing);
+}
+
+h4 {
+  font: var(--title-h4);
+  letter-spacing: var(--title-h4-spacing);
+}
+
+h5 {
+  font: var(--title-h5);
+  letter-spacing: var(--title-h5-spacing);
+}
+
+h6 {
+  font: var(--title-h6);
+  letter-spacing: var(--title-h6-spacing);
 }
 
 header {
@@ -79,4 +117,26 @@ button:focus-visible {
 [huey-wordmark] {
   font: var(--title-h4);
   height: auto;
+}
+
+section {
+  width: 100%;
+  max-width: var(--ui-container);
+  margin: 0 auto;
+  padding-inline: 1rem; /* Base padding (px-4) */
+
+  /* sm: 640px (--breakpoint-sm) */
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem; /* px-6 */
+  }
+
+  /* lg: 1024px (--breakpoint-lg) */
+  @media (min-width: 1024px) {
+    padding-inline: 2rem; /* px-8 */
+  }
+}
+
+section[full] {
+  margin: unset;
+  padding: unset;
 }
