@@ -3,19 +3,21 @@ import type { ButtonHTMLAttributes } from 'vue'
 
 withDefaults(defineProps<HueyButtonProps>(), {
   variant: 'primary',
+  as: 'button',
 })
 </script>
 
 <script lang="ts">
 export interface HueyButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   variant?: 'primary' | 'secondary' | 'tertiary'
+  as?: string
 }
 </script>
 
 <template>
-  <button :huey-button="$props.variant">
+  <component :is="as" :huey-button="$props.variant">
     <slot />
-  </button>
+  </component>
 </template>
 
 <style scoped>
@@ -43,7 +45,7 @@ export interface HueyButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes 
   color: var(--color-beige-50);
 }
 [huey-button='secondary'] {
-  background-color: var(--color-beige-200);
-  color: var(--color-beige-950);
+  background-color: var(--color-linen-100);
+  color: var(--color-stone-950);
 }
 </style>

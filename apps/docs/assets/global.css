@@ -22,6 +22,8 @@
 
 
 :root {
+  --content-width: 844px;
+
   --ui-header-height: 80px;
 
   /* Breakpoints (for reference - cannot be used in @media queries) */
@@ -123,7 +125,7 @@ section {
   width: 100%;
   max-width: var(--ui-container);
   margin: 0 auto;
-  padding-inline: 1rem; /* Base padding (px-4) */
+  padding-inline: 0;
 
   /* sm: 640px (--breakpoint-sm) */
   @media (min-width: 640px) {
