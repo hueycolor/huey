@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NpmSnippet from '~/components/NpmSnippet.vue'
 import Huey from '~/components/ui/Huey.vue'
 </script>
 
@@ -6,6 +7,7 @@ import Huey from '~/components/ui/Huey.vue'
   <section class="hero">
     <div class="content">
       <h1>A composable color picker for the web</h1>
+      <NpmSnippet />
     </div>
     <div class="mascot">
       <Huey />
@@ -19,12 +21,14 @@ import Huey from '~/components/ui/Huey.vue'
 
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-16);
 
     padding-block: 200px;
 
     .content {
       display: flex;
       flex-direction: column;
+      gap: var(--spacing-40);
       width: 400px;
     }
   }
