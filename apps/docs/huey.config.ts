@@ -4,11 +4,11 @@ export const NpmSnippets: Snippet[] = [
   {
     name: 'vue',
     icon: '',
-    package: 'pnpm i @hueyColor/vue',
+    package: 'pnpm i @hueycolor/vue',
   },
   {
     name: 'svelte',
     icon: '',
-    package: 'pnpm i @hueyColor/svelte',
+    package: 'pnpm i @hueycolor/svelte',
   },
 ]
