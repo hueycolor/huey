@@ -34,7 +34,7 @@ const isHomepage = Astro.url.pathname === '/'
 
 <style is:global>
   @layer starlight.core {
-    .header:has([landing-header]) {
+    .header:has([landing-header='true']) {
       --sl-nav-height: fit-content;
       --sl-nav-pad-y: var(--spacing-16);
       --sl-color-hairline-shade: transparent;
