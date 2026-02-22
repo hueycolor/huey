@@ -1,0 +1,6 @@
+{
+  // Ensure CSS files are recognized
+  "files.associations": {
+    "*.css": "css"
+  }
+}

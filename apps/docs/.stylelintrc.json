@@ -1,0 +1,32 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "property-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested", "blockless-after-blockless"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ]
+  }
+}
