@@ -55,6 +55,8 @@ a {
 }
 
 header.header {
+  display: none;
+
   @media (width >= 50rem) {
     site-search {
       button[data-open-modal] {
