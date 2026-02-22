@@ -11,7 +11,7 @@ const repoUrl = pkg.repository.url
 const isHomepage = Astro.url.pathname === '/'
 ---
 
-<div class:list={['header-content', { 'landing-header': isHomepage }]}>
+<div landing-header={isHomepage ?? undefined} class="header-content">
   <Logo />
   <div class="actions">
     {!isHomepage && <Search />}
@@ -32,14 +32,27 @@ const isHomepage = Astro.url.pathname === '/'
   </div>
 </div>
 
+<style is:global>
+  @layer starlight.core {
+    .header:has([landing-header]) {
+      --sl-nav-height: fit-content;
+      --sl-nav-pad-y: var(--spacing-16);
+      --sl-color-hairline-shade: transparent;
+      --sl-color-bg-nav: transparent;
+
+      .header-content {
+        max-width: var(--hc-content-width);
+        margin: 0 auto;
+      }
+    }
+  }
+</style>
+
 <style>
   .header-content {
-    max-width: var(--hc-content-width);
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     .actions {
       display: flex;
       align-items: center;
@@ -58,16 +71,6 @@ const isHomepage = Astro.url.pathname === '/'
           display: flex;
         }
       }
-    }
-  }
-</style>
-
-<style is:global>
-  @layer starlight.core {
-    .header:has(.landing-header) {
-      --sl-nav-height: fit-content;
-      --sl-nav-pad-y: var(--spacing-16);
-      --sl-color-hairline-shade: transparent;
     }
   }
 </style>
