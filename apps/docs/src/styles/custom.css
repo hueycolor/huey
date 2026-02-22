@@ -55,8 +55,6 @@ a {
 }
 
 header.header {
-  position: static !important;
-
   @media (width >= 50rem) {
     site-search {
       button[data-open-modal] {
