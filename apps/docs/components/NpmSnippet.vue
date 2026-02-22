@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
+import Button from '~/components/ui/Button.vue'
 import { NpmSnippets } from '~/huey.config'
 </script>
 
@@ -24,7 +26,13 @@ import { NpmSnippets } from '~/huey.config'
       class="tab-content"
       :value="snippet.name"
     >
-      {{ snippet.package }}
+      <Icon icon="feather:chevron-right" style="font-size: 20px;" />
+      <span class="snippet">
+        {{ snippet.package }}
+      </span>
+      <button class="copy-button">
+        <Icon icon="feather:copy" style="font-size: 20px;" />
+      </button>
     </TabsContent>
   </TabsRoot>
 </template>
@@ -64,9 +72,24 @@ import { NpmSnippets } from '~/huey.config'
 
 }
 .tab-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
   min-height: 55px;
   padding: var(--spacing-8) var(--spacing-16);
   background-color: var(--npm-snippet-background);
   border-radius: 0 var(--radius-12) var(--radius-12) var(--radius-12);
+}
+.snippet {
+  display: flex;
+  height: fit-content;
+  flex: 1
+}
+.copy-button {
+
+  &:hover {
+    background-color: transparent;
+    cursor: pointer;
+  }
 }
 </style>
