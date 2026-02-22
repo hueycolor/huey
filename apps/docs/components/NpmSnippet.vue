@@ -94,6 +94,7 @@ import { NpmSnippets } from '~/huey.config'
   gap: var(--spacing-8);
 }
 .snippet {
+  font-family: 'DM Mono';
   display: flex;
   height: fit-content;
   flex: 1
