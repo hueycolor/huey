@@ -9,6 +9,109 @@
 }
 
 :root {
+  --hc-content-width: 844px;
+  --sl-color-bg: var(--color-beige-100);
   --sl-content-width: 50rem;
   --sl-text-5xl: 3.5rem;
+  --hc-header-logo-font: var(--title-h4);
+}
+
+/* This applies only to the homepage */
+h1 {
+  font: var(--title-h1);
+  letter-spacing: var(--title-h1-spacing);
+}
+
+h2 {
+  font: var(--title-h2);
+  letter-spacing: var(--title-h2-spacing);
+}
+
+h3 {
+  font: var(--title-h3);
+  letter-spacing: var(--title-h3-spacing);
+}
+
+h4 {
+  font: var(--title-h4);
+  letter-spacing: var(--title-h4-spacing);
+}
+
+h5 {
+  font: var(--title-h5);
+  letter-spacing: var(--title-h5-spacing);
+}
+
+h6 {
+  font: var(--title-h6);
+  letter-spacing: var(--title-h6-spacing);
+}
+
+/* Style Resets */
+a {
+  color: var(--color-stone-950);
+  text-decoration: none;
+}
+
+header.header {
+  background: transparent;
+  position: static !important;
+
+  @media (width >= 50rem) {
+    site-search {
+      button[data-open-modal] {
+        --hc-search-width: 240px;
+  
+        background-color: var(--color-linen-100);
+        border-color: var(--color-linen-200);
+        width: var(--hc-search-width);
+  
+        & > kbd {
+          background-color: var(--color-beige-100);
+          border: 1px solid var(--color-linen-200);
+          margin-inline-start: auto;
+        }
+      }
+    }
+  }
+}
+
+/* Components */
+
+[hc-button] {
+  align-items: center;
+  border-radius: var(--radius-12);
+  cursor: pointer;
+  display: flex;
+  font: var(--label-md);
+  gap: var(--spacing-8);
+  justify-content: center;
+  min-height: 48px;
+  padding-block: var(--spacing-8);
+  padding-inline: var(--spacing-24);
+  transition: all 150ms ease-out;
+
+  &:focus-visible {
+    outline: var(--color-beige-950) solid 2px;
+    outline-offset: var(--spacing-2);
+  }
+  
+  &[data-variant="primary"] {
+    background-color: var(--color-stone-950);
+    color: var(--color-beige-50);
+  }
+
+  &[data-variant="secondary"] {
+    background-color: var(--color-linen-100);
+    color: var(--color-stone-950);
+  }
+  
+  &[data-variant="tertiary"] {
+    background-color: transparent;
+    color: var(--color-stone-950);
+    
+    &:hover {
+      background-color: var(--color-linen-100);
+    }
+  }
 }

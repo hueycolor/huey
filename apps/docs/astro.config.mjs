@@ -10,7 +10,7 @@ export default defineConfig({
       customCss: [
         './src/styles/custom.css',
       ],
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/hueycolor/huey' }],
       sidebar: [
         {
           label: 'Guides',
@@ -24,6 +24,11 @@ export default defineConfig({
           autogenerate: { directory: 'reference' },
         },
       ],
+      components: {
+        Header: './src/components/Header.astro',
+        ThemeProvider: './src/components/ThemeProvider.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
+      },
     }),
   ],
 })

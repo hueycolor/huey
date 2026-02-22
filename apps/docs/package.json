@@ -2,11 +2,15 @@
   "name": "docs",
   "type": "module",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hueycolor/huey"
+  },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --host",
     "astro": "astro",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css:fix": "stylelint \"**/*.css\" --fix"

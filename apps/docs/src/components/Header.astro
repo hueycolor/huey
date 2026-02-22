@@ -1,0 +1,73 @@
+---
+// @ts-ignore
+import SocialIcons from 'virtual:starlight/components/SocialIcons'
+// @ts-ignore
+import Search from 'virtual:starlight/components/Search'
+import Logo from './Logo.astro'
+
+import pkg from '../../package.json'
+const repoUrl = pkg.repository.url
+
+const isHomepage = Astro.url.pathname === '/'
+---
+
+<div class:list={['header-content', { 'landing-header': isHomepage }]}>
+  <Logo />
+  <div class="actions">
+    {!isHomepage && <Search />}
+    {
+      isHomepage ? (
+        <Fragment>
+          <a external-link hc-button data-variant="tertiary" href={repoUrl}>
+            Github
+          </a>
+          <a hc-button data-variant="secondary" href="/">
+            Documentation
+          </a>
+        </Fragment>
+      ) : (
+        <SocialIcons />
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .header-content {
+    max-width: var(--hc-content-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-16);
+
+      [external-link] {
+        display: none;
+      }
+    }
+  }
+
+  @media (width >= 50rem) {
+    .header-content {
+      .actions {
+        [external-link] {
+          display: flex;
+        }
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  @layer starlight.core {
+    .header:has(.landing-header) {
+      --sl-nav-height: fit-content;
+      --sl-nav-pad-y: var(--spacing-16);
+      --sl-color-hairline-shade: transparent;
+    }
+  }
+</style>
