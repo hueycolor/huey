@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
-import Button from '~/components/ui/Button.vue'
 import { NpmSnippets } from '~/huey.config'
 </script>
 
@@ -20,26 +19,33 @@ import { NpmSnippets } from '~/huey.config'
         {{ snippet.name }}
       </TabsTrigger>
     </TabsList>
-    <TabsContent
-      v-for="snippet in NpmSnippets"
-      :key="snippet.name"
-      class="tab-content"
-      :value="snippet.name"
-    >
-      <Icon icon="feather:chevron-right" style="font-size: 20px;" />
-      <span class="snippet">
-        {{ snippet.package }}
-      </span>
-      <button class="copy-button">
-        <Icon icon="feather:copy" style="font-size: 20px;" />
-      </button>
-    </TabsContent>
+    <div class="content-wrapper">
+      <TabsContent
+        v-for="snippet in NpmSnippets"
+        :key="snippet.name"
+        class="tab-content"
+        :value="snippet.name"
+      >
+        <Icon icon="feather:chevron-right" style="font-size: 20px;" />
+        <span class="snippet">
+          {{ snippet.package }}
+        </span>
+        <button class="copy-button">
+          <Icon icon="feather:copy" style="font-size: 20px;" />
+        </button>
+      </TabsContent>
+    </div>
   </TabsRoot>
 </template>
 
 <style scoped>
 .snippet-tabs {
   --npm-snippet-background: var(--color-linen-100);
+  --top-left-radius: 0;
+
+  &:has(.trigger:first-of-type:not([data-state='active'])) {
+    --top-left-radius: var(--radius-12);
+  }
 }
 
 .tabs-list {
@@ -71,14 +77,21 @@ import { NpmSnippets } from '~/huey.config'
   }
 
 }
+
+.content-wrapper {
+  display: flex;
+  background-color: var(--npm-snippet-background);
+  border-radius: var(--top-left-radius) var(--radius-12) var(--radius-12) var(--radius-12);
+  transition: border-radius 150ms ease-out;
+  min-height: 55px;
+  padding: var(--spacing-8) var(--spacing-16);
+}
+
 .tab-content {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
-  min-height: 55px;
-  padding: var(--spacing-8) var(--spacing-16);
-  background-color: var(--npm-snippet-background);
-  border-radius: 0 var(--radius-12) var(--radius-12) var(--radius-12);
 }
 .snippet {
   display: flex;
