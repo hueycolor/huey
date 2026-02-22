@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "scripts": {
+    "dev": "nuxt dev --extends docus",
+    "build": "nuxt build --extends docus",
+    "preview": "nuxt preview --extends docus"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.5.0",
+    "docus": "latest",
+    "nuxt": "^4.2.2",
+    "reka-ui": "^2.8.0"
+  },
+  "devDependencies": {
+    "@iconify/vue": "^5.0.0"
+  }
+}
