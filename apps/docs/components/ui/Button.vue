@@ -41,7 +41,7 @@ export interface HueyButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes 
   }
 }
 [huey-button='primary'] {
-  background-color: var(--color-beige-950);
+  background-color: var(--color-stone-950);
   color: var(--color-beige-50);
 }
 [huey-button='secondary'] {
