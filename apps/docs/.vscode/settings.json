@@ -2,5 +2,60 @@
   // Ensure CSS files are recognized
   "files.associations": {
     "*.css": "css"
+  },
+
+  // Force enable CSS language features for IntelliSense
+  "css.validate": false,
+  "css.hover.documentation": true,
+  "css.hover.references": true,
+  "css.completion.completePropertyWithSemicolon": true,
+  "css.completion.triggerPropertyValueCompletion": true,
+  "css.customData": [],
+
+  // Enable suggestions
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+
+  // Enable Emmet for CSS
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "css": "css"
+  },
+
+  // Stylelint for linting and auto-fix
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "postcss"],
+  "stylelint.snippet": ["css", "postcss"],
+  "stylelint.reportDescriptionlessDisables": true,
+  "stylelint.reportInvalidScopeDisables": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "always",
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // CSS formatting
+  "css.format.enable": true,
+  "css.format.braceStyle": "collapse",
+  "css.format.preserveNewLines": true,
+
+  // Language-specific settings for CSS
+  "[css]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.tabCompletion": "on",
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.parameterHints.enabled": true
   }
 }
