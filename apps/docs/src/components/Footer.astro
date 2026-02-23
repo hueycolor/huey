@@ -1,0 +1,43 @@
+---
+import Wordmark from './Wordmark.astro'
+
+import pkg from '../../package.json'
+const repoUrl = pkg.repository.url
+
+const isHomepage = Astro.url.pathname === '/'
+---
+
+<div landing-header={isHomepage ?? undefined} class="footer-content">
+  <Wordmark />
+  <div class="actions">
+    <a external-link hc-button data-variant="tertiary" href={repoUrl}> Github </a>
+    <a hc-button data-variant="secondary" href="/"> Documentation </a>
+  </div>
+</div>
+
+<style>
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-16);
+
+      [external-link] {
+        display: none;
+      }
+    }
+  }
+
+  @media (width >= 50rem) {
+    .footer-content {
+      .actions {
+        [external-link] {
+          display: flex;
+        }
+      }
+    }
+  }
+</style>

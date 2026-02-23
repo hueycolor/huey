@@ -1,10 +1,11 @@
 ---
 import Default from '@astrojs/starlight/components/Sidebar.astro'
 import Search from '@astrojs/starlight/components/Search.astro'
+import Logomark from '@/components/Logomark.astro'
 ---
 
 <div class="aj-sidebar aj-custom">
-  Switcher goes here
+  <Logomark />
   <Search />
   <Default>
     <slot />

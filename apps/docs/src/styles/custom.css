@@ -76,6 +76,10 @@ header.header {
   }
 }
 
+.sidebar-pane {
+  inset-block: 0
+}
+
 /* Components */
 
 [hc-button] {

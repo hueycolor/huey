@@ -1,0 +1,20 @@
+---
+import Wordmark from '@/components/Wordmark.astro'
+import Huey from '@/components/Huey.astro'
+---
+
+<a href="/" class="logomark">
+  <Huey />
+  <Wordmark />
+</a>
+
+<style>
+  .logomark {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+    padding-inline: var(--spacing-4);
+    padding-block-end: var(--spacing-16);
+  }
+</style>

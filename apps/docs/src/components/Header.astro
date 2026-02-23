@@ -1,7 +1,7 @@
 ---
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
 import Search from '@astrojs/starlight/components/Search.astro'
-import Logo from './Logo.astro'
+import Wordmark from './Wordmark.astro'
 
 import pkg from '../../package.json'
 const repoUrl = pkg.repository.url
@@ -12,7 +12,9 @@ const isHomepage = Astro.url.pathname === '/'
 {
   isHomepage && (
     <div landing-header={isHomepage ?? undefined} class="header-content">
-      <Logo />
+      <a href="/">
+        <Wordmark />
+      </a>
       <div class="actions">
         {!isHomepage && <Search />}
         {isHomepage ? (
