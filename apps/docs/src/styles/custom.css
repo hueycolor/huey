@@ -10,11 +10,13 @@
 
 :root {
   --hc-content-width: 844px;
-  --sl-color-bg: var(--color-beige-100);
-  --sl-content-width: 50rem;
-  --sl-text-5xl: 3.5rem;
   --hc-header-logo-font: var(--title-h4);
+  --sl-content-width: 50rem;
+  --sl-color-bg: var(--color-beige-100);
   --sl-color-bg-nav: var(--color-beige-100)
+  --sl-text-5xl: 3.5rem;
+  --sl-sidebar-width: 360px !important;
+  --sl-toc-width: 268px !important;
 }
 
 /* This applies only to the homepage */
@@ -76,8 +78,22 @@ header.header {
   }
 }
 
+
 .sidebar-pane {
   inset-block: 0
+}
+
+/* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
+#starlight__sidebar.sidebar-pane {
+  overflow: hidden !important;
+}
+
+.sidebar-content {
+  padding: 0;
+}
+
+.main-frame {
+  --sl-content-inline-start: var(--sl-sidebar-width);
 }
 
 /* Components */
