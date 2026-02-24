@@ -92,10 +92,6 @@ header.header {
   padding: 0;
 }
 
-.main-frame {
-  --sl-content-inline-start: var(--sl-sidebar-width);
-}
-
 /* Components */
 
 [hc-button] {
