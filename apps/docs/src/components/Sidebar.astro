@@ -8,7 +8,10 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
 
 <div class="aj-sidebar aj-custom">
   <div class="top">
-    <Logomark />
+    <div class="sidebar-header">
+      <Logomark />
+      <SocialIcons />
+    </div>
     <Search />
     <FrameworkPicker />
   </div>
@@ -16,9 +19,6 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
     <Default>
       <slot />
     </Default>
-  </div>
-  <div class="bottom">
-    <SocialIcons />
   </div>
 </div>
 
@@ -39,6 +39,12 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       gap: var(--spacing-12);
       padding: var(--spacing-16);
       padding-bottom: var(--spacing-8);
+
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
 
     .center {
@@ -47,11 +53,6 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       overflow-x: hidden;
       min-height: 0;
       flex: 1;
-    }
-
-    .bottom {
-      border-top: 1px solid var(--sl-color-gray-5);
-      padding: var(--spacing-16);
     }
   }
 </style>
