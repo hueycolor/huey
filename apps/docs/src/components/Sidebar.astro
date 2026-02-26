@@ -44,6 +44,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding-inline-end: var(--spacing-4);
       }
 
       button[data-open-modal] {
@@ -55,6 +56,12 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
           background-color: var(--color-beige-100);
           border: 1px solid var(--color-linen-200);
         }
+      }
+
+      dialog {
+        background-color: var(--color-linen-100);
+        border: 1px solid var(--color-linen-200);
+        color: var(--color-stone-950);
       }
     }
 
