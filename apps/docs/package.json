@@ -17,10 +17,14 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
+    "@astrojs/vue": "^5.1.4",
     "astro": "^5.6.1",
-    "sharp": "^0.34.2"
+    "reka-ui": "^2.8.0",
+    "sharp": "^0.34.2",
+    "vue": "^3.5.29"
   },
   "devDependencies": {
+    "@iconify/vue": "^5.0.0",
     "stylelint": "^17.3.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^7.0.1"
