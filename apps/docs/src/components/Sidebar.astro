@@ -45,6 +45,17 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         align-items: center;
         justify-content: space-between;
       }
+
+      button[data-open-modal] {
+        background-color: var(--color-linen-100);
+        border-color: var(--color-linen-200);
+        color: var(--color-stone-950);
+
+        & > kbd {
+          background-color: var(--color-beige-100);
+          border: 1px solid var(--color-linen-200);
+        }
+      }
     }
 
     .center {
