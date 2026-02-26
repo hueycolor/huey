@@ -48,20 +48,20 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       }
 
       button[data-open-modal] {
-        --search-border-color: color-mix(in srgb, var(--color-linen-300) 100%, transparent 50%);
+        --search-border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
 
-        background-color: color-mix(in srgb, var(--color-linen-200) 100%, transparent 50%);
+        background-color: var(--color-linen-100);
         border-color: var(--search-border-color);
         color: var(--color-stone-950);
 
         & > kbd {
-          background-color: var(--color-beige-100);
+          background-color: var(--color-beige-50);
           border: 1px solid var(--search-border-color);
         }
       }
 
       dialog {
-        background-color: var(--color-linen-100);
+        background-color: var(--color-beige-50);
         border: 1px solid var(--color-linen-200);
         color: var(--color-stone-950);
       }
@@ -73,6 +73,59 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       overflow-x: hidden;
       min-height: 0;
       flex: 1;
+
+      /* Custom scrollbar styling */
+      scrollbar-width: 2px; /* Firefox */
+      scrollbar-color: var(--color-linen-200) transparent; /* Firefox */
+
+      /* Webkit browsers (Chrome, Safari, Edge) */
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--color-linen-200);
+        border-radius: 3px;
+      }
+
+      .top-level {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-12);
+
+        a[aria-current='page'] {
+          background-color: var(--color-linen-200);
+        }
+
+        details {
+          summary {
+            pointer-events: none;
+            outline: none;
+            padding-block-end: var(--spacing-6);
+
+            .group-label span {
+              font: var(--label-xs);
+              color: color-mix(in srgb, var(--color-linen-900) 50%, transparent 50%);
+              text-transform: uppercase;
+            }
+
+            svg {
+              display: none;
+            }
+          }
+
+          ul {
+            li {
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
     }
   }
 </style>

@@ -56,6 +56,11 @@ a {
   text-decoration: none;
 }
 
+body > a {
+  background-color: var(--color-beige-100);
+  color: var(--color-stone-950);
+}
+
 header.header {
   display: none;
 
@@ -85,7 +90,8 @@ header.header {
 
 /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
 #starlight__sidebar.sidebar-pane {
-  background-color: var(--color-linen-100);
+  background-color: var(--color-beige-100);
+  border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
   overflow: hidden !important;
 }
 
@@ -131,4 +137,8 @@ header.header {
       background-color: var(--color-linen-100);
     }
   }
+}
+
+nav.sidebar + .main-frame {
+  background-color: var(--color-beige-50);
 }
