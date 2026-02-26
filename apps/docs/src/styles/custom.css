@@ -85,6 +85,7 @@ header.header {
 
 /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
 #starlight__sidebar.sidebar-pane {
+  background-color: var(--color-linen-100);
   overflow: hidden !important;
 }
 
