@@ -6,7 +6,6 @@ import {
   SelectItem,
   SelectItemIndicator,
   SelectItemText,
-  SelectLabel,
   SelectPortal,
   SelectRoot,
   SelectScrollDownButton,
@@ -21,11 +20,7 @@ const selectedFramework = ref('vue')
 
 const frameworks = [
   { value: 'vue', label: 'Vue', icon: 'logos:vue' },
-  { value: 'react', label: 'React', icon: 'logos:react' },
   { value: 'svelte', label: 'Svelte', icon: 'logos:svelte-icon' },
-  { value: 'solid', label: 'Solid', icon: 'logos:solidjs-icon' },
-  { value: 'angular', label: 'Angular', icon: 'logos:angular-icon' },
-  { value: 'preact', label: 'Preact', icon: 'logos:preact' },
 ]
 
 const selectedFrameworkData = computed(() =>
@@ -41,10 +36,10 @@ const selectedFrameworkData = computed(() =>
         {{ selectedFrameworkData.label }}
       </span>
       <SelectValue v-else placeholder="Select a framework" />
-      <Icon icon="radix-icons:chevron-down" class="SelectIcon" />
+      <Icon icon="ph:caret-up-down" class="SelectIcon" />
     </SelectTrigger>
 
-    <SelectPortal to="body">
+    <SelectPortal>
       <SelectContent
         class="SelectContent"
         :side-offset="5"
@@ -88,23 +83,21 @@ button {
 }
 
 .SelectTrigger {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-8);
-  min-width: 180px;
-  padding: var(--spacing-8) var(--spacing-12);
-  font: var(--paragraph-sm);
-  color: var(--color-stone-950);
-  background-color: var(--color-beige-100);
-  border: 1px solid var(--color-linen-200);
+  height: 40px;
+  padding-inline: var(--spacing-12);
   border-radius: var(--radius-8);
+  font: var(--paragraph-sm);
+  background-color: var(--color-linen-100);
+  border: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
   cursor: pointer;
   transition: all 150ms ease-out;
 }
 
 .SelectTrigger:hover {
-  background-color: var(--color-linen-100);
+  background-color: var(--color-linen-200);
 }
 
 .SelectTrigger:focus {
@@ -121,34 +114,31 @@ button {
   transition: transform 150ms ease-out;
 }
 
-.SelectTrigger[data-state='open'] .SelectIcon {
-  transform: rotate(180deg);
-}
-
 .SelectedValue {
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
 }
 
-.SelectContent {
+:deep(.SelectContent) {
+  position: relative;
+  width: var(--reka-select-trigger-width);
   background-color: var(--color-beige-50);
-  z-index: 14;
-  min-width: 180px;
-  border: 1px solid var(--color-linen-200);
+  border: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
   border-radius: var(--radius-8);
   padding: var(--spacing-6);
-  box-shadow: 0px 10px 38px -10px rgba(12, 10, 9, 0.35), 0px 10px 20px -15px rgba(12, 10, 9, 0.2);
-  animation-duration: 400ms;
+  box-shadow: 0px 10px 32px -10px rgba(12, 10, 9, 0.1), 0px 10px 20px -15px rgba(12, 10, 9, 0.2);
+  animation-duration: 200ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
+  transform-origin: top center;
 }
 
-.SelectContent[data-side='top'] {
+:deep(.SelectContent[data-side='top']) {
   animation-name: slideDownAndFade;
 }
 
-.SelectContent[data-side='bottom'] {
+:deep(.SelectContent[data-side='bottom']) {
   animation-name: slideUpAndFade;
 }
 
@@ -184,7 +174,7 @@ button {
 }
 
 .SelectItem[data-highlighted] {
-  background-color: var(--color-beige-200);
+  background-color: color-mix(in srgb, var(--color-linen-950) 8%, transparent 100%);
   color: var(--color-stone-950);
 }
 
@@ -221,22 +211,22 @@ button {
 @keyframes slideUpAndFade {
   from {
     opacity: 0;
-    transform: translateY(2px);
+    transform: translateY(2px) scale(0.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes slideDownAndFade {
   from {
     opacity: 0;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(0.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 </style>

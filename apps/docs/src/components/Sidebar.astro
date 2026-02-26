@@ -53,10 +53,15 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         background-color: var(--color-linen-100);
         border-color: var(--search-border-color);
         color: var(--color-stone-950);
+        transition: all 150ms ease-out;
 
         & > kbd {
           background-color: var(--color-beige-50);
           border: 1px solid var(--search-border-color);
+        }
+
+        &:hover {
+          background-color: var(--color-linen-200);
         }
       }
 
@@ -122,6 +127,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
             li {
               margin: 0;
               padding: 0;
+              border-inline-start: 0;
             }
           }
         }

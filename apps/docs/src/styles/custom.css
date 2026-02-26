@@ -19,6 +19,10 @@
   --sl-toc-width: 268px !important;
 }
 
+* {
+  box-sizing: border-box !important;
+}
+
 /* This applies only to the homepage */
 h1 {
   font: var(--title-h1);
@@ -141,4 +145,8 @@ header.header {
 
 nav.sidebar + .main-frame {
   background-color: var(--color-beige-50);
+}
+
+[data-reka-popper-content-wrapper] {
+  width: var(--reka-popper-anchor-width);
 }
