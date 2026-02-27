@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import {
   SelectContent,
   SelectGroup,
@@ -15,6 +14,7 @@ import {
   SelectViewport,
 } from 'reka-ui'
 import { computed, ref } from 'vue'
+import AppIcon from './AppIcon.vue'
 
 const selectedFramework = ref('vue')
 
@@ -32,11 +32,11 @@ const selectedFrameworkData = computed(() =>
   <SelectRoot v-model="selectedFramework">
     <SelectTrigger class="SelectTrigger" aria-label="Select a framework">
       <span v-if="selectedFrameworkData" class="SelectedValue">
-        <Icon :icon="selectedFrameworkData.icon" class="FrameworkIcon" />
+        <AppIcon :icon="selectedFrameworkData.icon" class="FrameworkIcon" />
         {{ selectedFrameworkData.label }}
       </span>
       <SelectValue v-else placeholder="Select a framework" />
-      <Icon icon="ph:caret-up-down" class="SelectIcon" />
+      <AppIcon icon="ph:caret-up-down" class="SelectIcon" />
     </SelectTrigger>
 
     <SelectPortal>
@@ -47,7 +47,7 @@ const selectedFrameworkData = computed(() =>
         :style="{ zIndex: 13 }"
       >
         <SelectScrollUpButton class="SelectScrollButton">
-          <Icon icon="radix-icons:chevron-up" />
+          <AppIcon icon="ph:caret-up" />
         </SelectScrollUpButton>
 
         <SelectViewport class="SelectViewport">
@@ -59,18 +59,18 @@ const selectedFrameworkData = computed(() =>
               class="SelectItem"
             >
               <SelectItemText class="SelectItemText">
-                <Icon :icon="framework.icon" class="FrameworkIcon" />
+                <AppIcon :icon="framework.icon" class="FrameworkIcon" />
                 {{ framework.label }}
               </SelectItemText>
               <SelectItemIndicator class="SelectItemIndicator">
-                <Icon icon="radix-icons:check" />
+                <AppIcon icon="ph:check" />
               </SelectItemIndicator>
             </SelectItem>
           </SelectGroup>
         </SelectViewport>
 
         <SelectScrollDownButton class="SelectScrollButton">
-          <Icon icon="radix-icons:chevron-down" />
+          <AppIcon icon="ph:caret-down" />
         </SelectScrollDownButton>
       </SelectContent>
     </SelectPortal>
