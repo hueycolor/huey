@@ -122,10 +122,30 @@ body > a {
   }
 }
 
+/* Set the body's style in docs pages */
+body:has(nav.sidebar + .main-frame) {
+  --sl-color-bg: var(--color-beige-50);
+}
+
 nav.sidebar + .main-frame {
+  --sl-nav-height: 0px;
+
   background-color: var(--color-beige-50);
 }
 
 [data-reka-popper-content-wrapper] {
   width: var(--reka-popper-anchor-width);
+}
+
+mobile-starlight-toc {
+  nav {
+    background-color: var(--sl-color-bg);
+
+    summary {
+      .toggle {
+        background-color: var(--color-beige-100);
+        border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
+      }
+    }
+  }
 }
