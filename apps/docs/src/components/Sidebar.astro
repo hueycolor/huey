@@ -27,7 +27,6 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
   #starlight__sidebar.sidebar-pane {
     background-color: var(--color-beige-100);
     border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
-    overflow: hidden !important;
 
     .aj-sidebar {
       .top {
@@ -144,9 +143,14 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
     --sl-sidebar-visibility: block;
   }
 
+  .mobile-preferences {
+    display: none;
+  }
+
   @media (width >= 50rem) {
     /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
     #starlight__sidebar.sidebar-pane {
+      overflow: hidden !important;
       .aj-sidebar {
         display: flex;
         flex-direction: column;
@@ -161,6 +165,10 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
           padding-block-start: var(--spacing-16);
 
           .sidebar-header {
+            display: flex;
+          }
+
+          button[data-open-modal] {
             display: flex;
           }
         }
