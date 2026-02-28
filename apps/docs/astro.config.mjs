@@ -1,8 +1,8 @@
 import starlight from '@astrojs/starlight'
+import vue from '@astrojs/vue'
+
 // @ts-check
 import { defineConfig } from 'astro/config'
-
-import vue from '@astrojs/vue';
 
 // https://astro.build/config
 export default defineConfig({
@@ -55,6 +55,7 @@ export default defineConfig({
       Sidebar: './src/components/Sidebar.astro',
       Header: './src/components/Header.astro',
       ThemeProvider: './src/components/ThemeProvider.astro',
+      Hero: './src/components/Hero.astro',
       ThemeSelect: './src/components/ThemeSelect.astro',
     },
   }), vue()],

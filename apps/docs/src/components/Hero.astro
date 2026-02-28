@@ -1,0 +1,68 @@
+---
+import Huey from '@/components/Huey.astro'
+import NpmSnippet from '@/components/NpmSnippet.vue'
+---
+
+<section class="hero">
+  <div class="content">
+    <h1 class="title">A composable color picker for the web</h1>
+    <div class="snippets">
+      <NpmSnippet client:load />
+      <div class="actions">
+        <a huey-button href="/overview/installation" data-variant="primary" class="main-action"> Get Started </a>
+        <button huey-button data-variant="secondary"> Demo </button>
+      </div>
+    </div>
+  </div>
+  <div class="mascot">
+    <Huey size={'100%'} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-16);
+
+    padding-block: 200px;
+
+    .title {
+      font: var(--title-h1);
+      letter-spacing: var(--title-h1-spacing);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-40);
+      width: 400px;
+    }
+
+    .snippets {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-16);
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-16);
+
+        .main-action {
+          flex: 1;
+        }
+      }
+    }
+  }
+</style>
+
+<style is:global>
+  .content-panel {
+    width: var(--sl-content-width);
+    margin: 0 auto;
+    padding: 0;
+  }
+</style>

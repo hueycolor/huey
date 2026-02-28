@@ -1,7 +1,5 @@
 @import url('./tokens.css');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @font-face {
   font-display: block;
@@ -15,7 +13,7 @@
   --sl-font: 'Inter';
   --hc-content-width: 844px;
   --hc-header-logo-font: var(--title-h4);
-  --sl-content-width: 50rem;
+  --sl-content-width: 844px;
   --sl-color-bg: var(--color-beige-100);
   --sl-color-bg-nav: var(--color-beige-100)
   --sl-text-5xl: 3.5rem;
@@ -33,6 +31,38 @@ a {
   color: var(--color-stone-950);
   text-decoration: none;
 }
+
+button, a {
+  background-color: transparent;
+  border: none;
+  display: flex;
+
+  &[huey-button] {
+    align-items: center;
+    background-color: transparent;
+    border-radius: var(--radius-12);
+    cursor: pointer;
+    display: flex;
+    font: var(--label-md);
+    gap: var(--spacing-8);
+    justify-content: center;
+    min-height: 48px;
+    padding-block: var(--spacing-8);
+    padding-inline: var(--spacing-24);
+  }
+  
+
+  &[data-variant='primary'] {
+    background-color: var(--color-stone-950);
+    color: var(--color-beige-50);
+  }
+
+  &[data-variant='secondary'] {
+    background-color: var(--color-linen-100);
+    color: var(--color-stone-950);
+  }
+}
+
 
 body > a {
   background-color: var(--color-beige-100);
@@ -84,6 +114,28 @@ body > a {
     &:hover {
       background-color: var(--color-linen-100);
     }
+  }
+}
+
+html[data-has-hero] {
+  .main-frame {
+    padding: 0;
+  }
+}
+
+button {
+  border: none;
+}
+
+
+html:not([data-has-sidebar]) {
+  --sl-content-width: 844px !important;
+}
+
+
+@layer starlight.reset {
+  body {
+    --sl-color-text: var(--color-stone-950);
   }
 }
 
