@@ -66,16 +66,8 @@ body > a {
   color: var(--color-stone-950);
 }
 
-
 .sidebar-pane {
   inset-block: 0
-}
-
-/* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
-#starlight__sidebar.sidebar-pane {
-  background-color: var(--color-beige-100);
-  border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
-  overflow: hidden !important;
 }
 
 .sidebar-content {

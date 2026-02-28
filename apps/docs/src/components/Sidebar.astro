@@ -22,18 +22,14 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
   </div>
 </div>
 
-<style>
-  @media (width >= 50rem) {
+<style is:global>
+  /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
+  #starlight__sidebar.sidebar-pane {
+    background-color: var(--color-beige-100);
+    border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
+    overflow: hidden !important;
+
     .aj-sidebar {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      height: 100%;
-
-      & > * {
-        width: var(--sl-toc-width);
-      }
-
       .top {
         display: flex;
         flex-direction: column;
@@ -76,6 +72,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       .center {
         overflow-y: auto;
         padding: var(--spacing-16);
+        padding-block-end: var(--spacing-40);
         overflow-x: hidden;
         min-height: 0;
         flex: 1;
@@ -133,6 +130,18 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
             }
           }
         }
+      }
+    }
+  }
+  @media (width >= 50rem) {
+    .aj-sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      height: 100%;
+
+      & > * {
+        width: var(--sl-toc-width);
       }
     }
   }
