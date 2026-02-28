@@ -141,3 +141,10 @@ mobile-starlight-toc {
     }
   }
 }
+
+starlight-menu-button {
+  button {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
