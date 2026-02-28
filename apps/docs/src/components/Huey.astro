@@ -27,11 +27,47 @@ const { size = 32 } = Astro.props
     stroke-width="1.28"></path>
   <rect x="18.24" y="18.24" width="44.8272" height="44.8272" rx="22.4136" fill="#FAF7F4"></rect>
   <rect x="18.24" y="18.24" width="44.8272" height="44.8272" rx="22.4136" stroke="#241400" stroke-width="0.96"></rect>
-  <rect x="25.4" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
-  <rect x="49.1583" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
+  <g huey-eyes>
+    <rect left-eye x="25.4" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
+    <rect right-eye x="49.1583" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
+  </g>
   <path
     d="M44.9745 44.3106C44.9745 44.6616 44.8873 45.021 44.7024 45.372C44.5164 45.725 44.2315 46.0687 43.8449 46.3727C43.4581 46.6768 42.9835 46.9297 42.4428 47.1058C41.9023 47.2818 41.316 47.3745 40.7192 47.3745C40.1223 47.3745 39.536 47.2818 38.9955 47.1058C38.4548 46.9297 37.9802 46.6768 37.5934 46.3727C37.2068 46.0687 36.9219 45.725 36.7359 45.372C36.5511 45.021 36.4638 44.6616 36.4638 44.3106"
     stroke="black"
     stroke-width="2.04255"
     stroke-linecap="round"></path>
 </svg>
+
+<style>
+  [huey-eyes] {
+    transform-origin: 50% 50%;
+    animation: blink 5s 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+
+    /* First blink */
+    2% {
+      transform: scaleY(0);
+    }
+
+    3.5% {
+      transform: scaleY(1);
+    }
+
+    /* Second blink */
+    5% {
+      transform: scaleY(0);
+    }
+
+    6.5% {
+      transform: scaleY(1);
+    }
+
+    /* Stay open for the rest (~2.7s wait) */
+  }
+</style>
