@@ -34,11 +34,11 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         display: flex;
         flex-direction: column;
         gap: var(--spacing-12);
-        padding: var(--spacing-16);
-        padding-bottom: var(--spacing-8);
+        padding-block-start: calc(var(--sl-nav-height) + var(--spacing-16));
+        padding-inline: var(--spacing-16);
 
         .sidebar-header {
-          display: flex;
+          display: none;
           align-items: center;
           justify-content: space-between;
           padding-inline-end: var(--spacing-4);
@@ -47,6 +47,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         button[data-open-modal] {
           --search-border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
 
+          display: none;
           background-color: var(--color-linen-100);
           border-color: var(--search-border-color);
           color: var(--color-stone-950);
@@ -134,14 +135,29 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
     }
   }
   @media (width >= 50rem) {
-    .aj-sidebar {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      height: 100%;
+    /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
+    #starlight__sidebar.sidebar-pane {
+      .aj-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        height: 100%;
 
-      & > * {
-        width: var(--sl-toc-width);
+        & > * {
+          width: var(--sl-toc-width);
+        }
+
+        .top {
+          padding-block-start: var(--spacing-16);
+
+          .sidebar-header {
+            display: flex;
+          }
+        }
+
+        button[data-open-modal] {
+          display: block;
+        }
       }
     }
   }
