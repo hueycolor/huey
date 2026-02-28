@@ -134,6 +134,16 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
       }
     }
   }
+
+  .sidebar-pane {
+    visibility: unset;
+    display: var(--sl-sidebar-visibility, none);
+  }
+
+  [aria-expanded='true'] ~ .sidebar-pane {
+    --sl-sidebar-visibility: block;
+  }
+
   @media (width >= 50rem) {
     /* stylelint-disable-next-line selector-id-pattern -- Starlight uses this ID pattern */
     #starlight__sidebar.sidebar-pane {
