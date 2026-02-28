@@ -4,15 +4,14 @@ import Search from '@astrojs/starlight/components/Search.astro'
 import Wordmark from './Wordmark.astro'
 
 import pkg from '../../package.json'
+import Logomark from '@/components/Logomark.astro'
 const repoUrl = pkg.repository.url
 
 const isHomepage = Astro.url.pathname === '/'
 ---
 
 <div landing-header={isHomepage ?? undefined} class="header-content">
-  <a href="/">
-    <Wordmark />
-  </a>
+  <Logomark />
   <div class="actions">
     {!isHomepage && <Search />}
     {

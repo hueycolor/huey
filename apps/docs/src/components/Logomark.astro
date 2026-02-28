@@ -8,12 +8,20 @@ import Huey from '@/components/Huey.astro'
   <Wordmark />
 </a>
 
-<style>
+<style is:global>
   .logomark {
     width: fit-content;
     display: flex;
     align-items: center;
     gap: var(--spacing-8);
     padding-inline: var(--spacing-4);
+  }
+
+  .huey-icon {
+    display: none;
+  }
+
+  body:has(nav.sidebar + .main-frame) .huey-icon {
+    display: inline-flex;
   }
 </style>
