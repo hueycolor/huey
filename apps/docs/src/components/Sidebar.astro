@@ -34,6 +34,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         flex-direction: column;
         gap: var(--spacing-12);
         padding-block-start: calc(var(--sl-nav-height) + var(--spacing-16));
+        padding-block-end: var(--spacing-8);
         padding-inline: var(--spacing-16);
 
         .sidebar-header {
@@ -76,6 +77,7 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
         overflow-x: hidden;
         min-height: 0;
         flex: 1;
+        mask-image: linear-gradient(transparent, var(--sl-color-bg-sidebar) 32px, var(--sl-color-bg-sidebar) calc(100% - 32px), transparent);
 
         /* Custom scrollbar styling */
         scrollbar-width: 2px; /* Firefox */
