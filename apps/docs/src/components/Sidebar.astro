@@ -136,11 +136,12 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
 
   .sidebar-pane {
     visibility: unset;
-    display: var(--sl-sidebar-visibility, none);
+    transform: translateY(var(--sl-sidebar-visibility, -100%));
+    transition: all 200ms cubic-bezier(0.66, 0, 0.34, 1);
   }
 
   [aria-expanded='true'] ~ .sidebar-pane {
-    --sl-sidebar-visibility: block;
+    --sl-sidebar-visibility: 0;
   }
 
   .mobile-preferences {
