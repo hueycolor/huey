@@ -17,6 +17,7 @@
   --sl-text-5xl: 3.5rem;
   --sl-sidebar-width: 360px !important;
   --sl-toc-width: 268px !important;
+  --sl-nav-height: 65px;
 }
 
 * {
@@ -63,28 +64,6 @@ a {
 body > a {
   background-color: var(--color-beige-100);
   color: var(--color-stone-950);
-}
-
-header.header {
-  display: none;
-
-  @media (width >= 50rem) {
-    site-search {
-      button[data-open-modal] {
-        --hc-search-width: 240px;
-  
-        background-color: var(--color-linen-100);
-        border-color: var(--color-linen-200);
-        width: var(--hc-search-width);
-  
-        & > kbd {
-          background-color: var(--color-beige-100);
-          border: 1px solid var(--color-linen-200);
-          margin-inline-start: auto;
-        }
-      }
-    }
-  }
 }
 
 

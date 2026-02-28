@@ -23,111 +23,113 @@ import FrameworkPicker from '@/components/FrameworkPicker.astro'
 </div>
 
 <style>
-  .aj-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    height: 100%;
-
-    & > * {
-      width: var(--sl-toc-width);
-    }
-
-    .top {
+  @media (width >= 50rem) {
+    .aj-sidebar {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-12);
-      padding: var(--spacing-16);
-      padding-bottom: var(--spacing-8);
+      align-items: flex-end;
+      height: 100%;
 
-      .sidebar-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-inline-end: var(--spacing-4);
+      & > * {
+        width: var(--sl-toc-width);
       }
 
-      button[data-open-modal] {
-        --search-border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
-
-        background-color: var(--color-linen-100);
-        border-color: var(--search-border-color);
-        color: var(--color-stone-950);
-        transition: all 150ms ease-out;
-
-        & > kbd {
-          background-color: var(--color-beige-50);
-          border: 1px solid var(--search-border-color);
-        }
-
-        &:hover {
-          background-color: var(--color-linen-200);
-        }
-      }
-
-      dialog {
-        background-color: var(--color-beige-50);
-        border: 1px solid var(--color-linen-200);
-        color: var(--color-stone-950);
-      }
-    }
-
-    .center {
-      overflow-y: auto;
-      padding: var(--spacing-16);
-      overflow-x: hidden;
-      min-height: 0;
-      flex: 1;
-
-      /* Custom scrollbar styling */
-      scrollbar-width: 2px; /* Firefox */
-      scrollbar-color: var(--color-linen-200) transparent; /* Firefox */
-
-      /* Webkit browsers (Chrome, Safari, Edge) */
-      &::-webkit-scrollbar {
-        width: 2px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: var(--color-linen-200);
-        border-radius: 3px;
-      }
-
-      .top-level {
+      .top {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-12);
+        padding: var(--spacing-16);
+        padding-bottom: var(--spacing-8);
 
-        a[aria-current='page'] {
-          background-color: var(--color-linen-200);
+        .sidebar-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-inline-end: var(--spacing-4);
         }
 
-        details {
-          summary {
-            pointer-events: none;
-            outline: none;
-            padding-block-end: var(--spacing-6);
+        button[data-open-modal] {
+          --search-border-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent 100%);
 
-            .group-label span {
-              font: var(--label-xs);
-              color: color-mix(in srgb, var(--color-linen-900) 50%, transparent 50%);
-              text-transform: uppercase;
-            }
+          background-color: var(--color-linen-100);
+          border-color: var(--search-border-color);
+          color: var(--color-stone-950);
+          transition: all 150ms ease-out;
 
-            svg {
-              display: none;
-            }
+          & > kbd {
+            background-color: var(--color-beige-50);
+            border: 1px solid var(--search-border-color);
           }
 
-          ul {
-            li {
-              margin: 0;
-              padding: 0;
-              border-inline-start: 0;
+          &:hover {
+            background-color: var(--color-linen-200);
+          }
+        }
+
+        dialog {
+          background-color: var(--color-beige-50);
+          border: 1px solid var(--color-linen-200);
+          color: var(--color-stone-950);
+        }
+      }
+
+      .center {
+        overflow-y: auto;
+        padding: var(--spacing-16);
+        overflow-x: hidden;
+        min-height: 0;
+        flex: 1;
+
+        /* Custom scrollbar styling */
+        scrollbar-width: 2px; /* Firefox */
+        scrollbar-color: var(--color-linen-200) transparent; /* Firefox */
+
+        /* Webkit browsers (Chrome, Safari, Edge) */
+        &::-webkit-scrollbar {
+          width: 2px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--color-linen-200);
+          border-radius: 3px;
+        }
+
+        .top-level {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacing-12);
+
+          a[aria-current='page'] {
+            background-color: var(--color-linen-200);
+          }
+
+          details {
+            summary {
+              pointer-events: none;
+              outline: none;
+              padding-block-end: var(--spacing-6);
+
+              .group-label span {
+                font: var(--label-xs);
+                color: color-mix(in srgb, var(--color-linen-900) 50%, transparent 50%);
+                text-transform: uppercase;
+              }
+
+              svg {
+                display: none;
+              }
+            }
+
+            ul {
+              li {
+                margin: 0;
+                padding: 0;
+                border-inline-start: 0;
+              }
             }
           }
         }

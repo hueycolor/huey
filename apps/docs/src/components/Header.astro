@@ -9,45 +9,73 @@ const repoUrl = pkg.repository.url
 const isHomepage = Astro.url.pathname === '/'
 ---
 
-{
-  isHomepage && (
-    <div landing-header={isHomepage ?? undefined} class="header-content">
-      <a href="/">
-        <Wordmark />
-      </a>
-      <div class="actions">
-        {!isHomepage && <Search />}
-        {isHomepage ? (
-          <Fragment>
-            <a external-link hc-button data-variant="tertiary" href={repoUrl}>
-              Github
-            </a>
-            <a hc-button data-variant="secondary" href="/overview/installation">
-              Documentation
-            </a>
-          </Fragment>
-        ) : (
-          <SocialIcons />
-        )}
-      </div>
-    </div>
-  )
-}
+<div landing-header={isHomepage ?? undefined} class="header-content">
+  <a href="/">
+    <Wordmark />
+  </a>
+  <div class="actions">
+    {!isHomepage && <Search />}
+    {
+      isHomepage ? (
+        <Fragment>
+          <a external-link hc-button data-variant="tertiary" href={repoUrl}>
+            Github
+          </a>
+          <a hc-button data-variant="secondary" href="/overview/installation">
+            Documentation
+          </a>
+        </Fragment>
+      ) : (
+        <SocialIcons />
+      )
+    }
+  </div>
+</div>
 
 <style is:global>
   @layer starlight.core {
-    header.header:has([landing-header='true']) {
-      --sl-nav-height: fit-content;
-      --sl-nav-pad-y: var(--spacing-16);
-      --sl-color-hairline-shade: transparent;
-      --sl-color-bg-nav: transparent;
+    header.header {
+      background: unset;
+      background-color: var(--sl-color-bg);
+    }
 
-      position: static !important;
-      display: block !important;
+    header.header {
+      background: unset;
+      background-color: var(--sl-color-bg);
 
-      .header-content {
-        max-width: var(--hc-content-width);
-        margin: 0 auto;
+      &:has([landing-header='true']) {
+        --sl-nav-height: fit-content;
+        --sl-nav-pad-y: var(--spacing-16);
+        --sl-color-hairline-shade: transparent;
+        --sl-color-bg-nav: transparent;
+
+        position: static !important;
+        display: block !important;
+
+        .header-content {
+          max-width: var(--hc-content-width);
+          margin: 0 auto;
+        }
+      }
+
+      @media (width >= 50rem) {
+        display: none;
+
+        site-search {
+          button[data-open-modal] {
+            --hc-search-width: 240px;
+
+            background-color: var(--color-linen-100);
+            border-color: var(--color-linen-200);
+            width: var(--hc-search-width);
+
+            & > kbd {
+              background-color: var(--color-beige-100);
+              border: 1px solid var(--color-linen-200);
+              margin-inline-start: auto;
+            }
+          }
+        }
       }
     }
   }
