@@ -1,21 +1,43 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
+import { ref, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import { NpmSnippets } from '@/snippets'
+
+const selectedFramework = ref(NpmSnippets[0].package)
+const hasCopiedCommand = ref(false)
+
+async function copyToClipboard() {
+  try {
+    await navigator.clipboard.writeText(selectedFramework.value)
+  }
+  catch (err) {
+    console.error('Failed to copy text: ', err)
+  }
+
+  hasCopiedCommand.value = true
+
+  window.dispatchEvent(new CustomEvent('huey:celebrate'))
+}
+
+watch(hasCopiedCommand, () => {
+  setTimeout(() => {
+    hasCopiedCommand.value = false
+  }, 3000)
+})
 </script>
 
 <template>
-  <TabsRoot class="snippet-tabs" :default-value="NpmSnippets[0]?.name">
+  <TabsRoot v-model="selectedFramework" class="snippet-tabs" :default-value="selectedFramework">
     <TabsList class="tabs-list">
       <TabsIndicator class="indicator">
         <div class="bg-grass8 w-full h-full" />
       </TabsIndicator>
       <TabsTrigger
         v-for="snippet in NpmSnippets"
-        :key="snippet.name"
+        :key="snippet.package"
         class="trigger"
-        :value="snippet.name"
+        :value="snippet.package"
       >
         {{ snippet.name }}
       </TabsTrigger>
@@ -23,16 +45,17 @@ import { NpmSnippets } from '@/snippets'
     <div class="content-wrapper">
       <TabsContent
         v-for="snippet in NpmSnippets"
-        :key="snippet.name"
+        :key="snippet.package"
         class="tab-content"
-        :value="snippet.name"
+        :value="snippet.package"
       >
         <AppIcon icon="feather:chevron-right" style="font-size: 20px;" />
         <span class="snippet">
           {{ snippet.package }}
         </span>
-        <button class="copy-button">
-          <AppIcon icon="feather:copy" style="font-size: 20px;" />
+        <button class="copy-button" huey-button @click="copyToClipboard">
+          <AppIcon v-if="hasCopiedCommand" icon="feather:check" style="font-size: 20px;" />
+          <AppIcon v-else icon="feather:copy" style="font-size: 20px;" />
         </button>
       </TabsContent>
     </div>
@@ -108,6 +131,7 @@ import { NpmSnippets } from '@/snippets'
   flex: 1
 }
 .copy-button {
+  padding: var(--spacing-8);
 
   &:hover {
     background-color: transparent;

@@ -61,6 +61,11 @@ button, a {
     background-color: var(--color-linen-100);
     color: var(--color-stone-950);
   }
+
+  &[data-variant='tertiary'] {
+    background-color: transparent;
+    color: var(--color-stone-950);
+  }
 }
 
 
