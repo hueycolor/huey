@@ -7,6 +7,8 @@ const { size = 32, ...rest } = Astro.props
   
   window.addEventListener('huey:celebrate', () => {
     wheel?.classList.add('celebrate')
+
+    setTimeout(() => wheel?.classList.remove('celebrate'), 7000)
   })
 </script>
 
