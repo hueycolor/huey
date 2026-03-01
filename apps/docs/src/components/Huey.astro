@@ -2,7 +2,7 @@
 const { size = 32 } = Astro.props
 ---
 
-<svg width={size} height={size} viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg huey-mascot width={size} height={size} viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M76.8923 57.5447C74.6724 62.3055 71.5364 66.5823 67.6636 70.1311C63.7908 73.6799 59.2569 76.4311 54.3208 78.2277L40.64 40.64L76.8923 57.5447Z"
     fill="#24AD58"></path>
@@ -31,6 +31,10 @@ const { size = 32 } = Astro.props
     <rect left-eye x="25.4" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
     <rect right-eye x="49.1583" y="34.2" width="6.88" height="9.6" rx="3.44" fill="black"></rect>
   </g>
+  <g huey-eyelids>
+    <rect left-eyelid x="25.4" y="34.2" width="6.88" height="9.6" rx="3.44" fill="#FAF7F4"></rect>
+    <rect right-eyelist x="49.1583" y="34.2" width="6.88" height="9.6" rx="3.44" fill="#FAF7F4"></rect>
+  </g>
   <path
     d="M44.9745 44.3106C44.9745 44.6616 44.8873 45.021 44.7024 45.372C44.5164 45.725 44.2315 46.0687 43.8449 46.3727C43.4581 46.6768 42.9835 46.9297 42.4428 47.1058C41.9023 47.2818 41.316 47.3745 40.7192 47.3745C40.1223 47.3745 39.536 47.2818 38.9955 47.1058C38.4548 46.9297 37.9802 46.6768 37.5934 46.3727C37.2068 46.0687 36.9219 45.725 36.7359 45.372C36.5511 45.021 36.4638 44.6616 36.4638 44.3106"
     stroke="black"
@@ -39,9 +43,27 @@ const { size = 32 } = Astro.props
 </svg>
 
 <style>
+  [huey-mascot] {
+    &:hover {
+      [huey-eyes] {
+        animation-name: none;
+      }
+
+      [huey-eyelids] {
+        transform: translate(0, 6px);
+      }
+    }
+  }
+
   [huey-eyes] {
     transform-origin: 50% 50%;
     animation: blink 5s 2s ease-in-out infinite;
+  }
+
+  [huey-eyelids] {
+    transition: all 200ms
+      linear(0, 0.324 9.1%, 0.584 18.6%, 0.782 28.6%, 0.858 33.8%, 0.92 39.2%, 0.997 49.5%, 1.021 55.1%, 1.033 61%, 1.035 71.7%, 1);
+    transform: translate(0, 10px);
   }
 
   @keyframes blink {

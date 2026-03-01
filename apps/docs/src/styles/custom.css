@@ -35,7 +35,6 @@ a {
 button, a {
   background-color: transparent;
   border: none;
-  display: flex;
 
   &[huey-button] {
     align-items: center;
