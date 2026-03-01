@@ -62,9 +62,37 @@ import NpmSnippet from '@/components/NpmSnippet.vue'
 <style is:global>
   html[data-has-hero] {
     .content-panel {
-      width: var(--hc-content-width);
+      padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+    }
+
+    section.hero {
+      max-width: var(--hc-content-width);
       margin: 0 auto;
-      padding: 0;
+    }
+  }
+
+  @media (width < 940px) {
+    section.hero {
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+
+      padding-block-start: 64px;
+
+      .mascot {
+        width: min(400px, 100vw);
+        order: -1;
+      }
+
+      .content {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+
+        .snippets {
+          width: min(400px, 100vw);
+        }
+      }
     }
   }
 </style>
