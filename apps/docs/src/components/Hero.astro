@@ -60,9 +60,11 @@ import NpmSnippet from '@/components/NpmSnippet.vue'
 </style>
 
 <style is:global>
-  .content-panel {
-    width: var(--sl-content-width);
-    margin: 0 auto;
-    padding: 0;
+  html[data-has-hero] {
+    .content-panel {
+      width: var(--hc-content-width);
+      margin: 0 auto;
+      padding: 0;
+    }
   }
 </style>
