@@ -1,0 +1,156 @@
+---
+import AppIcon from '@/components/AppIcon.vue'
+import NpmSnippet from '@/components/NpmSnippet.vue'
+import Huey from '@/components/Huey.astro'
+---
+
+<section class="quick-links" data-size="boxed">
+  <div class="quick-link">
+    <Huey size={'400px'} id="snippets-mascot" />
+    <div class="npm-snippet-wrapper">
+      <NpmSnippet client:load />
+      <div class="actions">
+        <a huey-button href="/overview/installation" data-variant="primary" class="main-action"> Get Started </a>
+        <button huey-button data-variant="secondary"> Demo </button>
+      </div>
+    </div>
+  </div>
+  <a href="/overview/components/" class="quick-link">
+    <span class="icon">
+      <AppIcon icon="ph:puzzle-piece" />
+    </span>
+    <span class="title">
+      Browse Components
+      <AppIcon icon="ph:arrow-right" />
+    </span>
+    <span class="description">Check all the components and color utilities Huey provides </span>
+  </a>
+  <a href="/overview/examples" class="quick-link">
+    <span class="icon">
+      <AppIcon icon="ph:binoculars" />
+    </span>
+    <span class="title">
+      See Examples
+      <AppIcon icon="ph:arrow-right" />
+    </span>
+    <span class="description">See styled examples showing what is possible with Huey</span>
+  </a>
+</section>
+
+<style>
+  :global(.npm-snippet-wrapper .snippet-tabs) {
+    --npm-snippet-background: var(--color-beige-100);
+  }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-32);
+
+    @media (width >= 50rem) {
+    }
+
+    .quick-link {
+      position: relative;
+      padding: var(--spacing-32);
+      background-color: var(--color-linen-100);
+      border-radius: var(--radius-32);
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      gap: var(--spacing-16);
+
+      #snippets-mascot {
+        display: none;
+        position: absolute;
+        right: -220px;
+        top: 58px;
+        rotate: -18deg;
+        transform-origin: 50% 50%;
+      }
+
+      .npm-snippet-wrapper {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-16);
+
+        .actions {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-16);
+
+          .main-action {
+            flex: 1;
+          }
+
+          button[data-variant='secondary'] {
+            background-color: var(--color-beige-100);
+          }
+        }
+      }
+
+      .icon {
+        --size: 48px;
+        --spacing: var(--spacing-16);
+
+        svg {
+          height: calc(var(--size) - var(--spacing));
+          width: calc(var(--size) - var(--spacing));
+        }
+
+        height: var(--size);
+        width: var(--size);
+        border-radius: var(--radius-8);
+        background-color: var(--color-beige-100);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .title {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-8);
+        font: var(--label-lg);
+        color: var(--color-stone-950);
+
+        svg {
+          --size: 20px;
+
+          height: var(--size);
+          width: var(--size);
+        }
+      }
+
+      .description {
+        font: var(--paragraph-md);
+        color: var(--color-beige-950);
+        line-height: var(--paragraph-md-spacing);
+      }
+    }
+  }
+
+  @media (width >= 50rem) {
+    .quick-links {
+      grid-template-columns: 1fr 1fr;
+
+      .quick-link:first-child {
+        grid-column: 1 / 3;
+      }
+
+      .quick-link {
+        #snippets-mascot {
+          display: block;
+        }
+
+        .npm-snippet-wrapper {
+          padding-block: var(--spacing-32);
+          max-width: 400px;
+        }
+      }
+    }
+  }
+</style>

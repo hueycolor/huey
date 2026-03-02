@@ -126,6 +126,10 @@ html[data-has-hero] {
   .main-frame {
     padding: 0;
   }
+
+  .sl-container {
+    max-width: unset;
+  }
 }
 
 button {
@@ -212,7 +216,6 @@ starlight-menu-button {
   }
 }
 
-
 @media (width >= 72rem) {
   [data-has-sidebar][data-has-toc] .main-pane {
     width: min(
@@ -258,3 +261,13 @@ starlight-menu-button {
     right: max(0px, calc(0px + ((100vw - var(--content-max-width)) / 2)));
   }
 }
+
+section {
+  width: 100%;
+
+  &[data-size='boxed'] {
+    margin: 0 auto;
+    max-width: var(--hc-content-width);
+  }
+}
+

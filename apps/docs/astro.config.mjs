@@ -57,6 +57,7 @@ export default defineConfig({
       ThemeProvider: './src/components/ThemeProvider.astro',
       Hero: './src/components/Hero.astro',
       ThemeSelect: './src/components/ThemeSelect.astro',
+      MarkdownContent: './src/components/MarkdownContent.astro',
     },
   }), vue()],
 })

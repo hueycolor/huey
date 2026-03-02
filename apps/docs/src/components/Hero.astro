@@ -3,7 +3,7 @@ import Huey from '@/components/Huey.astro'
 import NpmSnippet from '@/components/NpmSnippet.vue'
 ---
 
-<section class="hero">
+<section class="hero" data-size="boxed">
   <div class="content">
     <h1 class="title">A composable color picker for the web</h1>
     <div class="snippets">
@@ -63,11 +63,6 @@ import NpmSnippet from '@/components/NpmSnippet.vue'
   html[data-has-hero] {
     .content-panel {
       padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
-    }
-
-    section.hero {
-      max-width: var(--hc-content-width);
-      margin: 0 auto;
     }
   }
 
