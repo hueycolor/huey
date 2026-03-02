@@ -2,13 +2,18 @@
 const { size = 32, ...rest } = Astro.props
 ---
 <script>
-  const huey = document.querySelector('#hero-mascot')
-  const wheel = huey?.querySelector('[huey-wheel]')
-  
-  window.addEventListener('huey:celebrate', () => {
-    wheel?.classList.add('celebrate')
+  document.querySelectorAll('[interactive-mascot]').forEach(mascot => {
+    const wheel = mascot.querySelector('[huey-wheel]')
 
-    setTimeout(() => wheel?.classList.remove('celebrate'), 7000)
+    window.addEventListener('huey:celebrate', () => {
+      wheel?.classList.add('celebrate')
+      mascot.classList.add('celebrating')
+
+      setTimeout(() => {
+        wheel?.classList.remove('celebrate')
+        mascot.classList.remove('celebrating')
+      }, 7000)
+    })
   })
 </script>
 
