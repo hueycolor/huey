@@ -12,6 +12,7 @@ const { title = 'Section Title', description } = Astro.props
     display: flex;
     flex-direction: column;
     gap: var(--spacing-16);
+    text-align: center;
 
     .section-title {
       color: var(--section-heading-title-color, var(--color-stone-950));
@@ -20,6 +21,15 @@ const { title = 'Section Title', description } = Astro.props
     .section-description {
       color: var(--section-heading-description-color, var(--color-stone-950));
       font: var(--paragraph-md);
+    }
+  }
+
+  @media (width >= 50rem) {
+    .section-heading {
+      .section-description,
+      .section-title {
+        text-align: start;
+      }
     }
   }
 </style>

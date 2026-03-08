@@ -2,7 +2,7 @@
 import SectionHeading from '@/components/SectionHeading.astro'
 ---
 
-<section class="component-gallery" data-size="full">
+<section class="component-gallery" data-size="wide">
   <SectionHeading
     title="All The Components you need"
     description="Huey gives you 10+ components to build the color picker of your needs and customize it to your liking"
@@ -11,9 +11,7 @@ import SectionHeading from '@/components/SectionHeading.astro'
 
 <style>
   .component-gallery {
-    width: calc(100% + clac(var(--sl-nav-pad-x) * 2));
-    margin-inline: calc(var(--sl-nav-pad-x) * -1);
-    padding: var(--spacing-64) 164px;
+    padding-block: var(--spacing-64);
     background-color: white;
   }
 </style>

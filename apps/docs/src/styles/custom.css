@@ -269,5 +269,19 @@ section {
     margin: 0 auto;
     max-width: var(--hc-content-width);
   }
+
+  &[data-size='wide'] {
+    margin-inline: calc(var(--sl-nav-pad-x) * -1);
+    padding-inline: 16px;
+    width: calc(100% + clac(var(--sl-nav-pad-x) * 2));
+  }
+}
+
+@media (width >= 72rem) {
+  section {
+    &[data-size='wide'] {
+      padding-inline: 164px;
+    }
+  }
 }
 
