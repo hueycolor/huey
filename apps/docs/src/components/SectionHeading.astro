@@ -1,0 +1,25 @@
+---
+const { title = 'Section Title', description } = Astro.props
+---
+
+<div class="section-heading">
+  <h2 class="section-title">{title}</h2>
+  <p class="section-description">{description}</p>
+</div>
+
+<style>
+  .section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+
+    .section-title {
+      color: var(--section-heading-title-color, var(--color-stone-950));
+    }
+
+    .section-description {
+      color: var(--section-heading-description-color, var(--color-stone-950));
+      font: var(--paragraph-md);
+    }
+  }
+</style>
