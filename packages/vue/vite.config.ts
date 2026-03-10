@@ -1,12 +1,14 @@
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    cssInjectedByJsPlugin(),
     dts({ tsconfigPath: './tsconfig.app.json' }),
   ],
   build: {
