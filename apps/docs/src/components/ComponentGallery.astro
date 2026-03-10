@@ -1,5 +1,6 @@
 ---
 import SectionHeading from '@/components/SectionHeading.astro'
+import SaturationArea from './Gallery/SaturationArea.vue'
 ---
 
 <section class="component-gallery" data-size="wide">
@@ -9,8 +10,10 @@ import SectionHeading from '@/components/SectionHeading.astro'
   />
   <div class="components-grid">
     <div class="component">
-      <div class="preview"></div>
-      <span class="title">Saturation Area</span>
+      <div class="preview">
+        <SaturationArea client:load />
+      </div>
+      <span class="title"> Saturation Area </span>
     </div>
     <div class="component">
       <div class="preview"></div>
@@ -69,13 +72,14 @@ import SectionHeading from '@/components/SectionHeading.astro'
         justify-content: center;
 
         .preview {
+          padding: var(--spacing-24);
+          display: flex;
+          justify-content: center;
+          align-items: center;
           height: 248px;
-          background-color: var(--color-neutral-50);
           border-radius: var(--radius-32);
           border: 1px solid var(--color-neutral-100);
-          background-color: var(--color-neutral-50);
-          opacity: 0.8;
-          background-image: radial-gradient(var(--color-neutral-500) 0.5px, var(--color-neutral-50) 0.5px);
+          background-image: radial-gradient(color-mix(in srgb, var(--color-neutral-500) 80%, transparent) 0.5px, var(--color-neutral-50) 0.5px);
           background-size: 10px 10px;
         }
 
