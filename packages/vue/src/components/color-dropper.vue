@@ -42,7 +42,17 @@ interface ColorDropperEmits {
 </script>
 
 <template>
-  <button v-if="dropper" v-bind="{ ...props }" :aria-label="$props['aria-label'] ?? 'Eye dropper button'" @click="sip">
+  <button v-if="dropper" huey-color-dropper v-bind="{ ...props }" :aria-label="$props['aria-label'] ?? 'Eye dropper button'" @click="sip">
     <slot />
   </button>
 </template>
+
+<style>
+[huey-color-dropper] {
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

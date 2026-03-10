@@ -7,7 +7,7 @@ const color = ref(hueyColor('#ff0000'))
 </script>
 
 <template>
-  <div class="hsl-sliders">
+  <div class="alpha-slider">
     <HueyRoot v-model="color">
       <AlphaSlider />
     </HueyRoot>
@@ -19,7 +19,7 @@ const color = ref(hueyColor('#ff0000'))
   --huey-slider-track-width: 100%;
 }
 
-.hsl-sliders {
+.alpha-slider {
   width: 200px;
   display: flex;
   flex-direction: column;
