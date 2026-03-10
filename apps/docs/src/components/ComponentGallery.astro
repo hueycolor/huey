@@ -2,6 +2,7 @@
 import SectionHeading from '@/components/SectionHeading.astro'
 import SaturationArea from './Gallery/SaturationArea.vue'
 import HSLSliders from './Gallery/HSLSliders.vue'
+import AlphaSlider from './Gallery/AlphaSlider.vue'
 ---
 
 <section class="component-gallery" data-size="wide">
@@ -23,7 +24,9 @@ import HSLSliders from './Gallery/HSLSliders.vue'
       <span class="title">HSL Sliders</span>
     </div>
     <div class="component">
-      <div class="preview"></div>
+      <div class="preview">
+        <AlphaSlider client:load />
+      </div>
       <span class="title">Alpha Slider</span>
     </div>
     <div class="component">
