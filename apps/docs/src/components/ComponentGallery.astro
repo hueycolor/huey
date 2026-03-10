@@ -6,6 +6,7 @@ import AlphaSlider from './Gallery/AlphaSlider.vue'
 import ColorDropper from './Gallery/ColorDropper.vue'
 import HexInput from './Gallery/HexInput.vue'
 import HSLInputs from './Gallery/HSLInputs.vue'
+import RGBInputs from './Gallery/RGBInputs.vue'
 ---
 
 <section class="component-gallery" data-size="wide">
@@ -51,7 +52,9 @@ import HSLInputs from './Gallery/HSLInputs.vue'
       <span class="title">HSL Inputs</span>
     </div>
     <div class="component">
-      <div class="preview"></div>
+      <div class="preview">
+        <RGBInputs client:load />
+      </div>
       <span class="title">RGB Inputs</span>
     </div>
     <div class="component">
