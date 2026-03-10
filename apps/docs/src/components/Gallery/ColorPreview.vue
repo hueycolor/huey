@@ -3,7 +3,7 @@ import { hueyColor } from '@hueycolor/core'
 import { ColorPreview, HueyRoot } from '@hueycolor/vue'
 import { ref } from 'vue'
 
-const color = ref(hueyColor('#ff000080'))
+const color = ref(hueyColor('#1A326380'))
 </script>
 
 <template>
