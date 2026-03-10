@@ -7,7 +7,7 @@ const color = ref(hueyColor('#ff0000'))
 </script>
 
 <template>
-  <div class="vue-component">
+  <div class="saturation-area">
     <HueyRoot v-model="color">
       <SaturationArea />
     </HueyRoot>
