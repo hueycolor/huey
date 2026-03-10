@@ -112,6 +112,8 @@ function handleTouchEnd() {
 }
 
 function handleKeyDown(e: KeyboardEvent) {
+  e.preventDefault()
+
   const direction = resolveArrowDirection(e)
   const step = e.shiftKey ? 10 : 1
 
