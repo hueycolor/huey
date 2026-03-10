@@ -7,11 +7,83 @@ import SectionHeading from '@/components/SectionHeading.astro'
     title="All The Components you need"
     description="Huey gives you 10+ components to build the color picker of your needs and customize it to your liking"
   />
+  <div class="components-grid">
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Saturation Area</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">HSL Sliders</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Alpha Slider</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Eye/Color Dropper</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Hex Input</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">HSL Inputs</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">RGB Inputs</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Alpha Input</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Color Swatch</span>
+    </div>
+    <div class="component">
+      <div class="preview"></div>
+      <span class="title">Color Preview</span>
+    </div>
+  </div>
 </section>
 
 <style>
   .component-gallery {
     padding-block: var(--spacing-64);
     background-color: white;
+
+    .components-grid {
+      padding-block: var(--spacing-40);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: var(--spacing-48) var(--spacing-24);
+
+      .component {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-16);
+        justify-content: center;
+
+        .preview {
+          height: 248px;
+          background-color: var(--color-neutral-50);
+          border-radius: var(--radius-32);
+          border: 1px solid var(--color-neutral-100);
+          background-color: var(--color-neutral-50);
+          opacity: 0.8;
+          background-image: radial-gradient(var(--color-neutral-500) 0.5px, var(--color-neutral-50) 0.5px);
+          background-size: 10px 10px;
+        }
+
+        .title {
+          text-align: center;
+          font: var(--label-lg);
+        }
+      }
+    }
   }
 </style>
