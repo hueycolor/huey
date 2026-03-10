@@ -9,6 +9,7 @@ import HSLInputs from './Gallery/HSLInputs.vue'
 import RGBInputs from './Gallery/RGBInputs.vue'
 import AlphaInput from './Gallery/AlphaInput.vue'
 import ColorSwatch from './Gallery/ColorSwatch.vue'
+import ColorPreview from './Gallery/ColorPreview.vue'
 ---
 
 <section class="component-gallery" data-size="wide">
@@ -72,7 +73,9 @@ import ColorSwatch from './Gallery/ColorSwatch.vue'
       <span class="title">Color Swatch</span>
     </div>
     <div class="component">
-      <div class="preview"></div>
+      <div class="preview">
+        <ColorPreview client:load />
+      </div>
       <span class="title">Color Preview</span>
     </div>
   </div>
