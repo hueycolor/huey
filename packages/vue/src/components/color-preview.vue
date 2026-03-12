@@ -56,7 +56,7 @@ export interface ColorPreviewProps {
   width: 50%;
   height: 100%;
   opacity: v-bind(tilesOpacity);
-  background: url(data:image/svg+xml;utf8,%3Csvg%20width%3D%226%22%20height%3D%226%22%20viewBox%3D%220%200%206%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200H3V3H0V0Z%22%20fill%3D%22%23E1E1E1%22/%3E%3Cpath%20d%3D%22M3%200H6V3H3V0Z%22%20fill%3D%22white%22/%3E%3Cpath%20d%3D%22M3%203H6V6H3V3Z%22%20fill%3D%22%23E1E1E1%22/%3E%3Cpath%20d%3D%22M0%203H3V6H0V3Z%22%20fill%3D%22white%22/%3E%3C/svg%3E%0A)
+  background: url("data:image/svg+xml,<svg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 0H3V3H0V0Z' fill='%23E1E1E1'/><path d='M3 0H6V3H3V0Z' fill='white'/><path d='M3 3H6V6H3V3Z' fill='%23E1E1E1'/><path d='M0 3H3V6H0V3Z' fill='white'/></svg>")
 }
 
 [huey-preview][data-split-view="false"]::before {
