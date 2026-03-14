@@ -152,6 +152,7 @@ export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes
     type="text"
     autocomplete="off"
     spellcheck="false"
+    dir="ltr"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

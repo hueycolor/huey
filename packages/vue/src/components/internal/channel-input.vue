@@ -9,5 +9,5 @@ export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes
 </script>
 
 <template>
-  <input huey-input v-bind="$props" autocomplete="off" spellcheck="false">
+  <input huey-input v-bind="$props" autocomplete="off" spellcheck="false" dir="ltr">
 </template>
