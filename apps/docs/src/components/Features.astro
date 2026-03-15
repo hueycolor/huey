@@ -1,0 +1,71 @@
+---
+import Icon from './icons/Icon.astro'
+import type { IconName } from './icons/types'
+
+const FEATURES: { label: string; icon: IconName }[] = [
+  {
+    label: 'A11y Support',
+    icon: 'a11y',
+  },
+  {
+    label: 'Mobile Friendly',
+    icon: 'phone',
+  },
+  {
+    label: 'Color Accurate',
+    icon: 'sip',
+  },
+  {
+    label: 'Wide Gamut',
+    icon: 'swatch',
+  },
+  {
+    label: 'Composable UI',
+    icon: 'lego',
+  },
+  {
+    label: 'Fully Typed',
+    icon: 'shield',
+  },
+]
+---
+
+<section data-size="boxed" class="features">
+  {
+    FEATURES.map(({ label, icon }) => (
+      <div class="feature">
+        <Icon name={icon} />
+        <span>{label}</span>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    padding-block: var(--spacing-64);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--spacing-64) var(--spacing-40);
+
+    .feature {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--spacing-16);
+      font: var(--label-xl);
+    }
+  }
+
+  @media (width >= 50rem) {
+    .features {
+      .feature {
+        flex-direction: row;
+      }
+    }
+  }
+</style>

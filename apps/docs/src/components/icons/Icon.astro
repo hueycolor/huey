@@ -1,0 +1,20 @@
+---
+import A11y from './A11y.astro'
+import Lego from './Lego.astro'
+import Phone from './Phone.astro'
+import Shield from './Shield.astro'
+import Sip from './Sip.astro'
+import Swatch from './Swatch.astro'
+import type { IconName } from './types'
+
+const icons: Record<IconName, any> = { a11y: A11y, lego: Lego, phone: Phone, shield: Shield, sip: Sip, swatch: Swatch }
+
+interface Props {
+  name: IconName
+}
+
+const { name } = Astro.props
+const Component = icons[name]
+---
+
+<Component />
