@@ -16,9 +16,12 @@ import Huey from '@/components/Huey.astro'
     </div>
   </div>
   <a href="/overview/components/" class="quick-link">
-    <span class="icon">
-      <AppIcon icon="ph:puzzle-piece" />
-    </span>
+    <div class="icon">
+      <span>
+        <AppIcon icon="ph:puzzle-piece" />
+        <AppIcon icon="ph:puzzle-piece" />
+      </span>
+    </div>
     <span class="title">
       Browse Components
       <AppIcon icon="ph:arrow-right" />
@@ -26,9 +29,12 @@ import Huey from '@/components/Huey.astro'
     <span class="description">Check all the components and color utilities Huey provides </span>
   </a>
   <a href="/overview/examples" class="quick-link">
-    <span class="icon">
-      <AppIcon icon="ph:binoculars" />
-    </span>
+    <div class="icon">
+      <span>
+        <AppIcon icon="ph:binoculars" />
+        <AppIcon icon="ph:binoculars" />
+      </span>
+    </div>
     <span class="title">
       See Examples
       <AppIcon icon="ph:arrow-right" />
@@ -105,9 +111,22 @@ import Huey from '@/components/Huey.astro'
         --size: 48px;
         --spacing: var(--spacing-16);
 
+        position: relative;
+        overflow: hidden;
+
+        span {
+          position: absolute;
+          top: 0;
+          display: inline-flex;
+          flex-direction: column;
+          width: 100%;
+          transition: transform 250ms
+            linear(0, 0.341 7.8%, 0.609 16.1%, 0.807 25%, 0.882 29.8%, 0.941 34.8%, 1.007 44%, 1.035 54.6%, 1.035 63.2%, 1.006 86.3%, 1);
+        }
         svg {
-          height: calc(var(--size) - var(--spacing));
-          width: calc(var(--size) - var(--spacing));
+          height: var(--size);
+          width: var(--size);
+          padding: var(--spacing-8);
         }
 
         height: var(--size);
@@ -138,6 +157,14 @@ import Huey from '@/components/Huey.astro'
         font: var(--paragraph-md);
         color: var(--color-beige-950);
         line-height: var(--paragraph-md-spacing);
+      }
+
+      &:hover {
+        .icon {
+          span {
+            transform: translateY(calc(-1 * var(--size)));
+          }
+        }
       }
     }
   }
