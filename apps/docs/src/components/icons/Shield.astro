@@ -10,11 +10,17 @@
     stroke-width="4"
     stroke-linecap="round"
     stroke-linejoin="round"></path>
-  <path d="M22 34L28 40L42 26" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path data-checkmark d="M22 34L28 40L42 26" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
 
 <style is:global>
-  .feature:hover [data-icon='shield'] {
-    background-color: red;
+  [data-icon='shield'] [data-checkmark] {
+    stroke-dasharray: 32;
+    stroke-dashoffset: 32;
+    transition: stroke-dashoffset 350ms linear(0, 0.341 7.8%, 0.609 16.1%, 0.807 25%, 0.882 29.8%, 0.941 34.8%, 1.007 44%, 1.035 54.6%, 1.035 63.2%, 1.006 86.3%, 1);
+  }
+
+  .feature:hover [data-icon='shield'] [data-checkmark] {
+    stroke-dashoffset: 0;
   }
 </style>
