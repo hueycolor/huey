@@ -4,17 +4,36 @@
 
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="phone">
   <path
+    data-frame
     d="M48 54V10C48 7.79086 46.2091 6 44 6L20 6C17.7909 6 16 7.79086 16 10L16 54C16 56.2091 17.7909 58 20 58H44C46.2091 58 48 56.2091 48 54Z"
     fill="var(--color-beige-100)"
     stroke="black"
     stroke-width="4"
     stroke-linecap="round"
     stroke-linejoin="round"></path>
-  <path d="M24 14H40" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path data-notch d="M24 14H40" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
 
 <style is:global>
+  [data-icon='phone'] {
+    transition: transform 250ms ease-in-out;
+  }
+
+  [data-frame] {
+    transition: d 350ms linear(0, 0.341 7.8%, 0.609 16.1%, 0.807 25%, 0.882 29.8%, 0.941 34.8%, 1.007 44%, 1.035 54.6%, 1.035 63.2%, 1.006 86.3%, 1);
+  }
+
+  [data-notch] {
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+    transition:
+      transform 250ms linear(0, 0.341 7.8%, 0.609 16.1%, 0.807 25%, 0.882 29.8%, 0.941 34.8%, 1.007 44%, 1.035 54.6%, 1.035 63.2%, 1.006 86.3%, 1),
+      opacity 350ms ease-in-out;
+  }
+
   .feature:hover [data-icon='phone'] {
-    background-color: red;
+    [data-frame] {
+      d: path('M56 54V10C56 7.79086 54.2091 6 52 6L12 6C9.79086 6 8 7.79086 8 10L8 54C8 56.2091 9.79086 58 12 58H52C54.2091 58 56 56.2091 56 54Z');
+    }
   }
 </style>
