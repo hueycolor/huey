@@ -54,7 +54,6 @@ const FEATURES: { label: string; icon: IconName }[] = [
     .feature {
       display: flex;
       align-items: center;
-      justify-content: center;
       flex-direction: column;
       gap: var(--spacing-16);
       font: var(--label-xl);
@@ -65,6 +64,10 @@ const FEATURES: { label: string; icon: IconName }[] = [
     .features {
       .feature {
         flex-direction: row;
+
+        span {
+          flex: 1;
+        }
       }
     }
   }

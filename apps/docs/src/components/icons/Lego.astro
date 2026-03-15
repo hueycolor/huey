@@ -2,7 +2,7 @@
 
 ---
 
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="lego">
   <path d="M60 19V35L20 55L4 47V31L13.0475 26.475" fill="var(--color-beige-100)"></path>
   <path d="M60 19V35L20 55L4 47V31L13.0475 26.475" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
   <path d="M20 39V55" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -24,3 +24,9 @@
     stroke-linecap="round"
     stroke-linejoin="round"></path>
 </svg>
+
+<style is:global>
+  .feature:hover [data-icon='lego'] {
+    background-color: red;
+  }
+</style>

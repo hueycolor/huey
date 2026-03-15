@@ -2,7 +2,7 @@
 
 ---
 
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="a11y">
   <path
     d="M32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56Z"
     fill="var(--color-beige-100)"
@@ -12,8 +12,35 @@
     stroke-linejoin="round"></path>
   <path d="M32 24C34.2091 24 36 22.2091 36 20C36 17.7909 34.2091 16 32 16C29.7909 16 28 17.7909 28 20C28 22.2091 29.7909 24 32 24Z" fill="black"
   ></path>
-  <path d="M20 28H32" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M32 28H44" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path data-arm="left" d="M20 28H32" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path data-arm="right" d="M32 28H44" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
   <path d="M40 46L32 34L24 46" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
   <path d="M32 28V34" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
+
+<style is:global>
+  [data-icon='a11y'] {
+    [data-arm] {
+      transform-box: fill-box;
+      transition: rotate 300ms
+        linear(0, 0.324 9.1%, 0.584 18.6%, 0.782 28.6%, 0.858 33.8%, 0.92 39.2%, 0.997 49.5%, 1.021 55.1%, 1.033 61%, 1.035 71.7%, 1);
+    }
+    [data-arm='left'] {
+      transform-origin: right center;
+    }
+    [data-arm='right'] {
+      transform-origin: left center;
+    }
+  }
+
+  .feature:hover [data-icon='a11y'] {
+    --rotation-degree: 16deg;
+
+    [data-arm='left'] {
+      rotate: var(--rotation-degree);
+    }
+    [data-arm='right'] {
+      rotate: calc(var(--rotation-degree) * -1);
+    }
+  }
+</style>

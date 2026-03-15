@@ -2,7 +2,7 @@
 
 ---
 
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="shield">
   <path
     d="M54 28V14C54 13.4696 53.7893 12.9609 53.4142 12.5858C53.0391 12.2107 52.5304 12 52 12H12C11.4696 12 10.9609 12.2107 10.5858 12.5858C10.2107 12.9609 10 13.4696 10 14V28C10 52 32 58 32 58C32 58 54 52 54 28Z"
     fill="var(--color-beige-100)"
@@ -12,3 +12,9 @@
     stroke-linejoin="round"></path>
   <path d="M22 34L28 40L42 26" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
+
+<style is:global>
+  .feature:hover [data-icon='shield'] {
+    background-color: red;
+  }
+</style>

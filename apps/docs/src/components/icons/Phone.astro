@@ -2,7 +2,7 @@
 
 ---
 
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="phone">
   <path
     d="M48 54V10C48 7.79086 46.2091 6 44 6L20 6C17.7909 6 16 7.79086 16 10L16 54C16 56.2091 17.7909 58 20 58H44C46.2091 58 48 56.2091 48 54Z"
     fill="var(--color-beige-100)"
@@ -12,3 +12,9 @@
     stroke-linejoin="round"></path>
   <path d="M24 14H40" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
+
+<style is:global>
+  .feature:hover [data-icon='phone'] {
+    background-color: red;
+  }
+</style>

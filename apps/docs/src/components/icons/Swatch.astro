@@ -2,7 +2,7 @@
 
 ---
 
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-icon="swatch">
   <path d="M58 39.0474V51.9999C58 52.5303 57.7893 53.039 57.4142 53.4141C57.0391 53.7892 56.5304 53.9999 56 53.9999H19" fill="var(--color-beige-100)"
   ></path>
   <path
@@ -30,3 +30,9 @@
   <path d="M19 48C20.6569 48 22 46.6569 22 45C22 43.3431 20.6569 42 19 42C17.3431 42 16 43.3431 16 45C16 46.6569 17.3431 48 19 48Z" fill="black"
   ></path>
 </svg>
+
+<style is:global>
+  .feature:hover [data-icon='swatch'] {
+    background-color: red;
+  }
+</style>
