@@ -10,8 +10,8 @@ import Huey from '@/components/Huey.astro'
     <div class="npm-snippet-wrapper">
       <NpmSnippet client:load />
       <div class="actions">
-        <a huey-button href="/overview/installation" data-variant="primary" class="main-action"> Get Started </a>
-        <button huey-button data-variant="secondary"> Demo </button>
+        <a hc-button href="/overview/installation" data-variant="primary" class="main-action"> Get Started </a>
+        <button hc-button data-variant="secondary"> Demo </button>
       </div>
     </div>
   </div>
@@ -103,6 +103,10 @@ import Huey from '@/components/Huey.astro'
 
           button[data-variant='secondary'] {
             background-color: var(--color-beige-100);
+
+            &:hover {
+              background-color: color-mix(in srgb, var(--color-linen-950) 4%, transparent);
+            }
           }
         }
       }

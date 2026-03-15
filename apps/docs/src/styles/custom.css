@@ -37,7 +37,7 @@ button, a {
   background-color: transparent;
   border: none;
 
-  &[huey-button] {
+  &[hc-button] {
     align-items: center;
     background-color: transparent;
     border-radius: var(--radius-12);
@@ -110,6 +110,10 @@ body > a {
   &[data-variant="secondary"] {
     background-color: var(--color-linen-100);
     color: var(--color-stone-950);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent);
+    }
   }
   
   &[data-variant="tertiary"] {

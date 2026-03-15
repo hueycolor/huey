@@ -53,7 +53,7 @@ watch(hasCopiedCommand, () => {
         <span class="snippet">
           {{ snippet.package }}
         </span>
-        <button class="copy-button" huey-button @click="copyToClipboard">
+        <button class="copy-button" hc-button @click="copyToClipboard">
           <AppIcon v-if="hasCopiedCommand" icon="feather:check" style="font-size: 20px;" />
           <AppIcon v-else icon="feather:copy" style="font-size: 20px;" />
         </button>
