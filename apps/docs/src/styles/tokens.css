@@ -170,4 +170,6 @@
   --docs-md-spacing: -0.011em;
   --docs-sm: 400 14px 'DM Mono', monospace;
   --docs-sm-spacing: -0.006em;
+  --docs-xs: 400 12px 'DM Mono', monospace;
+  --docs-xs-spacing: -0.004em;
 }

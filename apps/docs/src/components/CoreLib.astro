@@ -1,5 +1,6 @@
 ---
 import CoreLibSnippets from '@/components/CoreLibSnippets.vue'
+import CoreLibCodePreview from '@/components/CoreLibCodePreview.vue'
 import SectionHeading from '@/components/SectionHeading.astro'
 ---
 
@@ -11,7 +12,9 @@ import SectionHeading from '@/components/SectionHeading.astro'
     </SectionHeading>
     <CoreLibSnippets client:load />
   </div>
-  <div class="code">Code</div>
+  <div class="code">
+    <CoreLibCodePreview client:load />
+  </div>
 </section>
 
 <style>
@@ -26,7 +29,6 @@ import SectionHeading from '@/components/SectionHeading.astro'
 
     .info {
       flex: 1;
-      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: var(--spacing-24);
@@ -34,11 +36,20 @@ import SectionHeading from '@/components/SectionHeading.astro'
 
     .code {
       width: 100%;
-      max-width: 600px;
+    }
+
+    .info,
+    .code {
+      max-width: 100%;
     }
 
     @media (width >= 88rem) {
       flex-direction: row;
+
+      .info,
+      .code {
+        max-width: 600px;
+      }
     }
   }
 </style>
