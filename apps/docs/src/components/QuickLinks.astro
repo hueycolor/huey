@@ -1,6 +1,6 @@
 ---
 import AppIcon from '@/components/AppIcon.vue'
-import NpmSnippet from '@/components/NpmSnippet.vue'
+import UiLibSnippets from '@/components/UiLibSnippets.vue'
 import Huey from '@/components/Huey.astro'
 ---
 
@@ -8,7 +8,7 @@ import Huey from '@/components/Huey.astro'
   <div class="quick-link">
     <Huey size={'400px'} id="snippets-mascot" interactive-mascot />
     <div class="npm-snippet-wrapper">
-      <NpmSnippet client:load />
+      <UiLibSnippets client:load />
       <div class="actions">
         <a hc-button href="/overview/installation" data-variant="primary" class="main-action"> Get Started </a>
         <button hc-button data-variant="secondary"> Demo </button>
