@@ -173,3 +173,12 @@
   --docs-xs: 400 12px 'DM Mono', monospace;
   --docs-xs-spacing: -0.004em;
 }
+
+@media (width < 50rem) {
+  :root {
+    --title-h1: 400 40px 'Cubano', sans-serif;
+    --title-h2: 400 32px 'Cubano', sans-serif;
+    --title-h3: 400 28px 'Cubano', sans-serif;
+    --title-h4: 400 24px 'Cubano', sans-serif;
+  }
+}

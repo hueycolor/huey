@@ -60,7 +60,7 @@ watch(hasCopiedCommand, () => {
 
 <style scoped>
 .snippet {
-  font-family: 'DM Mono';
+  font: var(--docs-sm);
   display: flex;
   height: fit-content;
   flex: 1;
@@ -73,6 +73,12 @@ watch(hasCopiedCommand, () => {
   &:hover {
     background-color: transparent;
     cursor: pointer;
+  }
+}
+
+@media(width >= 50rem) {
+  .snippet {
+    font: var(--docs-md);
   }
 }
 </style>
