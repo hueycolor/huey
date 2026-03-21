@@ -1,10 +1,10 @@
 ---
-const { title = 'Section Title', description } = Astro.props
+const { color } = Astro.props
 ---
 
-<div class="section-heading">
-  <h2 class="section-title">{title}</h2>
-  <p class="section-description">{description}</p>
+<div class="section-heading" style={color ? `--text-color: ${color}` : undefined}>
+  <h2 class="section-title"><slot name="title" /></h2>
+  <p class="section-description"><slot name="description" /></p>
 </div>
 
 <style>
@@ -16,11 +16,11 @@ const { title = 'Section Title', description } = Astro.props
 
     .section-title {
       text-wrap: pretty;
-      color: var(--section-heading-title-color, var(--color-stone-950));
+      color: var(--text-color, var(--section-heading-title-color, var(--color-stone-950)));
     }
 
     .section-description {
-      color: var(--section-heading-description-color, var(--color-stone-950));
+      color: var(--text-color, var(--section-heading-description-color, var(--color-stone-950)));
       font: var(--paragraph-md);
     }
   }

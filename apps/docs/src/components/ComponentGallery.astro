@@ -13,10 +13,10 @@ import ColorPreview from './gallery/ColorPreview.vue'
 ---
 
 <section class="component-gallery" data-size="wide">
-  <SectionHeading
-    title="All The Components you need"
-    description="Huey gives you 10+ components to build the color picker of your needs and customize it to your liking"
-  />
+  <SectionHeading>
+    <Fragment slot="title">All The Components you need</Fragment>
+    <Fragment slot="description">Huey gives you 10+ components to build the color picker of your needs and customize it to your liking</Fragment>
+  </SectionHeading>
   <div class="components-grid">
     <div class="component">
       <div class="preview">
