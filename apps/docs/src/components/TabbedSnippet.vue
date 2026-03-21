@@ -5,10 +5,13 @@ import { ref } from 'vue'
 const props = withDefaults(defineProps<{
   tabs: Tab[]
   defaultValue?: string
-  indicatorColor?: string
+  indicatorBg?: string
+  indicatorFg?: string
   backgroundColor?: string
+  foregroundColor?: string
+  triggerColor?: string
 }>(), {
-  indicatorColor: 'var(--color-grass-8)',
+  indicatorFg: 'var(--color-neutral-950)',
   backgroundColor: 'var(--color-linen-100)',
 })
 
@@ -28,7 +31,10 @@ export interface Tab {
     class="snippet-tabs"
     :style="{
       '--snippet-bg': backgroundColor,
-      '--snippet-indicator': indicatorColor,
+      '--snippet-fg': foregroundColor,
+      '--snippet-indicator-bg': indicatorBg,
+      '--snippet-indicator-fg': indicatorFg,
+      '--snippet-trigger-color': triggerColor,
     }"
   >
     <TabsList class="tabs-list">
@@ -87,20 +93,27 @@ export interface Tab {
   .indicator {
     width: 100%;
     height: 100%;
-    background-color: var(--snippet-indicator);
+    background-color: var(--snippet-indicator-bg);
     border-radius: inherit;
+    color: var(--snippet-indicator-fg);
   }
 
   .trigger {
     display: flex;
     align-items: center;
     gap: var(--spacing-4);
-    text-transform: capitalize;
     cursor: pointer;
     z-index: 1;
     padding: var(--spacing-8) var(--spacing-16);
     border-radius: var(--radius-12) var(--radius-12) 0 0;
     background-color: transparent;
+    color: var(--snippet-trigger-color);
+    opacity: 0.7;
+    transition: opacity 150ms ease;
+
+    &[data-state='active'] {
+      opacity: 1;
+    }
   }
 }
 
@@ -118,6 +131,7 @@ export interface Tab {
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
+  color: var(--snippet-fg);
 
   &[data-state='inactive'] {
     display: none;

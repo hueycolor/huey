@@ -1,18 +1,39 @@
 ---
+import CoreLibSnippets from '@/components/CoreLibSnippets.vue'
 import SectionHeading from '@/components/SectionHeading.astro'
 ---
 
 <section class="core-lib" data-size="wide">
-  <SectionHeading color="var(--color-neutral-50)">
-    <Fragment slot="title">Not Just UI</Fragment>
-    <Fragment slot="description">Huey also offers a <u>framework-agnostic utility library</u> for color manipulation</Fragment>
-  </SectionHeading>
+  <div class="info">
+    <SectionHeading color="var(--color-neutral-50)">
+      <Fragment slot="title">Not Just UI</Fragment>
+      <Fragment slot="description">Huey also offers a <u>framework-agnostic utility library</u> for color manipulation</Fragment>
+    </SectionHeading>
+    <CoreLibSnippets client:load />
+  </div>
+  <div class="code">Code</div>
 </section>
 
 <style>
   .core-lib {
+    display: flex;
+    gap: var(--spacing-24);
+    justify-content: space-between;
     padding-block: var(--spacing-64);
     background-color: var(--color-neutral-950);
     color: var(--color-neutral-50);
+
+    .info {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-24);
+    }
+
+    .code {
+      width: 100%;
+      max-width: 600px;
+    }
   }
 </style>

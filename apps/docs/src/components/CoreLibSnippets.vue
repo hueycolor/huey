@@ -2,16 +2,11 @@
 import { ref, watch } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import TabbedSnippet from '@/components/TabbedSnippet.vue'
-import { uiLibSnippets } from '@/snippets'
+import { coreLibSnippets } from '@/snippets'
 
 const CLEAR_COPY_AFTER = 3000 // ms
 
-const frameworkIcons: Record<string, string> = {
-  vue: 'ri:vuejs-line',
-  svelte: 'ri:svelte-line',
-}
-
-const tabs = uiLibSnippets.map(snippet => ({ label: snippet.name, value: snippet.package }))
+const tabs = coreLibSnippets.map(snippet => ({ label: snippet.name, value: snippet.package }))
 const hasCopiedCommand = ref(false)
 
 async function copyToClipboard(text: string) {
@@ -37,13 +32,11 @@ watch(hasCopiedCommand, () => {
 <template>
   <TabbedSnippet
     :tabs="tabs"
-    background-color="var(--npm-snippet-background, var(--color-linen-100))"
+    background-color="var(--color-zinc-800)"
+    foreground-color="var(--color-stone-50)"
   >
     <template #trigger="{ tab }">
-      <AppIcon :icon="frameworkIcons[tab.label]" style="font-size: 20px;" />
-      <span style="text-transform: capitalize;">
-        {{ tab.label }}
-      </span>
+      {{ tab.label }}
     </template>
     <template #content="{ tab }">
       <AppIcon icon="feather:chevron-right" style="font-size: 20px;" />
@@ -59,6 +52,19 @@ watch(hasCopiedCommand, () => {
 </template>
 
 <style scoped>
+:deep(.tabs-list) {
+  margin-bottom: -1px;
+}
+
+:deep(.content-wrapper) {
+  border: 1px solid var(--color-zinc-700);
+}
+
+:deep(.indicator-wrapper) {
+  border: 1px solid var(--color-zinc-700);
+  border-bottom: unset;
+}
+
 .snippet {
   font-family: 'DM Mono';
   display: flex;
