@@ -1,0 +1,23 @@
+---
+import SectionHeading from '@/components/SectionHeading.astro'
+import Sandbox from '@/components/Sandbox.vue'
+---
+
+<section class="playground" data-size="boxed">
+  <SectionHeading alignment="center">
+    <Fragment slot="title">Your layout, Your styles</Fragment>
+    <Fragment slot="description">Huey gives you the freedom to compose your own color picker</Fragment>
+  </SectionHeading>
+  <Sandbox client:only />
+</section>
+
+<style>
+  .playground {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-40);
+    padding-block: var(--spacing-64);
+  }
+</style>
