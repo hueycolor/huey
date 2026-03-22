@@ -210,6 +210,9 @@ watch(hasCopied, () => {
 }
 
 .tab-content {
+  overflow-x: scroll;
+  flex: 1;
+
   &[data-state='inactive'] {
     display: none;
   }
