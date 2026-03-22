@@ -53,14 +53,21 @@ export interface Tab {
       </TabsTrigger>
     </TabsList>
     <div class="content-wrapper">
-      <TabsContent
-        v-for="tab in tabs"
-        :key="tab.value"
-        class="tab-content"
-        :value="tab.value"
-      >
-        <slot name="content" :tab="tab" :value="tab.value" />
-      </TabsContent>
+      <template v-if="$slots.panel">
+        <div class="tab-content">
+          <slot name="panel" :selected-tab="selectedTab" />
+        </div>
+      </template>
+      <template v-else>
+        <TabsContent
+          v-for="tab in tabs"
+          :key="tab.value"
+          class="tab-content"
+          :value="tab.value"
+        >
+          <slot name="content" :tab="tab" :value="tab.value" />
+        </TabsContent>
+      </template>
     </div>
   </TabsRoot>
 </template>
