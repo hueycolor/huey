@@ -54,11 +54,14 @@ export interface ColorSwatchProps extends /* @vue-ignore */ AriaAttributes {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 [huey-swatch-color] {
+  --huey-swatch-color-size: 16px;
+
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: var(--huey-swatch-color-size);
+  height: var(--huey-swatch-color-size);
   background-color: var(--swatch-color);
   border-radius: 4px;
 }

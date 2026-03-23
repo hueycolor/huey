@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { hueyColor } from '@hueycolor/core'
-import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorPreview, GreenInput, HexInput, HueInput, HueSlider, HueyRoot, LightnessInput, LightnessSlider, RedInput, SaturationArea, SaturationInput, SaturationSlider } from '@hueycolor/vue'
+import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorPreview, ColorSwatch, GreenInput, HexInput, HueInput, HueSlider, HueyRoot, LightnessInput, LightnessSlider, RedInput, SaturationArea, SaturationInput, SaturationSlider } from '@hueycolor/vue'
 import { ref } from 'vue'
 
 const color = ref(hueyColor('#acff00'))
+const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
 </script>
 
 <template>
@@ -21,41 +22,36 @@ const color = ref(hueyColor('#acff00'))
           <AlphaSlider />
         </div>
       </div>
-      <ColorSwatch :swatch="['hsl(200, 10%, 50%)', '#00ff00', '#0000ff']" />
-      <label for="hue">
-        <span>Hue:</span>
-        <HueInput id="hue" />
-      </label>
-      <label for="saturation">
-        <span>Saturation:</span>
-        <SaturationInput id="saturation" />
-      </label>
-      <label for="lightness">
-        <span>Lightness:</span>
-        <LightnessInput />
-      </label>
-      <label for="alpha">
-        <span>Alpha:</span>
-        <AlphaInput />
-      </label>
-      <div class="">
-        <label for="red">
-          <span>Red:</span>
-          <RedInput />
-        </label>
-        <label for="green">
-          <span>Green:</span>
-          <GreenInput />
-        </label>
-        <label for="blue">
-          <span>Blue:</span>
-          <BlueInput />
-        </label>
+      <div class="inputs-wrapper">
+        <select v-model="colorFormat" name="color-format" data-color-format>
+          <option value="hex">
+            Hex
+          </option>
+          <option value="rgb">
+            RGB
+          </option>
+          <option value="hsl">
+            HSL
+          </option>
+        </select>
+        <div class="inputs">
+          <HexInput v-if="colorFormat === 'hex'" id="hex-input" />
+          <template v-if="colorFormat === 'hsl'">
+            <HueInput id="hue" />
+            <SaturationInput id="saturation" />
+            <LightnessInput />
+          </template>
+          <template v-if="colorFormat === 'rgb'">
+            <RedInput />
+            <GreenInput />
+            <BlueInput />
+          </template>
+          <AlphaInput data-alpha-input />
+        </div>
       </div>
-      <label for="hex">
-        <span>Hex:</span>
-        <HexInput />
-      </label>
+      <div class="swatches">
+        <ColorSwatch :swatch="['#FF3B30', '#FF6B2D', '#FF9500', '#FFC42D', '#FFEA00', '#A8E62E', '#34C759', '#2DD4A8', '#00C7E6', '#0A84FF', '#3634DB', '#5E5CE6', '#AF52DE', '#E040A0', '#FF2D55', '#FF6482', '#FF8FAB', '#FFB3C6']" />
+      </div>
     </HueyRoot>
   </div>
 </template>
@@ -68,10 +64,62 @@ const color = ref(hueyColor('#acff00'))
   background-color: #2C2C2C;
   border-radius: var(--radius-16);
 
-  [huey-input] {
-    color: white;
-    background-color: #383838;
-    border: none;
+  .inputs-wrapper {
+    display: flex;
+    gap: var(--spacing-8);
+    padding: var(--spacing-16);
+
+    [data-color-format] {
+      background-color: transparent;
+      border: 1px solid #383838;
+      border-radius: var(--radius-4);
+      color: white;
+      font-size: 12px;
+      height: 24px;
+      padding-inline-start: var(--spacing-4);
+    }
+
+    [huey-input] {
+      color: white;
+      background-color: #383838;
+      border: none;
+      height: 24px;
+      font-size: 12px;
+      padding-inline: var(--spacing-4);
+      width: fit-content;
+      min-width: 0;
+      width: 100%;
+      border-radius: 0;
+    }
+
+    .inputs {
+      flex: 1;
+      display: flex;
+
+      :first-child {
+        border-start-start-radius: var(--radius-4);
+        border-end-start-radius: var(--radius-4);
+      }
+
+      :last-child {
+        border-start-end-radius: var(--radius-4);
+        border-end-end-radius: var(--radius-4);
+      }
+
+      :not(:first-child) {
+        border-inline-start: 2px solid #2C2C2C;
+      }
+
+      [data-alpha-input] {
+        width: 48px;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .swatches {
+    border-block-start: 1px solid #383838;
+    padding: var(--spacing-16);
   }
 
   .area {
