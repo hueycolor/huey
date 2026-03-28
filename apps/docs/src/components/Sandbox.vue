@@ -1,14 +1,31 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import AbodePicker from '@/components/playground-pickers/AbodePicker.vue'
+import CromelPicker from '@/components/playground-pickers/CromelPicker.vue'
 import LigmaPicker from './playground-pickers/LigmaPicker.vue'
+
+const index = ref(0)
+
+function changePickers() {
+  if (index.value === 2) {
+    index.value = 0
+
+    return
+  }
+
+  index.value += 1
+}
 </script>
 
 <template>
-  <div class="sandbox">
+  <div class="sandbox" @click="changePickers">
     <div class="">
       Tabs
     </div>
     <div class="pickers">
-      <LigmaPicker />
+      <LigmaPicker v-if="index === 0" />
+      <AbodePicker v-if="index === 1" />
+      <CromelPicker v-if="index === 2" />
     </div>
     <span class="hint">Wave your wand to change the color picker style</span>
   </div>
