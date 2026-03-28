@@ -2,10 +2,11 @@
 import type { ColorSliderProps } from '@components/internal/channel-slider.vue'
 import ChannelSlider from '@components/internal/channel-slider.vue'
 import { useHueyContext } from '@composables/use-huey-context'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 defineProps<LightnessSliderProps>()
 
+const attrs = useAttrs()
 const { hue, saturation, lightness } = useHueyContext()
 
 const thumbBg = computed(() => {
@@ -13,7 +14,9 @@ const thumbBg = computed(() => {
 })
 
 const trackBg = computed(() => {
-  return `linear-gradient(to right, #000, hsl(${hue.value}, ${saturation.value}%, 50%), #fff)`
+  const dir = attrs.orientation === 'vertical' ? 'to top' : 'to right'
+
+  return `linear-gradient(${dir}, #000, hsl(${hue.value}, ${saturation.value}%, 50%), #fff)`
 })
 </script>
 
@@ -26,7 +29,7 @@ export interface LightnessSliderProps extends /* @vue-ignore */ ColorSliderProps
     v-bind="{ ...$props }"
     v-model="lightness"
     :aria-label="$props['aria-label'] ?? 'Lightness slider'"
-    huey-slider
+    huey-slider="lightness"
     :max="100"
     :min="0"
     :step="1"

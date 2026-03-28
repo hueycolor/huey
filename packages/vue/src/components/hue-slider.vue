@@ -22,17 +22,18 @@ export interface HueSliderProps extends /* @vue-ignore */ ColorSliderProps {}
     v-bind="{ ...$props }"
     v-model="hue"
     :aria-label="$props['aria-label'] ?? 'Hue slider'"
-    huey-slider
+    huey-slider="hue"
     :max="360"
     :min="0"
     :step="1"
     :style="{
-      'background': 'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)',
       '--huey-thumb-color': thumbBg,
     }"
   />
 </template>
 
 <style>
-
+[huey-slider="hue"] {
+  background: linear-gradient(var(--huey-gradient-dir, to right), #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+}
 </style>

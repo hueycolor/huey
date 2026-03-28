@@ -9,15 +9,21 @@ const props = withDefaults(defineProps<ColorSliderProps>(), {
   max: 100,
   min: 0,
   step: 1,
+  orientation: 'horizontal',
 })
 
 const offset = defineModel({ default: 0 })
 const trackRef = useTemplateRef('slider-track')
 
-const thumbInsetPercent = computed(() => {
-  const { min, max } = props
+const isVertical = computed(() => props.orientation === 'vertical')
 
-  return `${normalize(offset.value, min, max, 0, 100)}%`
+const thumbStyle = computed(() => {
+  const { min, max } = props
+  const percent = normalize(offset.value, min, max, 0, 100)
+  if (isVertical.value) {
+    return { top: `${100 - percent}%`, left: '50%' }
+  }
+  return { left: `${percent}%`, top: '50%' }
 })
 
 onUnmounted(() => {
@@ -30,17 +36,26 @@ function handleChange(e: MouseEvent | TouchEvent) {
   if (!slider)
     return
 
-  const { x: xOffset } = getAbsolutePosition(slider)
-  const { x: pageX } = getPageXYFromEvent(e)
-  const left = pageX - xOffset
-
-  const width = slider.clientWidth
-
   const { max, min, step } = props
 
-  const raw = normalize(left / width, 0, 1, min, max)
-  const stepped = Math.round(raw / step) * step
+  let raw: number
 
+  if (isVertical.value) {
+    const { y: yOffset } = getAbsolutePosition(slider)
+    const { y: pageY } = getPageXYFromEvent(e)
+    const top = pageY - yOffset
+    const height = slider.clientHeight
+    raw = normalize(1 - top / height, 0, 1, min, max)
+  }
+  else {
+    const { x: xOffset } = getAbsolutePosition(slider)
+    const { x: pageX } = getPageXYFromEvent(e)
+    const left = pageX - xOffset
+    const width = slider.clientWidth
+    raw = normalize(left / width, 0, 1, min, max)
+  }
+
+  const stepped = Math.round(raw / step) * step
   offset.value = clamp(roundToStep(stepped, step), min, max)
 }
 
@@ -57,6 +72,8 @@ function handleKeyDown(e: KeyboardEvent) {
 
   if (!direction)
     return
+
+  e.preventDefault()
 
   const oldVal = offset.value
   const { min, max, step } = props
@@ -90,6 +107,7 @@ export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
   min?: number
   max?: number
   step?: number
+  orientation?: 'horizontal' | 'vertical'
 }
 </script>
 
@@ -99,6 +117,7 @@ export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
     v-bind="{ ...props }"
     huey-slider-track
     role="slider"
+    :aria-orientation="props.orientation"
     :aria-valuemin="$props.min"
     :aria-valuemax="$props.max"
     :aria-valuenow="modelValue"
@@ -106,7 +125,7 @@ export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
     @touchmove.passive="handleChange"
     @touchstart.passive="handleChange"
   >
-    <ColorThumb tabindex="0" :style="{ left: thumbInsetPercent }" @keydown="handleKeyDown" />
+    <ColorThumb tabindex="0" :style="thumbStyle" @keydown="handleKeyDown" />
   </div>
 </template>
 
@@ -114,11 +133,21 @@ export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
 [huey-slider-track] {
   --huey-slider-track-height: 16px;
   --huey-slider-track-width: 129px;
+  --huey-gradient-dir: to right;
+  --huey-gradient-angle: 90deg;
 
   position: relative;
   width: var(--huey-slider-track-width);
   height: var(--huey-slider-track-height);
   border-radius: calc(1px * infinity);
+}
+
+[huey-slider-track][aria-orientation="vertical"] {
+  --huey-gradient-dir: to top;
+  --huey-gradient-angle: 0deg;
+
+  width: var(--huey-slider-track-height);
+  height: var(--huey-slider-track-width);
 }
 
 [huey-slider-track] [huey-slider-thumb] {
