@@ -62,6 +62,7 @@ export interface AlphaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
 <template>
   <ChannelInput
     :value="alphaRef"
+    huey-input="alpha"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

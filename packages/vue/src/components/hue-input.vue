@@ -62,6 +62,7 @@ export interface HueInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
 <template>
   <ChannelInput
     :value="hueRef"
+    huey-input="hue"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

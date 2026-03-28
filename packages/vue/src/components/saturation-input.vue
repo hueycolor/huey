@@ -62,6 +62,7 @@ export interface SaturationInputProps extends /* @vue-ignore */ InputHTMLAttribu
 <template>
   <ChannelInput
     :value="saturationRef"
+    huey-input="saturation"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

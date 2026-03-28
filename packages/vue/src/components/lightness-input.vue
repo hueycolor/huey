@@ -62,6 +62,7 @@ export interface LightnessInputProps extends /* @vue-ignore */ InputHTMLAttribut
 <template>
   <ChannelInput
     :value="lightnessRef"
+    huey-input="lightness"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

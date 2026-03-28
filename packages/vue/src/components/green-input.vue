@@ -69,6 +69,7 @@ export interface RedInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
 <template>
   <ChannelInput
     :value="greenRef"
+    huey-input="green"
     @keydown.prevent.enter="handleEnter"
     @keydown.prevent.up="bumpValue($event, 'up')"
     @keydown.prevent.down="bumpValue($event, 'down')"

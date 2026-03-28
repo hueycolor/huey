@@ -148,7 +148,7 @@ export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes
   <input
     :id="$props.id"
     :value="hexRef"
-    huey-input
+    huey-input="hex"
     type="text"
     autocomplete="off"
     spellcheck="false"
