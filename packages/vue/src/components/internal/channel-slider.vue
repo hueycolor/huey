@@ -140,6 +140,7 @@ export interface ColorSliderProps extends /* @vue-ignore */ AriaAttributes {
   width: var(--huey-slider-track-width);
   height: var(--huey-slider-track-height);
   border-radius: calc(1px * infinity);
+  touch-action: none;
 }
 
 [huey-slider-track][aria-orientation="vertical"] {

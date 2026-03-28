@@ -40,8 +40,6 @@ const areaBg = computed(() => {
 const thumbBg = computed(() => `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`)
 
 function handleChange(e: MouseEvent | TouchEvent) {
-  e.preventDefault()
-
   const area = areaRef.value
 
   if (!area)
@@ -202,7 +200,7 @@ export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
       'background': areaBg,
       '--huey-thumb-color': thumbBg,
     }"
-    @mousedown="handleMouseDown"
+    @mousedown.prevent="handleMouseDown"
     @touchmove.passive="handleChange"
     @touchstart.passive="handleTouchStart"
   >
@@ -229,5 +227,6 @@ export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
   width: 240px;
   height: 230px;
   border-radius: 12px;
+  touch-action: none;
 }
 </style>
