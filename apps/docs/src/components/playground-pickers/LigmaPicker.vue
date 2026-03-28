@@ -8,7 +8,7 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
 </script>
 
 <template>
-  <div class="ligma-picker">
+  <div data-picker="ligma">
     <HueyRoot v-model="color">
       <div class="area">
         <SaturationArea color-format="hex" />
@@ -57,7 +57,7 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
 </template>
 
 <style>
-.ligma-picker {
+[data-picker="ligma"] {
   display: flex;
   flex-direction: column;
   width: 240px;
