@@ -60,6 +60,8 @@ const color = ref(hueyColor('#acff00'))
   gap: var(--spacing-16);
   border-radius: var(--radius-4);
 
+  scale: 0.7;
+
   .area {
     display: flex;
     gap: var(--spacing-16);
@@ -112,6 +114,11 @@ const color = ref(hueyColor('#acff00'))
       }
     }
 
+  }
+
+  @media (width >= 50rem) {
+
+    scale: 1;
   }
 }
 </style>
