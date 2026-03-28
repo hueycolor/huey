@@ -26,7 +26,7 @@ function changePickers() {
     <div class="">
       Tabs
     </div>
-    <div class="pickers" @click.stop>
+    <div class="pickers" @mousedown.stop>
       <component :is="currentPicker" />
     </div>
     <span class="hint">Wave your wand to change the color picker style</span>

@@ -11,44 +11,41 @@ const color = ref(hueyColor('#acff00'))
     <HueyRoot v-model="color">
       <div class="area">
         <SaturationArea color-format="hex" />
-        <HueSlider />
+        <HueSlider orientation="vertical" />
       </div>
-      <div class="controls">
-        <div class="color-controls">
-          <div class="sliders">
-            <AlphaSlider />
-          </div>
+      <div class="inputs">
+        <div data-color-inputs="hsl">
+          <label for="hue">
+            <span>H:</span>
+            <HueInput id="hue" />
+          </label>
+          <label for="saturation">
+            <span>S:</span>
+            <SaturationInput id="saturation" />
+          </label>
+          <label for="lightness">
+            <span>L:</span>
+            <LightnessInput id="lightness" />
+          </label>
         </div>
-        <div class="inputs-wrapper">
-          <select v-model="colorFormat" name="color-format" data-color-format>
-            <option value="hex">
-              Hex
-            </option>
-            <option value="rgb">
-              RGB
-            </option>
-            <option value="hsl">
-              HSL
-            </option>
-          </select>
-          <div class="inputs">
-            <HexInput v-if="colorFormat === 'hex'" id="hex-input" />
-            <template v-if="colorFormat === 'hsl'">
-              <HueInput id="hue" />
-              <SaturationInput id="saturation" />
-              <LightnessInput />
-            </template>
-            <template v-if="colorFormat === 'rgb'">
-              <RedInput />
-              <GreenInput />
-              <BlueInput />
-            </template>
-            <AlphaInput data-alpha-input />
-          </div>
+        <div data-color-inputs="rgb">
+          <label for="red">
+            <span>R:</span>
+            <RedInput />
+          </label>
+          <label for="green">
+            <span>G:</span>
+            <GreenInput />
+          </label>
+          <label for="blue">
+            <span>B:</span>
+            <BlueInput />
+          </label>
         </div>
-        <div class="swatches">
-          <ColorSwatch :swatch="['#FF3B30', '#FF6B2D', '#FF9500', '#FFC42D', '#FFEA00', '#A8E62E', '#34C759', '#2DD4A8', '#00C7E6', '#0A84FF', '#3634DB', '#5E5CE6', '#AF52DE', '#E040A0', '#FF2D55', '#FF6482', '#FF8FAB', '#FFB3C6']" />
-        </div>
+        <label for="hex">
+          <span>#</span>
+          <HexInput id="hex" />
+        </label>
       </div>
     </HueyRoot>
   </div>
@@ -57,17 +54,64 @@ const color = ref(hueyColor('#acff00'))
 <style scoped>
 [data-picker="abode"] {
   display: flex;
-  width: 560px;
-  background-color: white;
-  padding: var(--spacing-8);
+  width: fit-content;
+  background-color: #535353;
+  padding: var(--spacing-16);
   gap: var(--spacing-16);
+  border-radius: var(--radius-4);
 
   .area {
     display: flex;
+    gap: var(--spacing-16);
 
     [huey-area] {
-      border-radius: unset;
+      height: 100%;
+      border-radius: var(--radius-4);
     }
+
+    [huey-slider="hue"] {
+      border-radius: var(--radius-4);
+      --huey-slider-track-width: 100%
+    }
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    color: white;
+
+    [data-color-inputs] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-8);
+
+      span {
+        width: 2ch;
+      }
+
+      &:has([huey-input="hex"]) span {
+        opacity: 0.5;
+      }
+
+      [huey-input] {
+        color: white;
+        width: 4ch;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid #7B7B7B;
+      }
+
+      [huey-input='hex'] {
+        width: 8ch;
+      }
+    }
+
   }
 }
 </style>
