@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { hueyColor } from '@hueycolor/core'
-import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorPreview, ColorSwatch, GreenInput, HexInput, HueInput, HueSlider, HueyRoot, LightnessInput, LightnessSlider, RedInput, SaturationArea, SaturationInput, SaturationSlider } from '@hueycolor/vue'
+import { AlphaInput, AlphaSlider, BlueInput, ColorDropper, ColorSwatch, GreenInput, HexInput, HueInput, HueSlider, HueyRoot, LightnessInput, RedInput, SaturationArea, SaturationInput } from '@hueycolor/vue'
 import { ref } from 'vue'
 
 const color = ref(hueyColor('#acff00'))

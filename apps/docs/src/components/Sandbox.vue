@@ -4,12 +4,12 @@ import { computed, ref } from 'vue'
 import tap from '@/assets/sound/tap.wav'
 import AbodePicker from '@/components/playground-pickers/AbodePicker.vue'
 
-import CromelPicker from '@/components/playground-pickers/CromelPicker.vue'
+import CromePicker from '@/components/playground-pickers/CromePicker.vue'
 import LigmaPicker from './playground-pickers/LigmaPicker.vue'
 
 const MIN_PLAYBACK_RATE = 0.7
 
-const pickers = [AbodePicker, LigmaPicker, CromelPicker]
+const pickers = [CromePicker, LigmaPicker, AbodePicker]
 
 const { play } = useSound(tap, { volume: 0.25 })
 const index = ref(0)
@@ -28,7 +28,7 @@ function changePickers() {
     <div class="">
       Tabs
     </div>
-    <div class="pickers" @mousedown.stop>
+    <div class="pickers" @click.stop>
       <component :is="currentPicker" />
     </div>
     <span class="hint">Wave your wand to change the color picker style</span>
@@ -61,12 +61,12 @@ function changePickers() {
   }
 
   .pickers {
-    transition: scale 100ms ease-out;
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
     cursor: auto;
+    transition: scale 100ms ease-out;
   }
 
   .hint {
