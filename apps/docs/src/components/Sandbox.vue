@@ -7,6 +7,8 @@ import AbodePicker from '@/components/playground-pickers/AbodePicker.vue'
 import CromelPicker from '@/components/playground-pickers/CromelPicker.vue'
 import LigmaPicker from './playground-pickers/LigmaPicker.vue'
 
+const MIN_PLAYBACK_RATE = 0.7
+
 const pickers = [AbodePicker, LigmaPicker, CromelPicker]
 
 const { play } = useSound(tap, { volume: 0.25 })
@@ -15,7 +17,7 @@ const index = ref(0)
 const currentPicker = computed(() => pickers[index.value])
 
 function changePickers() {
-  play({ playbackRate: 0.9 + Math.random() * 0.2 })
+  play({ playbackRate: MIN_PLAYBACK_RATE + Math.random() * ((1 - MIN_PLAYBACK_RATE) * 2) })
 
   index.value = index.value === pickers.length - 1 ? 0 : index.value + 1
 }
