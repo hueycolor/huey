@@ -3,21 +3,21 @@ title: Getting Started
 description: How to install and set up Huey in your project
 ---
 
-## Install
-
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+## Install
 
 Install Huey with your favorite package manager:
 
 <Tabs syncKey="pkg-manager">
   <TabItem label="pnpm">
   ```bash
-  pnpm install @hueycolor/vue
+  pnpm i @hueycolor/vue
   ```
   </TabItem>
   <TabItem label="npm">
   ```bash
-  npm add @hueycolor/vue
+  npm i @hueycolor/vue
   ```
   </TabItem>
   <TabItem label="bun">
@@ -29,6 +29,93 @@ Install Huey with your favorite package manager:
 
 ## Quick Start
 
+Wrap your picker components in `HueyRoot` and bind a color with `v-model`:
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import {
+  HueyRoot,
+  HueSlider,
+  SaturationArea,
+  AlphaSlider,
+  HexInput,
+  ColorPreview,
+  hueyColor
+} from '@hueycolor/vue'
+
+const color = ref(hueyColor('#ff6b35'))
+</script>
+
+<template>
+  <HueyRoot v-model="color">
+    <SaturationArea />
+    <HueSlider />
+    <AlphaSlider />
+    <HexInput />
+    <ColorPreview />
+  </HueyRoot>
+</template>
+```
+
+That's it — a fully functional color picker. Every component inside `HueyRoot` automatically shares and updates the same color state.
+
+## Core Concepts
+
+### HueyRoot as Context Provider
+
+`HueyRoot` is the entry point for every Huey picker. It accepts a `v-model` of type `HueyColor` and provides shared color state to all child components through Vue's `provide`/`inject` pattern.
+
+All Huey components must be descendants of a `HueyRoot`.
+
+### Color Formats
+
+`HueyRoot` accepts any color format that `@hueycolor/core` supports:
+
 ```js
-// Your quick start example here
+hueyColor('#ff6b35')                  // Hex
+hueyColor('rgb(255, 107, 53)')        // RGB
+hueyColor('hsl(18, 100%, 60%)')       // HSL
+hueyColor('oklch(72% 0.19 45)')       // OKLCH
+```
+
+### Minimally Styled Components
+
+Huey components ship with lightweight baseline styles. Just enough to be functional (positioning, gradients, sizing). Visual details like colors, borders, spacing, and layout are left to you. Customize them through CSS custom properties and attribute selectors. See the [Styling](/overview/styling) guide for details.
+
+### Composable Components
+
+Pick only the components you need. A minimal picker might use just `SaturationArea` and `HueSlider`, while a full-featured one could include sliders, inputs, an area picker, swatches, and a preview. All composed freely within a single `HueyRoot`.
+
+## Using @hueycolor/core Standalone
+
+The core package works independently of any framework. Install it directly if you only need color parsing, conversion, and manipulation:
+
+<Tabs syncKey="pkg-manager">
+  <TabItem label="pnpm">
+  ```bash
+  pnpm i @hueycolor/core
+  ```
+  </TabItem>
+  <TabItem label="npm">
+  ```bash
+  npm i @hueycolor/core
+  ```
+  </TabItem>
+  <TabItem label="bun">
+  ```bash
+  bun add @hueycolor/core
+  ```
+  </TabItem>
+</Tabs>
+
+```js
+import { hueyColor } from '@hueycolor/core'
+
+const color = hueyColor('#ff6b35')
+
+color.toRgbString()   // 'rgb(255, 107, 53)'
+color.toOklchString() // 'oklch(72% 0.19 45)'
+color.lighten(0.1).toHexString()
+color.contrastRatio(hueyColor('#1a1a2e')) // WCAG contrast ratio
 ```
