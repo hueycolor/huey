@@ -1,24 +1,90 @@
 ---
 title: About
-description: About Huey color picker library
+description: What Huey is and why it exists
 ---
 
-## About Huey
+## What is Huey?
 
-Huey is a headless color picker component library for Svelte and Vue.
+Huey is an accessible, minimally styled color picker component library for Vue and Svelte, built on top of `@hueycolor/core`, a standalone color manipulation library that uses OKLCH internally for perceptually uniform color operations.
 
-### Philosophy
+## Why Huey?
 
-Huey provides unstyled, accessible color picker primitives that you can customize to match your design system.
+### Perceptually Uniform Color Math
 
-### Features
+All color operations use OKLCH internally, a perceptually uniform color space. When you lighten a color by 10%, it *looks* 10% lighter. This isn't the case with traditional HSL math, where equal numeric steps produce uneven visual results.
 
-- 🎨 Complete color picker components
-- ♿ Accessible by default
-- 🎯 Headless & unstyled
-- 🔧 Fully customizable
-- 📦 Framework support for Svelte & Vue
+```js
+import { hueyColor } from '@hueycolor/core'
 
-### Contributing
+const color = hueyColor('#ff6b35')
 
-Contributions are welcome! Visit our [GitHub repository](https://github.com/hueycolor/huey) to get started.
+// Each step produces a visually even change
+color.lighten(0.1).toHexString()
+color.lighten(0.2).toHexString()
+color.lighten(0.3).toHexString()
+```
+
+### Wide Gamut Support
+
+Output colors in modern wide gamut color spaces for displays that support them, with standard gamut fallbacks always available.
+
+```js
+const color = hueyColor('#ff6b35')
+
+// Standard gamut
+color.toHexString()     // '#ff6b35'
+color.toRgbString()     // 'rgb(255, 107, 53)'
+color.toHslString()     // 'hsl(18, 100%, 60%)'
+
+// Wide gamut
+color.toOklchString()   // 'oklch(72% 0.19 45)'
+color.toDisplayP3()     // 'color(display-p3 ...)'
+color.toRec2020()       // 'color(rec2020 ...)'
+```
+
+### Minimally Styled and Composable
+
+Components ship with lightweight baseline styles, just enough to render (positioning, gradients, sizing), but leave visual details like colors, borders, and layout to you. Pick only the components you need. A minimal picker might be a single slider and an input, or you can compose a full-featured picker with area selectors, sliders, inputs, swatches, and previews.
+
+### Immutable API
+
+Every color operation returns a new `HueyColor` object. No mutation surprises, safe to pass colors around and chain operations.
+
+```js
+const brand = hueyColor('#ff6b35')
+
+const variant = brand
+  .setHue(200)
+  .saturate(0.1)
+  .lighten(0.05)
+
+brand.toHexString()     // '#ff6b35' (unchanged)
+variant.toHexString()   // new color
+```
+
+### Accessibility Built In
+
+WCAG contrast ratio calculation, relative luminance, keyboard navigation, and ARIA attributes are part of the architecture, not an afterthought.
+
+```js
+const bg = hueyColor('#1a1a2e')
+const text = hueyColor('#e0e0e0')
+
+bg.contrastRatio(text)  // 12.5
+bg.isDark()             // true
+bg.getLuminance()       // 0.02
+```
+
+## Packages
+
+| Package | Description | Status |
+|---------|-------------|--------|
+| `@hueycolor/core` | Color parsing, conversion, and manipulation | Beta |
+| `@hueycolor/vue` | Vue 3 color picker components | Beta |
+| `@hueycolor/svelte` | Svelte 5 color picker components | In Progress |
+
+## Links
+
+- [GitHub Repository](https://github.com/hueycolor/huey)
+- [npm: @hueycolor/core](https://www.npmjs.com/package/@hueycolor/core)
+- [npm: @hueycolor/vue](https://www.npmjs.com/package/@hueycolor/vue)
