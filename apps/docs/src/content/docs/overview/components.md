@@ -3,21 +3,26 @@ title: Components
 description: Overview of all Huey components
 ---
 
-## Components Overview
+## Components
 
-Huey provides a comprehensive set of headless color picker components for Svelte and Vue.
+Every Huey picker starts with `HueyRoot`, the context provider that holds the shared color state.
 
-### Available Components
+All other components must be descendants of a `HueyRoot` and automatically read from and write to its color state.
 
-- **Saturation Area** - 2D saturation/lightness picker area
-- **Color Preview** - Displays current color
-- **Color Swatch** - Color swatch element
-- **Color Dropper** - Eyedropper/color picker tool
-- **Hex Input** - Hex color input
-- **Alpha Input** - Alpha channel input
-- **Alpha Slider** - Alpha channel slider
-- **RGB Inputs** - Red, green, and blue channel inputs
-- **HSL Inputs** - Hue, saturation, and lightness inputs
-- **HSL Sliders** - Hue, saturation, and lightness sliders
-
-For detailed documentation on each component, see the Components section in the sidebar.
+- [HueyRoot](/components/huey-root)
+- [SaturationArea](/components/saturation-area)
+- [HueSlider](/components/hsl-sliders)
+- [SaturationSlider](/components/hsl-sliders)
+- [LightnessSlider](/components/hsl-sliders)
+- [AlphaSlider](/components/alpha-slider)
+- [HexInput](/components/hex-input)
+- [HueInput](/components/hsl-inputs)
+- [SaturationInput](/components/hsl-inputs)
+- [LightnessInput](/components/hsl-inputs)
+- [AlphaInput](/components/alpha-input)
+- [RedInput](/components/rgb-inputs)
+- [GreenInput](/components/rgb-inputs)
+- [BlueInput](/components/rgb-inputs)
+- [ColorPreview](/components/color-preview)
+- [ColorSwatch](/components/color-swatch)
+- [ColorDropper](/components/color-dropper)
