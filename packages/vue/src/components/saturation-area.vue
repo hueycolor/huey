@@ -223,10 +223,14 @@ export interface SaturationAreaProps extends /* @vue-ignore */ HTMLAttributes {
 
 <style>
 [huey-area] {
+  --huey-area-height: 230px;
+  --huey-area-width: 240px;
+  --huey-area-radius: 12px;
+
   position: relative;
-  width: 240px;
-  height: 230px;
-  border-radius: 12px;
+  width: var(--huey-area-width);
+  height: var(--huey-area-height);
+  border-radius: var(--huey-area-radius);
   touch-action: none;
 }
 </style>

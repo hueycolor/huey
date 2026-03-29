@@ -38,15 +38,14 @@ export interface ColorPreviewProps {
 
 <style>
 [huey-preview] {
-  --preview-tile: 20px;
-  --opacity-tile: calc(var(--preview-tile) - 50%);
+  --huey-preview-tile-size: 20px;
 
   overflow: hidden;
   position: relative;
   display: inline-block;
-  width: var(--preview-tile);
-  height: var(--preview-tile);
-  border-radius: calc(var(--preview-tile) - 80%);
+  width: var(--preview-tile-size);
+  height: var(--preview-tile-size);
+  border-radius: calc(var(--preview-tile-size) - 80%);
 }
 
 [huey-preview]::before {
