@@ -1,23 +1,157 @@
 ---
 title: Styling
-description: How to style Huey components
+description: How to style Huey components with CSS
 ---
 
-## Styling
+## Minimally Styled by Design
 
-Huey is a headless component library, giving you complete control over styling.
+Huey components ship with lightweight baseline styles, enough to be functional out of the box (positioning, gradients, track/thumb sizing). Visual details like colors, borders, spacing, and layout are left to you. Every component exposes CSS custom properties and attribute selectors for easy customization.
 
-### Approach
+## Attribute Selectors
 
-Since Huey components are headless, they don't come with any pre-defined styles. You can style them using:
+Every component renders an element with a `huey-*` attribute that you can target in CSS:
 
-- CSS/SCSS
-- Tailwind CSS
-- CSS-in-JS solutions
-- Any other styling approach you prefer
+| Selector | Component |
+|----------|-----------|
+| `[huey-area]` | SaturationArea |
+| `[huey-slider-track]` | Slider track (all sliders) |
+| `[huey-slider="hue"]` | HueSlider |
+| `[huey-slider="saturation"]` | SaturationSlider |
+| `[huey-slider="lightness"]` | LightnessSlider |
+| `[huey-slider="alpha"]` | AlphaSlider |
+| `[huey-slider-thumb]` | Slider thumb (all sliders and area) |
+| `[huey-preview]` | ColorPreview |
+| `[huey-swatch]` | ColorSwatch container |
+| `[huey-swatch-color]` | Individual swatch item |
+| `[huey-color-dropper]` | ColorDropper button |
+| `[huey-input="hex"]` | HexInput |
+| `[huey-input="hue"]` | HueInput |
+| `[huey-input="saturation"]` | SaturationInput |
+| `[huey-input="lightness"]` | LightnessInput |
+| `[huey-input="alpha"]` | AlphaInput |
+| `[huey-input="red"]` | RedInput |
+| `[huey-input="green"]` | GreenInput |
+| `[huey-input="blue"]` | BlueInput |
 
-### Examples
+### Data Attributes
+
+Some components expose data attributes for conditional styling:
+
+- `[huey-preview][data-split-view="true"]` - ColorPreview in split mode
+- `[huey-slider-track][aria-orientation="vertical"]` - vertical slider
+
+## CSS Custom Properties
+
+Components define CSS custom properties with sensible defaults that you can override:
+
+### Area
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--huey-area-height` | `230px` | Height of the saturation area |
+| `--huey-area-width` | `240px` | Width of the saturation area |
+| `--huey-area-radius` | `12px` | Border radius of the saturation area |
+
+### Sliders
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--huey-slider-track-height` | `16px` | Track height (or width when vertical) |
+| `--huey-slider-track-width` | `129px` | Track width (or height when vertical) |
+
+### Preview
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--huey-preview-tile-size` | `20px` | Size of the transparency checkerboard tiles |
+
+### Swatch
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--huey-swatch-color-size` | `16px` | Size of each swatch color circle |
+| `--huey-swatch-color-radius` | `4px` | Border radius of swatch items |
+
+### Dynamic Properties
+
+These are set dynamically by components at runtime. Useful to know about but not typically overridden:
+
+| Property | Set by | Description |
+|----------|--------|-------------|
+| `--huey-thumb-color` | All sliders, area | Current color for the thumb indicator |
+| `--huey-slider-bg` | AlphaSlider | Computed gradient background |
+| `--huey-gradient-dir` | Sliders | Gradient direction based on orientation |
+| `--huey-gradient-angle` | Sliders | Gradient angle based on orientation |
+
+## Example
+
+Here's a basic example styling a picker with plain CSS:
 
 ```css
-/* Your styling examples here */
+/* Size the saturation area */
+[huey-area] {
+  --huey-area-width: 300px;
+  --huey-area-height: 200px;
+  --huey-area-radius: 8px;
+}
+
+/* Style the slider tracks */
+[huey-slider-track] {
+  --huey-slider-track-width: 300px;
+  --huey-slider-track-height: 12px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+/* Style the thumb */
+[huey-slider-thumb] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Style inputs */
+[huey-input="hex"] {
+  font-family: monospace;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+}
+
+/* Style the preview */
+[huey-preview] {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/* Style swatches */
+[huey-swatch] {
+  display: flex;
+  gap: 6px;
+}
+
+[huey-swatch-color] {
+  --huey-swatch-color-size: 24px;
+  --huey-swatch-color-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+[huey-swatch-color][aria-selected="true"] {
+  border-color: currentColor;
+}
 ```
+
+## Tailwind CSS
+
+Since components use attribute selectors, you can also target them with Tailwind's arbitrary variant syntax:
+
+```html
+<HueSlider class="[&_[huey-slider-track]]:w-72 [&_[huey-slider-track]]:h-3 [&_[huey-slider-track]]:rounded-md" />
+```
+
+Or use a wrapper with scoped styles, whichever fits your project.
