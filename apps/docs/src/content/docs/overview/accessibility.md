@@ -1,24 +1,117 @@
 ---
 title: Accessibility
-description: Accessibility features and best practices
+description: Built-in accessibility features and best practices for using Huey
 ---
 
-## Accessibility
+## Overview
 
-Huey is built with accessibility in mind, providing keyboard navigation and ARIA attributes out of the box.
+Accessibility is a core part of Huey components, they ship with keyboard navigation, ARIA attributes, and focus management out of the box.
 
-### Keyboard Navigation
+## Keyboard Navigation
 
-- Arrow keys for adjusting values
-- Tab navigation between inputs
-- Enter/Space for interactions
+### Sliders
 
-### ARIA Support
+| Key | Action |
+|-----|--------|
+| Arrow Left / Arrow Down | Decrease value by 1 step |
+| Arrow Right / Arrow Up | Increase value by 1 step |
 
-All components include proper ARIA labels and roles for screen reader compatibility.
+### Saturation Area
 
-### Best Practices
+| Key | Action |
+|-----|--------|
+| Arrow Left / Arrow Right | Adjust horizontal axis (saturation) |
+| Arrow Up / Arrow Down | Adjust vertical axis (lightness or value) |
 
-- Ensure color contrast ratios meet WCAG guidelines
-- Provide text alternatives for color-only information
-- Test with keyboard-only navigation
+### Text Inputs
+
+| Key | Action |
+|-----|--------|
+| Arrow Up | Increase value by 1 |
+| Arrow Down | Decrease value by 1 |
+| Shift + Arrow Up | Increase value by 10 |
+| Shift + Arrow Down | Decrease value by 10 |
+| Enter | Confirm value |
+| Blur | Confirm value, rollback if invalid |
+
+### General
+
+| Key | Action |
+|-----|--------|
+| Tab | Move focus between components |
+| Enter / Space | Activate swatches and buttons |
+
+## ARIA Attributes
+
+Components include the appropriate ARIA roles and properties:
+
+### Sliders
+
+- `role="slider"` on the thumb element
+- `aria-valuemin`, `aria-valuemax`, `aria-valuenow` reflecting the current range and value
+- `aria-label` describing the channel (e.g., "Hue", "Saturation")
+- `aria-orientation` set to `"horizontal"` or `"vertical"`
+
+### Saturation Area
+
+- `role="group"` on the area container
+- `role="slider"` on the thumb with 2D value reporting
+
+### Color Preview
+
+- `role="img"` with a descriptive `aria-label` showing the current color values
+- `aria-live="polite"` so screen readers announce color changes
+
+### Color Swatch
+
+- `role="listbox"` on the swatch container
+- `role="option"` on each color item
+- `aria-selected` indicating the currently active swatch
+- `aria-label` on each swatch showing the color value
+
+### Color Dropper
+
+- Rendered as a `<button>` with `aria-label="Eye dropper button"` (customizable)
+
+### Text Inputs
+
+- Standard `<input>` elements with `autocomplete="off"`, `spellcheck="false"`, and `dir="ltr"`
+
+## Contrast Ratio Utilities
+
+`@hueycolor/core` includes utilities for checking color accessibility programmatically:
+
+```js
+import { hueyColor } from '@hueycolor/core'
+
+const bg = hueyColor('#1a1a2e')
+const text = hueyColor('#e0e0e0')
+
+// WCAG 2.1 contrast ratio (1 to 21)
+bg.contrastRatio(text)  // 12.5
+
+// W3C relative luminance (0 to 1)
+bg.getLuminance()       // 0.02
+
+// Quick checks
+bg.isDark()             // true
+text.isLight()          // true
+```
+
+### WCAG Contrast Requirements
+
+| Level | Normal Text | Large Text |
+|-------|------------|------------|
+| AA | 4.5:1 | 3:1 |
+| AAA | 7:1 | 4.5:1 |
+
+Use `contrastRatio()` to verify your color combinations meet these thresholds.
+
+## Best Practices
+
+When building a picker with Huey components:
+
+- **Add visible focus indicators.** Huey handles focus management but does not include focus ring styles. Add `:focus-visible` styles to sliders, inputs, and swatches.
+- **Don't rely on color alone.** If the selected color conveys meaning in your UI, provide a text label or other non-visual indicator alongside it.
+- **Keep pickers in the tab order.** Avoid removing components from the natural tab flow with negative `tabindex` values.
+- **Test with a screen reader.** Verify that ARIA labels read correctly and that color changes are announced via `aria-live` regions.
