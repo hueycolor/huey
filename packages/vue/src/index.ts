@@ -20,5 +20,9 @@ export {
 } from './components'
 
 // Composables
-export { useHueyContext, HUEY_CONTEXT } from './composables/use-huey-context'
+export { HUEY_CONTEXT, useHueyContext } from './composables/use-huey-context'
 export type { HueyContext } from './composables/use-huey-context'
+
+// Core
+export { hueyColor } from '@hueycolor/core'
+export type { HueyColor } from '@hueycolor/core'

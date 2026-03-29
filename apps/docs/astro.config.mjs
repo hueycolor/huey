@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   integrations: [starlight({
-    title: 'My Docs',
+    title: 'Huey',
     customCss: [
       './src/styles/custom.css',
     ],
@@ -16,7 +16,7 @@ export default defineConfig({
       {
         label: 'Overview',
         items: [
-          { label: 'Installation', slug: 'overview/installation' },
+          { label: 'Getting Started', slug: 'overview/getting-started' },
           { label: 'Components', slug: 'overview/components' },
           { label: 'Styling', slug: 'overview/styling' },
           { label: 'Accessibility', slug: 'overview/accessibility' },
