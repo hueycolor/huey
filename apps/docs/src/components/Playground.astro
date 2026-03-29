@@ -1,6 +1,6 @@
 ---
 import SectionHeading from '@/components/SectionHeading.astro'
-import Sandbox from '@/components/Sandbox.vue'
+import PickersPlayground from '@/components/Playground.vue'
 ---
 
 <section class="playground" data-size="boxed">
@@ -8,7 +8,7 @@ import Sandbox from '@/components/Sandbox.vue'
     <Fragment slot="title">Your layout, Your styles</Fragment>
     <Fragment slot="description">Huey gives you the freedom to compose your own color picker</Fragment>
   </SectionHeading>
-  <Sandbox client:only />
+  <PickersPlayground client:only />
 </section>
 
 <style>

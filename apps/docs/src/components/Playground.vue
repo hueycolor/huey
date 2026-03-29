@@ -25,9 +25,7 @@ function changePickers() {
 
 <template>
   <div class="sandbox" @click="changePickers">
-    <div class="">
-      Tabs
-    </div>
+    <div class="tabs" />
     <div class="pickers" @click.stop>
       <component :is="currentPicker" />
     </div>
