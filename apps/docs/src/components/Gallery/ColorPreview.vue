@@ -16,7 +16,7 @@ const color = ref(hueyColor('#1A326380'))
 
 <style scoped>
 :deep([huey-preview]) {
-  --preview-tile: 64px
+  --huey-preview-tile-size: 64px
 }
 
 .hex-input {

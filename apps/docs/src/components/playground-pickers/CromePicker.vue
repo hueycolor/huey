@@ -97,7 +97,7 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
   box-shadow: -2px 4px 8px 2px #efe0ca;
 
   [huey-preview] {
-    --preview-tile: 30px;
+    --huey-preview-tile-size: 30px;
 
     border-radius: 999px;
   }

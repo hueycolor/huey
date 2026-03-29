@@ -9,7 +9,7 @@ import LigmaPicker from './playground-pickers/LigmaPicker.vue'
 
 const MIN_PLAYBACK_RATE = 0.7
 
-const pickers = [CromePicker, LigmaPicker, AbodePicker]
+const pickers = [LigmaPicker, CromePicker, AbodePicker]
 
 const { play } = useSound(tap, { volume: 0.25 })
 const index = ref(0)
