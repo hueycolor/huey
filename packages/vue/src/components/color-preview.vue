@@ -43,9 +43,9 @@ export interface ColorPreviewProps {
   overflow: hidden;
   position: relative;
   display: inline-block;
-  width: var(--preview-tile-size);
-  height: var(--preview-tile-size);
-  border-radius: calc(var(--preview-tile-size) - 80%);
+  width: var(--huey-preview-tile-size);
+  height: var(--huey-preview-tile-size);
+  border-radius: calc(var(--huey-preview-tile-size) - 80%);
 }
 
 [huey-preview]::before {
