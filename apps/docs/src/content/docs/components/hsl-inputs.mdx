@@ -3,25 +3,22 @@ title: HSL Inputs
 description: Hue, saturation, and lightness input components
 ---
 
-## HSL Inputs
+import ComponentPreview from '@/components/ComponentPreview.vue'
+import HSLInputsDemo from '@/components/gallery/HSLInputs.vue'
 
 Individual input fields for the hue, saturation, and lightness color channels.
 
 ### Components
 
-- `hue-input` - Hue channel input
-- `saturation-input` - Saturation channel input
-- `lightness-input` - Lightness channel input
+- `HueInput` - Hue channel input
+- `SaturationInput` - Saturation channel input
+- `LightnessInput` - Lightness channel input
 
-### Usage
+### Preview
 
-```vue
-<!-- Vue example -->
-```
-
-```svelte
-<!-- Svelte example -->
-```
+<ComponentPreview client:load componentKey="hsl-inputs">
+  <HSLInputsDemo client:load />
+</ComponentPreview>
 
 ### Props
 

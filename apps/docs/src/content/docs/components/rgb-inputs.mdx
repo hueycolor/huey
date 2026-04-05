@@ -3,25 +3,22 @@ title: RGB Inputs
 description: Red, green, and blue channel input components
 ---
 
-## RGB Inputs
+import ComponentPreview from '@/components/ComponentPreview.vue'
+import RGBInputsDemo from '@/components/gallery/RGBInputs.vue'
 
 Individual input fields for the red, green, and blue color channels.
 
 ### Components
 
-- `red-input` - Red channel input
-- `green-input` - Green channel input
-- `blue-input` - Blue channel input
+- `RedInput` - Red channel input
+- `GreenInput` - Green channel input
+- `BlueInput` - Blue channel input
 
-### Usage
+### Preview
 
-```vue
-<!-- Vue example -->
-```
-
-```svelte
-<!-- Svelte example -->
-```
+<ComponentPreview client:load componentKey="rgb-inputs">
+  <RGBInputsDemo client:load />
+</ComponentPreview>
 
 ### Props
 

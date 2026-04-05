@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Framework } from '@/types'
 import {
   SelectContent,
   SelectGroup,
@@ -13,10 +14,12 @@ import {
   SelectValue,
   SelectViewport,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+
+import { computed, onMounted, ref, watch } from 'vue'
+import { getStoredFramework, setStoredFramework } from '@/framework-preference'
 import AppIcon from './AppIcon.vue'
 
-const selectedFramework = ref('vue')
+const selectedFramework = ref<Framework>('vue')
 
 const frameworks = [
   { value: 'vue', label: 'Vue', icon: 'logos:vue' },
@@ -26,6 +29,14 @@ const frameworks = [
 const selectedFrameworkData = computed(() =>
   frameworks.find(f => f.value === selectedFramework.value),
 )
+
+onMounted(() => {
+  selectedFramework.value = getStoredFramework()
+})
+
+watch(selectedFramework, (framework) => {
+  setStoredFramework(framework)
+})
 </script>
 
 <template>

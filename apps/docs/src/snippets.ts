@@ -1,8 +1,9 @@
-export type Framework = 'vue' | 'svelte' | 'core'
+import type { Framework } from '@/types'
+
 export type PackageManager = 'npm' | 'pnpm' | 'bun'
 
 export interface Snippet {
-  name: Framework | PackageManager
+  name: Framework | 'core' | PackageManager
   icon: string
   package: string
 }

@@ -3,25 +3,22 @@ title: HSL Sliders
 description: Hue, saturation, and lightness slider components
 ---
 
-## HSL Sliders
+import ComponentPreview from '@/components/ComponentPreview.vue'
+import HSLSlidersDemo from '@/components/gallery/HSLSliders.vue'
 
 Slider controls for the hue, saturation, and lightness color channels.
 
 ### Components
 
-- `hue-slider` - Hue channel slider
-- `saturation-slider` - Saturation channel slider
-- `lightness-slider` - Lightness channel slider
+- `HueSlider` - Hue channel slider
+- `SaturationSlider` - Saturation channel slider
+- `LightnessSlider` - Lightness channel slider
 
-### Usage
+### Preview
 
-```vue
-<!-- Vue example -->
-```
-
-```svelte
-<!-- Svelte example -->
-```
+<ComponentPreview client:load componentKey="hsl-sliders">
+  <HSLSlidersDemo client:load />
+</ComponentPreview>
 
 ### Props
 
