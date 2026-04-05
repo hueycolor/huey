@@ -3,8 +3,11 @@ title: Color Dropper
 description: Eyedropper/color picker tool component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import ColorDropperDemo from '@/components/gallery/ColorDropper.vue'
+import PropsTable from '@/components/PropsTable.astro'
+import EventsTable from '@/components/EventsTable.astro'
 
 An eyedropper tool for picking colors from the screen.
 
@@ -12,18 +15,60 @@ An eyedropper tool for picking colors from the screen.
   <ColorDropperDemo client:only="vue" />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { ColorDropper } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, ColorDropper, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <ColorDropper>
+        Pick a color
+      </ColorDropper>
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { ColorDropper } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, ColorDropper, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <ColorDropper>
+      Pick a color
+    </ColorDropper>
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Extends all standard HTML `button` attributes. Renders a `<slot>` for custom content.
+
+## Events
+
+<EventsTable rows={[
+  { name: 'error', payload: 'Error', description: 'Emitted when the EyeDropper API fails or the user cancels.' },
+]} />
 
 ### Browser Support
 
-The EyeDropper API is required for this component to work. Check [browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API#browser_compatibility).
+The EyeDropper API is required for this component to work. The component only renders if the browser supports it. Check [browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API#browser_compatibility).

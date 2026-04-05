@@ -3,6 +3,7 @@ title: HSL Inputs
 description: Hue, saturation, and lightness input components
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import HSLInputsDemo from '@/components/gallery/HSLInputs.vue'
 
@@ -12,20 +13,58 @@ Individual input fields for the hue, saturation, and lightness color channels.
   <HSLInputsDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { HueInput, SaturationInput, LightnessInput } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, HueInput, SaturationInput, LightnessInput, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <HueInput />
+      <SaturationInput />
+      <LightnessInput />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { HueInput, SaturationInput, LightnessInput } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, HueInput, SaturationInput, LightnessInput, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <HueInput />
+    <SaturationInput />
+    <LightnessInput />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Each component (`HueInput`, `SaturationInput`, `LightnessInput`) extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, etc.).
 
 ### Value Ranges
 
 - **Hue**: 0-360 degrees
 - **Saturation**: 0-100%
 - **Lightness**: 0-100%
+
+Use the up/down arrow keys to adjust by 1. Hold Shift to adjust by 10.

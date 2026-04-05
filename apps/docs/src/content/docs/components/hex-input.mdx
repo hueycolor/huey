@@ -3,8 +3,10 @@ title: Hex Input
 description: Hex color input component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import HexInputDemo from '@/components/gallery/HexInput.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 An input field for entering hexadecimal color values.
 
@@ -12,18 +14,50 @@ An input field for entering hexadecimal color values.
   <HexInputDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { HexInput } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <HexInput />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { HexInput } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <HexInput />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, etc.).
 
 ### Format
 
-Accepts both 3-digit and 6-digit hex values, with or without the `#` prefix.
+Accepts both 3-digit and 6-digit hex values, with or without the `#` prefix. Use the up/down arrow keys to bump hex pair values. Hold Shift to bump by 10.

@@ -3,8 +3,10 @@ title: Color Swatch
 description: Color swatch element component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import ColorSwatchDemo from '@/components/gallery/ColorSwatch.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 A clickable color swatch element for selecting preset colors.
 
@@ -12,14 +14,51 @@ A clickable color swatch element for selecting preset colors.
   <ColorSwatchDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { ColorSwatch } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, ColorSwatch, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  const swatch = ['#007680', '#24B2FF', '#FFBA51', '#FFD013', '#F65600']
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <ColorSwatch :swatch="swatch" />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { ColorSwatch } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, ColorSwatch, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  const swatch = ['#007680', '#24B2FF', '#FFBA51', '#FFD013', '#F65600']
+  </script>
+
+  <HueyRoot bind:color>
+    <ColorSwatch {swatch} />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+<PropsTable rows={[
+  { name: 'swatch', type: 'string[]', description: 'Array of hex color values to display as selectable presets.' },
+  { name: 'aria-label', type: 'string', default: "'Color swatch'", description: 'Accessible label for the swatch group.' },
+]} />

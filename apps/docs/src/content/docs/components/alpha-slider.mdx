@@ -3,8 +3,10 @@ title: Alpha Slider
 description: Alpha channel slider component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import AlphaSliderDemo from '@/components/gallery/AlphaSlider.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 A slider control for adjusting the alpha (opacity) channel.
 
@@ -12,18 +14,49 @@ A slider control for adjusting the alpha (opacity) channel.
   <AlphaSliderDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { AlphaSlider } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, AlphaSlider, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <AlphaSlider />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { AlphaSlider } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, AlphaSlider, hueyColor } from '@hueycolor/svelte'
 
-### Value Range
+  let color = $state(hueyColor('#1A3263'))
+  </script>
 
-Adjusts alpha values from 0 (fully transparent) to 1 (fully opaque).
+  <HueyRoot bind:color>
+    <AlphaSlider />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+<PropsTable rows={[
+  { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'The orientation of the slider track.' },
+  { name: 'aria-label', type: 'string', default: "'Alpha slider'", description: 'Accessible label for the slider.' },
+]} />

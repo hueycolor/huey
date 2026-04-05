@@ -3,8 +3,10 @@ title: Color Preview
 description: Component to display the current color
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import ColorPreviewDemo from '@/components/gallery/ColorPreview.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 Displays the currently selected color value.
 
@@ -12,14 +14,48 @@ Displays the currently selected color value.
   <ColorPreviewDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { ColorPreview } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, ColorPreview, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A326380'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <ColorPreview />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { ColorPreview } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, ColorPreview, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A326380'))
+  </script>
+
+  <HueyRoot bind:color>
+    <ColorPreview />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+<PropsTable rows={[
+  { name: 'splitPreview', type: 'boolean', default: 'true', description: 'Shows a split view of the transparent and opaque color.' },
+]} />

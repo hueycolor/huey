@@ -3,8 +3,10 @@ title: Saturation Area
 description: 2D saturation/lightness picker area component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import SaturationAreaDemo from '@/components/gallery/SaturationArea.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 A 2D interactive area for picking color saturation and lightness values.
 
@@ -12,14 +14,50 @@ A 2D interactive area for picking color saturation and lightness values.
   <SaturationAreaDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { SaturationArea } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, SaturationArea, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <SaturationArea />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { SaturationArea } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, SaturationArea, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <SaturationArea />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+<PropsTable rows={[
+  { name: 'colorFormat', type: "Exclude<ColorFormat, 'oklch'>", default: "'hsl'", description: 'Controls whether to use HSL or HSV saturation/lightness.' },
+]} />
+
+Also extends all standard HTML attributes.

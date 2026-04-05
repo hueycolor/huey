@@ -1,0 +1,81 @@
+---
+export interface Row {
+  name: string
+  payload: string
+  description: string
+}
+
+interface Props {
+  rows: Row[]
+}
+
+const { rows } = Astro.props
+---
+
+<div class="events-table-wrapper">
+  <table class="events-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Payload</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td><code>{row.name}</code></td>
+          <td><code>{row.payload}</code></td>
+          <td>{row.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .events-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
+    border-radius: var(--radius-12);
+    margin-block: var(--spacing-16);
+  }
+
+  .events-table {
+    width: 100%;
+    border-collapse: collapse;
+    font: var(--paragraph-sm);
+    color: var(--color-stone-950);
+  }
+
+  .events-table thead {
+    background-color: var(--color-linen-100);
+  }
+
+  .events-table th {
+    text-align: left;
+    font: var(--label-xs);
+    text-transform: uppercase;
+    color: var(--color-stone-600);
+    padding: var(--spacing-10) var(--spacing-16);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
+  }
+
+  .events-table td {
+    padding: var(--spacing-10) var(--spacing-16);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 6%, transparent);
+    vertical-align: top;
+  }
+
+  .events-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .events-table code {
+    font: var(--docs-xs);
+    background-color: color-mix(in srgb, var(--color-linen-950) 5%, transparent);
+    padding: var(--spacing-2) var(--spacing-6);
+    border-radius: var(--radius-4);
+    white-space: nowrap;
+  }
+</style>

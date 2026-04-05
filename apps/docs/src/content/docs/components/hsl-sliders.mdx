@@ -3,8 +3,10 @@ title: HSL Sliders
 description: Hue, saturation, and lightness slider components
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import HSLSlidersDemo from '@/components/gallery/HSLSliders.vue'
+import PropsTable from '@/components/PropsTable.astro'
 
 Slider controls for the hue, saturation, and lightness color channels.
 
@@ -12,20 +14,61 @@ Slider controls for the hue, saturation, and lightness color channels.
   <HSLSlidersDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { HueSlider, SaturationSlider, LightnessSlider } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, HueSlider, SaturationSlider, LightnessSlider, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <HueSlider />
+      <SaturationSlider />
+      <LightnessSlider />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { HueSlider, SaturationSlider, LightnessSlider } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, HueSlider, SaturationSlider, LightnessSlider, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <HueSlider />
+    <SaturationSlider />
+    <LightnessSlider />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Each slider component shares these props:
+
+<PropsTable rows={[
+  { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'The orientation of the slider track.' },
+  { name: 'aria-label', type: 'string', description: 'Accessible label for the slider.' },
+]} />
 
 ### Value Ranges
 
-- **Hue**: 0-360 degrees
-- **Saturation**: 0-100%
-- **Lightness**: 0-100%
+- **HueSlider**: 0-360 degrees
+- **SaturationSlider**: 0-100%
+- **LightnessSlider**: 0-100%

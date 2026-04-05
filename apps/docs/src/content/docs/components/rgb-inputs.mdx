@@ -3,6 +3,7 @@ title: RGB Inputs
 description: Red, green, and blue channel input components
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import RGBInputsDemo from '@/components/gallery/RGBInputs.vue'
 
@@ -12,18 +13,54 @@ Individual input fields for the red, green, and blue color channels.
   <RGBInputsDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { RedInput, GreenInput, BlueInput } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, RedInput, GreenInput, BlueInput, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <RedInput />
+      <GreenInput />
+      <BlueInput />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { RedInput, GreenInput, BlueInput } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, RedInput, GreenInput, BlueInput, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <RedInput />
+    <GreenInput />
+    <BlueInput />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Each component (`RedInput`, `GreenInput`, `BlueInput`) extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, etc.).
 
 ### Value Range
 
-Each channel accepts values from 0 to 255.
+Each channel accepts values from 0 to 255. Use the up/down arrow keys to adjust by 1. Hold Shift to adjust by 10.

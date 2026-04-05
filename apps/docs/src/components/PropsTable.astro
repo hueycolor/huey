@@ -1,0 +1,88 @@
+---
+export interface Row {
+  name: string
+  type: string
+  default?: string
+  description: string
+}
+
+interface Props {
+  rows: Row[]
+}
+
+const { rows } = Astro.props
+---
+
+<div class="props-table-wrapper">
+  <table class="props-table">
+    <thead>
+      <tr>
+        <th>Prop</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td><code>{row.name}</code></td>
+          <td><code>{row.type}</code></td>
+          <td>{row.default ? <code>{row.default}</code> : <span class="muted">&mdash;</span>}</td>
+          <td>{row.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .props-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
+    border-radius: var(--radius-12);
+    margin-block: var(--spacing-16);
+  }
+
+  .props-table {
+    width: 100%;
+    border-collapse: collapse;
+    font: var(--paragraph-sm);
+    color: var(--color-stone-950);
+  }
+
+  .props-table thead {
+    background-color: var(--color-linen-100);
+  }
+
+  .props-table th {
+    text-align: left;
+    font: var(--label-xs);
+    text-transform: uppercase;
+    color: var(--color-stone-600);
+    padding: var(--spacing-10) var(--spacing-16);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
+  }
+
+  .props-table td {
+    padding: var(--spacing-10) var(--spacing-16);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 6%, transparent);
+    vertical-align: top;
+  }
+
+  .props-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .props-table code {
+    font: var(--docs-xs);
+    background-color: color-mix(in srgb, var(--color-linen-950) 5%, transparent);
+    padding: var(--spacing-2) var(--spacing-6);
+    border-radius: var(--radius-4);
+    white-space: nowrap;
+  }
+
+  .muted {
+    color: var(--color-stone-400);
+  }
+</style>

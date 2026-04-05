@@ -3,6 +3,7 @@ title: Alpha Input
 description: Alpha channel input component
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import AlphaInputDemo from '@/components/gallery/AlphaInput.vue'
 
@@ -12,18 +13,50 @@ An input field for controlling the alpha (opacity) channel.
   <AlphaInputDemo client:load />
 </ComponentPreview>
 
-### Props
+## Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| | | | |
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { AlphaInput } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, AlphaInput, hueyColor } from '@hueycolor/vue'
 
-### Events
+  const color = ref(hueyColor('#1A3263'))
+  </script>
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| | | |
+  <template>
+    <HueyRoot v-model="color">
+      <AlphaInput />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { AlphaInput } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, AlphaInput, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <AlphaInput />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+Extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, etc.).
 
 ### Value Range
 
-Accepts values from 0 (fully transparent) to 1 (fully opaque).
+Displays values from 0 (fully transparent) to 100 (fully opaque). Use the up/down arrow keys to adjust by 1. Hold Shift to adjust by 10.
