@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Highlighter } from 'shiki'
 import type { Framework } from '@/types'
+import { TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
 import { createHighlighter } from 'shiki'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { componentCodeExamples } from '@/component-code-examples'
@@ -37,19 +38,10 @@ const highlightedCode = computed(() => {
   })
 })
 
-const frameworkIcon = computed(() =>
-  framework.value === 'vue' ? 'logos:vue' : 'logos:svelte-icon',
-)
-
-const frameworkLabel = computed(() =>
-  framework.value === 'vue' ? 'Vue' : 'Svelte',
-)
-
-function toggleFramework() {
-  const next: Framework = framework.value === 'vue' ? 'svelte' : 'vue'
-  framework.value = next
-  setStoredFramework(next)
-}
+const frameworks = [
+  { value: 'vue', label: 'Vue', icon: 'logos:vue' },
+  { value: 'svelte', label: 'Svelte', icon: 'logos:svelte-icon' },
+]
 
 function onFrameworkChange(event: Event) {
   const detail = (event as CustomEvent).detail
@@ -116,10 +108,26 @@ onUnmounted(() => {
 
     <div v-if="showCode" class="code-panel">
       <div class="code-header">
-        <button class="framework-toggle" @click="toggleFramework">
-          <AppIcon :icon="frameworkIcon" class="framework-icon" />
-          {{ frameworkLabel }}
-        </button>
+        <TabsRoot
+          :model-value="framework"
+          class="framework-tabs"
+          @update:model-value="(v: string) => { framework = v as Framework; setStoredFramework(framework) }"
+        >
+          <TabsList class="framework-tabs-list">
+            <TabsIndicator class="framework-indicator-wrapper">
+              <div class="framework-indicator" />
+            </TabsIndicator>
+            <TabsTrigger
+              v-for="fw in frameworks"
+              :key="fw.value"
+              :value="fw.value"
+              class="framework-trigger"
+            >
+              <AppIcon :icon="fw.icon" class="framework-icon" />
+              {{ fw.label }}
+            </TabsTrigger>
+          </TabsList>
+        </TabsRoot>
         <button class="copy-button" @click="copyToClipboard">
           <AppIcon v-if="hasCopied" icon="feather:check" />
           <AppIcon v-else icon="feather:copy" />
@@ -185,18 +193,49 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--color-zinc-800);
 }
 
-.framework-toggle {
+.framework-tabs-list {
+  display: flex;
+  position: relative;
+}
+
+.framework-indicator-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--reka-tabs-indicator-size);
+  height: 100%;
+  transform: translateX(var(--reka-tabs-indicator-position));
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framework-indicator {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-zinc-800);
+  border-radius: var(--radius-6);
+}
+
+.framework-trigger {
   display: flex;
   align-items: center;
   gap: var(--spacing-6);
   font: var(--label-sm);
   color: var(--color-zinc-400);
   cursor: pointer;
-  border-radius: var(--radius-4);
-  transition: color 150ms ease;
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--radius-6);
+  background-color: transparent;
+  z-index: 1;
+  opacity: 0.7;
+  transition: opacity 150ms ease;
+
+  &[data-state='active'] {
+    opacity: 1;
+    color: var(--color-zinc-200);
+  }
 
   &:hover {
-    color: var(--color-zinc-200);
+    opacity: 1;
   }
 }
 
