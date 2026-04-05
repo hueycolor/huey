@@ -4,7 +4,7 @@ import type { Framework } from '@/types'
 import { createHighlighter } from 'shiki'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { componentCodeExamples } from '@/component-code-examples'
-import { FRAMEWORK_CHANGE_EVENT, getStoredFramework } from '@/framework-preference'
+import { FRAMEWORK_CHANGE_EVENT, getStoredFramework, setStoredFramework } from '@/framework-preference'
 import AppIcon from './AppIcon.vue'
 
 const props = defineProps<{
@@ -44,6 +44,12 @@ const frameworkIcon = computed(() =>
 const frameworkLabel = computed(() =>
   framework.value === 'vue' ? 'Vue' : 'Svelte',
 )
+
+function toggleFramework() {
+  const next: Framework = framework.value === 'vue' ? 'svelte' : 'vue'
+  framework.value = next
+  setStoredFramework(next)
+}
 
 function onFrameworkChange(event: Event) {
   const detail = (event as CustomEvent).detail
@@ -110,10 +116,10 @@ onUnmounted(() => {
 
     <div v-if="showCode" class="code-panel">
       <div class="code-header">
-        <span class="framework-badge">
+        <button class="framework-toggle" @click="toggleFramework">
           <AppIcon :icon="frameworkIcon" class="framework-icon" />
           {{ frameworkLabel }}
-        </span>
+        </button>
         <button class="copy-button" @click="copyToClipboard">
           <AppIcon v-if="hasCopied" icon="feather:check" />
           <AppIcon v-else icon="feather:copy" />
@@ -179,12 +185,19 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--color-zinc-800);
 }
 
-.framework-badge {
+.framework-toggle {
   display: flex;
   align-items: center;
   gap: var(--spacing-6);
   font: var(--label-sm);
   color: var(--color-zinc-400);
+  cursor: pointer;
+  border-radius: var(--radius-4);
+  transition: color 150ms ease;
+
+  &:hover {
+    color: var(--color-zinc-200);
+  }
 }
 
 .framework-icon {
