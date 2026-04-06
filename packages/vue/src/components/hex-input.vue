@@ -5,14 +5,20 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { hueyColor, isHex } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
-defineProps<ChannelInputProps>()
+const props = withDefaults(defineProps<ChannelInputProps>(), {
+  alpha: true,
+})
 
 const { hue, saturation, lightness, colorValue, alpha } = useHueyContext()
 
-const hexRef = ref(colorValue.value.toHex().toUpperCase())
+function formatHex(hex: string) {
+  return props.alpha ? hex : hex.slice(0, 6)
+}
+
+const hexRef = ref(formatHex(colorValue.value.toHex().toUpperCase()))
 
 watch(colorValue, (newColor) => {
-  hexRef.value = newColor.toHex().toUpperCase()
+  hexRef.value = formatHex(newColor.toHex().toUpperCase())
 })
 
 function handleEnter(e: KeyboardEvent | FocusEvent) {
@@ -131,7 +137,10 @@ function updateValue(input: HTMLInputElement, value: string) {
   }
   saturation.value = s
   lightness.value = l
-  alpha.value = newColor.getAlpha()
+
+  if (props.alpha) {
+    alpha.value = newColor.getAlpha()
+  }
 }
 
 function handleFocus(e: FocusEvent) {
@@ -141,7 +150,9 @@ function handleFocus(e: FocusEvent) {
 </script>
 
 <script lang="ts">
-export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
+export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes {
+  alpha?: boolean
+}
 </script>
 
 <template>

@@ -34,7 +34,7 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
           </option>
         </select>
         <div class="inputs">
-          <HexInput v-if="colorFormat === 'hex'" id="hex-input" />
+          <HexInput v-if="colorFormat === 'hex'" id="hex-input" :alpha="false" />
           <template v-if="colorFormat === 'hsl'">
             <HueInput id="hue" />
             <SaturationInput id="saturation" />
