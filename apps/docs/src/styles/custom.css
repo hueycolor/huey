@@ -200,6 +200,20 @@ nav.sidebar + .main-frame {
   width: var(--reka-popper-anchor-width);
 }
 
+[data-has-sidebar] {
+  .pagination-links {
+    a {
+      background-color: var(--color-linen-100);
+      box-shadow: none;
+      transition: background 300ms ease-out;
+
+      &:hover {
+        background-color: var(--color-linen-200);
+      }
+    }
+  }
+}
+
 mobile-starlight-toc {
   nav {
     background-color: var(--sl-color-bg);
