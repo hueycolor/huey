@@ -205,10 +205,18 @@ nav.sidebar + .main-frame {
     a {
       background-color: var(--color-linen-100);
       box-shadow: none;
-      transition: background 300ms ease-out;
+      color: var(--color-linen-9000);
+      font-size: var(--sl-text-sm);
+      transition: background 150ms ease-out;
 
       &:hover {
         background-color: var(--color-linen-200);
+      }
+
+
+      .link-title {
+        color: var(--color-linen-950);
+        font-size: var(--sl-text-lg);
       }
     }
   }
