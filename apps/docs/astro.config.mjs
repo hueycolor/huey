@@ -17,6 +17,7 @@ export default defineConfig({
         label: 'Overview',
         items: [
           { label: 'Getting Started', slug: 'overview/getting-started' },
+          { label: 'Core Library', slug: 'overview/core' },
           { label: 'Components', slug: 'overview/components' },
           { label: 'Styling', slug: 'overview/styling' },
           { label: 'Accessibility', slug: 'overview/accessibility' },

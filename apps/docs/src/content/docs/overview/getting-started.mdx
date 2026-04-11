@@ -89,33 +89,4 @@ Pick only the components you need. A minimal picker might use just `SaturationAr
 
 ## Using @hueycolor/core Standalone
 
-The core package works independently of any framework. Install it directly if you only need color parsing, conversion, and manipulation:
-
-<Tabs syncKey="pkg-manager">
-  <TabItem label="pnpm">
-  ```bash
-  pnpm i @hueycolor/core
-  ```
-  </TabItem>
-  <TabItem label="npm">
-  ```bash
-  npm i @hueycolor/core
-  ```
-  </TabItem>
-  <TabItem label="bun">
-  ```bash
-  bun add @hueycolor/core
-  ```
-  </TabItem>
-</Tabs>
-
-```js
-import { hueyColor } from '@hueycolor/core'
-
-const color = hueyColor('#ff6b35')
-
-color.toRgbString()   // 'rgb(255, 107, 53)'
-color.toOklchString() // 'oklch(72% 0.19 45)'
-color.lighten(0.1).toHexString()
-color.contrastRatio(hueyColor('#1a1a2e')) // WCAG contrast ratio
-```
+The core package works independently of any framework. If you only need color parsing, conversion, and manipulation without UI components, see the [@hueycolor/core docs](/overview/core/).

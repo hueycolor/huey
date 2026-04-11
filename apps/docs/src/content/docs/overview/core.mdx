@@ -1,0 +1,196 @@
+---
+title: Core Library
+description: A standalone, framework-agnostic color library with OKLCH-based operations and wide gamut support
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+`@hueycolor/core` is a standalone color library that works independently of any UI framework. It handles color parsing, conversion, manipulation, and accessibility checks, all using OKLCH internally for perceptually uniform results.
+
+## Install
+
+<Tabs syncKey="pkg-manager">
+  <TabItem label="pnpm">
+  ```bash
+  pnpm i @hueycolor/core
+  ```
+  </TabItem>
+  <TabItem label="npm">
+  ```bash
+  npm i @hueycolor/core
+  ```
+  </TabItem>
+  <TabItem label="bun">
+  ```bash
+  bun add @hueycolor/core
+  ```
+  </TabItem>
+</Tabs>
+
+## Creating Colors
+
+Pass any supported color string to `hueyColor()` to create a color object:
+
+```ts
+import { hueyColor } from '@hueycolor/core'
+
+const color = hueyColor('#ff6b35')          // Hex
+const rgb   = hueyColor('rgb(255, 107, 53)') // RGB
+const hsl   = hueyColor('hsl(18, 100%, 60%)') // HSL
+const oklch = hueyColor('oklch(72% 0.19 45)') // OKLCH
+```
+
+You can also pass an existing `HueyColor` object. It will be returned as-is.
+
+## Output Formats
+
+Convert to any supported color format:
+
+```ts
+const color = hueyColor('#ff6b35')
+
+// Standard gamut
+color.toHexString()   // '#ff6b35'
+color.toHex()         // 'ff6b35' (no #)
+color.toRgbString()   // 'rgb(255, 107, 53)'
+color.toRgb()         // { r: 255, g: 107, b: 53, a: 1 }
+color.toHslString()   // 'hsl(18, 100%, 60%)'
+color.toHsl()         // { h: 18, s: 100, l: 60, a: 1 }
+
+// Wide gamut
+color.toOklchString() // 'oklch(72% 0.19 45)'
+color.toDisplayP3()   // 'color(display-p3 ...)'
+color.toRec2020()     // 'color(rec2020 ...)'
+
+// Format-aware (returns the same format as the input)
+color.toString()      // '#ff6b35'
+```
+
+Alpha is included automatically when less than 1:
+
+```ts
+const color = hueyColor('rgba(255, 107, 53, 0.5)')
+color.toRgbString() // 'rgba(255, 107, 53, 0.5)'
+color.toHexString() // '#ff6b3580'
+```
+
+## Color Manipulation
+
+All operations use OKLCH internally, so adjustments are perceptually even. Every method returns a new `HueyColor` object.
+
+```ts
+const color = hueyColor('#ff6b35')
+
+color.lighten(0.1)     // Increase lightness
+color.darken(0.1)      // Decrease lightness
+color.saturate(0.1)    // Increase chroma
+color.desaturate(0.1)  // Decrease chroma
+```
+
+Set specific properties directly:
+
+```ts
+color.setHue(200)        // Set hue (0-360)
+color.setSaturation(50)  // Set saturation (0-100)
+color.setLightness(70)   // Set lightness (0-100)
+color.setAlpha(0.5)      // Set alpha (0-1)
+```
+
+Chain operations freely:
+
+```ts
+const variant = hueyColor('#ff6b35')
+  .setHue(200)
+  .saturate(0.1)
+  .lighten(0.05)
+
+variant.toHexString() // new color, original untouched
+```
+
+## Accessibility
+
+```ts
+const bg   = hueyColor('#1a1a2e')
+const text = hueyColor('#e0e0e0')
+
+// WCAG contrast ratio
+bg.contrastRatio(text) // 12.5
+
+// Relative luminance (W3C definition)
+bg.getLuminance()      // 0.02
+
+// Quick lightness checks
+bg.isDark()            // true
+text.isLight()         // true
+```
+
+## Utilities
+
+`@hueycolor/core` also provides lower-level utilities for color operations:
+
+```ts
+import { getFormat, isHex, hslToRgb, rgbToHsl } from '@hueycolor/core'
+
+getFormat('#ff0000')  // 'hex'
+isHex('#ff0000')      // true
+hslToRgb(180, 50, 50) // { r: 64, g: 191, b: 191 }
+```
+
+See the full reference for each utility group:
+
+- [Color Utilities](/utils/color-utilities/) - Format detection and type guards
+- [Color Conversion](/utils/color-conversion/) - Color space conversions and parsers
+
+## API Reference
+
+### `hueyColor(input)`
+
+Creates a `HueyColor` object from a color string or existing `HueyColor`.
+
+**Supported input formats:** `hex`, `rgb` / `rgba`, `hsl` / `hsla`, `oklch`
+
+### HueyColor Methods
+
+#### Output
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `toHex()` | `string` | Hex value without `#` |
+| `toHexString()` | `string` | Hex string with `#` |
+| `toRgb()` | `{ r, g, b, a }` | RGB object (0-255) |
+| `toRgbString()` | `string` | CSS `rgb()` / `rgba()` string |
+| `toHsl()` | `{ h, s, l, a }` | HSL object |
+| `toHslString()` | `string` | CSS `hsl()` / `hsla()` string |
+| `toOklchString()` | `string` | CSS `oklch()` string |
+| `toDisplayP3()` | `string` | CSS `color(display-p3)` string |
+| `toRec2020()` | `string` | CSS `color(rec2020)` string |
+| `toString()` | `string` | String in the original input format |
+
+#### Manipulation
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `lighten(amount)` | `HueyColor` | Increase OKLCH lightness |
+| `brighten(amount)` | `HueyColor` | Alias for `lighten` |
+| `darken(amount)` | `HueyColor` | Decrease OKLCH lightness |
+| `saturate(amount)` | `HueyColor` | Increase OKLCH chroma |
+| `desaturate(amount)` | `HueyColor` | Decrease OKLCH chroma |
+| `setHue(h)` | `HueyColor` | Set hue (0-360) |
+| `setSaturation(s)` | `HueyColor` | Set saturation (0-100) |
+| `setLightness(l)` | `HueyColor` | Set lightness (0-100) |
+| `setAlpha(a)` | `HueyColor` | Set alpha (0-1) |
+| `clone()` | `HueyColor` | Create a copy |
+| `randomize()` | `HueyColor` | Generate a random color |
+
+#### Inspection
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getFormat()` | `ColorFormat` | Original input format |
+| `getOriginalInput()` | `string` | Original input string |
+| `getAlpha()` | `number` | Alpha value (0-1) |
+| `getLuminance()` | `number` | Relative luminance (W3C) |
+| `getBrightness()` | `number` | OKLCH lightness (0-1) |
+| `isLight()` | `boolean` | `true` when lightness is above 0.5 |
+| `isDark()` | `boolean` | `true` when lightness is 0.5 or below |
+| `contrastRatio(color)` | `number` | WCAG contrast ratio against another color |
