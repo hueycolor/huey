@@ -2,20 +2,15 @@
 import CoreLibSnippets from '@/components/CoreLibSnippets.vue'
 import CoreLibCodePreview from '@/components/CoreLibCodePreview.vue'
 import SectionHeading from '@/components/SectionHeading.astro'
-import AppIcon from '@/components/AppIcon.vue'
 ---
 
 <section class="core-lib" data-size="wide">
   <div class="info">
     <SectionHeading color="var(--color-neutral-50)">
       <Fragment slot="title">Not Just UI</Fragment>
-      <Fragment slot="description">Huey also offers a <u>framework-agnostic utility library</u> for color manipulation</Fragment>
+      <Fragment slot="description">Huey also offers a <a href="/overview/core/"><u>framework-agnostic utility library</u></a> for color manipulation</Fragment>
     </SectionHeading>
     <CoreLibSnippets client:load />
-    <a hc-button href="/overview/core/" data-variant="primary">
-      Explore the Core
-      <AppIcon icon="ph:arrow-right" />
-    </a>
   </div>
   <div class="code">
     <CoreLibCodePreview client:load />
@@ -39,40 +34,7 @@ import AppIcon from '@/components/AppIcon.vue'
       gap: var(--spacing-40);
 
       a {
-        width: fit-content;
-
-        svg {
-          --size: 20px;
-
-          height: var(--size);
-          width: var(--size);
-          transition: translate 200ms ease;
-        }
-
-        &:hover svg {
-          translate: 4px 0;
-        }
-      }
-
-      .main-action {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-8);
-        font: var(--label-lg);
-        color: var(--color-neutral-50);
-        width: fit-content;
-
-        svg {
-          --size: 20px;
-
-          height: var(--size);
-          width: var(--size);
-          transition: translate 200ms ease;
-        }
-
-        &:hover svg {
-          translate: 4px 0;
-        }
+        color: inherit;
       }
     }
 
