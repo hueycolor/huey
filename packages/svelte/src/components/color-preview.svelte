@@ -1,45 +1,58 @@
+<script lang="ts" module>
+  export interface ColorPreviewProps {
+    class?: string
+    splitPreview?: boolean
+  }
+</script>
+
 <script lang="ts">
-	import type { HueyColor } from '@hueycolor/core'
+  import { useHueyContext } from '../context/huey-context.svelte'
 
-	interface Props {
-		class?: string
-		color: HueyColor
-	}
+  let { class: className, splitPreview = true }: ColorPreviewProps = $props()
 
-	let { class: className, color }: Props = $props()
+  const ctx = useHueyContext()
 
-	let bg = $derived.by(() => {
-		const rgba = color.toRgbString()
+  const tilesOpacity = $derived(`${Math.abs((ctx.alpha * 100) - 100) / 100}`)
+  const bg = $derived(`hsl(${ctx.hue}, ${ctx.saturation}%, ${ctx.lightness}%)`)
 
-		return `
-    linear-gradient(${rgba}, ${rgba}),
-    repeating-conic-gradient(
-      #ffffff 0deg,
-      #ffffff 90deg,
-      rgba(0, 0, 0, 0.3) 90deg,
-      rgba(0, 0, 0, 0.3) 180deg
-    ) 25% 25% / var(--opacity-tile) var(--opacity-tile)
-  `
-	})
+  const previewMarker: Record<string, string | boolean> = { 'huey-preview': '' }
 </script>
 
 <div
-	data-huey-preview
-	class={className}
-	style:background={bg}
-	aria-label={color.toRgbString()}
-	role="presentation"
-	aria-live="polite"
+  {...previewMarker}
+  data-split-view={splitPreview}
+  class={className}
+  style={`background: ${bg}; --huey-preview-tiles-opacity: ${tilesOpacity};`}
+  aria-label={`hsl(${ctx.hue}, ${ctx.saturation}%, ${ctx.lightness}%, ${ctx.alpha})`}
+  role="img"
+  aria-live="polite"
 ></div>
 
 <style>
-	[data-huey-preview] {
-		--preview-tile: 20px;
-		--opacity-tile: calc(var(--preview-tile) - 50%);
+  :global {
+    [huey-preview] {
+      --huey-preview-tile-size: 20px;
 
-		display: inline-block;
-		width: var(--preview-tile);
-		height: var(--preview-tile);
-		border-radius: calc(var(--preview-tile) - 80%);
-	}
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      width: var(--huey-preview-tile-size);
+      height: var(--huey-preview-tile-size);
+      border-radius: calc(var(--huey-preview-tile-size) - 80%);
+    }
+
+    [huey-preview]::before {
+      content: '';
+      display: block;
+      margin-left: auto;
+      width: 50%;
+      height: 100%;
+      opacity: var(--huey-preview-tiles-opacity);
+      background: url("data:image/svg+xml,<svg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 0H3V3H0V0Z' fill='%23E1E1E1'/><path d='M3 0H6V3H3V0Z' fill='white'/><path d='M3 3H6V6H3V3Z' fill='%23E1E1E1'/><path d='M0 3H3V6H0V3Z' fill='white'/></svg>");
+    }
+
+    [huey-preview][data-split-view='false']::before {
+      width: 100%;
+    }
+  }
 </style>

@@ -4,14 +4,13 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     /* Path Aliases */
-    "baseUrl": ".",
     "paths": {
-      "@components": ["src/components"],
-      "@components/*": ["src/components/*"],
-      "@composables": ["src/composables"],
-      "@composables/*": ["src/composables/*"],
-      "@utils": ["src/utils"],
-      "@utils/*": ["src/utils/*"]
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@composables": ["./src/composables"],
+      "@composables/*": ["./src/composables/*"],
+      "@utils": ["./src/utils"],
+      "@utils/*": ["./src/utils/*"]
     },
     "types": ["vite/client"],
 

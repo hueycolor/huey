@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@core/*": ["./packages/core/src/*"],
       "@svelte/*": ["./packages/svelte/*"],
