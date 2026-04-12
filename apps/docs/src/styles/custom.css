@@ -238,6 +238,15 @@ nav.sidebar + .main-frame {
     border: none;
     padding: 0;
   }
+
+  .sl-markdown-content :not(pre) > code:not(:where(.not-content *)) {
+    background-color: var(--color-linen-100);
+    border: none;
+    border-radius: var(--radius-4);
+    color: var(--color-stone-900);
+    font-size: 0.9em;
+    padding: 0.1em 0.3em;
+  }
 }
 
 mobile-starlight-toc {

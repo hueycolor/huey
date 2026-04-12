@@ -8,6 +8,9 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   integrations: [starlight({
     title: 'Huey',
+    expressiveCode: {
+      themes: ['vesper'],
+    },
     customCss: [
       './src/styles/custom.css',
     ],
