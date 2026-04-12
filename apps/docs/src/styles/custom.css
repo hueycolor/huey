@@ -201,6 +201,10 @@ nav.sidebar + .main-frame {
   .tab {
     a {
       text-decoration: none;
+      
+      &[aria-selected="true"] {
+        --sl-tab-color-border: black;
+      }
     }
   }
 
