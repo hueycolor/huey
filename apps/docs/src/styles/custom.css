@@ -33,59 +33,12 @@ a {
   text-decoration: none;
 }
 
-button, a {
-  background-color: transparent;
-  border: none;
-
-  &[hc-button] {
-    align-items: center;
-    background-color: transparent;
-    border-radius: var(--radius-12);
-    cursor: pointer;
-    display: flex;
-    font: var(--label-md);
-    gap: var(--spacing-8);
-    justify-content: center;
-    min-height: 48px;
-    padding-block: var(--spacing-8);
-    padding-inline: var(--spacing-24);
-  }
-  
-
-  &[data-variant='primary'] {
-    background-color: var(--color-stone-950);
-    color: var(--color-beige-50);
-  }
-
-  &[data-variant='secondary'] {
-    background-color: var(--color-linen-100);
-    color: var(--color-stone-950);
-  }
-
-  &[data-variant='tertiary'] {
-    background-color: transparent;
-    color: var(--color-stone-950);
-  }
-}
-
-
-body > a {
-  background-color: var(--color-beige-100);
-  color: var(--color-stone-950);
-}
-
-.sidebar-pane {
-  inset-block: 0
-}
-
-.sidebar-content {
-  padding: 0;
-}
 
 /* Components */
 
 [hc-button] {
   align-items: center;
+  background-color: transparent;
   border-radius: var(--radius-12);
   cursor: pointer;
   display: flex;
@@ -124,6 +77,40 @@ body > a {
       background-color: var(--color-linen-100);
     }
   }
+}
+
+button, a {
+  background-color: transparent;
+  border: none;
+
+  &[data-variant='primary'] {
+    background-color: var(--color-stone-950);
+    color: var(--color-beige-50);
+  }
+
+  &[data-variant='secondary'] {
+    background-color: var(--color-linen-100);
+    color: var(--color-stone-950);
+  }
+
+  &[data-variant='tertiary'] {
+    background-color: transparent;
+    color: var(--color-stone-950);
+  }
+}
+
+
+body > a {
+  background-color: var(--color-beige-100);
+  color: var(--color-stone-950);
+}
+
+.sidebar-pane {
+  inset-block: 0
+}
+
+.sidebar-content {
+  padding: 0;
 }
 
 html[data-has-hero] {
@@ -201,6 +188,11 @@ nav.sidebar + .main-frame {
 }
 
 [data-has-sidebar] {
+  --sl-text-h1: var(--sl-text-3xl);
+    --sl-text-h2: var(--sl-text-2xl);
+    --sl-text-h3: var(--sl-text-xl);
+    --sl-text-h4: var(--sl-text-base);
+
   .pagination-links {
     a {
       background-color: var(--color-linen-100);
