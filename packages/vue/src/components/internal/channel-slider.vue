@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AriaAttributes } from 'vue'
-import { ColorThumb } from '@components'
+import ColorThumb from '@components/internal/color-thumb.vue'
 import { clamp, getAbsolutePosition, getPageXYFromEvent, normalize, resolveArrowDirection, roundToStep } from '@hueycolor/core'
 import { allowUserSelect, preventUserSelect } from '@utils'
 import { computed, onUnmounted, useTemplateRef } from 'vue'

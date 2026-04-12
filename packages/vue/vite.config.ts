@@ -9,9 +9,10 @@ export default defineConfig({
   plugins: [
     vue(),
     cssInjectedByJsPlugin(),
-    dts({ tsconfigPath: './tsconfig.app.json' }),
+    dts({ tsconfigPath: './tsconfig.app.json', include: ['src/index.ts'] }),
   ],
   build: {
+    copyPublicDir: false,
     lib: {
       entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
       name: 'HueyVue',

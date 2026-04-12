@@ -1,12 +1,5 @@
-<script lang="ts" module>
-  import type { HTMLInputAttributes } from 'svelte/elements'
-
-  export interface HexInputProps extends HTMLInputAttributes {
-    alpha?: boolean
-  }
-</script>
-
 <script lang="ts">
+  import type { HexInputProps } from '@/types'
   import type { ArrowDirection } from '@hueycolor/core'
   import { hueyColor, isHex } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'

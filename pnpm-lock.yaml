@@ -199,6 +199,12 @@ importers:
       vite:
         specifier: ^7.1.2
         version: 7.1.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)
+      vite-plugin-css-injected-by-js:
+        specifier: ^4.0.1
+        version: 4.0.1(vite@7.1.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))
+      vite-plugin-dts:
+        specifier: ^4.5.4
+        version: 4.5.4(@types/node@24.10.1)(rollup@4.56.0)(typescript@5.8.3)(vite@7.1.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)
@@ -21250,6 +21256,10 @@ snapshots:
       stylelint: 17.3.0(typescript@5.9.3)
       typescript: 5.9.3
       vue-tsc: 3.1.5(typescript@5.9.3)
+
+  vite-plugin-css-injected-by-js@4.0.1(vite@7.1.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)):
+    dependencies:
+      vite: 7.1.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)
 
   vite-plugin-css-injected-by-js@4.0.1(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2)):
     dependencies:

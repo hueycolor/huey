@@ -1,17 +1,6 @@
-<script lang="ts" module>
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  
-  import type { Snippet } from 'svelte'
-
-  export interface ColorDropperProps {
-    'aria-label'?: string
-    class?: string
-    onerror?: (error: Error) => void
-    children?: Snippet
-  }
-</script>
-
 <script lang="ts">
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  import type { ColorDropperProps } from '@/types'
   import { clamp, hueyColor } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'
 

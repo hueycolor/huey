@@ -1,11 +1,5 @@
-<script lang="ts" module>
-  export interface ColorSwatchProps {
-    swatch: Array<string>
-    'aria-label'?: string
-  }
-</script>
-
 <script lang="ts">
+  import type { ColorSwatchProps } from '@/types'
   import { hueyColor } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'
 

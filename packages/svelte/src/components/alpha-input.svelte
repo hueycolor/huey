@@ -1,10 +1,5 @@
-<script lang="ts" module>
-  import type { HTMLInputAttributes } from 'svelte/elements'
-
-  export interface AlphaInputProps extends HTMLInputAttributes {}
-</script>
-
 <script lang="ts">
+  import type { AlphaInputProps } from '@/types'
   import type { ArrowDirection } from '@hueycolor/core'
   import { getChannelBounds } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'

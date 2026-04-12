@@ -1,10 +1,5 @@
-<script lang="ts" module>
-  import type { ColorSliderProps } from './internal/channel-slider.svelte'
-
-  export interface HueSliderProps extends Omit<ColorSliderProps, 'value'> {}
-</script>
-
 <script lang="ts">
+  import type { HueSliderProps } from '@/types'
   import { useHueyContext } from '../context/huey-context.svelte'
   import ChannelSlider from './internal/channel-slider.svelte'
 

@@ -2,15 +2,51 @@
   "name": "@hueycolor/svelte",
   "type": "module",
   "version": "0.0.1-beta.4",
-  "private": true,
+  "private": false,
+  "description": "Composable color picker components for Svelte",
+  "author": "Eihab Khan <yo@eihab.me>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hueycolor/huey"
+  },
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "color-picker",
+    "colorpicker",
+    "color",
+    "colour",
+    "hsl",
+    "rgb",
+    "hex",
+    "svelte-component",
+    "huey"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --config vite.lib.config.ts",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
   },
   "dependencies": {
     "@hueycolor/core": "workspace:*"
@@ -38,6 +74,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.20.0",
     "vite": "^7.1.2",
+    "vite-plugin-css-injected-by-js": "^4.0.1",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   }
 }

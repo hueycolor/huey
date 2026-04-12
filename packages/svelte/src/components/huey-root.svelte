@@ -1,15 +1,10 @@
 <script lang="ts">
+  import type { HueyRootProps } from '@/types'
   import type { HueyColor } from '@hueycolor/core'
-  import type { Snippet } from 'svelte'
   import { clamp, hueyColor } from '@hueycolor/core'
   import { HueyState, setHueyContext } from '../context/huey-context.svelte'
 
-  interface Props {
-    color: HueyColor
-    children?: Snippet
-  }
-
-  let { color = $bindable(), children }: Props = $props()
+  let { color = $bindable(), children }: HueyRootProps = $props()
 
   if (!color) {
     throw new Error('<HueyRoot> is missing required bind:color of type HueyColor')

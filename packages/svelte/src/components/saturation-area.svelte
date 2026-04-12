@@ -1,14 +1,5 @@
-<script lang="ts" module>
-  import type { ColorFormat } from '@hueycolor/core'
-
-  export interface SaturationAreaProps {
-    colorFormat?: Exclude<ColorFormat, 'oklch'>
-    class?: string
-    'aria-label'?: string
-  }
-</script>
-
 <script lang="ts">
+  import type { SaturationAreaProps } from '@/types'
   import { clamp, getAbsolutePosition, getPageXYFromEvent, hslToHsv, hsvToHsl, resolveArrowDirection } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'
   import { allowUserSelect, preventUserSelect } from '../utils/index'

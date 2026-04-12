@@ -1,11 +1,5 @@
-<script lang="ts" module>
-  export interface ColorPreviewProps {
-    class?: string
-    splitPreview?: boolean
-  }
-</script>
-
 <script lang="ts">
+  import type { ColorPreviewProps } from '@/types'
   import { useHueyContext } from '../context/huey-context.svelte'
 
   let { class: className, splitPreview = true }: ColorPreviewProps = $props()
