@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  
   import type { Snippet } from 'svelte'
 
   export interface ColorDropperProps {

@@ -14,7 +14,7 @@
   import { allowUserSelect, preventUserSelect } from '../utils/index'
   import ColorThumb from './internal/color-thumb.svelte'
 
-  let { colorFormat = 'hsl', class: className }: SaturationAreaProps = $props()
+  let { colorFormat = 'hsl', class: className, 'aria-label': ariaLabel }: SaturationAreaProps = $props()
 
   const ctx = useHueyContext()
 
@@ -202,7 +202,7 @@
     style={`top: ${offsetTop}; left: ${offsetLeft};`}
     tabindex={0}
     role="slider"
-    aria-label="Color thumb"
+    aria-label={ariaLabel ?? "Color thumb"}
     aria-valuenow={Math.round(ctx.saturation)}
     aria-valuemin={0}
     aria-valuemax={100}
