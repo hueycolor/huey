@@ -1,37 +1,33 @@
 ---
-export interface Row {
-  name: string
-  payload: string
-  description: string
-}
-
 interface Props {
-  rows: Row[]
+  headers: string[]
+  rows: string[][]
 }
 
-const { rows } = Astro.props
+const { headers, rows } = Astro.props
+
+function cellHtml(value: string): string {
+  const escaped = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return escaped.replace(/`([^`]+)`/g, '<code>$1</code>')
+}
 ---
 
-<div class="events-table-wrapper">
-  <table class="events-table">
+<div class="data-table-wrapper">
+  <table class="data-table">
     <thead>
       <tr>
-        <th>Event</th>
-        <th>Payload</th>
-        <th>Description</th>
+        {headers.map((h) => <th>{h}</th>)}
       </tr>
     </thead>
     <tbody>
       {
         rows.map((row) => (
           <tr>
-            <td>
-              <code>{row.name}</code>
-            </td>
-            <td>
-              <code>{row.payload}</code>
-            </td>
-            <td>{row.description}</td>
+            {row.map((cell) => (
+              <td>
+                <Fragment set:html={cellHtml(cell)} />
+              </td>
+            ))}
           </tr>
         ))
       }
@@ -40,14 +36,14 @@ const { rows } = Astro.props
 </div>
 
 <style>
-  .events-table-wrapper {
+  .data-table-wrapper {
     overflow-x: auto;
     border: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
     border-radius: var(--radius-12);
     margin-block: var(--spacing-16);
   }
 
-  .events-table {
+  .data-table {
     display: table;
     width: 100%;
     border-collapse: collapse;
@@ -55,11 +51,25 @@ const { rows } = Astro.props
     color: var(--color-stone-950);
   }
 
-  .events-table thead {
+  .data-table thead {
+    display: table-header-group;
     background-color: var(--color-linen-100);
   }
 
-  .events-table th {
+  .data-table tbody {
+    display: table-row-group;
+  }
+
+  .data-table tr {
+    display: table-row;
+  }
+
+  .data-table th,
+  .data-table td {
+    display: table-cell;
+  }
+
+  .data-table th {
     text-align: left;
     font: var(--label-xs);
     text-transform: uppercase;
@@ -68,17 +78,17 @@ const { rows } = Astro.props
     border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 10%, transparent);
   }
 
-  .events-table td {
+  .data-table td {
     padding: var(--spacing-10) var(--spacing-16);
     border-bottom: 1px solid color-mix(in srgb, var(--color-linen-950) 6%, transparent);
     vertical-align: top;
   }
 
-  .events-table tbody tr:last-child td {
+  .data-table tbody tr:last-child td {
     border-bottom: none;
   }
 
-  .events-table code {
+  .data-table :global(code) {
     font: var(--docs-xs);
     background-color: color-mix(in srgb, var(--color-linen-950) 5%, transparent);
     padding: var(--spacing-2) var(--spacing-6);

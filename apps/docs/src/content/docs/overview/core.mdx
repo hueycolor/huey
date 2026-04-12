@@ -4,6 +4,7 @@ description: A standalone, framework-agnostic color library with OKLCH-based ope
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import DataTable from '@/components/DataTable.astro'
 
 `@hueycolor/core` is a standalone color library that works independently of any UI framework. It handles color parsing, conversion, manipulation, and accessibility checks, all using OKLCH internally for perceptually uniform results.
 
@@ -153,44 +154,53 @@ Creates a `HueyColor` object from a color string or existing `HueyColor`.
 
 #### Output
 
-| Method | Returns | Description |
-|--------|---------|-------------|
-| `toHex()` | `string` | Hex value without `#` |
-| `toHexString()` | `string` | Hex string with `#` |
-| `toRgb()` | `{ r, g, b, a }` | RGB object (0-255) |
-| `toRgbString()` | `string` | CSS `rgb()` / `rgba()` string |
-| `toHsl()` | `{ h, s, l, a }` | HSL object |
-| `toHslString()` | `string` | CSS `hsl()` / `hsla()` string |
-| `toOklchString()` | `string` | CSS `oklch()` string |
-| `toDisplayP3()` | `string` | CSS `color(display-p3)` string |
-| `toRec2020()` | `string` | CSS `color(rec2020)` string |
-| `toString()` | `string` | String in the original input format |
+<DataTable
+  headers={['Method', 'Returns', 'Description']}
+  rows={[
+    ['`toHex()`', '`string`', 'Hex value without `#`'],
+    ['`toHexString()`', '`string`', 'Hex string with `#`'],
+    ['`toRgb()`', '`{ r, g, b, a }`', 'RGB object (0-255)'],
+    ['`toRgbString()`', '`string`', 'CSS `rgb()` / `rgba()` string'],
+    ['`toHsl()`', '`{ h, s, l, a }`', 'HSL object'],
+    ['`toHslString()`', '`string`', 'CSS `hsl()` / `hsla()` string'],
+    ['`toOklchString()`', '`string`', 'CSS `oklch()` string'],
+    ['`toDisplayP3()`', '`string`', 'CSS `color(display-p3)` string'],
+    ['`toRec2020()`', '`string`', 'CSS `color(rec2020)` string'],
+    ['`toString()`', '`string`', 'String in the original input format'],
+  ]}
+/>
 
 #### Manipulation
 
-| Method | Returns | Description |
-|--------|---------|-------------|
-| `lighten(amount)` | `HueyColor` | Increase OKLCH lightness |
-| `brighten(amount)` | `HueyColor` | Alias for `lighten` |
-| `darken(amount)` | `HueyColor` | Decrease OKLCH lightness |
-| `saturate(amount)` | `HueyColor` | Increase OKLCH chroma |
-| `desaturate(amount)` | `HueyColor` | Decrease OKLCH chroma |
-| `setHue(h)` | `HueyColor` | Set hue (0-360) |
-| `setSaturation(s)` | `HueyColor` | Set saturation (0-100) |
-| `setLightness(l)` | `HueyColor` | Set lightness (0-100) |
-| `setAlpha(a)` | `HueyColor` | Set alpha (0-1) |
-| `clone()` | `HueyColor` | Create a copy |
-| `randomize()` | `HueyColor` | Generate a random color |
+<DataTable
+  headers={['Method', 'Returns', 'Description']}
+  rows={[
+    ['`lighten(amount)`', '`HueyColor`', 'Increase OKLCH lightness'],
+    ['`brighten(amount)`', '`HueyColor`', 'Alias for `lighten`'],
+    ['`darken(amount)`', '`HueyColor`', 'Decrease OKLCH lightness'],
+    ['`saturate(amount)`', '`HueyColor`', 'Increase OKLCH chroma'],
+    ['`desaturate(amount)`', '`HueyColor`', 'Decrease OKLCH chroma'],
+    ['`setHue(h)`', '`HueyColor`', 'Set hue (0-360)'],
+    ['`setSaturation(s)`', '`HueyColor`', 'Set saturation (0-100)'],
+    ['`setLightness(l)`', '`HueyColor`', 'Set lightness (0-100)'],
+    ['`setAlpha(a)`', '`HueyColor`', 'Set alpha (0-1)'],
+    ['`clone()`', '`HueyColor`', 'Create a copy'],
+    ['`randomize()`', '`HueyColor`', 'Generate a random color'],
+  ]}
+/>
 
 #### Inspection
 
-| Method | Returns | Description |
-|--------|---------|-------------|
-| `getFormat()` | `ColorFormat` | Original input format |
-| `getOriginalInput()` | `string` | Original input string |
-| `getAlpha()` | `number` | Alpha value (0-1) |
-| `getLuminance()` | `number` | Relative luminance (W3C) |
-| `getBrightness()` | `number` | OKLCH lightness (0-1) |
-| `isLight()` | `boolean` | `true` when lightness is above 0.5 |
-| `isDark()` | `boolean` | `true` when lightness is 0.5 or below |
-| `contrastRatio(color)` | `number` | WCAG contrast ratio against another color |
+<DataTable
+  headers={['Method', 'Returns', 'Description']}
+  rows={[
+    ['`getFormat()`', '`ColorFormat`', 'Original input format'],
+    ['`getOriginalInput()`', '`string`', 'Original input string'],
+    ['`getAlpha()`', '`number`', 'Alpha value (0-1)'],
+    ['`getLuminance()`', '`number`', 'Relative luminance (W3C)'],
+    ['`getBrightness()`', '`number`', 'OKLCH lightness (0-1)'],
+    ['`isLight()`', '`boolean`', '`true` when lightness is above 0.5'],
+    ['`isDark()`', '`boolean`', '`true` when lightness is 0.5 or below'],
+    ['`contrastRatio(color)`', '`number`', 'WCAG contrast ratio against another color'],
+  ]}
+/>

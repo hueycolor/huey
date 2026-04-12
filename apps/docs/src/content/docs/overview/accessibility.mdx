@@ -3,6 +3,8 @@ title: Accessibility
 description: Built-in accessibility features and best practices for using Huey
 ---
 
+import DataTable from '@/components/DataTable.astro'
+
 ## Overview
 
 Accessibility is a core part of Huey components, they ship with keyboard navigation, ARIA attributes, and focus management out of the box.
@@ -11,35 +13,47 @@ Accessibility is a core part of Huey components, they ship with keyboard navigat
 
 ### Sliders
 
-| Key | Action |
-|-----|--------|
-| Arrow Left / Arrow Down | Decrease value by 1 step |
-| Arrow Right / Arrow Up | Increase value by 1 step |
+<DataTable
+  headers={['Key', 'Action']}
+  rows={[
+    ['Arrow Left / Arrow Down', 'Decrease value by 1 step'],
+    ['Arrow Right / Arrow Up', 'Increase value by 1 step'],
+  ]}
+/>
 
 ### Saturation Area
 
-| Key | Action |
-|-----|--------|
-| Arrow Left / Arrow Right | Adjust horizontal axis (saturation) |
-| Arrow Up / Arrow Down | Adjust vertical axis (lightness or value) |
+<DataTable
+  headers={['Key', 'Action']}
+  rows={[
+    ['Arrow Left / Arrow Right', 'Adjust horizontal axis (saturation)'],
+    ['Arrow Up / Arrow Down', 'Adjust vertical axis (lightness or value)'],
+  ]}
+/>
 
 ### Text Inputs
 
-| Key | Action |
-|-----|--------|
-| Arrow Up | Increase value by 1 |
-| Arrow Down | Decrease value by 1 |
-| Shift + Arrow Up | Increase value by 10 |
-| Shift + Arrow Down | Decrease value by 10 |
-| Enter | Confirm value |
-| Blur | Confirm value, rollback if invalid |
+<DataTable
+  headers={['Key', 'Action']}
+  rows={[
+    ['Arrow Up', 'Increase value by 1'],
+    ['Arrow Down', 'Decrease value by 1'],
+    ['Shift + Arrow Up', 'Increase value by 10'],
+    ['Shift + Arrow Down', 'Decrease value by 10'],
+    ['Enter', 'Confirm value'],
+    ['Blur', 'Confirm value, rollback if invalid'],
+  ]}
+/>
 
 ### General
 
-| Key | Action |
-|-----|--------|
-| Tab | Move focus between components |
-| Enter / Space | Activate swatches and buttons |
+<DataTable
+  headers={['Key', 'Action']}
+  rows={[
+    ['Tab', 'Move focus between components'],
+    ['Enter / Space', 'Activate swatches and buttons'],
+  ]}
+/>
 
 ## ARIA Attributes
 
@@ -100,10 +114,13 @@ text.isLight()          // true
 
 ### WCAG Contrast Requirements
 
-| Level | Normal Text | Large Text |
-|-------|------------|------------|
-| AA | 4.5:1 | 3:1 |
-| AAA | 7:1 | 4.5:1 |
+<DataTable
+  headers={['Level', 'Normal Text', 'Large Text']}
+  rows={[
+    ['AA', '4.5:1', '3:1'],
+    ['AAA', '7:1', '4.5:1'],
+  ]}
+/>
 
 Use `contrastRatio()` to verify your color combinations meet these thresholds.
 

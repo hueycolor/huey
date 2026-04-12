@@ -45,6 +45,7 @@ const { rows } = Astro.props
   }
 
   .props-table {
+    display: table;
     width: 100%;
     border-collapse: collapse;
     font: var(--paragraph-sm);
@@ -52,7 +53,21 @@ const { rows } = Astro.props
   }
 
   .props-table thead {
+    display: table-header-group;
     background-color: var(--color-linen-100);
+  }
+
+  .props-table tbody {
+    display: table-row-group;
+  }
+
+  .props-table tr {
+    display: table-row;
+  }
+
+  .props-table th,
+  .props-table td {
+    display: table-cell;
   }
 
   .props-table th {

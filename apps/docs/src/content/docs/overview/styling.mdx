@@ -3,6 +3,8 @@ title: Styling
 description: How to style Huey components with CSS
 ---
 
+import DataTable from '@/components/DataTable.astro'
+
 ## Minimally Styled by Design
 
 Huey components ship with lightweight baseline styles, enough to be functional out of the box (positioning, gradients, track/thumb sizing). Visual details like colors, borders, spacing, and layout are left to you. Every component exposes CSS custom properties and attribute selectors for easy customization.
@@ -11,27 +13,30 @@ Huey components ship with lightweight baseline styles, enough to be functional o
 
 Every component renders an element with a `huey-*` attribute that you can target in CSS:
 
-| Selector | Component |
-|----------|-----------|
-| `[huey-area]` | SaturationArea |
-| `[huey-slider-track]` | Slider track (all sliders) |
-| `[huey-slider="hue"]` | HueSlider |
-| `[huey-slider="saturation"]` | SaturationSlider |
-| `[huey-slider="lightness"]` | LightnessSlider |
-| `[huey-slider="alpha"]` | AlphaSlider |
-| `[huey-slider-thumb]` | Slider thumb (all sliders and area) |
-| `[huey-preview]` | ColorPreview |
-| `[huey-swatch]` | ColorSwatch container |
-| `[huey-swatch-color]` | Individual swatch item |
-| `[huey-color-dropper]` | ColorDropper button |
-| `[huey-input="hex"]` | HexInput |
-| `[huey-input="hue"]` | HueInput |
-| `[huey-input="saturation"]` | SaturationInput |
-| `[huey-input="lightness"]` | LightnessInput |
-| `[huey-input="alpha"]` | AlphaInput |
-| `[huey-input="red"]` | RedInput |
-| `[huey-input="green"]` | GreenInput |
-| `[huey-input="blue"]` | BlueInput |
+<DataTable
+  headers={['Selector', 'Component']}
+  rows={[
+    ['`[huey-area]`', 'SaturationArea'],
+    ['`[huey-slider-track]`', 'Slider track (all sliders)'],
+    ['`[huey-slider="hue"]`', 'HueSlider'],
+    ['`[huey-slider="saturation"]`', 'SaturationSlider'],
+    ['`[huey-slider="lightness"]`', 'LightnessSlider'],
+    ['`[huey-slider="alpha"]`', 'AlphaSlider'],
+    ['`[huey-slider-thumb]`', 'Slider thumb (all sliders and area)'],
+    ['`[huey-preview]`', 'ColorPreview'],
+    ['`[huey-swatch]`', 'ColorSwatch container'],
+    ['`[huey-swatch-color]`', 'Individual swatch item'],
+    ['`[huey-color-dropper]`', 'ColorDropper button'],
+    ['`[huey-input="hex"]`', 'HexInput'],
+    ['`[huey-input="hue"]`', 'HueInput'],
+    ['`[huey-input="saturation"]`', 'SaturationInput'],
+    ['`[huey-input="lightness"]`', 'LightnessInput'],
+    ['`[huey-input="alpha"]`', 'AlphaInput'],
+    ['`[huey-input="red"]`', 'RedInput'],
+    ['`[huey-input="green"]`', 'GreenInput'],
+    ['`[huey-input="blue"]`', 'BlueInput'],
+  ]}
+/>
 
 ### Data Attributes
 
@@ -46,42 +51,57 @@ Components define CSS custom properties with sensible defaults that you can over
 
 ### Area
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--huey-area-height` | `230px` | Height of the saturation area |
-| `--huey-area-width` | `240px` | Width of the saturation area |
-| `--huey-area-radius` | `12px` | Border radius of the saturation area |
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-area-height`', '`230px`', 'Height of the saturation area'],
+    ['`--huey-area-width`', '`240px`', 'Width of the saturation area'],
+    ['`--huey-area-radius`', '`12px`', 'Border radius of the saturation area'],
+  ]}
+/>
 
 ### Sliders
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--huey-slider-track-height` | `16px` | Track height (or width when vertical) |
-| `--huey-slider-track-width` | `129px` | Track width (or height when vertical) |
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-slider-track-height`', '`16px`', 'Track height (or width when vertical)'],
+    ['`--huey-slider-track-width`', '`129px`', 'Track width (or height when vertical)'],
+  ]}
+/>
 
 ### Preview
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--huey-preview-tile-size` | `20px` | Size of the transparency checkerboard tiles |
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-preview-tile-size`', '`20px`', 'Size of the transparency checkerboard tiles'],
+  ]}
+/>
 
 ### Swatch
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--huey-swatch-color-size` | `16px` | Size of each swatch color circle |
-| `--huey-swatch-color-radius` | `4px` | Border radius of swatch items |
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-swatch-color-size`', '`16px`', 'Size of each swatch color circle'],
+    ['`--huey-swatch-color-radius`', '`4px`', 'Border radius of swatch items'],
+  ]}
+/>
 
 ### Dynamic Properties
 
 These are set dynamically by components at runtime. Useful to know about but not typically overridden:
 
-| Property | Set by | Description |
-|----------|--------|-------------|
-| `--huey-thumb-color` | All sliders, area | Current color for the thumb indicator |
-| `--huey-slider-bg` | AlphaSlider | Computed gradient background |
-| `--huey-gradient-dir` | Sliders | Gradient direction based on orientation |
-| `--huey-gradient-angle` | Sliders | Gradient angle based on orientation |
+<DataTable
+  headers={['Property', 'Set by', 'Description']}
+  rows={[
+    ['`--huey-thumb-color`', 'All sliders, area', 'Current color for the thumb indicator'],
+    ['`--huey-slider-bg`', 'AlphaSlider', 'Computed gradient background'],
+    ['`--huey-gradient-dir`', 'Sliders', 'Gradient direction based on orientation'],
+    ['`--huey-gradient-angle`', 'Sliders', 'Gradient angle based on orientation'],
+  ]}
+/>
 
 ## Example
 

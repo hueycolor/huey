@@ -3,6 +3,8 @@ title: About
 description: What Huey is and why it exists
 ---
 
+import DataTable from '@/components/DataTable.astro'
+
 ## What is Huey?
 
 Huey is an accessible, minimally styled color picker component library for Vue and Svelte, built on top of `@hueycolor/core`, a standalone color manipulation library that uses OKLCH internally for perceptually uniform color operations.
@@ -77,11 +79,14 @@ bg.getLuminance()       // 0.02
 
 ## Packages
 
-| Package | Description | Status |
-|---------|-------------|--------|
-| `@hueycolor/core` | Color parsing, conversion, and manipulation | Beta |
-| `@hueycolor/vue` | Vue 3 color picker components | Beta |
-| `@hueycolor/svelte` | Svelte 5 color picker components | In Progress |
+<DataTable
+  headers={['Package', 'Description', 'Status']}
+  rows={[
+    ['`@hueycolor/core`', 'Color parsing, conversion, and manipulation', 'Beta'],
+    ['`@hueycolor/vue`', 'Vue 3 color picker components', 'Beta'],
+    ['`@hueycolor/svelte`', 'Svelte 5 color picker components', 'In Progress'],
+  ]}
+/>
 
 ## Links
 
