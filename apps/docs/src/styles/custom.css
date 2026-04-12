@@ -225,6 +225,11 @@ nav.sidebar + .main-frame {
     }
   }
   
+
+  .sl-markdown-content pre:not(:where(.not-content *)) {
+    border: none;
+    padding: 0;
+  }
 }
 
 mobile-starlight-toc {

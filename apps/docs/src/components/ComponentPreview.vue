@@ -39,8 +39,8 @@ const highlightedCode = computed(() => {
 })
 
 const frameworks = [
-  { value: 'vue', label: 'Vue', icon: 'logos:vue' },
-  { value: 'svelte', label: 'Svelte', icon: 'logos:svelte-icon' },
+  { value: 'vue', label: 'Vue', icon: 'ri:vuejs-line' },
+  { value: 'svelte', label: 'Svelte', icon: 'ri:svelte-line' },
 ]
 
 function onFrameworkChange(event: Event) {
@@ -173,6 +173,7 @@ onUnmounted(() => {
   border-top: 1px solid var(--color-neutral-100);
   cursor: pointer;
   transition: all 150ms ease-out;
+  margin: 0;
 
   &:hover {
     color: var(--color-stone-950);
@@ -181,7 +182,8 @@ onUnmounted(() => {
 }
 
 .code-panel {
-  border-top: 1px solid var(--color-zinc-800);
+  margin: 0;
+  border-block-start: 1px solid var(--color-zinc-800);
   background-color: var(--color-zinc-900);
 }
 
@@ -216,6 +218,7 @@ onUnmounted(() => {
 }
 
 .framework-trigger {
+  margin: 0;
   display: flex;
   align-items: center;
   gap: var(--spacing-6);
@@ -253,6 +256,7 @@ onUnmounted(() => {
   border-radius: var(--radius-8);
   cursor: pointer;
   transition: color 150ms ease;
+  margin: 0;
 
   &:hover {
     color: var(--color-zinc-200);
@@ -263,6 +267,7 @@ onUnmounted(() => {
   padding: var(--spacing-16);
   overflow-x: auto;
   font: var(--docs-sm);
+  margin: 0;
 }
 
 .code-block pre {
