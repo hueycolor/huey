@@ -19,11 +19,7 @@
     return alpha ? hex : hex.slice(0, 6)
   }
 
-  let hexRef = $state(formatHex(ctx.colorValue.toHex().toUpperCase()))
-
-  $effect(() => {
-    hexRef = formatHex(ctx.colorValue.toHex().toUpperCase())
-  })
+  let hexRef = $derived(formatHex(ctx.colorValue.toHex().toUpperCase()))
 
   function updateValue(input: HTMLInputElement, value: string) {
     input.value = String(value)
