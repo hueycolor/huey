@@ -100,8 +100,12 @@ import Logomark from '@/components/Logomark.astro'
           flex-direction: column;
           gap: var(--spacing-12);
 
-          a[aria-current='page'] {
-            background-color: var(--color-linen-200);
+          a {
+            text-decoration: none;
+
+            &[aria-current='page'] {
+              background-color: var(--color-linen-200);
+            }
           }
 
           details {

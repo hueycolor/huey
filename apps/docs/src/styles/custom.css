@@ -189,16 +189,28 @@ nav.sidebar + .main-frame {
 
 [data-has-sidebar] {
   --sl-text-h1: var(--sl-text-3xl);
-    --sl-text-h2: var(--sl-text-2xl);
-    --sl-text-h3: var(--sl-text-xl);
-    --sl-text-h4: var(--sl-text-base);
+  --sl-text-h2: var(--sl-text-2xl);
+  --sl-text-h3: var(--sl-text-xl);
+  --sl-text-h4: var(--sl-text-base);
 
+  a {
+    text-decoration: underline;
+  }
+
+  .right-sidebar,
+  .tab {
+    a {
+      text-decoration: none;
+    }
+  }
+  
   .pagination-links {
     a {
       background-color: var(--color-linen-100);
       box-shadow: none;
       color: var(--color-linen-9000);
       font-size: var(--sl-text-sm);
+      text-decoration: none;
       transition: background 150ms ease-out;
 
       &:hover {
@@ -212,6 +224,7 @@ nav.sidebar + .main-frame {
       }
     }
   }
+  
 }
 
 mobile-starlight-toc {
