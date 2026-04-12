@@ -102,8 +102,14 @@ import Logomark from '@/components/Logomark.astro'
 
           a {
             text-decoration: none;
+            font-weight: 400;
+
+            &:hover {
+              background-color: var(--color-linen-200);
+            }
 
             &[aria-current='page'] {
+              font-weight: 500;
               background-color: var(--color-linen-200);
             }
           }

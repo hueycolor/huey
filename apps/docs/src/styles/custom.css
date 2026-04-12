@@ -203,6 +203,14 @@ nav.sidebar + .main-frame {
       text-decoration: none;
     }
   }
+
+  .right-sidebar {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
   
   .pagination-links {
     a {
