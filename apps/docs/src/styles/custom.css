@@ -193,6 +193,10 @@ nav.sidebar + .main-frame {
   --sl-text-h3: var(--sl-text-xl);
   --sl-text-h4: var(--sl-text-base);
 
+  [huey-swatch-color] {
+    margin-top: 0 !important;
+  }
+
   a {
     text-decoration: underline;
   }
