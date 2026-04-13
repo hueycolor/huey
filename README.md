@@ -31,7 +31,7 @@ Huey gives you a set of stylable, accessible color picker primitives. You bring 
 
 ## Documentation
 
-Visit [hueycolor.dev](https://hueycolor.dev) for guides, component references, and examples.
+Visit [hueycolor.pages.dev](https://hueycolor.pages.dev) for guides, component references, and examples.
 
 ## License
 
