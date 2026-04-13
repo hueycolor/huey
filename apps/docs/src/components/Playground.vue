@@ -65,6 +65,7 @@ function changePickers() {
     user-select: none;
     cursor: auto;
     transition: scale 100ms ease-out;
+    overflow-anchor: none;
   }
 
   .hint {
