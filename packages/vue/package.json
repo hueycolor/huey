@@ -1,7 +1,7 @@
 {
   "name": "@hueycolor/vue",
   "type": "module",
-  "version": "0.0.1-beta.6",
+  "version": "0.0.1-beta.7",
   "private": false,
   "description": "Composable color picker components for Vue",
   "author": "Eihab Khan <yo@eihab.me>",
