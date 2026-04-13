@@ -1,7 +1,7 @@
 {
   "name": "hueycolor",
   "type": "module",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.6",
   "private": true,
   "packageManager": "pnpm@10.20.0",
   "description": "A Headless components for all your colorful needs.",
