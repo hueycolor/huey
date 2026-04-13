@@ -16,6 +16,7 @@
     "lint:css:fix": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.1.9",
     "@astrojs/starlight": "^0.37.6",
     "@astrojs/vue": "^5.1.4",
     "@hueycolor/core": "workspace:*",
