@@ -24,7 +24,8 @@
     "prepare": "husky",
     "build": "pnpm -r build",
     "bump": "bumpp package.json packages/*/package.json --commit \"chore: release v\" --push --tag",
-    "release": "pnpm bump",
+    "publish:packages": "pnpm -r --filter './packages/*' publish --access public --no-git-checks",
+    "release": "pnpm build && pnpm bump && pnpm publish:packages",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
