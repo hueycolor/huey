@@ -16,6 +16,7 @@
     "lint:css:fix": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/starlight": "^0.37.7",
     "@astrojs/vue": "^5.1.4",
     "@hueycolor/core": "workspace:*",

@@ -1,3 +1,4 @@
+import sitemap from '@astrojs/sitemap'
 import starlight from '@astrojs/starlight'
 import vue from '@astrojs/vue'
 
@@ -6,8 +7,31 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [starlight({
+  site: 'https://hueycolor.pages.dev',
+  integrations: [sitemap(), starlight({
     title: 'Huey',
+    head: [
+      {
+        tag: 'meta',
+        attrs: { property: 'og:type', content: 'website' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:site_name', content: 'Huey' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:card', content: 'summary_large_image' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:image', content: 'https://hueycolor.pages.dev/ogimage.webp' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:image', content: 'https://hueycolor.pages.dev/ogimage.webp' },
+      },
+    ],
     expressiveCode: {
       themes: ['vesper'],
     },
