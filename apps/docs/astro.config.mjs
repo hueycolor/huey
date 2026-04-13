@@ -1,4 +1,3 @@
-import cloudflare from '@astrojs/cloudflare'
 import starlight from '@astrojs/starlight'
 import vue from '@astrojs/vue'
 
@@ -7,8 +6,6 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare(),
-  output: 'server',
   integrations: [starlight({
     title: 'Huey',
     expressiveCode: {
