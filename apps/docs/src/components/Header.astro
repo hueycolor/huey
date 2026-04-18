@@ -1,6 +1,5 @@
 ---
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
-import Search from '@astrojs/starlight/components/Search.astro'
 import Wordmark from './Wordmark.astro'
 
 import pkg from '../../package.json'
@@ -13,7 +12,6 @@ const isHomepage = Astro.url.pathname === '/'
 <div landing-header={isHomepage ?? undefined} class="header-content">
   <Logomark />
   <div class="actions">
-    {!isHomepage && <Search />}
     {
       isHomepage ? (
         <Fragment>
