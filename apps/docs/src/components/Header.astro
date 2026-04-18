@@ -34,12 +34,6 @@ const isHomepage = Astro.url.pathname === '/'
     header.header {
       background: unset;
       background-color: var(--sl-color-bg);
-    }
-
-    header.header {
-      background: unset;
-      background-color: var(--sl-color-bg);
-
       dialog {
         background-color: var(--color-beige-50);
         border: 1px solid var(--color-linen-200);
@@ -47,6 +41,14 @@ const isHomepage = Astro.url.pathname === '/'
 
         button[data-close-modal] {
           color: var(--color-stone-950);
+        }
+      }
+
+      &:has([landing-header='false']) {
+        display: flex;
+
+        .header-content {
+          flex: 1;
         }
       }
 

@@ -7,7 +7,7 @@ const repoUrl = pkg.repository.url
 const isHomepage = Astro.url.pathname === '/'
 ---
 
-<div landing-header={isHomepage ?? undefined} class="footer-content">
+<div landing-footer={isHomepage ?? undefined} class="footer-content">
   <Wordmark />
   <div class="actions">
     <a external-link hc-button data-variant="tertiary" href={repoUrl}> Github </a>
