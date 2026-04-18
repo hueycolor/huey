@@ -72,6 +72,16 @@ import Logomark from '@/components/Logomark.astro'
           }
         }
 
+        button[data-close-modal] {
+          color: var(--color-stone-950);
+          border-radius: var(--radius-8);
+
+          &:focus {
+            outline: var(--color-beige-950) solid 2px;
+            outline-offset: var(--spacing-2);
+          }
+        }
+
         dialog {
           background-color: var(--color-beige-50);
           border: 1px solid var(--color-linen-200);
