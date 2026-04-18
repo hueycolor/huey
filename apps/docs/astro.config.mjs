@@ -8,6 +8,11 @@ import { defineConfig } from 'astro/config'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hueycolor.pages.dev',
+  vite: {
+    resolve: {
+      dedupe: ['vue'],
+    },
+  },
   integrations: [sitemap(), starlight({
     title: 'Huey',
     head: [
