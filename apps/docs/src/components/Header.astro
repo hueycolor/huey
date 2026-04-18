@@ -68,7 +68,9 @@ const isHomepage = Astro.url.pathname === '/'
       }
 
       @media (width >= 50rem) {
-        display: none;
+        &:has([landing-header='false']) {
+          display: none;
+        }
 
         site-search {
           button[data-open-modal] {
