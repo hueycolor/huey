@@ -48,6 +48,7 @@ import Logomark from '@/components/Logomark.astro'
           display: flex;
           background-color: var(--color-linen-100);
           border-color: var(--search-border-color);
+          border-radius: var(--radius-8);
           color: var(--color-stone-950);
           transition: all 150ms ease-out;
 
@@ -58,6 +59,16 @@ import Logomark from '@/components/Logomark.astro'
 
           &:hover {
             background-color: var(--color-linen-200);
+          }
+
+          &:focus {
+            outline: var(--color-beige-950) solid 2px;
+            outline-offset: var(--spacing-2);
+          }
+
+          span {
+            display: inline !important;
+            font: var(--paragraph-md) !important;
           }
         }
 
