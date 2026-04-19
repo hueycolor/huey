@@ -213,6 +213,13 @@ dialog {
   min-height: unset !important;
 }
 
+.expressive-code {
+  figure {
+    border-radius: var(--radius-8);
+    overflow: hidden;
+  }
+}
+
 /* Set the body's style in docs pages */
 body:has(nav.sidebar + .main-frame) {
   --sl-color-bg: var(--color-beige-50);
