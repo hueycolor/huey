@@ -85,6 +85,7 @@ a {
   min-height: 48px;
   padding-block: var(--spacing-8);
   padding-inline: var(--spacing-24);
+  text-align: center;
   transition: all 150ms ease-out;
 
   &:focus-visible {

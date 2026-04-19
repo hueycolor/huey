@@ -11,7 +11,7 @@ import Huey from '@/components/Huey.astro'
       <UiLibSnippets client:load />
       <div class="actions">
         <a hc-button href="/overview/getting-started" data-variant="primary" class="main-action"> Get Started </a>
-        <button hc-button data-variant="secondary"> Demo </button>
+        <a hc-button href="/overview/components" data-variant="secondary"> View Components </a>
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@ import Huey from '@/components/Huey.astro'
             flex: 1;
           }
 
-          button[data-variant='secondary'] {
+          a[data-variant='secondary'] {
             background-color: var(--color-beige-100);
 
             &:hover {

@@ -1,0 +1,45 @@
+---
+const components = [
+  { label: 'Saturation Area', href: '/components/saturation-area' },
+  { label: 'Hue Slider', href: '/components/hsl-sliders' },
+  { label: 'Saturation Slider', href: '/components/hsl-sliders' },
+  { label: 'Lightness Slider', href: '/components/hsl-sliders' },
+  { label: 'Alpha Slider', href: '/components/alpha-slider' },
+  { label: 'Hex Input', href: '/components/hex-input' },
+  { label: 'Hue Input', href: '/components/hsl-inputs' },
+  { label: 'Saturation Input', href: '/components/hsl-inputs' },
+  { label: 'Lightness Input', href: '/components/hsl-inputs' },
+  { label: 'Alpha Input', href: '/components/alpha-input' },
+  { label: 'Red Input', href: '/components/rgb-inputs' },
+  { label: 'Green Input', href: '/components/rgb-inputs' },
+  { label: 'Blue Input', href: '/components/rgb-inputs' },
+  { label: 'Color Preview', href: '/components/color-preview' },
+  { label: 'Color Swatch', href: '/components/color-swatch' },
+  { label: 'Color Dropper', href: '/components/color-dropper' },
+]
+---
+
+<div class="components-grid">
+  {
+    components.map(({ label, href }) => (
+      <a hc-button class="component-card" href={href} data-variant="tertiary">
+        {' '}
+        {label}{' '}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--spacing-24);
+    align-items: center;
+    margin-block: var(--spacing-32);
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+</style>
