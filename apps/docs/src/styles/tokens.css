@@ -1,3 +1,11 @@
+@font-face {
+  font-display: block;
+  font-family: Cubano;
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Cubano.woff2') format('woff2');
+}
+
 :root {
   /* ============================================
      Colors
@@ -172,6 +180,8 @@
   --docs-sm-spacing: -0.006em;
   --docs-xs: 400 12px 'DM Mono', monospace;
   --docs-xs-spacing: -0.004em;
+  --hc-content-width: 844px;
+  --hc-header-logo-font: var(--title-h4);
 }
 
 @media (width < 50rem) {

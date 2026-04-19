@@ -1,6 +1,6 @@
 ---
 import Header from '@/components/Header.astro'
-import '../styles/custom.css'
+import '../styles/tokens.css'
 import Huey from '@/components/Huey.astro'
 import Four from '@/components/Four.astro'
 ---
@@ -10,6 +10,9 @@ import Four from '@/components/Four.astro'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <title>404 - Page not found | Huey</title>
   </head>
   <body>
@@ -28,6 +31,20 @@ import Four from '@/components/Four.astro'
 </html>
 
 <style>
+  :global(*, *::before, *::after) {
+    box-sizing: border-box;
+  }
+
+  :global(a) {
+    color: var(--color-stone-950);
+    text-decoration: none;
+  }
+
+  :global(button) {
+    background-color: transparent;
+    border: none;
+  }
+
   body {
     background-color: var(--color-beige-100);
     color: var(--color-stone-950);
@@ -79,5 +96,30 @@ import Four from '@/components/Four.astro'
     .code {
       padding: 0;
     }
+  }
+
+  :global([hc-button]) {
+    align-items: center;
+    background-color: transparent;
+    border-radius: var(--radius-12);
+    cursor: pointer;
+    display: flex;
+    font: var(--label-md);
+    gap: var(--spacing-8);
+    justify-content: center;
+    min-height: 48px;
+    padding-block: var(--spacing-8);
+    padding-inline: var(--spacing-24);
+    text-decoration: none;
+    transition: all 150ms ease-out;
+  }
+
+  :global([hc-button][data-variant="secondary"]) {
+    background-color: var(--color-linen-100);
+    color: var(--color-stone-950);
+  }
+
+  :global([hc-button][data-variant="secondary"]:hover) {
+    background-color: color-mix(in srgb, var(--color-linen-950) 10%, transparent);
   }
 </style>
