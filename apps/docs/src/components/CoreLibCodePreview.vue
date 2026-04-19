@@ -79,7 +79,7 @@ watch(hasCopied, () => {
         </div>
         <span class="filename">index.ts</span>
         <div class="code-actions">
-          <button class="copy-button" name="copy code" @click="copyToClipboard">
+          <button class="copy-button" aria-label="copy code" @click="copyToClipboard">
             <AppIcon v-if="hasCopied" icon="feather:check" style="font-size: 20px;" />
             <AppIcon v-else icon="feather:copy" style="font-size: 20px;" />
           </button>

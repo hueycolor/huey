@@ -51,7 +51,7 @@ watch(hasCopiedCommand, () => {
         ease="cubic-bezier(0.19, 1, 0.22, 1)"
         class="snippet"
       />
-      <button class="copy-button" hc-button name="copy code" @click="copyToClipboard(selectedTab)">
+      <button class="copy-button" hc-button aria-label="copy code" @click="copyToClipboard(selectedTab)">
         <AppIcon v-if="hasCopiedCommand" icon="feather:check" style="font-size: 20px;" />
         <AppIcon v-else icon="feather:copy" style="font-size: 20px;" />
       </button>
