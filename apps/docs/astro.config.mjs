@@ -60,6 +60,7 @@ export default defineConfig({
       {
         label: 'Components',
         items: [
+          { label: 'Huey Root', slug: 'components/huey-root' },
           { label: 'Saturation Area', slug: 'components/saturation-area' },
           { label: 'Color Preview', slug: 'components/color-preview' },
           { label: 'Color Swatch', slug: 'components/color-swatch' },

@@ -1,0 +1,61 @@
+---
+title: HueyRoot
+description: Context wrapper that provides color state to all child components
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import PropsTable from '@/components/PropsTable.astro'
+
+The required root wrapper for all Huey components. It holds the shared color state and provides it via context to every child component. All Huey components must be rendered inside it.
+
+## Usage
+
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```ts
+  import { HueyRoot } from '@hueycolor/vue'
+  ```
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/vue'
+
+  const color = ref(hueyColor('#1A3263'))
+  </script>
+
+  <template>
+    <HueyRoot v-model="color">
+      <HexInput />
+    </HueyRoot>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```ts
+  import { HueyRoot } from '@hueycolor/svelte'
+  ```
+  ```svelte
+  <script>
+  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+
+  <HueyRoot bind:color>
+    <HexInput />
+  </HueyRoot>
+  ```
+  </TabItem>
+</Tabs>
+
+## Props
+
+<PropsTable rows={[
+  { name: 'color / v-model', type: 'HueyColor', default: '—', description: 'The reactive color value. In Vue, pass as v-model. In Svelte, pass as bind:color. Required.' },
+]} />
+
+## Notes
+
+`HueyRoot` renders no DOM element of its own. It only provides context. You can wrap it in any layout element without affecting the output structure.
+
+Passing a value that is not a `HueyColor` instance (created via `hueyColor()`) will throw an error at runtime.
