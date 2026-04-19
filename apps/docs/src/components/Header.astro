@@ -6,7 +6,7 @@ import pkg from '../../package.json'
 import Logomark from '@/components/Logomark.astro'
 const repoUrl = pkg.repository.url
 
-const isHomepage = Astro.url.pathname === '/'
+const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname.startsWith('/404')
 ---
 
 <div landing-header={isHomepage ?? undefined} class="header-content">

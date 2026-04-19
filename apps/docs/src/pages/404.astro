@@ -1,0 +1,87 @@
+---
+import Header from '@/components/Header.astro'
+import '../styles/custom.css'
+import Huey from '@/components/Huey.astro'
+import Four from '@/components/Four.astro'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>404 - Page not found | Huey</title>
+  </head>
+  <body>
+    <header class="header">
+      <Header />
+    </header>
+    <main>
+      <div class="code">
+        <Four />
+        <Huey size={'280px'} id="hero-mascot" interactive-mascot />
+        <Four />
+      </div>
+      <a hc-button data-variant="secondary" href="/">Return to homepage</a>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: var(--color-beige-100);
+    color: var(--color-stone-950);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  .header {
+    padding-block: var(--spacing-16);
+    padding-inline: var(--spacing-24);
+    max-width: var(--hc-content-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  main {
+    max-width: var(--hc-content-width);
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--spacing-48);
+    justify-content: center;
+  }
+
+  .code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: min(var(--spacing-24), 3vw);
+    padding-inline: var(--spacing-16);
+  }
+
+  .code :global(svg:not([huey-mascot])) {
+    width: min(241px, calc(30vw - 10px));
+    height: auto;
+  }
+
+  .code :global([huey-mascot]) {
+    width: min(280px, calc(34.5vw - 11px));
+    height: min(280px, calc(34.5vw - 11px));
+  }
+
+  footer {
+    border-top: 1px solid var(--color-linen-200);
+    padding-block: var(--spacing-16);
+    padding-inline: var(--spacing-24);
+    max-width: var(--hc-content-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+</style>
