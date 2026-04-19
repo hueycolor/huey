@@ -9,7 +9,10 @@ const color = ref(hueyColor('#1A3263'))
 <template>
   <div class="hex-input">
     <HueyRoot v-model="color">
-      <HexInput />
+      <label for="hex">
+        <span class="sr-only">Hex</span>
+        <HexInput id="hex" />
+      </label>
     </HueyRoot>
   </div>
 </template>

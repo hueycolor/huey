@@ -9,9 +9,18 @@ const color = ref(hueyColor('#1A3263'))
 <template>
   <div class="hex-input">
     <HueyRoot v-model="color">
-      <RedInput />
-      <GreenInput />
-      <BlueInput />
+      <label for="r">
+        <span class="sr-only">Red</span>
+        <RedInput id="r" />
+      </label>
+      <label for="g">
+        <span class="sr-only">Green</span>
+        <GreenInput id="g" />
+      </label>
+      <label for="b">
+        <span class="sr-only">Blue</span>
+        <BlueInput id="b" />
+      </label>
     </HueyRoot>
   </div>
 </template>

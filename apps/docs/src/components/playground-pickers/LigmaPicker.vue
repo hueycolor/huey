@@ -22,30 +22,57 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
         </div>
       </div>
       <div class="inputs-wrapper">
-        <select v-model="colorFormat" name="color-format" data-color-format>
-          <option value="hex">
-            Hex
-          </option>
-          <option value="rgb">
-            RGB
-          </option>
-          <option value="hsl">
-            HSL
-          </option>
-        </select>
+        <label for="color-format">
+          <span class="sr-only">Color Format</span>
+          <select id="color-format" v-model="colorFormat" name="color-format" data-color-format>
+            <option value="hex">
+              Hex
+            </option>
+            <option value="rgb">
+              RGB
+            </option>
+            <option value="hsl">
+              HSL
+            </option>
+          </select>
+        </label>
         <div class="inputs">
-          <HexInput v-if="colorFormat === 'hex'" id="hex-input" :alpha="false" />
+          <label v-if="colorFormat === 'hex'" for="hex">
+            <span class="sr-only">Hex</span>
+            <HexInput id="hex-input" :alpha="false" />
+          </label>
           <template v-if="colorFormat === 'hsl'">
-            <HueInput id="hue" />
-            <SaturationInput id="saturation" />
-            <LightnessInput />
+            <label for="hue">
+              <span class="sr-only">Hue</span>
+              <HueInput id="hue" />
+            </label>
+            <label for="saturation">
+              <span class="sr-only">Saturation</span>
+              <SaturationInput id="saturation" />
+            </label>
+            <label for="lightness">
+              <span class="sr-only">Lightness</span>
+              <LightnessInput id="lightness" />
+            </label>
           </template>
           <template v-if="colorFormat === 'rgb'">
-            <RedInput />
-            <GreenInput />
-            <BlueInput />
+            <label for="red">
+              <span class="sr-only">Red</span>
+              <RedInput id="red" />
+            </label>
+            <label for="green">
+              <span class="sr-only">Green</span>
+              <GreenInput id="green" />
+            </label>
+            <label for="blue">
+              <span class="sr-only">Blue</span>
+              <BlueInput id="blue" />
+            </label>
           </template>
-          <AlphaInput data-alpha-input />
+          <label for="alpha">
+            <span class="sr-only">Alpha</span>
+            <AlphaInput id="alpha" data-alpha-input />
+          </label>
         </div>
       </div>
       <div class="swatches">
@@ -67,6 +94,10 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
     display: flex;
     gap: var(--spacing-8);
     padding: var(--spacing-16);
+
+    label {
+      display: flex;
+    }
 
     [data-color-format] {
       background-color: transparent;
@@ -95,17 +126,17 @@ const colorFormat = ref<'hex' | 'hsl' | 'rgb'>('hex')
       flex: 1;
       display: flex;
 
-      :first-child {
+      :first-child input {
         border-start-start-radius: var(--radius-4);
         border-end-start-radius: var(--radius-4);
       }
 
-      :last-child {
+      :last-child input {
         border-start-end-radius: var(--radius-4);
         border-end-end-radius: var(--radius-4);
       }
 
-      :not(:first-child) {
+      :not(:first-child) input {
         border-inline-start: 2px solid #2C2C2C;
       }
 
