@@ -1,5 +1,7 @@
 <p align="center">
-  <a href="#"><img height="350" alt="Logo" src="https://github.com/user-attachments/assets/f42404a2-23c1-4352-8e2a-e56b3c63f3e3" /></a>
+  <a target="_blank" href="https://hueycolor.pages.dev/">
+    <img height="350" alt="Huey" src="https://github.com/user-attachments/assets/b10c6e0a-7f40-4e52-8bc1-b41ba8599ade" />
+  </a>
 </p>
 <h1 align="center">Huey</h1>
 <p align="center">A composable color picker components for Vue and Svelte.</p>
