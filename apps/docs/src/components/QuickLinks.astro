@@ -96,6 +96,12 @@ import Huey from '@/components/Huey.astro'
           display: flex;
           align-items: center;
           gap: var(--spacing-16);
+          flex-direction: column;
+          row-gap: var(--spacing-8);
+
+          a {
+            width: 100%;
+          }
 
           .main-action {
             flex: 1;
@@ -189,6 +195,14 @@ import Huey from '@/components/Huey.astro'
         .npm-snippet-wrapper {
           padding-block: var(--spacing-32);
           max-width: 400px;
+
+          .actions {
+            flex-direction: row;
+
+            a {
+              width: fit-content;
+            }
+          }
         }
       }
     }
