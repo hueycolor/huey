@@ -27,7 +27,7 @@
     "build:packages": "pnpm --filter './packages/*' build",
     "bump": "bumpp package.json packages/*/package.json --commit \"chore: release v\" --push --tag",
     "publish:packages": "pnpm -r --filter './packages/*' publish --access public --no-git-checks",
-    "release": "pnpm build && pnpm bump",
+    "release": "pnpm build:packages && pnpm bump",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
