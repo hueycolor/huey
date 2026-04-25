@@ -5,7 +5,7 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { hueyColor, isHex } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
-const props = withDefaults(defineProps<ChannelInputProps>(), {
+const props = withDefaults(defineProps<HexInputProps>(), {
   alpha: false,
 })
 
@@ -150,7 +150,7 @@ function handleFocus(e: FocusEvent) {
 </script>
 
 <script lang="ts">
-export interface ChannelInputProps extends /* @vue-ignore */ InputHTMLAttributes {
+export interface HexInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   alpha?: boolean
 }
 </script>

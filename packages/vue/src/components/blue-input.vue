@@ -6,7 +6,7 @@ import { useHueyContext } from '@composables/use-huey-context'
 import { getChannelBounds, hslToRgb, rgbToHsl } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
-defineProps<RedInputProps>()
+defineProps<BlueInputProps>()
 
 const { min, max } = getChannelBounds('g')
 
@@ -63,7 +63,7 @@ function bumpValue(e: KeyboardEvent, direction: Exclude<ArrowDirection, 'left' |
 </script>
 
 <script lang="ts">
-export interface RedInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
+export interface BlueInputProps extends /* @vue-ignore */ InputHTMLAttributes {}
 </script>
 
 <template>

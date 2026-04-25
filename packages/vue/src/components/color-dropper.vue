@@ -34,9 +34,9 @@ function sip() {
 </script>
 
 <script lang="ts">
-interface ColorDropperProps extends /* @vue-ignore */ ButtonHTMLAttributes {}
+export interface ColorDropperProps extends /* @vue-ignore */ ButtonHTMLAttributes {}
 
-interface ColorDropperEmits {
+export interface ColorDropperEmits {
   error: [error: Error]
 }
 </script>
