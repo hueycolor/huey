@@ -6,7 +6,7 @@ import { hueyColor, isHex } from '@hueycolor/core'
 import { ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<ChannelInputProps>(), {
-  alpha: true,
+  alpha: false,
 })
 
 const { hue, saturation, lightness, colorValue, alpha } = useHueyContext()

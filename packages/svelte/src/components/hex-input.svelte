@@ -4,7 +4,7 @@
   import { hueyColor, isHex } from '@hueycolor/core'
   import { useHueyContext } from '../context/huey-context.svelte'
 
-  let { alpha = true, id, ...rest }: HexInputProps = $props()
+  let { alpha = false, id, ...rest }: HexInputProps = $props()
 
   const ctx = useHueyContext()
 
