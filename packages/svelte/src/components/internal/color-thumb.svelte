@@ -17,10 +17,12 @@
 <style>
   :global {
     [huey-slider-thumb] {
+      --huey-thumb-size: var(--huey-slider-track-height, 16px);
+
       position: absolute;
       transform: translate(-50%, -50%);
       top: 50%;
-      height: 16px;
+      height: var(--huey-thumb-size);
       aspect-ratio: 1 / 1;
       background-color: var(--huey-thumb-color, white);
       border-radius: calc(infinity * 1px);
