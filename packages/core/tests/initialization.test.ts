@@ -31,13 +31,13 @@ const TEST_COLORS = {
       hex3: '#FF5',
       hex6: '#FF5500',
       hex8: '#FF5500A1',
+      withoutHash: 'FF5500',
     },
     invalid: {
       hexChars: '#GG5500',
       hex4: '#FF00',
       hex5: '#FF00F',
       hex7: '#FF00FF0',
-      withoutHash: 'FFF',
       hashOnly: '#',
     },
   },
@@ -131,6 +131,7 @@ describe('color init - hex', () => {
     ['hex3', TEST_COLORS.hex.valid.hex3],
     ['hex6', TEST_COLORS.hex.valid.hex6],
     ['hex8', TEST_COLORS.hex.valid.hex8],
+    ['without hash', TEST_COLORS.hex.valid.withoutHash],
   ])('should init from %s', (_, testColor) => {
     const color = hueyColor(testColor)
     expect(isHuey(color)).toBe(true)
@@ -141,7 +142,6 @@ describe('color init - hex', () => {
     ['hex4', TEST_COLORS.hex.invalid.hex4],
     ['hex5', TEST_COLORS.hex.invalid.hex5],
     ['hex7', TEST_COLORS.hex.invalid.hex7],
-    ['without hash', TEST_COLORS.hex.invalid.withoutHash],
     ['hash only', TEST_COLORS.hex.invalid.hashOnly],
   ])('should fail when %s', (_, testColor) => {
     expect(() => hueyColor(testColor)).toThrowError(`invalid color provided: ${testColor}`)
