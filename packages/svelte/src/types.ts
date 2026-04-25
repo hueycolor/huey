@@ -36,7 +36,7 @@ export interface HexInputProps extends HTMLInputAttributes {
 export interface HueInputProps extends HTMLInputAttributes {}
 export interface HueSliderProps extends SliderProps {}
 export interface HueyRootProps {
-  color: HueyColor
+  color: string | HueyColor
   children?: Snippet
 }
 export interface LightnessInputProps extends HTMLInputAttributes {}
