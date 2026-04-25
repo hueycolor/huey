@@ -10,6 +10,8 @@ The required root wrapper for all Huey components. It holds the shared color sta
 
 ## Usage
 
+`HueyRoot` accepts either a plain string (any format `hueyColor()` understands, e.g. `#1A3263`, `rgb(...)`, `hsl(...)`) or a `HueyColor` instance.
+
 <Tabs syncKey="framework">
   <TabItem label="Vue">
   ```ts
@@ -18,9 +20,9 @@ The required root wrapper for all Huey components. It holds the shared color sta
   ```vue
   <script setup>
   import { ref } from 'vue'
-  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/vue'
+  import { HueyRoot, HexInput } from '@hueycolor/vue'
 
-  const color = ref(hueyColor('#1A3263'))
+  const color = ref('#1A3263')
   </script>
 
   <template>
@@ -36,9 +38,9 @@ The required root wrapper for all Huey components. It holds the shared color sta
   ```
   ```svelte
   <script>
-  import { HueyRoot, HexInput, hueyColor } from '@hueycolor/svelte'
+  import { HueyRoot, HexInput } from '@hueycolor/svelte'
 
-  let color = $state(hueyColor('#1A3263'))
+  let color = $state('#1A3263')
   </script>
 
   <HueyRoot bind:color>
@@ -48,14 +50,38 @@ The required root wrapper for all Huey components. It holds the shared color sta
   </TabItem>
 </Tabs>
 
+If you'd rather work with a `HueyColor` instance directly, wrap your value with `hueyColor()`:
+
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```vue
+  <script setup>
+  import { ref } from 'vue'
+  import { HueyRoot, hueyColor } from '@hueycolor/vue'
+
+  const color = ref(hueyColor('#1A3263'))
+  </script>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```svelte
+  <script>
+  import { HueyRoot, hueyColor } from '@hueycolor/svelte'
+
+  let color = $state(hueyColor('#1A3263'))
+  </script>
+  ```
+  </TabItem>
+</Tabs>
+
 ## Props
 
 <PropsTable rows={[
-  { name: 'color / v-model', type: 'HueyColor', default: '—', description: 'The reactive color value. In Vue, pass as v-model. In Svelte, pass as bind:color. Required.' },
+  { name: 'color / v-model', type: 'string | HueyColor', default: '—', description: 'The reactive color value. In Vue, pass as v-model. In Svelte, pass as bind:color. Required.' },
 ]} />
 
 ## Notes
 
 `HueyRoot` renders no DOM element of its own. It only provides context. You can wrap it in any layout element without affecting the output structure.
 
-Passing a value that is not a `HueyColor` instance (created via `hueyColor()`) will throw an error at runtime.
+When you pass a string, the bound value stays a string in the same format you provided. Pass a `HueyColor` if you want the bound value to be a `HueyColor` instance.

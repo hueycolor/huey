@@ -7,6 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import HSLSlidersDemo from '@/components/gallery/HSLSliders.vue'
 import PropsTable from '@/components/PropsTable.astro'
+import DataTable from '@/components/DataTable.astro'
 
 Slider controls for the hue, saturation, and lightness color channels.
 
@@ -72,3 +73,24 @@ Each slider component shares these props:
 - **HueSlider**: 0-360 degrees
 - **SaturationSlider**: 0-100%
 - **LightnessSlider**: 0-100%
+
+## Styling
+
+Each slider's track is `[huey-slider-track]` plus a role-specific selector:
+
+- `[huey-slider="hue"]` - HueSlider
+- `[huey-slider="saturation"]` - SaturationSlider
+- `[huey-slider="lightness"]` - LightnessSlider
+
+Target the thumb of a specific slider with `[huey-slider="hue"] [huey-slider-thumb]` (substitute the role). Use `[aria-orientation="vertical"]` to style the vertical orientation.
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-slider-track-height`', '`16px`', 'Track height (or width when vertical)'],
+    ['`--huey-slider-track-width`', '`129px`', 'Track width (or height when vertical)'],
+    ['`--huey-thumb-size`', '`var(--huey-slider-track-height, 16px)`', 'Size of the thumb'],
+  ]}
+/>
+
+All three ship a track background that updates with the current color, and the thumb color is driven dynamically via `--huey-thumb-color`.

@@ -7,6 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import ColorPreviewDemo from '@/components/gallery/ColorPreview.vue'
 import PropsTable from '@/components/PropsTable.astro'
+import DataTable from '@/components/DataTable.astro'
 
 Displays the currently selected color value.
 
@@ -59,3 +60,19 @@ Displays the currently selected color value.
 <PropsTable rows={[
   { name: 'splitPreview', type: 'boolean', default: 'true', description: 'Shows a split view of the transparent and opaque color.' },
 ]} />
+
+## Styling
+
+Target with `[huey-preview]`. Use the `data-split-view` attribute to style each mode:
+
+- `[huey-preview][data-split-view="true"]` - split mode
+- `[huey-preview][data-split-view="false"]` - solid mode
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-preview-tile-size`', '`20px`', 'Drives both width and height of the preview, plus the size of the transparency checkerboard tiles'],
+  ]}
+/>
+
+The preview's background color is set dynamically.

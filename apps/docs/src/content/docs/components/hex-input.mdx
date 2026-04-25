@@ -57,7 +57,7 @@ An input field for entering hexadecimal color values.
 ## Props
 
 <PropsTable rows={[
-  { name: 'alpha', type: 'boolean', default: 'true', description: 'Whether to include the alpha channel in the hex value. Set to false to display only the 6-digit RGB hex.' },
+  { name: 'alpha', type: 'boolean', default: 'false', description: 'Whether to include the alpha channel in the hex value. Set to true to display an 8-digit hex with the alpha channel.' },
 ]} />
 
 Extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, etc.).
@@ -65,3 +65,30 @@ Extends all standard HTML `input` attributes (`id`, `placeholder`, `disabled`, e
 ### Format
 
 Accepts both 3-digit and 6-digit hex values, with or without the `#` prefix. Use the up/down arrow keys to bump hex pair values. Hold Shift to bump by 10.
+
+## Styling
+
+Target with `[huey-input="hex"]`. The component renders a bare `<input>` and exposes no CSS variables of its own.
+
+### With a label
+
+`HexInput` is a single `<input>` element, so wrap it in a `<label>` (or pair it with one via `id`) to add a visible label and keep it accessible.
+
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```vue
+  <label>
+    <span>Hex</span>
+    <HexInput />
+  </label>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```svelte
+  <label>
+    <span>Hex</span>
+    <HexInput />
+  </label>
+  ```
+  </TabItem>
+</Tabs>

@@ -7,6 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import SaturationAreaDemo from '@/components/gallery/SaturationArea.vue'
 import PropsTable from '@/components/PropsTable.astro'
+import DataTable from '@/components/DataTable.astro'
 
 A 2D interactive area for picking color saturation and lightness values.
 
@@ -61,3 +62,19 @@ A 2D interactive area for picking color saturation and lightness values.
 ]} />
 
 Also extends all standard HTML attributes.
+
+## Styling
+
+Target the area with `[huey-area]`, and its draggable thumb with `[huey-area] [huey-slider-thumb]`.
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-area-width`', '`240px`', 'Width of the area'],
+    ['`--huey-area-height`', '`230px`', 'Height of the area'],
+    ['`--huey-area-radius`', '`12px`', 'Border radius of the area'],
+    ['`--huey-thumb-size`', '`16px`', 'Size of the area thumb (set on `[huey-area]` to override)'],
+  ]}
+/>
+
+The thumb's background color is driven dynamically by `--huey-thumb-color`; you typically don't need to set it.

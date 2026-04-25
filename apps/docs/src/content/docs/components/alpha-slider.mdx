@@ -7,6 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import AlphaSliderDemo from '@/components/gallery/AlphaSlider.vue'
 import PropsTable from '@/components/PropsTable.astro'
+import DataTable from '@/components/DataTable.astro'
 
 A slider control for adjusting the alpha (opacity) channel.
 
@@ -60,3 +61,18 @@ A slider control for adjusting the alpha (opacity) channel.
   { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'The orientation of the slider track.' },
   { name: 'aria-label', type: 'string', default: "'Alpha slider'", description: 'Accessible label for the slider.' },
 ]} />
+
+## Styling
+
+Target the track with `[huey-slider="alpha"]` (or the shared `[huey-slider-track]`) and its thumb with `[huey-slider="alpha"] [huey-slider-thumb]`. Use `[aria-orientation="vertical"]` to style the vertical orientation.
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-slider-track-height`', '`16px`', 'Track height (or width when vertical)'],
+    ['`--huey-slider-track-width`', '`129px`', 'Track width (or height when vertical)'],
+    ['`--huey-thumb-size`', '`var(--huey-slider-track-height, 16px)`', 'Size of the thumb'],
+  ]}
+/>
+
+The track background and thumb color are driven dynamically via `--huey-slider-bg` and `--huey-thumb-color`.

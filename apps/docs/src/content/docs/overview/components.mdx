@@ -3,6 +3,7 @@ title: Components
 description: Overview of all Huey components
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentsGrid from '@/components/ComponentsGrid.astro'
 
 Every Huey picker starts with [`HueyRoot`](/components/huey-root), the context provider that holds the shared color state.
@@ -10,3 +11,40 @@ Every Huey picker starts with [`HueyRoot`](/components/huey-root), the context p
 All other components must be descendants of a [`HueyRoot`](/components/huey-root) and automatically read from and write to its color state.
 
 <ComponentsGrid />
+
+## Typing Wrapper Components
+
+Every component's prop type is exported alongside the component, so you can build typed wrappers without redeclaring its props. Each interface is named `<Component>Props` (e.g. `HueSliderProps`, `ColorSwatchProps`).
+
+<Tabs syncKey="framework">
+  <TabItem label="Vue">
+  ```vue
+  <script setup lang="ts">
+  import type { HueSliderProps } from '@hueycolor/vue'
+  import { HueSlider } from '@hueycolor/vue'
+
+  defineProps<HueSliderProps>()
+  </script>
+
+  <template>
+    <div class="my-hue-slider">
+      <HueSlider v-bind="$props" />
+    </div>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Svelte">
+  ```svelte
+  <script lang="ts">
+  import type { HueSliderProps } from '@hueycolor/svelte'
+  import { HueSlider } from '@hueycolor/svelte'
+
+  let props: HueSliderProps = $props()
+  </script>
+
+  <div class="my-hue-slider">
+    <HueSlider {...props} />
+  </div>
+  ```
+  </TabItem>
+</Tabs>

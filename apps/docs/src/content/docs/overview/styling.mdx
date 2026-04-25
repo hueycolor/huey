@@ -40,10 +40,11 @@ Every component renders an element with a `huey-*` attribute that you can target
 
 ### Data Attributes
 
-Some components expose data attributes for conditional styling:
+Some components expose data or ARIA attributes for conditional styling:
 
 - `[huey-preview][data-split-view="true"]` - ColorPreview in split mode
 - `[huey-slider-track][aria-orientation="vertical"]` - vertical slider
+- `[huey-swatch-color][aria-selected="true"]` - currently selected swatch
 
 ## CSS Custom Properties
 
@@ -69,6 +70,29 @@ Components define CSS custom properties with sensible defaults that you can over
     ['`--huey-slider-track-width`', '`129px`', 'Track width (or height when vertical)'],
   ]}
 />
+
+### Slider & Area Thumb
+
+The thumb element is shared between every slider and the saturation area. To target only the area's thumb, scope the selector through `[huey-area]`. To target only slider thumbs, scope through `[huey-slider-track]`.
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-thumb-size`', '`var(--huey-slider-track-height, 16px)`', 'Size of the thumb on sliders and the saturation area'],
+  ]}
+/>
+
+```css
+/* Bigger thumb on the saturation area only */
+[huey-area] [huey-slider-thumb] {
+  --huey-thumb-size: 22px;
+}
+
+/* Different thumb size on slider tracks only */
+[huey-slider-track] [huey-slider-thumb] {
+  --huey-thumb-size: 14px;
+}
+```
 
 ### Preview
 

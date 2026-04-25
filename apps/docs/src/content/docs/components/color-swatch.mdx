@@ -7,6 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ComponentPreview from '@/components/ComponentPreview.vue'
 import ColorSwatchDemo from '@/components/gallery/ColorSwatch.vue'
 import PropsTable from '@/components/PropsTable.astro'
+import DataTable from '@/components/DataTable.astro'
 
 A clickable color swatch element for selecting preset colors.
 
@@ -62,3 +63,17 @@ A clickable color swatch element for selecting preset colors.
   { name: 'swatch', type: 'string[]', description: 'Array of hex color values to display as selectable presets.' },
   { name: 'aria-label', type: 'string', default: "'Color swatch'", description: 'Accessible label for the swatch group.' },
 ]} />
+
+## Styling
+
+Target the container with `[huey-swatch]` and individual items with `[huey-swatch-color]`. Style the currently selected item via `[huey-swatch-color][aria-selected="true"]`.
+
+<DataTable
+  headers={['Property', 'Default', 'Description']}
+  rows={[
+    ['`--huey-swatch-color-size`', '`16px`', 'Size of each swatch item'],
+    ['`--huey-swatch-color-radius`', '`4px`', 'Border radius of each swatch item'],
+  ]}
+/>
+
+Each item's background is driven dynamically by `--swatch-color`.
