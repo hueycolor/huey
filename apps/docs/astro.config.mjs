@@ -30,11 +30,11 @@ export default defineConfig({
       },
       {
         tag: 'meta',
-        attrs: { property: 'og:image', content: 'https://hueycolor.pages.dev/ogimage.webp' },
+        attrs: { property: 'og:image', content: 'https://hueycolor.pages.dev/ogimage.png' },
       },
       {
         tag: 'meta',
-        attrs: { name: 'twitter:image', content: 'https://hueycolor.pages.dev/ogimage.webp' },
+        attrs: { name: 'twitter:image', content: 'https://hueycolor.pages.dev/ogimage.png' },
       },
     ],
     expressiveCode: {
