@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { HueyRootProps } from '@/types'
   import type { ColorFormat, HueyColor } from '@hueycolor/core'
   import { clamp, hueyColor } from '@hueycolor/core'
@@ -41,31 +42,35 @@
     state.alpha = clamp(hsl.a, 0, 1)
   }
 
-  $effect(() => {
-    const h = state.hue
-    const s = state.saturation
-    const l = state.lightness
-    const a = state.alpha
+  onMount(() => {
+    return $effect.root(() => {
+      $effect(() => {
+        const h = state.hue
+        const s = state.saturation
+        const l = state.lightness
+        const a = state.alpha
 
-    const next = hueyColor(`hsla(${clamp(h, 0, 360)}, ${clamp(s, 0, 100)}%, ${clamp(l, 0, 100)}%, ${clamp(a, 0, 1)})`)
+        const next = hueyColor(`hsla(${clamp(h, 0, 360)}, ${clamp(s, 0, 100)}%, ${clamp(l, 0, 100)}%, ${clamp(a, 0, 1)})`)
 
-    state.colorValue = next
+        state.colorValue = next
 
-    if (stringFormat === null) {
-      color = next
-    }
-    else if (stringFormat === 'hex') {
-      color = next.toHexString()
-    }
-    else if (stringFormat === 'rgb') {
-      color = next.toRgbString()
-    }
-    else if (stringFormat === 'oklch') {
-      color = next.toOklchString()
-    }
-    else {
-      color = next.toHslString()
-    }
+        if (stringFormat === null) {
+          color = next
+        }
+        else if (stringFormat === 'hex') {
+          color = next.toHexString()
+        }
+        else if (stringFormat === 'rgb') {
+          color = next.toRgbString()
+        }
+        else if (stringFormat === 'oklch') {
+          color = next.toOklchString()
+        }
+        else {
+          color = next.toHslString()
+        }
+      })
+    })
   })
 </script>
 
