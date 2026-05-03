@@ -14,7 +14,7 @@ function copyDeclarations(): Plugin {
     name: 'copy-declarations',
     closeBundle() {
       copyFileSync(
-        path.resolve(dirname, 'src/index.d.ts'),
+        path.resolve(dirname, 'src/lib/index.d.ts'),
         path.resolve(dirname, 'dist/index.d.ts'),
       )
     },
@@ -27,16 +27,16 @@ export default defineConfig({
     cssInjectedByJsPlugin(),
     dts({
       tsconfigPath: './tsconfig.app.json',
-      include: ['src/types.ts'],
+      include: ['src/lib/types.ts'],
       outDir: 'dist',
-      entryRoot: 'src',
+      entryRoot: 'src/lib',
     }),
     copyDeclarations(),
   ],
   build: {
     copyPublicDir: false,
     lib: {
-      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+      entry: fileURLToPath(new URL('./src/lib/index.ts', import.meta.url)),
       name: 'HueySvelte',
       formats: ['es', 'cjs'],
       fileName: format => `index.${format === 'es' ? 'js' : 'cjs'}`,
@@ -52,7 +52,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(dirname, './src'),
+      '@': path.resolve(dirname, './src/lib'),
     },
   },
 })

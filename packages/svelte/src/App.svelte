@@ -18,7 +18,7 @@
     SaturationArea,
     SaturationInput,
     SaturationSlider,
-  } from './components'
+  } from './lib/components'
 
   let color = $state(hueyColor('#acff00'))
 </script>

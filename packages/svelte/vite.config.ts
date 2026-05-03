@@ -15,7 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@core': path.resolve(dirname, '../core'),
-      '@': path.resolve(dirname, './src'),
+      '@': path.resolve(dirname, './src/lib'),
       '@vue': path.resolve(dirname, '../vue'),
     },
   },

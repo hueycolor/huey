@@ -26,6 +26,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "svelte": "./package/index.js",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
@@ -34,11 +35,12 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "package"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build --config vite.lib.config.ts",
+    "build": "vite build --config vite.lib.config.ts && svelte-package -i src/lib -o package",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "storybook": "storybook dev -p 6006",
@@ -60,6 +62,7 @@
     "@storybook/addon-svelte-csf": "^5.0.8",
     "@storybook/addon-vitest": "^9.1.5",
     "@storybook/svelte-vite": "^9.1.5",
+    "@sveltejs/package": "^2.5.7",
     "@sveltejs/vite-plugin-svelte": "^6.1.1",
     "@tsconfig/svelte": "^5.0.4",
     "@vitest/browser": "^3.2.4",
