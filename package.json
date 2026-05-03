@@ -53,7 +53,8 @@
       "sharp"
     ],
     "ignoredBuiltDependencies": [
-      "@parcel/watcher"
+      "@parcel/watcher",
+      "workerd"
     ]
   }
 }

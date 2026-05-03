@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HueyColor } from '@hueycolor/core'
-  import type { HueyState } from '../src/context/huey-context.svelte'
-  import { useHueyContext } from '../src/context/huey-context.svelte'
+  import type { HueyState } from '../src/lib/context/huey-context.svelte'
+  import { useHueyContext } from '../src/lib/context/huey-context.svelte'
 
   interface Props {
     onReady: (handle: { state: HueyState, getColor: () => string | HueyColor }) => void

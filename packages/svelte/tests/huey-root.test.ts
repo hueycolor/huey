@@ -1,5 +1,5 @@
 import type { HueyColor } from '@hueycolor/core'
-import type { HueyState } from '../src/context/huey-context.svelte'
+import type { HueyState } from '../src/lib/context/huey-context.svelte'
 import { hueyColor, isHuey } from '@hueycolor/core'
 import { flushSync, mount } from 'svelte'
 import { describe, expect, it } from 'vitest'
